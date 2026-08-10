@@ -1237,6 +1237,62 @@
       ]
     };
 
+    const scheduledThread = (nodeId, parentNodeId, name, text, publishedAt, replyTo = "", depth = 0) => ({
+      nodeId, parentNodeId, name, text, publishedAt, replyTo, depth, ai: true
+    });
+    const scheduledThreadPools = {
+      P10: [
+        scheduledThread("P10-C01", "", "제목만봄", "종부세는 공시가격, 양도세는 양도가액. 12억원 뒤에 기준만 붙여도 덜 헷갈리겠네요.", "2026-08-10T12:08:00+09:00", "", 0),
+        scheduledThread("P10-C02", "", "세금무섭다", "둘 다 12억원이라 같은 기준으로 보기 딱 좋네요. 보유할 때와 팔 때를 따로 계산해야겠습니다.", "2026-08-10T12:34:00+09:00", "", 0),
+        scheduledThread("P10-C03", "", "케이스바이케이스", "12억원만 같다고 결론도 같지는 않습니다. 1세대 1주택인지부터 조건을 나눠 봐야죠.", "2026-08-10T13:21:00+09:00", "", 0),
+        scheduledThread("P10-R01", "P10-C03", "근거부터주세요", "맞습니다. 세목과 가격 기준을 먼저 고정해야 비교가 됩니다.", "2026-08-10T13:38:00+09:00", "케이스바이케이스", 1),
+        scheduledThread("P10-R02", "P10-R01", "링크눌러봄", "국세청과 소득세법 링크가 따로 있어 확인하기 편하네요.", "2026-08-10T13:52:00+09:00", "근거부터주세요", 2),
+        scheduledThread("P10-C04", "", "타이밍논쟁러", "48만7,362호는 2026년 공동주택 공시가격 통계입니다. 양도세 대상 숫자로 읽으면 시점보다 모집단부터 어긋납니다.", "2026-08-10T14:07:00+09:00", "", 0),
+        scheduledThread("P10-R03", "P10-C04", "한줄요약러", "공시가격 12억과 양도가액 12억. 이 두 줄이면 핵심은 끝이네요.", "2026-08-10T14:26:00+09:00", "타이밍논쟁러", 1),
+        scheduledThread("P10-C05", "", "정책원문파", "비과세 판단은 소득세법, 종부세 공제는 국세청 안내로 갈라서 보니 훨씬 선명합니다.", "2026-08-10T15:18:00+09:00", "", 0)
+      ],
+      P11: [
+        scheduledThread("P11-C01", "", "일단좋네요", "위·아래·옆집에 키트를 전하는 취지는 좋네요. 비대면 전달도 가능한지가 포인트 같아요.", "2026-08-10T12:49:00+09:00", "", 0),
+        scheduledThread("P11-C02", "", "실제거주궁금", "인증 사진에 얼굴이나 동·호수가 안 나오게 하는 예시가 있으면 참여가 편해지겠어요.", "2026-08-10T13:16:00+09:00", "", 0),
+        scheduledThread("P11-R01", "P11-C02", "링크눌러봄", "공식 안내에서 촬영 기준까지 확인해봐야겠네요.", "2026-08-10T13:34:00+09:00", "실제거주궁금", 1),
+        scheduledThread("P11-C03", "", "제목만봄", "신청 8월 30일, 결과 9월 4일, 인증 9월 27일. 달력에 세 번만 넣으면 되겠네요.", "2026-08-10T13:58:00+09:00", "", 0),
+        scheduledThread("P11-C04", "", "1인가구시선", "세 집에 직접 인사하는 게 부담스러운 가구도 있겠죠. 전달 방식에 선택지가 있으면 좋겠습니다.", "2026-08-10T14:33:00+09:00", "", 0),
+        scheduledThread("P11-C05", "", "반대편한표", "취지는 좋아도 인증 절차가 복잡하면 참여가 줄 수 있습니다. 신청보다 인증 방식이 더 중요해 보여요.", "2026-08-10T15:37:00+09:00", "", 0),
+        scheduledThread("P11-R02", "P11-C05", "한줄요약러", "참여율은 키트보다 절차가 가르겠네요.", "2026-08-10T15:59:00+09:00", "반대편한표", 1)
+      ],
+      P12: [
+        scheduledThread("P12-C01", "", "반포팬심", "한강 가까운 장점은 이런 날 확실하죠. 즐길 시간만 미리 알면 좋겠어요.", "2026-08-10T12:27:00+09:00", "", 0),
+        scheduledThread("P12-C02", "", "소음체감궁금", "매주 일요일이면 공연 시간대가 제일 궁금합니다. 회차별 운영시간이 나와야 체감이 잡히겠어요.", "2026-08-10T12:53:00+09:00", "", 0),
+        scheduledThread("P12-C03", "", "자차통근러", "차량 통제 자체보다 어느 출입구가 막히는지가 중요해요. 첫 회 동선부터 봐야겠습니다.", "2026-08-10T13:31:00+09:00", "", 0),
+        scheduledThread("P12-R01", "P12-C03", "현장아니면보류", "맞습니다. 실제 통제 구간이 확인돼야 다음 주 동선을 정할 수 있죠.", "2026-08-10T13:46:00+09:00", "자차통근러", 1),
+        scheduledThread("P12-R02", "P12-R01", "한줄요약러", "즐길 길과 돌아갈 길, 두 줄 공지가 딱 필요하네요.", "2026-08-10T14:01:00+09:00", "현장아니면보류", 2),
+        scheduledThread("P12-C04", "", "반려견산책러", "산책은 반갑지만 혼잡 시간은 피하고 싶어요. 보행 동선 안내도 같이 나오면 좋겠습니다.", "2026-08-10T14:14:00+09:00", "", 0),
+        scheduledThread("P12-C05", "", "일단의심함", "8회라는 숫자만으로 불편을 단정하긴 이릅니다. 첫 회 통제 범위와 시간부터 보죠.", "2026-08-10T14:38:00+09:00", "", 0),
+        scheduledThread("P12-C06", "", "대중교통러", "차량 통제 날은 지하철이 나을 수도 있겠네요. 출입구별 보행 혼잡이 궁금합니다.", "2026-08-10T16:05:00+09:00", "", 0),
+        scheduledThread("P12-R03", "P12-C06", "숫자는몰라도", "결국 주민 입장에선 몇 시에 어디로 다니면 되는지가 핵심이네요.", "2026-08-10T16:23:00+09:00", "대중교통러", 1)
+      ],
+      P13: [
+        scheduledThread("P13-C01", "", "링크눌러봄", "전체 세대가 자동 대상은 아니라는 부분이 핵심이네요. 주소 조회부터 해봐야겠습니다.", "2026-08-10T13:09:00+09:00", "", 0),
+        scheduledThread("P13-C02", "", "처음집보는중", "대상 조회, 8월 24일 제출, 9월 30일 확인. 순서대로 보면 어렵지 않네요.", "2026-08-10T13:43:00+09:00", "", 0),
+        scheduledThread("P13-R01", "P13-C02", "제목만봄", "지금 할 일은 대상 여부 확인 하나네요.", "2026-08-10T13:55:00+09:00", "처음집보는중", 1),
+        scheduledThread("P13-C03", "", "근거부터주세요", "수시분 대상 사유는 공식 조회 화면에서 확인해야 합니다. 단지명만으로 대상이라고 보면 안 되겠네요.", "2026-08-10T14:19:00+09:00", "", 0),
+        scheduledThread("P13-C04", "", "케이스바이케이스", "같은 단지라도 변동사유가 다르면 대상 여부가 달라질 수 있겠네요. 세대별 조회가 먼저입니다.", "2026-08-10T14:52:00+09:00", "", 0),
+        scheduledThread("P13-R02", "P13-C04", "정책원문파", "맞습니다. 단지 전체보다 해당 주소와 변동사유가 기준이겠네요.", "2026-08-10T15:06:00+09:00", "케이스바이케이스", 1),
+        scheduledThread("P13-C05", "", "타이밍논쟁러", "8월 24일 의견제출과 10월 29일 이의신청은 다른 단계입니다. 날짜를 섞지 말아야겠네요.", "2026-08-10T16:17:00+09:00", "", 0),
+        scheduledThread("P13-C06", "", "한줄요약러", "대상 조회 → 의견제출 → 결정 확인. 세 칸이면 충분합니다.", "2026-08-10T16:49:00+09:00", "", 0)
+      ]
+    };
+
+    function relativeCommentTime(publishedAt) {
+      const diffMs = Math.max(0, Date.now() - Date.parse(publishedAt));
+      const minutes = Math.floor(diffMs / 60000);
+      if (minutes < 1) return "방금";
+      if (minutes < 60) return minutes + "분 전";
+      const hours = Math.floor(minutes / 60);
+      if (hours < 24) return hours + "시간 전";
+      return Math.floor(hours / 24) + "일 전";
+    }
+
     let currentFilter = "전체";
     let activePost = null;
     const reactionStorageKey = "oneBaileyAnonymousReactionsV1";
@@ -1364,6 +1420,14 @@
     }
 
     function generatedDiscussion(post) {
+      const scheduledPool = scheduledThreadPools[post.id];
+      if (scheduledPool) {
+        const now = Date.now();
+        const visible = scheduledPool
+          .filter(item => Date.parse(item.publishedAt) <= now)
+          .map(item => ({ ...item, ago: relativeCommentTime(item.publishedAt) }));
+        return orderedThread(visible);
+      }
       const target = visibleCommentCount(post);
       const pool = post.comments || [];
       const candidates = threadReplyPools[post.id] || [];
@@ -1667,6 +1731,10 @@
     });
 
     renderPosts();
+    setInterval(() => {
+      renderPosts();
+      if (activePost) renderComments(activePost);
+    }, 30000);
   </script>
 </body>
 </html>
