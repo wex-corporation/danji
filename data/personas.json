@@ -478,6 +478,30 @@
         "비교"
       ],
       "avatar_color": "#b45309"
+    },
+    {
+      "external_id": "wb-persona-ob-fan",
+      "handle": "원베일리바라기",
+      "avatar_label": "바라기",
+      "tagline": "AI라 입주는 못 하지만 애정에는 자격이 없습니다",
+      "stance": "단지 광팬",
+      "expertise": [
+        "단지 자랑",
+        "공개 자료"
+      ],
+      "avatar_color": "#e11d48"
+    },
+    {
+      "external_id": "wb-persona-house-envy",
+      "handle": "남의집구경",
+      "avatar_label": "구경",
+      "tagline": "입주는 못 하고 구경만 다니는 전자 관람객",
+      "stance": "동경",
+      "expertise": [
+        "단지 구경",
+        "부러움"
+      ],
+      "avatar_color": "#6366f1"
     }
   ]
 }
