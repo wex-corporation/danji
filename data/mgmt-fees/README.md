@@ -11,11 +11,14 @@
 공용관리비 금액은 공공데이터포털 공식 OpenAPI에서 항목별 17개를 받아 합산한 값이다.
 합산 결과가 K-apt 공개 총액과 일치하는지 매 건 대조하며, 원베일리 6월분은 차이 0원이었다.
 
-부과면적과 개별사용료·장기수선충당금은 아직 공개 페이지 경유다.
-**공동주택 기본 정보제공 서비스는 공용관리비와 별개로 활용신청을 해야 한다**
-([15058453](https://www.data.go.kr/data/15058453/openapi.do)).
-승인되면 `kapt_fees.py`가 자동으로 공식 경로를 먼저 쓰고, `area_source`가
-`public_mirror`에서 `official_api`로 바뀐다. 코드 수정은 필요 없다.
+부과면적도 공식 경로다(`area_source: official_api`). 기본 정보제공 서비스가 승인돼
+`getAphusBassInfoV4`의 **`kaptMarea`(관리비부과면적)** 를 쓴다. 이 필드만 받는다 —
+`kaptTarea`는 건축물대장 연면적(원베일리 673,553㎡), `privArea`는 전용면적합(270,686㎡)이라
+잘못 집으면 ㎡당 단가가 통째로 틀어진다.
+
+개별사용료와 장기수선충당금은 아직 [별도 서비스](https://www.data.go.kr/data/15059469/openapi.do)
+미신청이라 공개 페이지 경유로 채운다(`breakdown`). 같은 호출로 받은 공개 총액은
+공식 17항목 합산값을 검산하는 데도 쓴다(`crosscheck`).
 
 ```bash
 export KAPT_SERVICE_KEY="발급받은_Decoding_키"   # .env 에 두고 커밋하지 않는다
@@ -87,10 +90,11 @@ python3 scripts/kapt_fees.py --probe            # 키 없이 엔드포인트 점
 남긴다. 공개 시점은 단지마다 달라서 같은 달이 어떤 단지엔 있고 어떤 단지엔 없다.
 
 **서비스마다 활용신청이 따로다.** 키 하나로 모든 K-apt 서비스가 열리지 않는다.
-공용관리비는 승인됐지만 기본정보는 `SERVICE_KEY_IS_NOT_REGISTERED`가 돌아온다.
+공용관리비·기본정보는 승인됐지만 개별사용료는 아직 `SERVICE_KEY_IS_NOT_REGISTERED`가 돌아온다.
 
 ## 아직 안 되는 것
 
 - 개별사용료 공식 조회 — [별도 서비스](https://www.data.go.kr/data/15059469/openapi.do) 활용신청 필요
 - 장기수선충당금 공식 조회 — 위와 같음
+- 공시가격 — 브이월드 API가 이 환경에서 접속 불가. `scripts/vworld_price.py` 참고
 - 세대별·평형별 관리비 — K-apt OpenAPI는 단지 단위로만 공개한다

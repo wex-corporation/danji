@@ -277,29 +277,46 @@ def _area_from_mirror(kapt_code, yyyymm):
 
 
 def fetch_area(key, kapt_code, yyyymm):
-    """관리비부과면적(㎡). 1순위는 공식 기본정보 서비스, 안 되면 미러 역산."""
+    """관리비부과면적(㎡). 1순위는 공식 기본정보 서비스, 안 되면 미러 역산.
+
+    면적을 못 구해도 공식 금액 자체는 유효하므로 조회를 통째로 버리지 않는다.
+    """
     try:
-        item = _request(f"{BASIS_SVC}/getAphusDtlInfoV4",
+        item = _request(f"{BASIS_SVC}/getAphusBassInfoV4",
                         {"serviceKey": key, "kaptCode": kapt_code})
     except KaptError as exc:
-        # 기본정보 서비스가 없으면 미러로 역산한다. 그것도 안 되면 면적 없이 간다.
-        # 면적을 못 구해도 공식 금액 자체는 유효하므로 버리지 않는다.
         try:
-            area, table = _area_from_mirror(kapt_code, yyyymm)
-            return area, "mirror_derived", "public_mirror", table, str(exc)
+            area, _table = _area_from_mirror(kapt_code, yyyymm)
+            return area, "mirror_derived", "public_mirror", str(exc)
         except KaptError as exc2:
-            return None, None, "unavailable", None, f"{exc} / {exc2}"
+            return None, None, "unavailable", f"{exc} / {exc2}"
 
-    for field in ("kaptMparea", "kaptMarea", "kaptTarea", "kaptdaArea", "privArea"):
-        value = item.get(field)
-        if value:
-            try:
-                area = float(str(value).replace(",", ""))
-            except ValueError:
-                continue
-            if area > 0:
-                return area, field, "official_api", None, None
-    raise KaptError(f"관리비부과면적을 찾지 못했습니다. 응답 필드: {sorted(item)[:12]}")
+    # kaptMarea(관리비부과면적)만 받는다. 후보를 넓히면 안 된다 —
+    # kaptTarea는 건축물대장 연면적(원베일리 673,553㎡), privArea는 전용면적합
+    # (270,686㎡)이라, 잘못 집으면 ㎡당 단가가 통째로 틀어진다.
+    value = item.get("kaptMarea")
+    if value:
+        try:
+            area = float(str(value).replace(",", ""))
+        except ValueError:
+            area = 0
+        if area > 0:
+            return area, "kaptMarea", "official_api", None
+    return None, None, "unavailable", f"kaptMarea 비어 있음. 필드: {sorted(item)[:12]}"
+
+
+def fetch_mirror_table(kapt_code, yyyymm):
+    """공개 미러의 4분류 표. 검산과 개별사용료 확보용이며 실패해도 넘어간다.
+
+    공식 API는 공용관리비만 준다. 개별사용료·장기수선충당금은 별도 서비스라
+    미신청 상태이고, 그 사이는 이 표로 메운다. 동시에 17항목 합산값이
+    K-apt 공개 총액과 맞는지 대조하는 검산 자료가 된다.
+    """
+    try:
+        _area, table = _area_from_mirror(kapt_code, yyyymm)
+        return table
+    except KaptError:
+        return None
 
 
 def fetch_common_fees(key, kapt_code, yyyymm):
@@ -323,7 +340,8 @@ def fetch_common_fees(key, kapt_code, yyyymm):
 
 def build(slug, name, gu, yyyymm, key):
     kapt_code, kapt_name = resolve_kapt_code(key, name, gu)
-    area, area_field, area_source, mirror_table, area_note = fetch_area(key, kapt_code, yyyymm)
+    area, area_field, area_source, area_note = fetch_area(key, kapt_code, yyyymm)
+    mirror_table = fetch_mirror_table(kapt_code, yyyymm)
     items, failures = fetch_common_fees(key, kapt_code, yyyymm)
     complete = not failures and len(items) == len(COMMON_FEE_OPS)
     total = sum(v["amount_won"] for v in items.values())
@@ -362,8 +380,10 @@ def build(slug, name, gu, yyyymm, key):
         "crosscheck": crosscheck,
         "common_fee_total_won": total,
         # 반올림 전 값을 함께 남긴다. 본문 인용은 정수로 하되 검산이 가능해야 한다.
-        "per_m2_won": round(total / area, 2) if area else None,
-        "per_m2_available": bool(area),
+        # 불완전한 달은 단가를 계산하지 않는다. 부분 합계(또는 0)를 면적으로 나눈
+        # 값이 실제 단가처럼 남으면 그대로 인용될 수 있다.
+        "per_m2_won": round(total / area, 2) if (area and complete) else None,
+        "per_m2_available": bool(area and complete),
         "items": items,
         "failures": failures,
         "complete": complete,
@@ -484,7 +504,12 @@ def main():
         xc = record.get("crosscheck")
         mark = "" if not xc else ("  대조 일치" if xc["match"] else f"  대조 불일치 {xc['diff_won']:+,}원")
         src = "" if record["area_source"] == "official_api" else "  면적:미러역산"
-        unit = f"㎡당 {record['per_m2_won']:,}원" if record["per_m2_won"] else "㎡당 —(면적 미확보)"
+        if record["per_m2_won"]:
+            unit = f"㎡당 {record['per_m2_won']:,}원"
+        elif not record["area_m2"]:
+            unit = "㎡당 —(부과면적 미확보)"
+        else:
+            unit = "㎡당 —(해당 월 금액 미공개)"
         print(f"[완료] {name}: 공용관리비 {total_str(record)} · {unit} · {args.month}{flag}{mark}{src}")
         ok += 1
 

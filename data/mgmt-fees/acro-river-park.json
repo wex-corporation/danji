@@ -10,16 +10,16 @@
       "kapt_code": "A10027205",
       "kapt_name": "아크로리버파크",
       "period": "202606",
-      "area_m2": null,
-      "area_m2_derived": null,
-      "area_field": null,
-      "area_source": "unavailable",
-      "area_note": "등록되지 않은 서비스키입니다. 발급 직후라면 반영까지 최대 1시간 걸립니다 [SERVICE_KEY_IS_NOT_REGISTERED_ERROR] / 미러 조회 실패: 해당 월 자료 없음 (202606). K-apt 공개 시점보다 이른 달일 수 있습니다.",
+      "area_m2": 206182.86,
+      "area_m2_derived": 206182.86,
+      "area_field": "kaptMarea",
+      "area_source": "official_api",
+      "area_note": null,
       "breakdown": null,
       "crosscheck": null,
       "common_fee_total_won": 377574799,
-      "per_m2_won": null,
-      "per_m2_available": false,
+      "per_m2_won": 1831.26,
+      "per_m2_available": true,
       "items": {
         "인건비": {
           "amount_won": 96947615,
@@ -161,15 +161,14 @@
       },
       "failures": {},
       "complete": true,
-      "fetched_at": "2026-08-16T01:32:51+0000",
+      "fetched_at": "2026-08-16T04:07:59+0000",
       "source": {
         "label": "공동주택관리정보시스템(K-apt) 공용관리비 · 공공데이터포털 OpenAPI",
         "url": "https://www.data.go.kr/data/15057937/openapi.do",
         "publisher": "국토교통부",
         "endpoint": "https://apis.data.go.kr/1613000/AptCmnuseManageCostServiceV2/<항목별 오퍼레이션>"
       },
-      "note": "공용관리비 17개 항목 합계를 관리비부과면적으로 나눈 값이다. 개별사용료(난방·급탕·전기·수도)와 장기수선충당금은 포함하지 않는다.",
-      "warning": "부과면적 미확보 — ㎡당 단가 인용 금지(금액 자체는 유효)."
+      "note": "공용관리비 17개 항목 합계를 관리비부과면적으로 나눈 값이다. 개별사용료(난방·급탕·전기·수도)와 장기수선충당금은 포함하지 않는다."
     },
     "202605": {
       "slug": "acro-river-park",
@@ -177,11 +176,11 @@
       "kapt_code": "A10027205",
       "kapt_name": "아크로리버파크",
       "period": "202605",
-      "area_m2": 206213,
-      "area_m2_derived": 206213,
-      "area_field": "mirror_derived",
-      "area_source": "public_mirror",
-      "area_note": "등록되지 않은 서비스키입니다. 발급 직후라면 반영까지 최대 1시간 걸립니다 [SERVICE_KEY_IS_NOT_REGISTERED_ERROR]",
+      "area_m2": 206182.86,
+      "area_m2_derived": 206182.86,
+      "area_field": "kaptMarea",
+      "area_source": "official_api",
+      "area_note": null,
       "breakdown": {
         "공용관리비": {
           "total_won": 370663920,
@@ -207,7 +206,7 @@
         "match": true
       },
       "common_fee_total_won": 370663920,
-      "per_m2_won": 1797.48,
+      "per_m2_won": 1797.74,
       "per_m2_available": true,
       "items": {
         "인건비": {
@@ -350,7 +349,7 @@
       },
       "failures": {},
       "complete": true,
-      "fetched_at": "2026-08-16T01:37:16+0000",
+      "fetched_at": "2026-08-16T04:03:45+0000",
       "source": {
         "label": "공동주택관리정보시스템(K-apt) 공용관리비 · 공공데이터포털 OpenAPI",
         "url": "https://www.data.go.kr/data/15057937/openapi.do",

@@ -10,11 +10,11 @@
       "kapt_code": "A13822004",
       "kapt_name": "잠실엘스아파트",
       "period": "202606",
-      "area_m2": 618623,
-      "area_m2_derived": 618623,
-      "area_field": "mirror_derived",
-      "area_source": "public_mirror",
-      "area_note": "등록되지 않은 서비스키입니다. 발급 직후라면 반영까지 최대 1시간 걸립니다 [SERVICE_KEY_IS_NOT_REGISTERED_ERROR]",
+      "area_m2": 618665.75,
+      "area_m2_derived": 618665.75,
+      "area_field": "kaptMarea",
+      "area_source": "official_api",
+      "area_note": null,
       "breakdown": {
         "공용관리비": {
           "total_won": 677388429,
@@ -40,7 +40,7 @@
         "match": true
       },
       "common_fee_total_won": 677388429,
-      "per_m2_won": 1094.99,
+      "per_m2_won": 1094.92,
       "per_m2_available": true,
       "items": {
         "인건비": {
@@ -183,7 +183,7 @@
       },
       "failures": {},
       "complete": true,
-      "fetched_at": "2026-08-16T01:34:30+0000",
+      "fetched_at": "2026-08-16T04:09:33+0000",
       "source": {
         "label": "공동주택관리정보시스템(K-apt) 공용관리비 · 공공데이터포털 OpenAPI",
         "url": "https://www.data.go.kr/data/15057937/openapi.do",
@@ -198,11 +198,11 @@
       "kapt_code": "A13822004",
       "kapt_name": "잠실엘스아파트",
       "period": "202605",
-      "area_m2": 618629,
-      "area_m2_derived": 618629,
-      "area_field": "mirror_derived",
-      "area_source": "public_mirror",
-      "area_note": "등록되지 않은 서비스키입니다. 발급 직후라면 반영까지 최대 1시간 걸립니다 [SERVICE_KEY_IS_NOT_REGISTERED_ERROR]",
+      "area_m2": 618665.75,
+      "area_m2_derived": 618665.75,
+      "area_field": "kaptMarea",
+      "area_source": "official_api",
+      "area_note": null,
       "breakdown": {
         "공용관리비": {
           "total_won": 676977115,
@@ -228,7 +228,7 @@
         "match": true
       },
       "common_fee_total_won": 676977115,
-      "per_m2_won": 1094.32,
+      "per_m2_won": 1094.25,
       "per_m2_available": true,
       "items": {
         "인건비": {
@@ -371,7 +371,7 @@
       },
       "failures": {},
       "complete": true,
-      "fetched_at": "2026-08-16T01:38:48+0000",
+      "fetched_at": "2026-08-16T04:05:17+0000",
       "source": {
         "label": "공동주택관리정보시스템(K-apt) 공용관리비 · 공공데이터포털 OpenAPI",
         "url": "https://www.data.go.kr/data/15057937/openapi.do",

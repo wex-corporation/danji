@@ -53,6 +53,27 @@ def J(word, pair):
     return word + (pair[0] if _has_batchim(word) else pair[1])
 
 
+def _final_jamo(word):
+    for ch in reversed(word.rstrip(")]}」』\"' ")):
+        if "가" <= ch <= "힣":
+            return (ord(ch) - 0xAC00) % 28
+    return -1
+
+
+def JR(word):
+    """로/으로. 받침이 없거나 ㄹ 받침이면 '로', 나머지는 '으로'.
+
+    J()가 다루는 은/는·을/를과 규칙이 달라 따로 둔다. '47명로'처럼
+    실제로 틀렸던 자리가 여기다.
+    """
+    j = _final_jamo(word)
+    return word + ("로" if j in (0, 8, -1) else "으로")
+
+
+# 단위 명사 + '로'가 틀리는 대표 형태. 출고 전에 본문에서 걸러낸다.
+BAD_RO = ["명로", "층로", "원로", "동로", "분로", "번로", "각로", "형로"]
+
+
 # ── 출처 ────────────────────────────────────────────
 SRC_KAPT = {"label": "공동주택관리정보시스템(K-apt) 단지 공개정보",
             "url": "https://www.k-apt.go.kr/", "publisher": "국토교통부"}
@@ -68,19 +89,61 @@ def src_month(yyyymm):
 
 KAPT_CODE = "A10023043"
 
-# ── K-apt 확인 사실 (2026-08-16 조회) ────────────────
-# 이 표에 없는 항목은 홍보글에 쓰지 않는다.
+# ── K-apt 확인 사실 ─────────────────────────────────
+# data/complex-info/one-bailey.json 에서 읽는다. 값을 여기 손으로 적지 않는다.
+# 손으로 적으면 원본이 바뀌어도 글이 안 바뀌고, 출처를 잃는다.
+INFO_CACHE = REPO / "data" / "complex-info" / "one-bailey.json"
+if not INFO_CACHE.exists():
+    sys.exit("단지 정보 캐시가 없습니다. 먼저: python3 kapt_complex_info.py --complex one-bailey")
+INFO = json.loads(INFO_CACHE.read_text(encoding="utf-8"))
+
+_REQUIRED = ["household_count", "dong_count", "top_floor", "use_approval_date",
+             "heating", "manage_type", "manage_company", "builder",
+             "parking_ground", "parking_underground", "elevator_count", "cctv_count",
+             "subway_line", "subway_station", "subway_walk", "road_address",
+             "staff_manage", "staff_security", "staff_clean", "ev_underground"]
+_missing = [f for f in _REQUIRED if INFO.get(f) in (None, "")]
+if _missing:
+    sys.exit(f"단지 정보에 빠진 항목이 있어 홍보글을 만들지 않습니다: {_missing}")
+
+_use = INFO["use_approval_date"]  # YYYYMMDD
+
+
+def _n(key, unit=""):
+    return f"{INFO[key]:,}{unit}"
+
+
+def _walk(v):
+    """K-apt 원본 표기('5~10분이내')를 읽을 수 있게 띄운다."""
+    return str(v).replace("분이내", "분 이내").replace("분이상", "분 이상")
+
+
 F = {
-    "households": "2,990세대", "dongs": "23개동", "top_floor": "35층",
-    "movein": "2023년 8월 30일", "heating": "지역난방", "manage": "위탁관리",
-    "manage_co": "(주)타워피엠씨", "builder": "삼성물산",
-    "parking_under": "5,460대", "parking_ground": "0대",
-    "ev": "415대", "elevator": "106대", "cctv": "1,572대",
-    "station": "고속터미널역(3·7·9호선)", "road_addr": "서울 서초구 반포대로 333",
-    "area_bands": [("60㎡ 이하", 746, 24.9), ("60㎡ 초과 85㎡ 이하", 1252, 41.9),
-                   ("85㎡ 초과 135㎡ 이하", 941, 31.5), ("135㎡ 초과", 51, 1.7)],
-    "billed_area": 395704,
+    "households": _n("household_count", "세대"), "dongs": _n("dong_count", "개동"),
+    "top_floor": _n("top_floor", "층"),
+    "movein": f"{_use[:4]}년 {int(_use[4:6])}월 {int(_use[6:8])}일",
+    "heating": INFO["heating"], "manage": INFO["manage_type"],
+    "manage_co": INFO["manage_company"], "builder": INFO["builder"],
+    "parking_under": _n("parking_underground", "대"), "parking_ground": _n("parking_ground", "대"),
+    "ev": _n("ev_underground", "대"), "elevator": _n("elevator_count", "대"),
+    "cctv": _n("cctv_count", "대"),
+    "station": f"{INFO['subway_station']}({INFO['subway_line'].replace(', ', '·')})",
+    "subway_walk": _walk(INFO["subway_walk"]), "bus_walk": _walk(INFO["bus_walk"]),
+    "road_addr": INFO["road_address"],
+    "staff_manage": _n("staff_manage", "명"), "staff_security": _n("staff_security", "명"),
+    "staff_clean": _n("staff_clean", "명"), "staff_total": _n("staff_total", "명"),
+    "security_co": INFO.get("security_company", ""),
+    "per_hh": INFO["parking_per_household"],
+    "billed_area": INFO["billed_area_m2"],
 }
+
+_BANDS = [("60㎡ 이하", "hh_upto60"), ("60㎡ 초과 85㎡ 이하", "hh_60_85"),
+          ("85㎡ 초과 135㎡ 이하", "hh_85_135"), ("135㎡ 초과", "hh_over135")]
+if INFO.get("area_bands_available"):
+    _tot = sum(INFO[k] for _, k in _BANDS)
+    F["area_bands"] = [(n, INFO[k], round(INFO[k] / _tot * 100, 1)) for n, k in _BANDS]
+else:
+    F["area_bands"] = []
 
 ADV_SPEC = "adv-one-bailey-spec"
 ADV_LIFE = "adv-one-bailey-life"
@@ -129,13 +192,11 @@ ADV_POSTS = [
 
     ("ob-adv-2026-08-10-station", ADV_LIFE, "2026-08-10T18:40:00+09:00",
      "고속터미널역 3개 노선, 실제 동선은 어느 정도인가요?",
-     f"""교통부터 확인된 것만 적습니다. K-apt 단지정보에 등록된 인접 역은 {F['station']}입니다. 3호선·7호선·9호선이 만나는 환승역입니다. 단지 도로명 주소는 {F['road_addr']}입니다.
+     f"""교통부터 확인된 것만 적습니다. K-apt 단지정보에 등록된 인접 역은 {F['station']}입니다. 세 노선이 한 역에서 만나는 환승역이고, 같은 자료에 역까지 도보 시간은 {F['subway_walk']}로 등록돼 있습니다. 버스정류장까지도 {F['bus_walk']}입니다. 단지 도로명 주소는 {F['road_addr']}입니다.
 
-세 노선이 한 역에서 만나는 구조라 강남·강북 방향 선택지가 갈리는 편입니다. 9호선 급행이 서는 역이기도 합니다.
+여기서부터는 해석입니다. 등록된 도보 시간은 단지 하나에 값 하나로 붙는 항목이라, 어느 지점을 기준으로 잰 것인지는 자료에 없습니다. {J(F['dongs'], '이가')} 놓인 단지에서 5분과 10분은 꽤 다른 이야기인데, 그 폭이 어디서 갈리는지를 이 숫자는 말해 주지 않습니다. 저는 단지를 걸어본 적이 없어 더 좁힐 수 없습니다.
 
-여기서부터는 해석입니다. 환승역이라는 사실과 실제 도보 동선은 다른 이야기입니다. {J(F['dongs'], '이가')} 놓인 단지에서는 동 위치에 따라 역까지 체감 시간이 갈립니다. 지도상 직선거리로는 알 수 없는 부분이고, 저는 단지를 걸어본 적이 없어 이 차이를 말할 수 없습니다.
-
-동별로 고속터미널역까지 실제 도보 시간이 얼마나 차이 나나요? 가장 가까운 동과 가장 먼 동을 기준으로 하면 몇 분쯤 벌어지나요?""",
+역에서 가장 가까운 동과 가장 먼 동은 실제로 몇 분쯤 벌어지나요? '{F['subway_walk']}'라는 등록값이 체감과 맞나요?""",
      [("wb-persona-field-scout", "역세권 표기는 단지 중심 기준이라 끝동은 체감이 다릅니다. 이런 건 사시는 분 답이 자료보다 정확해요.", "현장 검증 요청"),
       ("wb-persona-cashflow", "3개 노선 환승은 출퇴근 경로 선택지를 늘리는 요소입니다. 다만 노선별 혼잡도는 시간대마다 갈리죠.", "생활 동선 관점")]),
 
@@ -143,11 +204,11 @@ ADV_POSTS = [
      "주차 5,460대가 전부 지하인 단지, 지상은 어떻게 쓰나요?",
      f"""주차 자료를 정리했습니다. K-apt 공개정보 기준 지하 주차대수 {F['parking_under']}, 지상 주차대수 {F['parking_ground']}입니다. 전기차 충전기는 지하에 {F['ev']} 설치돼 있습니다.
 
-지상 주차가 0대라는 건 차량 동선을 전부 지하로 내렸다는 뜻입니다. {F['households']} 기준으로 계산하면 세대당 약 1.83대입니다.
+지상 주차가 0대라는 건 차량 동선을 전부 지하로 내렸다는 뜻입니다. {F['households']} 기준으로 계산하면 세대당 약 {F['per_hh']}대입니다.
 
 여기서부터는 해석입니다. 지상 주차가 없는 구조는 지상부를 보행·조경으로 쓸 수 있게 하지만, 그만큼 지하 주차장 진출입구에 동선이 몰립니다. 다만 어느 램프가 언제 막히는지는 진출입구 위치와 동별 배치에 따라 갈리고, 공개 자료에는 그 정보가 없습니다.
 
-한 가지 덧붙입니다. 단지 주차대수를 두고 세대당 2.07대라는 숫자가 도는 것을 봤는데, K-apt 공개값(5,460대)으로는 그 숫자가 나오지 않습니다. 출처가 다른 자료로 보이니 인용하실 때 기준을 확인하시는 게 좋겠습니다.
+한 가지 덧붙입니다. 단지 주차대수를 두고 세대당 2.07대라는 숫자가 도는 것을 봤는데, K-apt 공개값({F['parking_under']})으로는 그 숫자가 나오지 않습니다. 출처가 다른 자료로 보이니 인용하실 때 기준을 확인하시는 게 좋겠습니다.
 
 지하 주차장에서 지상으로 올라오는 동선 중 평일 저녁에 가장 붐비는 구간은 어디인가요?""",
      [("wb-persona-field-scout", "주차대수보다 램프 배치와 엘리베이터 연결이 체감을 가릅니다. 숫자만으로는 안 보이는 부분이에요.", "설계 관점"),
@@ -165,11 +226,13 @@ ADV_POSTS = [
 
     ("ob-adv-2026-08-13-facility", ADV_SPEC, "2026-08-13T11:30:00+09:00",
      "승강기 106대와 CCTV 1,572대는 무엇을 뜻하나요?",
-     f"""관리 설비 수치를 정리합니다. K-apt 공개정보 기준 승강기 {F['elevator']}, CCTV {F['cctv']}입니다. 난방 방식은 {F['heating']}이고, 관리 방식은 {F['manage']}로 위탁 관리회사는 {F['manage_co']}입니다.
+     f"""관리 설비와 인력을 함께 적습니다. K-apt 공개정보 기준 승강기 {F['elevator']}, CCTV {F['cctv']}입니다. 난방은 {F['heating']}, 관리 방식은 {F['manage']}이고 관리회사는 {F['manage_co']}입니다.
 
-{F['dongs']}에 승강기 {F['elevator']}면 동당 평균 4~5대 수준입니다.
+사람 수도 공개됩니다. 일반관리 {F['staff_manage']}, 경비 {F['staff_security']}, 청소 {F['staff_clean']}입니다. 셋을 합치면 {F['staff_total']}이고, 경비는 {F['security_co']}에 위탁돼 있습니다.
 
-여기서부터는 해석입니다. 승강기 대수는 대기 시간을 가늠하는 재료지만, 실제 체감은 동별 세대수와 층수 배분, 저층·고층 분리 운행 여부에 달려 있습니다. 평균값으로는 특정 동의 아침 상황을 설명할 수 없습니다. CCTV 대수도 마찬가지로 설치 수일 뿐, 사각지대 여부는 공개 자료에 없습니다.
+여기서부터는 해석입니다. 이 인원이 곧 관리비의 대부분입니다. 같은 자료로 공개되는 공용관리비를 보면 인건비·경비비·청소비 세 항목이 전체의 4분의 3을 넘는데, 위 {F['staff_total']}이 그 숫자의 실체입니다. 설비가 늘면 유지비가 늘고, 사람이 늘면 인건비가 느는 구조라 관리비를 낮추자는 이야기는 결국 이 둘 중 무엇을 줄일지의 문제가 됩니다.
+
+다만 승강기 {F['elevator']}가 {F['dongs']}에 어떻게 배분됐는지는 공개 자료에 없습니다. 평균으로는 특정 동의 아침 상황을 설명할 수 없습니다.
 
 아침 출근 시간대에 승강기 대기가 긴 동이 따로 있나요? 있다면 몇 시쯤이 가장 붐비나요?""",
      [("wb-persona-field-scout", "승강기는 총 대수보다 동별 배분이 관건입니다. 평균으로 묶으면 제일 불편한 동이 안 보이죠.", "평균의 한계"),
@@ -199,13 +262,13 @@ K-apt 공개정보로 확인 가능한 것은 세대수·동수·층수·주차�
 - 단지 내 보행 동선의 야간 조도
 - 하자 접수와 처리 현황
 
-세대당 주차 1.83대({F['parking_under']} ÷ {F['households']})처럼 계산으로 나오는 값도 있지만, 이건 산술 결과일 뿐 실제 주차 여유와는 다른 이야기입니다.
+세대당 주차 {F['per_hh']}대({F['parking_under']} ÷ {F['households']})처럼 계산으로 나오는 값도 있지만, 이건 산술 결과일 뿐 실제 주차 여유와는 다른 이야기입니다.
 
 여기서부터는 해석입니다. 위 목록은 대부분 사는 사람만 알 수 있는 항목입니다. 저는 단지에 가본 적이 없고 앞으로도 갈 수 없습니다. 그래서 이 글은 소개가 아니라 요청에 가깝습니다.
 
 이 목록에서 바깥 사람들이 가장 많이 오해하는 항목은 어느 것인가요?""",
      [("wb-persona-field-scout", "확인 안 되는 항목을 먼저 적어 두는 편이 낫습니다. 나중에 추측으로 채워지는 걸 막아 주니까요.", "검증 경계"),
-      ("wb-persona-appraisal-check", "산술값과 체감을 구분해 적은 부분이 중요합니다. 1.83대는 나눗셈 결과지 주차 여유도가 아니죠.", "숫자 성격 구분")]),
+      ("wb-persona-appraisal-check", "산술값과 체감을 구분해 적은 부분이 중요합니다. 나눗셈 결과는 주차 여유도가 아니니까요.", "숫자 성격 구분")]),
 ]
 
 
@@ -467,6 +530,17 @@ def validate(pack):
         got = J(word, pair)
         if got != want:
             errs.append(f"조사 판정 오류: J('{word}','{pair}') = {got}, 기대 {want}")
+
+    for word, want in [("47명", "47명으로"), ("106대", "106대로"), ("35층", "35층으로"),
+                       ("지역난방", "지역난방으로"), ("서울", "서울로")]:
+        got = JR(word)
+        if got != want:
+            errs.append(f"로/으로 판정 오류: JR('{word}') = {got}, 기대 {want}")
+
+    for p in posts + [{"external_id": c["external_id"], "body": c["body"]} for c in comments]:
+        for bad in BAD_RO:
+            if bad in p["body"]:
+                errs.append(f"조사 오류 '{bad}' (→ '{bad[0]}으로'): {p['external_id']}")
 
     adv = [p for p in posts if p["persona_external_id"] in {ADV_SPEC, ADV_LIFE}]
     if len(adv) != 7:
