@@ -465,6 +465,19 @@
         "인프라"
       ],
       "avatar_color": "#7c3aed"
+    },
+    {
+      "external_id": "wb-persona-num-compare",
+      "handle": "숫자비교표",
+      "avatar_label": "비교",
+      "tagline": "같은 달, 같은 잣대, 공개값만 비교합니다",
+      "stance": "기준 통일",
+      "expertise": [
+        "관리비",
+        "단지 스펙",
+        "비교"
+      ],
+      "avatar_color": "#b45309"
     }
   ]
 }
