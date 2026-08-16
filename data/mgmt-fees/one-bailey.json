@@ -1,0 +1,165 @@
+{
+  "slug": "one-bailey",
+  "complex_name": "래미안 원베일리",
+  "kapt_code": "A10023043",
+  "latest_period": "202606",
+  "periods": {
+    "202606": {
+      "slug": "one-bailey",
+      "complex_name": "래미안 원베일리",
+      "kapt_code": "A10023043",
+      "kapt_name_seen": "래미안원베일리 아파트 관리비 조회·비교 | 최신 관리비 정보 - www.",
+      "period": "202606",
+      "area_m2_derived": 395704,
+      "common_fee_total_won": 526002660,
+      "per_m2_won": 1329,
+      "breakdown": {
+        "공용관리비": {
+          "total_won": 526002660,
+          "per_m2_won": 1329
+        },
+        "개별사용료": {
+          "total_won": 606124711,
+          "per_m2_won": 1532
+        },
+        "장기수선충당금": {
+          "total_won": 56170670,
+          "per_m2_won": 142
+        },
+        "합계": {
+          "total_won": 1188298041,
+          "per_m2_won": 3003
+        }
+      },
+      "complete": true,
+      "source_path": "public_mirror",
+      "fetched_at": "2026-08-16T01:06:03+0000",
+      "source": {
+        "label": "K-apt 공개데이터 연계 관리비 · 2026년 06월",
+        "url": "https://www.aptdamoa.com/apt/A10023043/202606.html",
+        "publisher": "공동주택관리정보시스템(K-apt) 원자료 · aptdamoa 공개 페이지 경유",
+        "origin_url": "https://www.k-apt.go.kr/"
+      },
+      "note": "공용관리비는 청소·경비 등 공동 비용이다. 주민 고지서 총액은 여기에 개별사용료와 장기수선충당금이 더해진 금액이며, 개별 세대 고지액이 아니라 단지 전체를 관리비 부과면적으로 나눈 단가다.",
+      "caveat": "공식 OpenAPI(1순위)가 아닌 공개 미러(3순위) 경유. 키 확보 후 kapt_fees.py로 재검증할 것."
+    },
+    "202605": {
+      "slug": "one-bailey",
+      "complex_name": "래미안 원베일리",
+      "kapt_code": "A10023043",
+      "kapt_name_seen": "래미안원베일리 아파트 2026년 05월 관리비 — 평균 얼마? - www",
+      "period": "202605",
+      "area_m2_derived": 395733,
+      "common_fee_total_won": 529549820,
+      "per_m2_won": 1338,
+      "breakdown": {
+        "공용관리비": {
+          "total_won": 529549820,
+          "per_m2_won": 1338
+        },
+        "개별사용료": {
+          "total_won": 490277238,
+          "per_m2_won": 1239
+        },
+        "장기수선충당금": {
+          "total_won": 56170670,
+          "per_m2_won": 142
+        },
+        "합계": {
+          "total_won": 1075997728,
+          "per_m2_won": 2719
+        }
+      },
+      "complete": true,
+      "source_path": "public_mirror",
+      "fetched_at": "2026-08-16T01:06:06+0000",
+      "source": {
+        "label": "K-apt 공개데이터 연계 관리비 · 2026년 05월",
+        "url": "https://www.aptdamoa.com/apt/A10023043/202605.html",
+        "publisher": "공동주택관리정보시스템(K-apt) 원자료 · aptdamoa 공개 페이지 경유",
+        "origin_url": "https://www.k-apt.go.kr/"
+      },
+      "note": "공용관리비는 청소·경비 등 공동 비용이다. 주민 고지서 총액은 여기에 개별사용료와 장기수선충당금이 더해진 금액이며, 개별 세대 고지액이 아니라 단지 전체를 관리비 부과면적으로 나눈 단가다.",
+      "caveat": "공식 OpenAPI(1순위)가 아닌 공개 미러(3순위) 경유. 키 확보 후 kapt_fees.py로 재검증할 것."
+    },
+    "202604": {
+      "slug": "one-bailey",
+      "complex_name": "래미안 원베일리",
+      "kapt_code": "A10023043",
+      "kapt_name_seen": "래미안원베일리 아파트 2026년 04월 관리비 — 평균 얼마? - www",
+      "period": "202604",
+      "area_m2_derived": 395735,
+      "common_fee_total_won": 546307180,
+      "per_m2_won": 1380,
+      "breakdown": {
+        "공용관리비": {
+          "total_won": 546307180,
+          "per_m2_won": 1380
+        },
+        "개별사용료": {
+          "total_won": 533280260,
+          "per_m2_won": 1348
+        },
+        "장기수선충당금": {
+          "total_won": 56170670,
+          "per_m2_won": 142
+        },
+        "합계": {
+          "total_won": 1135758110,
+          "per_m2_won": 2870
+        }
+      },
+      "complete": true,
+      "source_path": "public_mirror",
+      "fetched_at": "2026-08-16T01:06:10+0000",
+      "source": {
+        "label": "K-apt 공개데이터 연계 관리비 · 2026년 04월",
+        "url": "https://www.aptdamoa.com/apt/A10023043/202604.html",
+        "publisher": "공동주택관리정보시스템(K-apt) 원자료 · aptdamoa 공개 페이지 경유",
+        "origin_url": "https://www.k-apt.go.kr/"
+      },
+      "note": "공용관리비는 청소·경비 등 공동 비용이다. 주민 고지서 총액은 여기에 개별사용료와 장기수선충당금이 더해진 금액이며, 개별 세대 고지액이 아니라 단지 전체를 관리비 부과면적으로 나눈 단가다.",
+      "caveat": "공식 OpenAPI(1순위)가 아닌 공개 미러(3순위) 경유. 키 확보 후 kapt_fees.py로 재검증할 것."
+    },
+    "202601": {
+      "slug": "one-bailey",
+      "complex_name": "래미안 원베일리",
+      "kapt_code": "A10023043",
+      "kapt_name_seen": "래미안원베일리 아파트 2026년 01월 관리비 — 평균 얼마? - www",
+      "period": "202601",
+      "area_m2_derived": 395703,
+      "common_fee_total_won": 535249396,
+      "per_m2_won": 1353,
+      "breakdown": {
+        "공용관리비": {
+          "total_won": 535249396,
+          "per_m2_won": 1353
+        },
+        "개별사용료": {
+          "total_won": 955778129,
+          "per_m2_won": 2415
+        },
+        "장기수선충당금": {
+          "total_won": 56170670,
+          "per_m2_won": 142
+        },
+        "합계": {
+          "total_won": 1547198195,
+          "per_m2_won": 3910
+        }
+      },
+      "complete": true,
+      "source_path": "public_mirror",
+      "fetched_at": "2026-08-16T01:06:13+0000",
+      "source": {
+        "label": "K-apt 공개데이터 연계 관리비 · 2026년 01월",
+        "url": "https://www.aptdamoa.com/apt/A10023043/202601.html",
+        "publisher": "공동주택관리정보시스템(K-apt) 원자료 · aptdamoa 공개 페이지 경유",
+        "origin_url": "https://www.k-apt.go.kr/"
+      },
+      "note": "공용관리비는 청소·경비 등 공동 비용이다. 주민 고지서 총액은 여기에 개별사용료와 장기수선충당금이 더해진 금액이며, 개별 세대 고지액이 아니라 단지 전체를 관리비 부과면적으로 나눈 단가다.",
+      "caveat": "공식 OpenAPI(1순위)가 아닌 공개 미러(3순위) 경유. 키 확보 후 kapt_fees.py로 재검증할 것."
+    }
+  },
+  "failed_periods": {}
+}

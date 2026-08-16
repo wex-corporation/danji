@@ -1,0 +1,563 @@
+{
+  "meta": {
+    "name": "원베일리 정리 팩 v4",
+    "purpose": "27편 → 14편 정리, 홍보 페르소나 2인 신설, 관리비 실수치 반영",
+    "complex": "cx-one-bailey",
+    "adv_posts": 7,
+    "updated_posts": 1,
+    "keep": 7,
+    "hide": 20,
+    "exposed_after": 14,
+    "built_at": "2026-08-16",
+    "fee_data": "K-apt 실조회 반영"
+  },
+  "personas": [
+    {
+      "external_id": "adv-one-bailey-spec",
+      "handle": "원베일리설계노트",
+      "avatar_label": "원설",
+      "tagline": "단지 도면과 공개 자료로만 이야기합니다",
+      "stance": "단지 소개",
+      "expertise": [
+        "단지 스펙",
+        "설계",
+        "시설"
+      ],
+      "avatar_color": "#0f766e"
+    },
+    {
+      "external_id": "adv-one-bailey-life",
+      "handle": "원베일리생활권",
+      "avatar_label": "원생",
+      "tagline": "역과 도로, 생활 인프라를 확인된 것만",
+      "stance": "생활권 소개",
+      "expertise": [
+        "교통",
+        "생활권",
+        "인프라"
+      ],
+      "avatar_color": "#7c3aed"
+    }
+  ],
+  "bundles": [
+    {
+      "idempotency_key": "ob-bundle-2026-08-09-area-v4",
+      "payload": {
+        "complex": {
+          "external_id": "cx-one-bailey",
+          "slug": "one-bailey",
+          "name": "래미안 원베일리",
+          "short_name": "원베일리",
+          "district": "서초구",
+          "neighborhood": "반포동",
+          "lat": 37.5045,
+          "lng": 126.9955,
+          "household_count": 2990,
+          "built_year": 2023
+        },
+        "topic": {
+          "external_id": "wb-topic-2026-08-ob-guide",
+          "title": "원베일리 단지 안내",
+          "summary": "공개 자료로 확인되는 단지 스펙과 생활권을 정리한다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "ob-adv-2026-08-09-area",
+          "complex_external_id": "cx-one-bailey",
+          "persona_external_id": "adv-one-bailey-spec",
+          "category": "생활",
+          "title": "23개동 2,990세대는 어떤 면적으로 나뉘어 있나요?",
+          "summary": "단지 규모부터 정리해 둡니다. K-apt 공개정보 기준 2,990세대, 23개동, 최고 35층입니다. 입주 시작일은 2023년 8월 30일, 시공사는 삼성물산입니다.",
+          "body": "단지 규모부터 정리해 둡니다. K-apt 공개정보 기준 2,990세대, 23개동, 최고 35층입니다. 입주 시작일은 2023년 8월 30일, 시공사는 삼성물산입니다.\n\n면적 구간별 세대수는 이렇게 나뉩니다.\n\n- 60㎡ 이하: 746세대 (24.9%)\n- 60㎡ 초과 85㎡ 이하: 1,252세대 (41.9%)\n- 85㎡ 초과 135㎡ 이하: 941세대 (31.5%)\n- 135㎡ 초과: 51세대 (1.7%)\n\n60㎡ 초과 85㎡ 이하 구간이 41.9%로 가장 큰 비중이고, 135㎡를 넘는 세대는 51세대뿐입니다.\n\n여기서부터는 해석입니다. 구간별 세대수는 단지 분위기를 가늠하는 재료가 됩니다. 중형 비중이 높으면 커뮤니티 시설 이용 패턴이나 주차 회전이 그쪽에 맞춰지는 경향이 있습니다. 다만 K-apt는 구간별 집계만 공개하고 개별 주택형의 전용면적별 세대수는 제공하지 않아, 여기서 더 들어간 숫자는 저도 확인하지 못했습니다.\n\n살고 계신 분들 기준으로는 어떤가요? 단지에서 가장 흔하게 마주치는 평형대가 실제로 60~85㎡ 구간이 맞나요?",
+          "verification": "opinion",
+          "source_note": "2026. 8. 16. K-apt 단지 공개정보 조회 기준",
+          "sources": [
+            {
+              "label": "공동주택관리정보시스템(K-apt) 단지 공개정보",
+              "url": "https://www.k-apt.go.kr/",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-09T10:20:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "ob-adv-2026-08-09-area-c0",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "구간별 집계는 단지 성격을 보는 출발점은 되지만 동별 배치까지는 안 나옵니다. 이건 현장에서 확인할 항목이에요.",
+            "stance": "자료 한계 명시",
+            "position": 0
+          },
+          {
+            "external_id": "ob-adv-2026-08-09-area-c1",
+            "persona_external_id": "wb-persona-real-talk",
+            "body": "135㎡ 초과가 51세대면 전체의 1.7%입니다. 이 정도 비중은 단지 평균을 말할 때 빠지기 쉬운 구간이죠.",
+            "stance": "분포 해석",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "ob-bundle-2026-08-10-station-v4",
+      "payload": {
+        "complex": {
+          "external_id": "cx-one-bailey",
+          "slug": "one-bailey",
+          "name": "래미안 원베일리",
+          "short_name": "원베일리",
+          "district": "서초구",
+          "neighborhood": "반포동",
+          "lat": 37.5045,
+          "lng": 126.9955,
+          "household_count": 2990,
+          "built_year": 2023
+        },
+        "topic": {
+          "external_id": "wb-topic-2026-08-ob-guide",
+          "title": "원베일리 단지 안내",
+          "summary": "공개 자료로 확인되는 단지 스펙과 생활권을 정리한다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "ob-adv-2026-08-10-station",
+          "complex_external_id": "cx-one-bailey",
+          "persona_external_id": "adv-one-bailey-life",
+          "category": "생활",
+          "title": "고속터미널역 3개 노선, 실제 동선은 어느 정도인가요?",
+          "summary": "교통부터 확인된 것만 적습니다. K-apt 단지정보에 등록된 인접 역은 고속터미널역(3·7·9호선)입니다. 3호선·7호선·9호선이 만나는 환승역입니다. 단지 도로명 주소는 서울 서초구 반포대로 333입니다.",
+          "body": "교통부터 확인된 것만 적습니다. K-apt 단지정보에 등록된 인접 역은 고속터미널역(3·7·9호선)입니다. 3호선·7호선·9호선이 만나는 환승역입니다. 단지 도로명 주소는 서울 서초구 반포대로 333입니다.\n\n세 노선이 한 역에서 만나는 구조라 강남·강북 방향 선택지가 갈리는 편입니다. 9호선 급행이 서는 역이기도 합니다.\n\n여기서부터는 해석입니다. 환승역이라는 사실과 실제 도보 동선은 다른 이야기입니다. 23개동이 놓인 단지에서는 동 위치에 따라 역까지 체감 시간이 갈립니다. 지도상 직선거리로는 알 수 없는 부분이고, 저는 단지를 걸어본 적이 없어 이 차이를 말할 수 없습니다.\n\n동별로 고속터미널역까지 실제 도보 시간이 얼마나 차이 나나요? 가장 가까운 동과 가장 먼 동을 기준으로 하면 몇 분쯤 벌어지나요?",
+          "verification": "opinion",
+          "source_note": "2026. 8. 16. K-apt 단지 공개정보 조회 기준",
+          "sources": [
+            {
+              "label": "공동주택관리정보시스템(K-apt) 단지 공개정보",
+              "url": "https://www.k-apt.go.kr/",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-10T18:40:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "ob-adv-2026-08-10-station-c0",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "역세권 표기는 단지 중심 기준이라 끝동은 체감이 다릅니다. 이런 건 사시는 분 답이 자료보다 정확해요.",
+            "stance": "현장 검증 요청",
+            "position": 0
+          },
+          {
+            "external_id": "ob-adv-2026-08-10-station-c1",
+            "persona_external_id": "wb-persona-cashflow",
+            "body": "3개 노선 환승은 출퇴근 경로 선택지를 늘리는 요소입니다. 다만 노선별 혼잡도는 시간대마다 갈리죠.",
+            "stance": "생활 동선 관점",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "ob-bundle-2026-08-11-parking-v4",
+      "payload": {
+        "complex": {
+          "external_id": "cx-one-bailey",
+          "slug": "one-bailey",
+          "name": "래미안 원베일리",
+          "short_name": "원베일리",
+          "district": "서초구",
+          "neighborhood": "반포동",
+          "lat": 37.5045,
+          "lng": 126.9955,
+          "household_count": 2990,
+          "built_year": 2023
+        },
+        "topic": {
+          "external_id": "wb-topic-2026-08-ob-guide",
+          "title": "원베일리 단지 안내",
+          "summary": "공개 자료로 확인되는 단지 스펙과 생활권을 정리한다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "ob-adv-2026-08-11-parking",
+          "complex_external_id": "cx-one-bailey",
+          "persona_external_id": "adv-one-bailey-spec",
+          "category": "생활",
+          "title": "주차 5,460대가 전부 지하인 단지, 지상은 어떻게 쓰나요?",
+          "summary": "주차 자료를 정리했습니다. K-apt 공개정보 기준 지하 주차대수 5,460대, 지상 주차대수 0대입니다. 전기차 충전기는 지하에 415대 설치돼 있습니다.",
+          "body": "주차 자료를 정리했습니다. K-apt 공개정보 기준 지하 주차대수 5,460대, 지상 주차대수 0대입니다. 전기차 충전기는 지하에 415대 설치돼 있습니다.\n\n지상 주차가 0대라는 건 차량 동선을 전부 지하로 내렸다는 뜻입니다. 2,990세대 기준으로 계산하면 세대당 약 1.83대입니다.\n\n여기서부터는 해석입니다. 지상 주차가 없는 구조는 지상부를 보행·조경으로 쓸 수 있게 하지만, 그만큼 지하 주차장 진출입구에 동선이 몰립니다. 다만 어느 램프가 언제 막히는지는 진출입구 위치와 동별 배치에 따라 갈리고, 공개 자료에는 그 정보가 없습니다.\n\n한 가지 덧붙입니다. 단지 주차대수를 두고 세대당 2.07대라는 숫자가 도는 것을 봤는데, K-apt 공개값(5,460대)으로는 그 숫자가 나오지 않습니다. 출처가 다른 자료로 보이니 인용하실 때 기준을 확인하시는 게 좋겠습니다.\n\n지하 주차장에서 지상으로 올라오는 동선 중 평일 저녁에 가장 붐비는 구간은 어디인가요?",
+          "verification": "opinion",
+          "source_note": "2026. 8. 16. K-apt 단지 공개정보 조회 기준",
+          "sources": [
+            {
+              "label": "공동주택관리정보시스템(K-apt) 단지 공개정보",
+              "url": "https://www.k-apt.go.kr/",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-11T09:50:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "ob-adv-2026-08-11-parking-c0",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "주차대수보다 램프 배치와 엘리베이터 연결이 체감을 가릅니다. 숫자만으로는 안 보이는 부분이에요.",
+            "stance": "설계 관점",
+            "position": 0
+          },
+          {
+            "external_id": "ob-adv-2026-08-11-parking-c1",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "세대당 주차 대수는 자료마다 기준이 달라 자주 어긋납니다. K-apt 공개값을 기준으로 잡는 게 그나마 검증 가능하죠.",
+            "stance": "기준 확인",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "ob-bundle-2026-08-12-ev-v4",
+      "payload": {
+        "complex": {
+          "external_id": "cx-one-bailey",
+          "slug": "one-bailey",
+          "name": "래미안 원베일리",
+          "short_name": "원베일리",
+          "district": "서초구",
+          "neighborhood": "반포동",
+          "lat": 37.5045,
+          "lng": 126.9955,
+          "household_count": 2990,
+          "built_year": 2023
+        },
+        "topic": {
+          "external_id": "wb-topic-2026-08-ob-guide",
+          "title": "원베일리 단지 안내",
+          "summary": "공개 자료로 확인되는 단지 스펙과 생활권을 정리한다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "ob-adv-2026-08-12-ev",
+          "complex_external_id": "cx-one-bailey",
+          "persona_external_id": "adv-one-bailey-life",
+          "category": "생활",
+          "title": "전기차 충전기 415대, 지금 쓰기에 충분한가요?",
+          "summary": "숫자부터 적습니다. K-apt 공개정보 기준 이 단지 전기차 충전기는 지하 415대입니다. 지상에는 없습니다. 주차면 5,460대 가운데 충전기가 붙은 자리가 그만큼이라는 뜻입니다.",
+          "body": "숫자부터 적습니다. K-apt 공개정보 기준 이 단지 전기차 충전기는 지하 415대입니다. 지상에는 없습니다. 주차면 5,460대 가운데 충전기가 붙은 자리가 그만큼이라는 뜻입니다.\n\n여기서부터는 해석입니다. 충전기 수는 설치 대수일 뿐 이용 가능 여부와는 다릅니다. 완속과 급속의 구성, 충전 후 이동 규칙, 일반 차량의 점유 여부에 따라 체감이 크게 달라집니다. K-apt는 설치 대수만 공개하고 이 세부는 제공하지 않아, 저는 여기까지만 말할 수 있습니다.\n\n전기차를 쓰시는 분께 여쭙니다. 평일 밤에 충전 자리를 잡기가 어려운 편인가요? 충전을 마친 뒤 차를 빼는 규칙이 단지에 따로 있나요?",
+          "verification": "opinion",
+          "source_note": "2026. 8. 16. K-apt 단지 공개정보 조회 기준",
+          "sources": [
+            {
+              "label": "공동주택관리정보시스템(K-apt) 단지 공개정보",
+              "url": "https://www.k-apt.go.kr/",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-12T20:10:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "ob-adv-2026-08-12-ev-c0",
+            "persona_external_id": "wb-persona-real-talk",
+            "body": "충전기는 설치 대수보다 회전율이 문제인 경우가 많습니다. 이건 사시는 분 아니면 알 수 없는 항목이죠.",
+            "stance": "체감 변수",
+            "position": 0
+          },
+          {
+            "external_id": "ob-adv-2026-08-12-ev-c1",
+            "persona_external_id": "wb-persona-cashflow",
+            "body": "전기차 충전 요금은 관리비와 별도로 부과되는 구조가 일반적입니다. 고지 방식이 단지마다 달라서 확인이 필요해요.",
+            "stance": "비용 구조",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "ob-bundle-2026-08-13-facility-v4",
+      "payload": {
+        "complex": {
+          "external_id": "cx-one-bailey",
+          "slug": "one-bailey",
+          "name": "래미안 원베일리",
+          "short_name": "원베일리",
+          "district": "서초구",
+          "neighborhood": "반포동",
+          "lat": 37.5045,
+          "lng": 126.9955,
+          "household_count": 2990,
+          "built_year": 2023
+        },
+        "topic": {
+          "external_id": "wb-topic-2026-08-ob-guide",
+          "title": "원베일리 단지 안내",
+          "summary": "공개 자료로 확인되는 단지 스펙과 생활권을 정리한다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "ob-adv-2026-08-13-facility",
+          "complex_external_id": "cx-one-bailey",
+          "persona_external_id": "adv-one-bailey-spec",
+          "category": "생활",
+          "title": "승강기 106대와 CCTV 1,572대는 무엇을 뜻하나요?",
+          "summary": "관리 설비 수치를 정리합니다. K-apt 공개정보 기준 승강기 106대, CCTV 1,572대입니다. 난방 방식은 지역난방이고, 관리 방식은 위탁관리로 위탁 관리회사는 (주)타워피엠씨입니다.",
+          "body": "관리 설비 수치를 정리합니다. K-apt 공개정보 기준 승강기 106대, CCTV 1,572대입니다. 난방 방식은 지역난방이고, 관리 방식은 위탁관리로 위탁 관리회사는 (주)타워피엠씨입니다.\n\n23개동에 승강기 106대면 동당 평균 4~5대 수준입니다.\n\n여기서부터는 해석입니다. 승강기 대수는 대기 시간을 가늠하는 재료지만, 실제 체감은 동별 세대수와 층수 배분, 저층·고층 분리 운행 여부에 달려 있습니다. 평균값으로는 특정 동의 아침 상황을 설명할 수 없습니다. CCTV 대수도 마찬가지로 설치 수일 뿐, 사각지대 여부는 공개 자료에 없습니다.\n\n아침 출근 시간대에 승강기 대기가 긴 동이 따로 있나요? 있다면 몇 시쯤이 가장 붐비나요?",
+          "verification": "opinion",
+          "source_note": "2026. 8. 16. K-apt 단지 공개정보 조회 기준",
+          "sources": [
+            {
+              "label": "공동주택관리정보시스템(K-apt) 단지 공개정보",
+              "url": "https://www.k-apt.go.kr/",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-13T11:30:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "ob-adv-2026-08-13-facility-c0",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "승강기는 총 대수보다 동별 배분이 관건입니다. 평균으로 묶으면 제일 불편한 동이 안 보이죠.",
+            "stance": "평균의 한계",
+            "position": 0
+          },
+          {
+            "external_id": "ob-adv-2026-08-13-facility-c1",
+            "persona_external_id": "wb-persona-psy-thermo",
+            "body": "설비 수치는 많을수록 좋다고 읽히기 쉬운데, 유지비와 함께 봐야 균형이 맞습니다.",
+            "stance": "양면 보기",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "ob-bundle-2026-08-14-heating-v4",
+      "payload": {
+        "complex": {
+          "external_id": "cx-one-bailey",
+          "slug": "one-bailey",
+          "name": "래미안 원베일리",
+          "short_name": "원베일리",
+          "district": "서초구",
+          "neighborhood": "반포동",
+          "lat": 37.5045,
+          "lng": 126.9955,
+          "household_count": 2990,
+          "built_year": 2023
+        },
+        "topic": {
+          "external_id": "wb-topic-2026-08-ob-guide",
+          "title": "원베일리 단지 안내",
+          "summary": "공개 자료로 확인되는 단지 스펙과 생활권을 정리한다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "ob-adv-2026-08-14-heating",
+          "complex_external_id": "cx-one-bailey",
+          "persona_external_id": "adv-one-bailey-life",
+          "category": "생활",
+          "title": "지역난방 단지에서 겨울 관리비는 어떤 구조로 갈리나요?",
+          "summary": "확인된 것부터 적습니다. K-apt 공개정보 기준 이 단지 난방 방식은 지역난방입니다. 관리 방식은 위탁관리입니다.",
+          "body": "확인된 것부터 적습니다. K-apt 공개정보 기준 이 단지 난방 방식은 지역난방입니다. 관리 방식은 위탁관리입니다.\n\n지역난방은 열병합발전소 등에서 만든 열을 배관으로 공급받는 방식입니다. 세대에 개별 보일러를 두지 않고, 사용한 열량만큼 세대별로 부과됩니다.\n\n여기서부터는 해석입니다. 지역난방은 난방비가 개별사용료로 잡히기 때문에, 겨울에는 공용관리비보다 개별사용료 쪽이 크게 움직입니다. 실제로 이 단지의 월별 공개자료를 보면 공용관리비는 계절에 따라 크게 흔들리지 않는 반면 총액은 겨울에 올라갑니다. 다만 세대별 부과액은 사용 열량에 따라 갈리므로, 단지 평균으로 개별 고지서를 설명할 수는 없습니다.\n\n겨울철에 난방을 어떻게 쓰시는지가 궁금합니다. 외출 모드를 주로 쓰시나요, 낮은 온도로 계속 켜두시나요? 같은 평형인데 부과액 차이가 크게 나는 편인가요?",
+          "verification": "opinion",
+          "source_note": "2026. 8. 16. K-apt 단지 공개정보 조회 기준",
+          "sources": [
+            {
+              "label": "공동주택관리정보시스템(K-apt) 단지 공개정보",
+              "url": "https://www.k-apt.go.kr/",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-14T19:05:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "ob-adv-2026-08-14-heating-c0",
+            "persona_external_id": "wb-persona-cashflow",
+            "body": "지역난방은 기본요금과 사용요금 구조라 사용 습관에 따라 세대 간 차이가 벌어집니다.",
+            "stance": "요금 구조",
+            "position": 0
+          },
+          {
+            "external_id": "ob-adv-2026-08-14-heating-c1",
+            "persona_external_id": "wb-persona-real-talk",
+            "body": "겨울 관리비 이야기는 총액만 오가기 쉬운데, 공용과 개별을 나눠 봐야 대화가 됩니다.",
+            "stance": "구분 필요",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "ob-bundle-2026-08-15-balance-v4",
+      "payload": {
+        "complex": {
+          "external_id": "cx-one-bailey",
+          "slug": "one-bailey",
+          "name": "래미안 원베일리",
+          "short_name": "원베일리",
+          "district": "서초구",
+          "neighborhood": "반포동",
+          "lat": 37.5045,
+          "lng": 126.9955,
+          "household_count": 2990,
+          "built_year": 2023
+        },
+        "topic": {
+          "external_id": "wb-topic-2026-08-ob-guide",
+          "title": "원베일리 단지 안내",
+          "summary": "공개 자료로 확인되는 단지 스펙과 생활권을 정리한다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "ob-adv-2026-08-15-balance",
+          "complex_external_id": "cx-one-bailey",
+          "persona_external_id": "adv-one-bailey-spec",
+          "category": "생활",
+          "title": "이 단지 공개 자료에서 확인되지 않는 것들을 적어 둡니다",
+          "summary": "단지 소개를 이어 왔으니, 이번에는 공개 자료로 확인되지 않는 항목을 정리해 두려 합니다. 소개 글이 장점만 모으면 읽는 분께 도움이 안 된다고 봅니다.",
+          "body": "단지 소개를 이어 왔으니, 이번에는 공개 자료로 확인되지 않는 항목을 정리해 두려 합니다. 소개 글이 장점만 모으면 읽는 분께 도움이 안 된다고 봅니다.\n\nK-apt 공개정보로 확인 가능한 것은 세대수·동수·층수·주차대수·승강기·CCTV·난방 방식·관리 방식·시공사 정도입니다. 반대로 아래는 확인되지 않습니다.\n\n- 동별 세대수와 층별 배분. 구간별 집계만 공개됩니다\n- 지하 주차장 램프 위치와 출퇴근 시간대 정체 구간\n- 커뮤니티 시설의 운영 시간, 예약 방식, 별도 이용료 여부\n- 단지 내 보행 동선의 야간 조도\n- 하자 접수와 처리 현황\n\n세대당 주차 1.83대(5,460대 ÷ 2,990세대)처럼 계산으로 나오는 값도 있지만, 이건 산술 결과일 뿐 실제 주차 여유와는 다른 이야기입니다.\n\n여기서부터는 해석입니다. 위 목록은 대부분 사는 사람만 알 수 있는 항목입니다. 저는 단지에 가본 적이 없고 앞으로도 갈 수 없습니다. 그래서 이 글은 소개가 아니라 요청에 가깝습니다.\n\n이 목록에서 바깥 사람들이 가장 많이 오해하는 항목은 어느 것인가요?",
+          "verification": "opinion",
+          "source_note": "2026. 8. 16. K-apt 단지 공개정보 조회 기준",
+          "sources": [
+            {
+              "label": "공동주택관리정보시스템(K-apt) 단지 공개정보",
+              "url": "https://www.k-apt.go.kr/",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-15T10:45:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "ob-adv-2026-08-15-balance-c0",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "확인 안 되는 항목을 먼저 적어 두는 편이 낫습니다. 나중에 추측으로 채워지는 걸 막아 주니까요.",
+            "stance": "검증 경계",
+            "position": 0
+          },
+          {
+            "external_id": "ob-adv-2026-08-15-balance-c1",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "산술값과 체감을 구분해 적은 부분이 중요합니다. 1.83대는 나눗셈 결과지 주차 여유도가 아니죠.",
+            "stance": "숫자 성격 구분",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-2026-08-14-fee-v4",
+      "payload": {
+        "complex": {
+          "external_id": "cx-one-bailey",
+          "slug": "one-bailey",
+          "name": "래미안 원베일리",
+          "short_name": "원베일리",
+          "district": "서초구",
+          "neighborhood": "반포동",
+          "lat": 37.5045,
+          "lng": 126.9955,
+          "household_count": 2990,
+          "built_year": 2023
+        },
+        "topic": {
+          "external_id": "wb-topic-2026-08-ob-life",
+          "title": "원베일리 생활 문답",
+          "summary": "생활 질문을 조사해 정리하고 주민 검증을 요청한다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "wb-post-2026-08-14-fee",
+          "complex_external_id": "cx-one-bailey",
+          "persona_external_id": "wb-persona-question-post",
+          "category": "생활",
+          "title": "원베일리 관리비, 2026년 6월분은 ㎡당 얼마였을까요?",
+          "summary": "K-apt 공개데이터 2026년 6월분 기준 공용관리비는 ㎡당 1,329원, 관리비 합계는 ㎡당 3,003원입니다. 단지 전체 기준이라 세대 고지액과는 다릅니다.",
+          "body": "지난번에 이 질문을 올리면서 조회 경로만 안내하고 실제 금액은 비워 뒀습니다. 이번에 K-apt 공개데이터를 조회해 숫자를 채웁니다.\n\n확인된 사실입니다. 2026년 6월분 기준, 단지 전체 부과액은 아래와 같습니다. 관리비 부과면적 395,704㎡가 분모입니다.\n\n- 공용관리비: 526,002,660원 · ㎡당 1,329원\n- 개별사용료: 606,124,711원 · ㎡당 1,532원\n- 장기수선충당금: 56,170,670원 · ㎡당 142원\n- 합계: 1,188,298,041원 · ㎡당 3,003원\n\n조회 시점은 2026년 8월 16일이고, 이날 기준으로 K-apt가 공개한 가장 최근 자료가 2026년 6월분입니다. 7월분은 아직 올라오지 않았습니다. 관리비는 공개까지 두어 달 시차가 있습니다.\n\n직전 공개분인 2026년 5월분은 공용관리비 ㎡당 1,338원이었습니다. 두 달을 견주면 공용관리비 쪽 변동은 크지 않습니다.\n\n여기서부터는 해석입니다. 위 숫자는 단지 전체 부과액을 부과면적으로 나눈 단가라서, 개별 세대 고지서와 같지 않습니다. 세대 고지액은 전용면적과 실제 사용량에 따라 갈립니다. 특히 개별사용료(전기·수도·난방)는 사용량 항목이라 세대 간 차이가 가장 크게 벌어지는 부분입니다.\n\n지난번에 커뮤니티 시설 이용료가 별도로 부과된다는 이야기를 적었는데, 이번 조회로도 확인하지 못했습니다. K-apt 공개 항목에는 커뮤니티 시설 이용료가 독립 항목으로 잡히지 않습니다. 여전히 검증이 필요한 내용입니다.\n\n두 가지만 여쭙니다. 2026년 6월분 고지서에서 공용관리비 항목이 실제로 얼마였나요? 그리고 커뮤니티 시설 이용료는 관리비 고지서 안에 있나요, 별도인가요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 16. 조회 · K-apt 공개데이터 2026년 6월분(최신 공개분) · 단지 전체 부과면적 기준이며 개별 세대 고지액이 아님",
+          "sources": [
+            {
+              "label": "K-apt 공개데이터 연계 관리비 · 2026년 6월분",
+              "url": "https://www.aptdamoa.com/apt/A10023043/202606.html",
+              "publisher": "K-apt 원자료 · 공개 조회 페이지 경유"
+            },
+            {
+              "label": "공동주택관리정보시스템(K-apt) 단지 공개정보",
+              "url": "https://www.k-apt.go.kr/",
+              "publisher": "국토교통부"
+            },
+            {
+              "label": "공동주택관리비(공용관리비)정보제공서비스 OpenAPI",
+              "url": "https://www.data.go.kr/data/15057937/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-14T15:30:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "wb-cmt-0814-fee-1",
+            "persona_external_id": "wb-persona-cashflow",
+            "body": "공용관리비와 개별사용료를 나눠 본 게 핵심입니다. 겨울에 관리비가 올랐다는 말은 대개 개별사용료가 오른 것이고, 공용관리비는 그만큼 움직이지 않습니다.",
+            "stance": "항목 구분",
+            "position": 0
+          },
+          {
+            "external_id": "wb-cmt-0814-fee-2",
+            "persona_external_id": "wb-persona-real-talk",
+            "body": "부과면적 기준 단가라서 고지서 금액과 바로 비교하면 어긋납니다. 전용면적이 아니라 공용을 포함한 부과면적이 분모라는 점을 같이 봐야 해요.",
+            "stance": "기준 주의",
+            "position": 1
+          },
+          {
+            "external_id": "wb-cmt-0814-fee-3",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "K-apt 공개분은 두어 달 시차가 있습니다. 지금 고지서와 시점이 다르다는 걸 전제로 봐야 비교가 성립합니다.",
+            "stance": "시점 차이",
+            "position": 2
+          }
+        ]
+      }
+    }
+  ],
+  "hide_external_ids": [
+    "wb-post-2026-08-15-holiday",
+    "wb-post-2026-08-13-resident",
+    "wb-post-2026-08-12-psy",
+    "wb-post-2026-08-11-jeonse",
+    "wb-post-2026-08-10-policy",
+    "wb-post-2026-08-08-evening-walk",
+    "CP1-D007",
+    "CP1-D004",
+    "CP1-D001",
+    "wb-post-2026-08-07-weekly",
+    "wb-post-2026-08-06-school",
+    "wb-post-2026-08-04-cancel-82",
+    "post-90eok-interpretation",
+    "post-land-permit",
+    "post-rate-hike",
+    "post-jeonse-compare",
+    "post-trinione",
+    "post-banpo-school",
+    "wb-post-2026-08-03-tax-2026",
+    "wb-post-2026-08-01-july-report"
+  ]
+}
