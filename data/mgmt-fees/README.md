@@ -1,20 +1,26 @@
 # 단지별 ㎡당 공용관리비 캐시
 
-`scripts/kapt_fees.py`가 쓰고, 콘텐츠 생성기가 읽는다.
-파일 하나가 **단지 1곳 × 조회월 1개**다. 경로는 `data/mgmt-fees/<slug>.json`.
+`scripts/kapt_fees.py`(공식 OpenAPI)와 `scripts/kapt_mirror.py`(보조 경로)가 쓰고,
+콘텐츠 생성기가 읽는다. 파일 하나가 **단지 1곳**이고, 그 안에서 **월별**로 쌓인다.
+경로는 `data/mgmt-fees/<slug>.json`.
 
-## 이 디렉터리가 비어 있는 이유
+## 현재 상태 (2026-08-16)
 
-2026-08-16 기준 **공공데이터포털 서비스키가 없어 실제 조회를 하지 못했다.**
-엔드포인트 20개는 전부 실재를 확인했고(`python3 scripts/kapt_fees.py --probe`),
-클라이언트도 동작하지만 키 없이는 수치가 나오지 않는다.
+11개 단지 × 2026년 5~6월 = **22건 확보. 21건 완전, 19건 대조 일치.**
 
-**빈 상태가 정상이다.** 운영 명세 3.2.2와 CLAUDE.md 4장에 따라
-조회하지 못한 수치는 추정·보간하지 않는다. 키가 들어오면 아래 명령 한 번으로 채워진다.
+공용관리비 금액은 공공데이터포털 공식 OpenAPI에서 항목별 17개를 받아 합산한 값이다.
+합산 결과가 K-apt 공개 총액과 일치하는지 매 건 대조하며, 원베일리 6월분은 차이 0원이었다.
+
+부과면적과 개별사용료·장기수선충당금은 아직 공개 페이지 경유다.
+**공동주택 기본 정보제공 서비스는 공용관리비와 별개로 활용신청을 해야 한다**
+([15058453](https://www.data.go.kr/data/15058453/openapi.do)).
+승인되면 `kapt_fees.py`가 자동으로 공식 경로를 먼저 쓰고, `area_source`가
+`public_mirror`에서 `official_api`로 바뀐다. 코드 수정은 필요 없다.
 
 ```bash
-export KAPT_SERVICE_KEY="발급받은_Decoding_키"
+export KAPT_SERVICE_KEY="발급받은_Decoding_키"   # .env 에 두고 커밋하지 않는다
 python3 scripts/kapt_fees.py --month 202606
+python3 scripts/kapt_fees.py --probe            # 키 없이 엔드포인트 점검
 ```
 
 ## 스키마
@@ -26,38 +32,65 @@ python3 scripts/kapt_fees.py --month 202606
 {
   "slug": "one-bailey",
   "complex_name": "래미안 원베일리",
-  "kapt_code": "<K-apt 단지코드>",       // getSigunguAptList3에서 이름 매칭으로 해결
-  "kapt_name": "<K-apt 등록 단지명>",     // 우리 표기와 다를 수 있어 함께 남긴다
-  "period": "202606",                     // 조회월 YYYYMM
-  "area_m2": "<관리비부과면적 ㎡>",
-  "area_field": "<응답에서 실제로 쓴 면적 필드명>",
-  "common_fee_total_won": "<공용관리비 17항목 합계 원>",
-  "per_m2_won": "<합계 ÷ 면적, 소수 둘째자리>",
-  "items": {
-    "인건비": { "amount_won": "<원>", "detail": { "<세부비목>": "<원>" }, "op": "getHsmpLaborCostInfoV2" }
-    // ... 17개 항목
+  "kapt_code": "<K-apt 단지코드>",
+  "latest_period": "<보유한 가장 최근 YYYYMM>",
+  "periods": {
+    "202606": {
+      "period": "202606",
+      "area_m2": "<관리비부과면적 ㎡>",
+      "area_m2_derived": "<같은 값. 생성기가 쓰는 이름>",
+      "area_source": "official_api | public_mirror | unavailable",
+      "common_fee_total_won": "<공용관리비 17항목 합계 원>",
+      "per_m2_won": "<합계 ÷ 면적. 면적을 못 구하면 null>",
+      "items": {
+        "인건비": { "amount_won": "<원>", "detail": { "<세부비목>": "<원>" }, "op": "getHsmpLaborCostInfoV2" }
+        // ... 17개 항목
+      },
+      "breakdown": {
+        // 공용관리비 / 개별사용료 / 장기수선충당금 / 합계 — 각 total_won, per_m2_won
+        // 개별사용료와 장기수선충당금은 별도 서비스라 공개 페이지 경유로 채운다
+      },
+      "crosscheck": {
+        "official_common_fee_won": "<17항목 합산>",
+        "mirror_common_fee_won": "<공개 총액>",
+        "diff_won": "<차이>", "match": "<허용오차 안이면 true>"
+      },
+      "failures": {},        // 항목명 → 실패 사유. 비어 있어야 정상
+      "complete": true,      // false면 본문 인용 금지
+      "warning": "<있을 때만>",
+      "fetched_at": "<ISO8601 조회 시각>"
+    }
   },
-  "failures": {},          // 항목명 → 실패 사유. 비어 있어야 정상
-  "complete": true,        // false면 본문 인용 금지
-  "fetched_at": "<ISO8601 조회 시각>",
-  "source": { "label": "...", "url": "...", "publisher": "국토교통부", "endpoint": "..." },
-  "note": "공용관리비 17개 항목 합계 ÷ 관리비부과면적. 개별사용료·장기수선충당금 제외"
+  "failed_periods": {}
 }
 ```
 
 ## 인용 규칙
 
-1. **`complete: false`면 본문에 수치를 쓰지 않는다.** 17항목 중 하나라도 조회에
-   실패하면 합계가 과소 계상되므로, 부분 합계를 전체인 것처럼 인용하면 오보가 된다.
-2. **`fetched_at`과 `period`를 본문에 함께 적는다.** 관리비는 월별로 바뀌고
+1. **`complete: false`면 본문에 수치를 쓰지 않는다.** 17항목 중 하나라도 실패하면
+   합계가 과소 계상되므로, 부분 합계를 전체처럼 인용하면 오보가 된다.
+2. **`per_m2_won`이 null이면 ㎡당 단가를 인용하지 않는다.** 부과면적을 못 구한 경우다.
+   금액 자체는 유효하므로 총액은 쓸 수 있다.
+3. **`crosscheck.match`가 false면 인용 전에 확인한다.** 공식 합산과 공개 총액이
+   어긋난다는 뜻이라, 어느 쪽이 맞는지 가려지기 전에는 쓰지 않는다.
+4. **`fetched_at`과 `period`를 본문에 함께 적는다.** 관리비는 월별로 바뀌고
    K-apt 공개 시점도 단지마다 다르다. "언제 조회한 몇 월분인지" 없는 숫자는 쓸 수 없다.
-3. **범위를 명시한다.** 이 값은 공용관리비만이다. 주민이 고지서에서 보는 총액은
-   여기에 개별사용료(난방·급탕·전기·수도)와 장기수선충당금이 더해진 금액이라,
-   그 차이를 적지 않으면 "관리비가 이것뿐이냐"는 오해가 생긴다.
-4. **단지 간 비교는 같은 `period`끼리만 한다.** 계절 편차가 크다.
+5. **범위를 명시한다.** `per_m2_won`은 공용관리비만이다. 주민이 고지서에서 보는 총액은
+   여기에 개별사용료와 장기수선충당금이 더해진 금액이다.
+6. **단지 간 비교는 같은 `period`끼리만.** 계절 편차가 크다.
 
-## 무엇이 캐시되지 않는가
+## 알아 둘 함정
 
-- 개별사용료 — 별도 서비스(`공동주택관리비(개별사용료)정보제공서비스`)다. 아직 미연동
-- 장기수선충당금 — 위와 같음
+**미공개 월은 0원으로 온다.** 포털은 자료가 없어도 200에 빈 item을 돌려주는데,
+이때 `kaptCode`까지 null이다. 그대로 합산하면 "0원"이라는 실제 수치처럼 기록된다.
+실제로 파크리오 2026-06에서 이 사고가 났고, 지금은 `_is_no_data()`가 걸러 `failures`에
+남긴다. 공개 시점은 단지마다 달라서 같은 달이 어떤 단지엔 있고 어떤 단지엔 없다.
+
+**서비스마다 활용신청이 따로다.** 키 하나로 모든 K-apt 서비스가 열리지 않는다.
+공용관리비는 승인됐지만 기본정보는 `SERVICE_KEY_IS_NOT_REGISTERED`가 돌아온다.
+
+## 아직 안 되는 것
+
+- 개별사용료 공식 조회 — [별도 서비스](https://www.data.go.kr/data/15059469/openapi.do) 활용신청 필요
+- 장기수선충당금 공식 조회 — 위와 같음
 - 세대별·평형별 관리비 — K-apt OpenAPI는 단지 단위로만 공개한다

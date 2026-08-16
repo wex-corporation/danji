@@ -214,8 +214,13 @@ def fee_post():
     if not FEE_CACHE.exists():
         return None
     cache = json.loads(FEE_CACHE.read_text(encoding="utf-8"))
-    latest = cache["latest_period"]
-    r = cache["periods"][latest]
+    # complete=False인 달은 인용하지 않는다. 부분 합계를 전체처럼 쓰면 오보가 된다.
+    usable = {p: v for p, v in cache["periods"].items()
+              if v.get("complete") and v.get("per_m2_won") and v.get("breakdown")}
+    if not usable:
+        return None
+    latest = max(usable)
+    r = usable[latest]
     b = r["breakdown"]
     yy, mm = latest[:4], int(latest[4:])
     f_iso = r["fetched_at"][:10]
@@ -223,9 +228,9 @@ def fee_post():
     fetched_ko = f"{f_iso[:4]}년 {int(f_iso[5:7])}월 {int(f_iso[8:10])}일"
 
     prev = None
-    for p in sorted(cache["periods"], reverse=True):
+    for p in sorted(usable, reverse=True):
         if p < latest:
-            prev = cache["periods"][p]
+            prev = usable[p]
             break
 
     prev_line = ""
@@ -235,20 +240,33 @@ def fee_post():
                      f"{prev['breakdown']['공용관리비']['per_m2_won']:,}원이었습니다. "
                      f"두 달을 견주면 공용관리비 쪽 변동은 크지 않습니다.\n")
 
-    body = f"""지난번에 이 질문을 올리면서 조회 경로만 안내하고 실제 금액은 비워 뒀습니다. 이번에 K-apt 공개데이터를 조회해 숫자를 채웁니다.
+    top = sorted(r["items"].items(), key=lambda kv: -kv[1]["amount_won"])[:5]
+    top_lines = "\n".join(
+        f"- {name}: {v['amount_won']:,}원 (공용관리비의 {v['amount_won'] / r['common_fee_total_won'] * 100:.0f}%)"
+        for name, v in top)
+    common_m2 = round(r["per_m2_won"])
+    top3_pct = sum(v["amount_won"] for _, v in top[:3]) / r["common_fee_total_won"] * 100
 
-확인된 사실입니다. {yy}년 {mm}월분 기준, 단지 전체 부과액은 아래와 같습니다. 관리비 부과면적 {r['area_m2_derived']:,}㎡가 분모입니다.
+    body = f"""지난번에 이 질문을 올리면서 조회 경로만 안내하고 실제 금액은 비워 뒀습니다. 이번에 공공데이터포털 OpenAPI로 K-apt 공개데이터를 직접 받아 숫자를 채웁니다.
+
+확인된 사실입니다. {yy}년 {mm}월분 기준, 단지 전체 부과액입니다. 관리비 부과면적 {r['area_m2_derived']:,}㎡가 분모입니다.
 
 - 공용관리비: {b['공용관리비']['total_won']:,}원 · ㎡당 {b['공용관리비']['per_m2_won']:,}원
 - 개별사용료: {b['개별사용료']['total_won']:,}원 · ㎡당 {b['개별사용료']['per_m2_won']:,}원
 - 장기수선충당금: {b['장기수선충당금']['total_won']:,}원 · ㎡당 {b['장기수선충당금']['per_m2_won']:,}원
 - 합계: {b['합계']['total_won']:,}원 · ㎡당 {b['합계']['per_m2_won']:,}원
 
+공용관리비는 17개 항목으로 나뉘어 공개됩니다. 큰 것부터 다섯 개만 적습니다.
+
+{top_lines}
+
+인건비·경비비·청소비 세 항목만 더해도 {top3_pct:.0f}%입니다. 사람이 들어가는 일에 공용관리비의 대부분이 쓰인다는 뜻입니다. 17개 항목을 모두 더하면 {r['common_fee_total_won']:,}원으로, K-apt가 공개한 공용관리비 총액과 정확히 일치합니다.
+
 조회 시점은 {fetched_ko}이고, 이날 기준으로 K-apt가 공개한 가장 최근 자료가 {yy}년 {mm}월분입니다. 7월분은 아직 올라오지 않았습니다. 관리비는 공개까지 두어 달 시차가 있습니다.
 {prev_line}
-여기서부터는 해석입니다. 위 숫자는 단지 전체 부과액을 부과면적으로 나눈 단가라서, 개별 세대 고지서와 같지 않습니다. 세대 고지액은 전용면적과 실제 사용량에 따라 갈립니다. 특히 개별사용료(전기·수도·난방)는 사용량 항목이라 세대 간 차이가 가장 크게 벌어지는 부분입니다.
+여기서부터는 해석입니다. 위 숫자는 단지 전체 부과액을 부과면적으로 나눈 단가라서, 개별 세대 고지서와 같지 않습니다. 세대 고지액은 전용면적과 실제 사용량에 따라 갈립니다. 특히 개별사용료(전기·수도·난방)는 사용량 항목이라 세대 간 차이가 가장 크게 벌어집니다. 공용관리비 ㎡당 {common_m2:,}원은 사용량과 무관하게 면적에 비례해 나뉘는 쪽에 가깝습니다.
 
-지난번에 커뮤니티 시설 이용료가 별도로 부과된다는 이야기를 적었는데, 이번 조회로도 확인하지 못했습니다. K-apt 공개 항목에는 커뮤니티 시설 이용료가 독립 항목으로 잡히지 않습니다. 여전히 검증이 필요한 내용입니다.
+지난번에 커뮤니티 시설 이용료가 별도로 부과된다는 이야기를 적었는데, 이번 조회로도 확인하지 못했습니다. K-apt 공개 항목에 커뮤니티 시설 이용료는 독립 항목으로 잡히지 않습니다. 여전히 검증이 필요한 내용입니다.
 
 두 가지만 여쭙니다. {yy}년 {mm}월분 고지서에서 공용관리비 항목이 실제로 얼마였나요? 그리고 커뮤니티 시설 이용료는 관리비 고지서 안에 있나요, 별도인가요?"""
 
@@ -268,9 +286,10 @@ def fee_post():
                 "title": f"원베일리 관리비, {yy}년 {mm}월분은 ㎡당 얼마였을까요?",
                 "summary": summary, "body": body,
                 "verification": "verified",
-                "source_note": (f"{fetched} 조회 · K-apt 공개데이터 {yy}년 {mm}월분(최신 공개분) · "
-                                f"단지 전체 부과면적 기준이며 개별 세대 고지액이 아님"),
-                "sources": [src_month(latest), SRC_KAPT, SRC_API],
+                "source_note": (f"{fetched} 조회 · 공용관리비는 공공데이터포털 OpenAPI 직접 조회, "
+                                f"개별사용료·장기수선충당금·부과면적은 K-apt 공개 페이지 경유 · "
+                                f"{yy}년 {mm}월분(최신 공개분) · 단지 전체 기준이며 개별 세대 고지액이 아님"),
+                "sources": [SRC_API, SRC_KAPT, src_month(latest)],
                 "published_at": "2026-08-14T15:30:00+09:00",
                 "status": "published",
             },

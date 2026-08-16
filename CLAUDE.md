@@ -164,16 +164,18 @@ curl -X POST "$BASE_URL/api/v1/ingest/personas" \
 
 ### 알려진 이슈 / 다음 할 일
 
-1. **K-apt 연동 — 코드 완료, 공식 키 대기.** (2026-08-16 갱신)
-   - `apis.data.go.kr`은 **차단이 아니다.** 이전 기록과 달리 도달된다. 막는 건 서비스키뿐이다
+1. **K-apt 연동 — 완료.** (2026-08-16)
+   - 공식 OpenAPI로 **11개 단지 × 2026년 5~6월 = 22건** 확보. 21건 완전, 19건 대조 일치
+   - `apis.data.go.kr`은 **차단이 아니었다.** 이전 기록이 틀렸다. 키만 있으면 된다
    - `k-apt.go.kr` 직접 접속은 연결이 끊긴다(Connection reset). OpenAPI가 유일한 공식 경로다
-   - 엔드포인트 20개 실재 확인 완료. 키 없이도 점검된다: `python3 scripts/kapt_fees.py --probe`
-     (실재 경로는 `SERVICE_KEY_IS_NOT_REGISTERED`, 없는 경로는 `NO_OPENAPI_SERVICE`를 준다)
-   - 공용관리비 서비스: `1613000/AptCmnuseManageCostServiceV2` 아래 항목별 17개 오퍼레이션
-   - **남은 일**: data.go.kr에서 [공용관리비 서비스](https://www.data.go.kr/data/15057937/openapi.do)
-     활용신청 → 인증키(Decoding) 발급 → `export KAPT_SERVICE_KEY=...` → `python3 scripts/kapt_fees.py --month YYYYMM`
-   - 원베일리는 보조 경로(공개 미러)로 실수치를 이미 받아 `data/mgmt-fees/one-bailey.json`에 있다.
-     나머지 10개 단지는 단지코드 해석이 공식 API에 달려 있어 키가 있어야 채워진다
+   - 공용관리비: `1613000/AptCmnuseManageCostServiceV2` 항목별 17개 오퍼레이션.
+     17개 합산값이 K-apt 공개 총액과 맞는지 매 건 대조한다(`crosscheck`)
+   - 키는 `.env`의 `KAPT_SERVICE_KEY`. 활용기간 2026-08-16 ~ 2028-08-16, 오퍼레이션당 일 5,000건
+   - **주의**: 서비스마다 활용신청이 따로다. 공용관리비는 승인됐지만
+     [기본정보 서비스](https://www.data.go.kr/data/15058453/openapi.do)는 미신청이라
+     부과면적·개별사용료를 공개 페이지 경유로 받고 있다. 승인되면 코드 수정 없이 공식 경로로 바뀐다
+   - **주의**: 미공개 월은 빈 item이 와서 그냥 더하면 `0원`이라는 가짜 수치가 된다.
+     파크리오 2026-06에서 실제로 났던 사고이고, 지금은 걸러서 `complete: false`로 남긴다
 2. **원베일리 정리 — 팩 생성 완료, 게시 대기.**
    `content/onebailey-v4.json`. 홍보 2인 신설 + 홍보글 7편 + 관리비 글 실수치 갱신,
    기존 20편은 `hide_external_ids`로 분류. 게시하면 27 → 14편이 된다.

@@ -1,161 +1,161 @@
 {
-  "slug": "one-bailey",
-  "complex_name": "래미안 원베일리",
-  "kapt_code": "A10023043",
+  "slug": "eunma",
+  "complex_name": "은마아파트",
+  "kapt_code": "A13583507",
   "latest_period": "202606",
   "periods": {
     "202606": {
-      "slug": "one-bailey",
-      "complex_name": "래미안 원베일리",
-      "kapt_code": "A10023043",
-      "kapt_name": "래미안원베일리",
+      "slug": "eunma",
+      "complex_name": "은마아파트",
+      "kapt_code": "A13583507",
+      "kapt_name": "은마",
       "period": "202606",
-      "area_m2": 395704,
-      "area_m2_derived": 395704,
+      "area_m2": 470815,
+      "area_m2_derived": 470815,
       "area_field": "mirror_derived",
       "area_source": "public_mirror",
       "area_note": "등록되지 않은 서비스키입니다. 발급 직후라면 반영까지 최대 1시간 걸립니다 [SERVICE_KEY_IS_NOT_REGISTERED_ERROR]",
       "breakdown": {
         "공용관리비": {
-          "total_won": 526002660,
-          "per_m2_won": 1329
+          "total_won": 595166363,
+          "per_m2_won": 1264
         },
         "개별사용료": {
-          "total_won": 606124711,
-          "per_m2_won": 1532
+          "total_won": 486623748,
+          "per_m2_won": 1034
         },
         "장기수선충당금": {
-          "total_won": 56170670,
-          "per_m2_won": 142
+          "total_won": 13797000,
+          "per_m2_won": 29
         },
         "합계": {
-          "total_won": 1188298041,
-          "per_m2_won": 3003
+          "total_won": 1095587111,
+          "per_m2_won": 2327
         }
       },
       "crosscheck": {
-        "mirror_common_fee_won": 526002660,
-        "official_common_fee_won": 526002660,
+        "mirror_common_fee_won": 595166363,
+        "official_common_fee_won": 595166363,
         "diff_won": 0,
         "match": true
       },
-      "common_fee_total_won": 526002660,
-      "per_m2_won": 1329.28,
+      "common_fee_total_won": 595166363,
+      "per_m2_won": 1264.12,
       "per_m2_available": true,
       "items": {
         "인건비": {
-          "amount_won": 147506287,
+          "amount_won": 160679100,
           "detail": {
-            "pay": 117800447.0,
-            "sundryCost": 3299010.0,
-            "bonus": 0.0,
-            "pension": 14500000.0,
-            "accidentPremium": 1118440.0,
-            "employPremium": 1345290.0,
-            "nationalPension": 4812080.0,
-            "healthPremium": 4631020.0,
-            "welfareBenefit": 0.0
+            "pay": 105517180.0,
+            "sundryCost": 15351450.0,
+            "bonus": 9706810.0,
+            "pension": 15306500.0,
+            "accidentPremium": 846490.0,
+            "employPremium": 745470.0,
+            "nationalPension": 2288970.0,
+            "healthPremium": 4319730.0,
+            "welfareBenefit": 6596500.0
           },
           "op": "getHsmpLaborCostInfoV2"
         },
         "제사무비": {
-          "amount_won": 1256000,
+          "amount_won": 2135700,
           "detail": {
-            "officeSupply": 403750.0,
-            "bookSupply": 822250.0,
-            "transportCost": 30000.0
+            "officeSupply": 537700.0,
+            "bookSupply": 1598000.0,
+            "transportCost": 0.0
           },
           "op": "getHsmpOfcrkCostInfoV2"
         },
         "제세공과금": {
-          "amount_won": 667280,
+          "amount_won": 2149360,
           "detail": {
             "electCost": 0.0,
-            "telCost": 663120.0,
-            "postageCost": 4160.0,
-            "taxrestCost": 0.0
+            "telCost": 439530.0,
+            "postageCost": 61670.0,
+            "taxrestCost": 1648160.0
           },
           "op": "getHsmpTaxdueInfoV2"
         },
         "피복비": {
-          "amount_won": 0,
+          "amount_won": 881660,
           "detail": {
-            "clothesCost": 0.0
+            "clothesCost": 881660.0
           },
           "op": "getHsmpClothingCostInfoV2"
         },
         "교육훈련비": {
-          "amount_won": 317000,
+          "amount_won": 197000,
           "detail": {
-            "eduCost": 317000.0
+            "eduCost": 197000.0
           },
           "op": "getHsmpEduTraingCostInfoV2"
         },
         "차량유지비": {
-          "amount_won": 4517430,
+          "amount_won": 384840,
           "detail": {
             "fuelCost": 0.0,
             "refairCost": 0.0,
             "carInsurance": 0.0,
-            "carEtc": 4517430.0
+            "carEtc": 384840.0
           },
           "op": "getHsmpVhcleMntncCostInfoV2"
         },
         "그 밖의 부대비용": {
-          "amount_won": 4538780,
+          "amount_won": 1305590,
           "detail": {
-            "careItemCost": 2035920.0,
-            "accountingCost": 320830.0,
-            "hiddenCost": 2182030.0
+            "careItemCost": 891000.0,
+            "accountingCost": 0.0,
+            "hiddenCost": 414590.0
           },
           "op": "getHsmpEtcCostInfoV2"
         },
         "경비비": {
-          "amount_won": 139153345,
+          "amount_won": 286604220,
           "detail": {
-            "guardCost": 139153345.0
+            "guardCost": 286604220.0
           },
           "op": "getHsmpGuardCostInfoV2"
         },
         "청소비": {
-          "amount_won": 120032084,
+          "amount_won": 82585600,
           "detail": {
-            "cleanCost": 120032084.0
+            "cleanCost": 82585600.0
           },
           "op": "getHsmpCleaningCostInfoV2"
         },
         "소독비": {
-          "amount_won": 2850000,
+          "amount_won": 5836300,
           "detail": {
-            "disinfCost": 2850000.0
+            "disinfCost": 5836300.0
           },
           "op": "getHsmpDisinfectionCostInfoV2"
         },
         "승강기유지비": {
-          "amount_won": 24552000,
+          "amount_won": 4799410,
           "detail": {
-            "elevCost": 24552000.0
+            "elevCost": 4799410.0
           },
           "op": "getHsmpElevatorMntncCostInfoV2"
         },
         "지능형 홈네트워크 설비 유지비": {
-          "amount_won": 418000,
+          "amount_won": 0,
           "detail": {
-            "hnetwCost": 418000.0
+            "hnetwCost": 0.0
           },
           "op": "getHsmpHomeNetworkMntncCostInfoV2"
         },
         "수선비": {
-          "amount_won": 3448250,
+          "amount_won": 42024890,
           "detail": {
-            "lrefCost1": 3448250.0
+            "lrefCost1": 42024890.0
           },
           "op": "getHsmpRepairsCostInfoV2"
         },
         "시설유지비": {
-          "amount_won": 65278580,
+          "amount_won": 2993700,
           "detail": {
-            "lrefCost2": 65278580.0
+            "lrefCost2": 2993700.0
           },
           "op": "getHsmpFacilityMntncCostInfoV2"
         },
@@ -174,16 +174,16 @@
           "op": "getHsmpDisasterPreventionCostInfoV2"
         },
         "위탁관리수수료": {
-          "amount_won": 11467624,
+          "amount_won": 2588993,
           "detail": {
-            "manageCost": 11467624.0
+            "manageCost": 2588993.0
           },
           "op": "getHsmpConsignManageFeeInfoV2"
         }
       },
       "failures": {},
       "complete": true,
-      "fetched_at": "2026-08-16T01:32:24+0000",
+      "fetched_at": "2026-08-16T01:33:15+0000",
       "source": {
         "label": "공동주택관리정보시스템(K-apt) 공용관리비 · 공공데이터포털 OpenAPI",
         "url": "https://www.data.go.kr/data/15057937/openapi.do",
@@ -193,82 +193,82 @@
       "note": "공용관리비 17개 항목 합계를 관리비부과면적으로 나눈 값이다. 개별사용료(난방·급탕·전기·수도)와 장기수선충당금은 포함하지 않는다."
     },
     "202605": {
-      "slug": "one-bailey",
-      "complex_name": "래미안 원베일리",
-      "kapt_code": "A10023043",
-      "kapt_name": "래미안원베일리",
+      "slug": "eunma",
+      "complex_name": "은마아파트",
+      "kapt_code": "A13583507",
+      "kapt_name": "은마",
       "period": "202605",
-      "area_m2": 395733,
-      "area_m2_derived": 395733,
+      "area_m2": 470636,
+      "area_m2_derived": 470636,
       "area_field": "mirror_derived",
       "area_source": "public_mirror",
       "area_note": "등록되지 않은 서비스키입니다. 발급 직후라면 반영까지 최대 1시간 걸립니다 [SERVICE_KEY_IS_NOT_REGISTERED_ERROR]",
       "breakdown": {
         "공용관리비": {
-          "total_won": 529549820,
-          "per_m2_won": 1338
+          "total_won": 599465633,
+          "per_m2_won": 1273
         },
         "개별사용료": {
-          "total_won": 490277238,
-          "per_m2_won": 1239
+          "total_won": 495556353,
+          "per_m2_won": 1053
         },
         "장기수선충당금": {
-          "total_won": 56170670,
-          "per_m2_won": 142
+          "total_won": 13797000,
+          "per_m2_won": 29
         },
         "합계": {
-          "total_won": 1075997728,
-          "per_m2_won": 2719
+          "total_won": 1108818986,
+          "per_m2_won": 2356
         }
       },
       "crosscheck": {
-        "mirror_common_fee_won": 529549820,
-        "official_common_fee_won": 529549820,
+        "mirror_common_fee_won": 599465633,
+        "official_common_fee_won": 599465633,
         "diff_won": 0,
         "match": true
       },
-      "common_fee_total_won": 529549820,
-      "per_m2_won": 1338.15,
+      "common_fee_total_won": 599465633,
+      "per_m2_won": 1273.74,
       "per_m2_available": true,
       "items": {
         "인건비": {
-          "amount_won": 147308507,
+          "amount_won": 157023910,
           "detail": {
-            "pay": 116932417.0,
-            "sundryCost": 4002930.0,
-            "bonus": 0.0,
-            "pension": 14500000.0,
-            "accidentPremium": 1097590.0,
-            "employPremium": 1320250.0,
-            "nationalPension": 4789320.0,
-            "healthPremium": 4666000.0,
-            "welfareBenefit": 0.0
+            "pay": 101014010.0,
+            "sundryCost": 16172230.0,
+            "bonus": 9706810.0,
+            "pension": 15306500.0,
+            "accidentPremium": 888660.0,
+            "employPremium": 1074790.0,
+            "nationalPension": 1988190.0,
+            "healthPremium": 4534900.0,
+            "welfareBenefit": 6337820.0
           },
           "op": "getHsmpLaborCostInfoV2"
         },
         "제사무비": {
-          "amount_won": 1436400,
+          "amount_won": 2519000,
           "detail": {
-            "officeSupply": 554150.0,
-            "bookSupply": 822250.0,
-            "transportCost": 60000.0
+            "officeSupply": 984000.0,
+            "bookSupply": 1518000.0,
+            "transportCost": 17000.0
           },
           "op": "getHsmpOfcrkCostInfoV2"
         },
         "제세공과금": {
-          "amount_won": 667140,
+          "amount_won": 2527420,
           "detail": {
             "electCost": 0.0,
-            "telCost": 667140.0,
-            "postageCost": 0.0,
-            "taxrestCost": 0.0
+            "telCost": 336040.0,
+            "postageCost": 8440.0,
+            "taxrestCost": 2182940.0
           },
           "op": "getHsmpTaxdueInfoV2"
         },
         "피복비": {
-          "amount_won": 390000,
+          "amount_won": 881660,
           "detail": {
-            "clothesCost": 390000.0
+            "clothesCost": 881660.0
           },
           "op": "getHsmpClothingCostInfoV2"
         },
@@ -280,70 +280,70 @@
           "op": "getHsmpEduTraingCostInfoV2"
         },
         "차량유지비": {
-          "amount_won": 4477430,
+          "amount_won": 247060,
           "detail": {
             "fuelCost": 0.0,
             "refairCost": 0.0,
             "carInsurance": 0.0,
-            "carEtc": 4477430.0
+            "carEtc": 247060.0
           },
           "op": "getHsmpVhcleMntncCostInfoV2"
         },
         "그 밖의 부대비용": {
-          "amount_won": 5395340,
+          "amount_won": 2164400,
           "detail": {
-            "careItemCost": 2035920.0,
-            "accountingCost": 320830.0,
-            "hiddenCost": 3038590.0
+            "careItemCost": 1664300.0,
+            "accountingCost": 0.0,
+            "hiddenCost": 500100.0
           },
           "op": "getHsmpEtcCostInfoV2"
         },
         "경비비": {
-          "amount_won": 139160145,
+          "amount_won": 286881840,
           "detail": {
-            "guardCost": 139160145.0
+            "guardCost": 286881840.0
           },
           "op": "getHsmpGuardCostInfoV2"
         },
         "청소비": {
-          "amount_won": 121530004,
+          "amount_won": 82494020,
           "detail": {
-            "cleanCost": 121530004.0
+            "cleanCost": 82494020.0
           },
           "op": "getHsmpCleaningCostInfoV2"
         },
         "소독비": {
-          "amount_won": 2850000,
+          "amount_won": 5836300,
           "detail": {
-            "disinfCost": 2850000.0
+            "disinfCost": 5836300.0
           },
           "op": "getHsmpDisinfectionCostInfoV2"
         },
         "승강기유지비": {
-          "amount_won": 24552000,
+          "amount_won": 6337100,
           "detail": {
-            "elevCost": 24552000.0
+            "elevCost": 6337100.0
           },
           "op": "getHsmpElevatorMntncCostInfoV2"
         },
         "지능형 홈네트워크 설비 유지비": {
-          "amount_won": 418000,
+          "amount_won": 0,
           "detail": {
-            "hnetwCost": 418000.0
+            "hnetwCost": 0.0
           },
           "op": "getHsmpHomeNetworkMntncCostInfoV2"
         },
         "수선비": {
-          "amount_won": 4618650,
+          "amount_won": 47448730,
           "detail": {
-            "lrefCost1": 4618650.0
+            "lrefCost1": 47448730.0
           },
           "op": "getHsmpRepairsCostInfoV2"
         },
         "시설유지비": {
-          "amount_won": 65278580,
+          "amount_won": 2515200,
           "detail": {
-            "lrefCost2": 65278580.0
+            "lrefCost2": 2515200.0
           },
           "op": "getHsmpFacilityMntncCostInfoV2"
         },
@@ -362,16 +362,16 @@
           "op": "getHsmpDisasterPreventionCostInfoV2"
         },
         "위탁관리수수료": {
-          "amount_won": 11467624,
+          "amount_won": 2588993,
           "detail": {
-            "manageCost": 11467624.0
+            "manageCost": 2588993.0
           },
           "op": "getHsmpConsignManageFeeInfoV2"
         }
       },
       "failures": {},
       "complete": true,
-      "fetched_at": "2026-08-16T01:36:53+0000",
+      "fetched_at": "2026-08-16T01:37:38+0000",
       "source": {
         "label": "공동주택관리정보시스템(K-apt) 공용관리비 · 공공데이터포털 OpenAPI",
         "url": "https://www.data.go.kr/data/15057937/openapi.do",

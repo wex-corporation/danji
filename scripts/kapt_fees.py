@@ -188,6 +188,16 @@ def _request(url, params):
     return {child.tag: (child.text or "").strip() for child in item}
 
 
+def _is_no_data(item):
+    """해당 월 자료가 아직 공개되지 않은 응답인지 본다.
+
+    포털은 자료가 없어도 200에 빈 item을 돌려준다. 이때 kaptCode까지 null이다.
+    이걸 걸러내지 않으면 미공개 월이 '0원'이라는 실제 수치처럼 기록된다.
+    실제로 파크리오 2026-06에서 이 사고가 났다.
+    """
+    return not item or not item.get("kaptCode")
+
+
 def _sum_amounts(item):
     """item의 금액 필드를 모두 더한다. K-apt는 항목별 세부 비목을 나눠 준다."""
     total = 0
@@ -246,9 +256,40 @@ def resolve_kapt_code(key, name, gu):
     raise KaptError(f"단지코드를 찾지 못했습니다: {name} ({gu}, 후보 {len(items)}건)")
 
 
-def fetch_area(key, kapt_code):
-    """관리비부과면적(㎡)을 가져온다. 필드명이 버전에 따라 달라 후보를 순회한다."""
-    item = _request(f"{BASIS_SVC}/getAphusDtlInfoV4", {"serviceKey": key, "kaptCode": kapt_code})
+def _area_from_mirror(kapt_code, yyyymm):
+    """공개 미러에서 부과면적을 역산한다(합계 총액 ÷ 합계 단가).
+
+    기본정보 서비스는 공용관리비와 별개로 활용신청을 해야 해서, 승인 전에는
+    이 경로로 분모를 얻는다. 출처가 다르므로 결과에 반드시 표시한다.
+    """
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import kapt_mirror  # 지연 import: 미러가 필요할 때만 불러온다
+
+    try:
+        _url, lines = kapt_mirror.fetch_text(kapt_code, yyyymm)
+        table = kapt_mirror.parse(lines)
+    except kapt_mirror.MirrorError as exc:
+        raise KaptError(f"미러 조회 실패: {exc}") from exc
+    total = table["합계"]
+    if not total["per_m2_won"]:
+        raise KaptError("미러 합계 단가가 0이라 면적을 역산할 수 없습니다")
+    return round(total["total_won"] / total["per_m2_won"]), table
+
+
+def fetch_area(key, kapt_code, yyyymm):
+    """관리비부과면적(㎡). 1순위는 공식 기본정보 서비스, 안 되면 미러 역산."""
+    try:
+        item = _request(f"{BASIS_SVC}/getAphusDtlInfoV4",
+                        {"serviceKey": key, "kaptCode": kapt_code})
+    except KaptError as exc:
+        # 기본정보 서비스가 없으면 미러로 역산한다. 그것도 안 되면 면적 없이 간다.
+        # 면적을 못 구해도 공식 금액 자체는 유효하므로 버리지 않는다.
+        try:
+            area, table = _area_from_mirror(kapt_code, yyyymm)
+            return area, "mirror_derived", "public_mirror", table, str(exc)
+        except KaptError as exc2:
+            return None, None, "unavailable", None, f"{exc} / {exc2}"
+
     for field in ("kaptMparea", "kaptMarea", "kaptTarea", "kaptdaArea", "privArea"):
         value = item.get(field)
         if value:
@@ -257,7 +298,7 @@ def fetch_area(key, kapt_code):
             except ValueError:
                 continue
             if area > 0:
-                return area, field
+                return area, field, "official_api", None, None
     raise KaptError(f"관리비부과면적을 찾지 못했습니다. 응답 필드: {sorted(item)[:12]}")
 
 
@@ -269,6 +310,9 @@ def fetch_common_fees(key, kapt_code, yyyymm):
             raw = _request(f"{COST_SVC}/{op}", {
                 "serviceKey": key, "kaptCode": kapt_code, "searchDate": yyyymm,
             })
+            if _is_no_data(raw):
+                failures[label] = f"{yyyymm} 자료 미공개(응답 비어 있음)"
+                continue
             amount, detail = _sum_amounts(raw)
             items[label] = {"amount_won": amount, "detail": detail, "op": op}
         except KaptError as exc:
@@ -279,10 +323,30 @@ def fetch_common_fees(key, kapt_code, yyyymm):
 
 def build(slug, name, gu, yyyymm, key):
     kapt_code, kapt_name = resolve_kapt_code(key, name, gu)
-    area, area_field = fetch_area(key, kapt_code)
+    area, area_field, area_source, mirror_table, area_note = fetch_area(key, kapt_code, yyyymm)
     items, failures = fetch_common_fees(key, kapt_code, yyyymm)
     complete = not failures and len(items) == len(COMMON_FEE_OPS)
     total = sum(v["amount_won"] for v in items.values())
+
+    # 미러 값이 있으면 공식 합계와 대조한다. 어긋나면 숨기지 않고 기록한다.
+    crosscheck = None
+    if mirror_table:
+        mirror_common = mirror_table["공용관리비"]["total_won"]
+        diff = total - mirror_common
+        crosscheck = {
+            "mirror_common_fee_won": mirror_common,
+            "official_common_fee_won": total,
+            "diff_won": diff,
+            "match": abs(diff) <= max(1000, int(mirror_common * 0.005)),
+        }
+
+    # 미러에서 받은 4분류(공용/개별사용료/장기수선충당금/합계)를 함께 싣는다.
+    # 개별사용료와 장기수선충당금은 공용관리비와 별개 서비스라 이 키로는 못 받는다.
+    breakdown = None
+    if mirror_table:
+        breakdown = {k: mirror_table[k] for k in
+                     ("공용관리비", "개별사용료", "장기수선충당금", "합계")}
+
     record = {
         "slug": slug,
         "complex_name": name,
@@ -290,10 +354,16 @@ def build(slug, name, gu, yyyymm, key):
         "kapt_name": kapt_name,
         "period": yyyymm,
         "area_m2": area,
+        "area_m2_derived": area,        # 생성기가 쓰는 이름과 맞춘다
         "area_field": area_field,
+        "area_source": area_source,
+        "area_note": area_note,
+        "breakdown": breakdown,
+        "crosscheck": crosscheck,
         "common_fee_total_won": total,
         # 반올림 전 값을 함께 남긴다. 본문 인용은 정수로 하되 검산이 가능해야 한다.
         "per_m2_won": round(total / area, 2) if area else None,
+        "per_m2_available": bool(area),
         "items": items,
         "failures": failures,
         "complete": complete,
@@ -311,6 +381,12 @@ def build(slug, name, gu, yyyymm, key):
     }
     if not complete:
         record["warning"] = "일부 항목 조회 실패. 본문 인용 금지 대상."
+    if not area:
+        record["warning"] = (record.get("warning", "") +
+                             " 부과면적 미확보 — ㎡당 단가 인용 금지(금액 자체는 유효).").strip()
+    if crosscheck and not crosscheck["match"]:
+        record["warning"] = (record.get("warning", "") +
+                             " 공식 합계와 미러 값이 어긋남. 인용 전 확인 필요.").strip()
     return record
 
 
@@ -343,6 +419,10 @@ def probe():
         time.sleep(0.4)
     print(f"\n{ok}/{len(paths)} 엔드포인트 확인")
     return 0 if ok == len(paths) else 1
+
+
+def total_str(record):
+    return f"{record['common_fee_total_won']:,}원"
 
 
 def main():
@@ -385,10 +465,27 @@ def main():
             print(f"[실패] {name}: {exc}", file=sys.stderr)
             fail += 1
             continue
+        # 기존 캐시가 있으면 월별로 합친다. kapt_mirror.py와 같은 스키마를 쓴다.
         path = CACHE_DIR / f"{slug}.json"
-        path.write_text(json.dumps(record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        doc = {"slug": slug, "complex_name": name, "kapt_code": record["kapt_code"],
+               "latest_period": None, "periods": {}, "failed_periods": {}}
+        if path.exists():
+            try:
+                prev = json.loads(path.read_text(encoding="utf-8"))
+                if isinstance(prev.get("periods"), dict):
+                    doc["periods"] = prev["periods"]
+                    doc["failed_periods"] = prev.get("failed_periods", {})
+            except (json.JSONDecodeError, OSError):
+                pass  # 손상된 캐시는 새로 쓴다
+        doc["periods"][args.month] = record
+        doc["latest_period"] = max(doc["periods"])
+        path.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         flag = "" if record["complete"] else "  (일부 항목 실패 — 인용 금지)"
-        print(f"[완료] {name}: ㎡당 {record['per_m2_won']}원 · {args.month}{flag}")
+        xc = record.get("crosscheck")
+        mark = "" if not xc else ("  대조 일치" if xc["match"] else f"  대조 불일치 {xc['diff_won']:+,}원")
+        src = "" if record["area_source"] == "official_api" else "  면적:미러역산"
+        unit = f"㎡당 {record['per_m2_won']:,}원" if record["per_m2_won"] else "㎡당 —(면적 미확보)"
+        print(f"[완료] {name}: 공용관리비 {total_str(record)} · {unit} · {args.month}{flag}{mark}{src}")
         ok += 1
 
     print(f"\n성공 {ok} / 실패 {fail}")
