@@ -1,0 +1,186 @@
+{
+  "generated_at": "2026-08-16",
+  "method": {
+    "축1_거래활발도": "국토부 실거래 2026-05~07 3개월 계약 건수(해제신고 제외). 검증 가능",
+    "축2_이용자풀": "K-apt 공개 세대수. 검증 가능",
+    "축3_화제성": "자동 산출 불가. 재건축·신축 대장주는 명시적 지명(C티어)",
+    "호갱노노_미사용": "robots.txt가 크롤링을 명시적으로 금지한다. 명세 9.6.4에 따라 수집하지 않았고, 커뮤니티 활성도는 운영자 수동 확인으로 보정한다"
+  },
+  "tiers": {
+    "A": "거래·규모 양쪽 상위. 현재 운영 중이며 유지",
+    "B": "신규 편입. 거래량과 세대수로 근거 확보",
+    "C": "거래량은 낮으나 화제성으로 지명"
+  },
+  "excluded": [
+    {
+      "name": "아크로리버파크",
+      "reason": "1,612세대로 이용자 풀이 작고 거래량 200위 밖. 기존 15편은 hidden 권고"
+    },
+    {
+      "name": "올림픽선수기자촌",
+      "reason": "5,540세대이나 재건축 추진으로 거래가 묶여 200위 밖. 16번째 후보로 대기"
+    }
+  ],
+  "caveats": [
+    "거래량과 커뮤니티 화제성은 다른 축이다. 은마가 증거로, 거래 200위 밖이지만 화제성 최상위다",
+    "세이지움상봉(782세대 278건)·에드가개봉(218건)은 신축 입주장 이상치라 제외했다",
+    "남산타운은 K-apt 매칭이 임대동(2,034세대)만 잡혔다. 세대수 5,150은 기존 기록이며 재확인 필요"
+  ],
+  "source": {
+    "label": "국토교통부 아파트 매매 실거래가 상세 + 공동주택 기본정보",
+    "url": "https://www.data.go.kr/data/15126469/openapi.do",
+    "publisher": "국토교통부"
+  },
+  "complexes": [
+    {
+      "slug": "olympic-park-foreon",
+      "name": "올림픽파크 포레온",
+      "household_count": 12032,
+      "tier": "A",
+      "trades_3m": 60,
+      "volume_rank": 6,
+      "max_per_pyeong_manwon": 14966.2,
+      "rationale": "거래 6위·최대 단지"
+    },
+    {
+      "slug": "helio-city",
+      "name": "헬리오시티",
+      "household_count": 9510,
+      "tier": "A",
+      "trades_3m": 57,
+      "volume_rank": 8,
+      "max_per_pyeong_manwon": 17416.4,
+      "rationale": "거래 8위"
+    },
+    {
+      "slug": "parkrio",
+      "name": "파크리오",
+      "household_count": 6864,
+      "tier": "A",
+      "trades_3m": 50,
+      "volume_rank": 14,
+      "max_per_pyeong_manwon": 14799.6,
+      "rationale": "거래 14위"
+    },
+    {
+      "slug": "jamsil-els",
+      "name": "잠실엘스",
+      "household_count": 5678,
+      "tier": "A",
+      "trades_3m": 39,
+      "volume_rank": 33,
+      "max_per_pyeong_manwon": 16540.0,
+      "rationale": "거래 33위"
+    },
+    {
+      "slug": "ricents",
+      "name": "리센츠",
+      "household_count": 5563,
+      "tier": "A",
+      "trades_3m": 59,
+      "volume_rank": 7,
+      "max_per_pyeong_manwon": 20900.1,
+      "rationale": "거래 7위"
+    },
+    {
+      "slug": "godeok-gracium",
+      "name": "고덕그라시움",
+      "household_count": 4932,
+      "tier": "A",
+      "trades_3m": 32,
+      "volume_rank": 60,
+      "max_per_pyeong_manwon": 11620.8,
+      "rationale": "거래 60위"
+    },
+    {
+      "slug": "one-bailey",
+      "name": "래미안 원베일리",
+      "household_count": 2990,
+      "tier": "A",
+      "trades_3m": 23,
+      "volume_rank": 121,
+      "max_per_pyeong_manwon": 27814.2,
+      "rationale": "거래 121위·최고평당 27,814만"
+    },
+    {
+      "slug": "namsan-town",
+      "name": "남산타운",
+      "household_count": 5150,
+      "tier": "B",
+      "trades_3m": 48,
+      "volume_rank": 16,
+      "max_per_pyeong_manwon": 8796.7,
+      "rationale": "거래 16위(48건)·기존 등록"
+    },
+    {
+      "slug": "olympic-family",
+      "name": "올림픽훼밀리타운",
+      "household_count": 4494,
+      "tier": "B",
+      "trades_3m": 45,
+      "volume_rank": 22,
+      "max_per_pyeong_manwon": 10531.6,
+      "rationale": "거래 22위(45건)"
+    },
+    {
+      "slug": "trizium",
+      "name": "트리지움",
+      "household_count": 3696,
+      "tier": "B",
+      "trades_3m": 38,
+      "volume_rank": 35,
+      "max_per_pyeong_manwon": 16120.5,
+      "rationale": "거래 35위·기존 등록"
+    },
+    {
+      "slug": "gaepo-xi-presidence",
+      "name": "개포자이 프레지던스",
+      "household_count": 3375,
+      "tier": "B",
+      "trades_3m": 32,
+      "volume_rank": 59,
+      "max_per_pyeong_manwon": 18132.9,
+      "rationale": "거래 59위·신축 대장"
+    },
+    {
+      "slug": "maple-xi",
+      "name": "메이플자이",
+      "household_count": 3307,
+      "tier": "B",
+      "trades_3m": 30,
+      "volume_rank": 72,
+      "max_per_pyeong_manwon": 23487.2,
+      "rationale": "거래 72위·2025 준공"
+    },
+    {
+      "slug": "eunma",
+      "name": "은마아파트",
+      "household_count": 4424,
+      "tier": "C",
+      "trades_3m": null,
+      "volume_rank": null,
+      "max_per_pyeong_manwon": null,
+      "rationale": "재건축 대장주. 토허구역이라 거래 묶임"
+    },
+    {
+      "slug": "dh-firstier",
+      "name": "디에이치 퍼스티어 아이파크",
+      "household_count": 6702,
+      "tier": "C",
+      "trades_3m": null,
+      "volume_rank": null,
+      "max_per_pyeong_manwon": null,
+      "rationale": "개포 신축 대단지"
+    },
+    {
+      "slug": "mapo-raemian-prugio",
+      "name": "마포래미안푸르지오",
+      "household_count": 3885,
+      "tier": "C",
+      "trades_3m": null,
+      "volume_rank": null,
+      "max_per_pyeong_manwon": null,
+      "rationale": "마용성 대표 대단지"
+    }
+  ]
+}

@@ -1,0 +1,2020 @@
+{
+  "months": [
+    "202605",
+    "202606",
+    "202607"
+  ],
+  "gu_count": 25,
+  "total_rows": 19870,
+  "cancelled_excluded": 421,
+  "failures": [],
+  "fetched_at": "2026-08-16T14:09:35+0000",
+  "note": "계약일 기준 집계. 조회 시점에 미신고된 계약이 있을 수 있다. 해제신고 건은 제외했다.",
+  "source": {
+    "label": "국토교통부 아파트 매매 실거래가 상세 자료",
+    "url": "https://www.data.go.kr/data/15126469/openapi.do",
+    "publisher": "국토교통부"
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "gu": "중랑구",
+      "dong": "묵동",
+      "apt": "세이지움태릉입구역",
+      "trades": 278,
+      "max_per_pyeong_manwon": 4905.4,
+      "median_per_pyeong_manwon": 4725.4,
+      "build_year": "2026"
+    },
+    {
+      "rank": 2,
+      "gu": "구로구",
+      "dong": "개봉동",
+      "apt": "에드가개봉",
+      "trades": 218,
+      "max_per_pyeong_manwon": 4772.8,
+      "median_per_pyeong_manwon": 4672.6,
+      "build_year": "2025"
+    },
+    {
+      "rank": 3,
+      "gu": "동작구",
+      "dong": "노량진동",
+      "apt": "한강더퍼스트타워",
+      "trades": 65,
+      "max_per_pyeong_manwon": 6552.9,
+      "median_per_pyeong_manwon": 6360.1,
+      "build_year": "2026"
+    },
+    {
+      "rank": 4,
+      "gu": "노원구",
+      "dong": "중계동",
+      "apt": "주공2",
+      "trades": 64,
+      "max_per_pyeong_manwon": 3583.1,
+      "median_per_pyeong_manwon": 2747.4,
+      "build_year": "1992"
+    },
+    {
+      "rank": 5,
+      "gu": "도봉구",
+      "dong": "방학동",
+      "apt": "신동아아파트1",
+      "trades": 60,
+      "max_per_pyeong_manwon": 2456.3,
+      "median_per_pyeong_manwon": 2200.1,
+      "build_year": "1986"
+    },
+    {
+      "rank": 6,
+      "gu": "강동구",
+      "dong": "둔촌동",
+      "apt": "올림픽파크포레온",
+      "trades": 60,
+      "max_per_pyeong_manwon": 14966.2,
+      "median_per_pyeong_manwon": 11241.0,
+      "build_year": "2024"
+    },
+    {
+      "rank": 7,
+      "gu": "송파구",
+      "dong": "잠실동",
+      "apt": "리센츠",
+      "trades": 59,
+      "max_per_pyeong_manwon": 20900.1,
+      "median_per_pyeong_manwon": 13613.7,
+      "build_year": "2008"
+    },
+    {
+      "rank": 8,
+      "gu": "송파구",
+      "dong": "가락동",
+      "apt": "헬리오시티",
+      "trades": 57,
+      "max_per_pyeong_manwon": 17416.4,
+      "median_per_pyeong_manwon": 10935.0,
+      "build_year": "2018"
+    },
+    {
+      "rank": 9,
+      "gu": "광진구",
+      "dong": "구의동",
+      "apt": "강변스카이타워",
+      "trades": 55,
+      "max_per_pyeong_manwon": 6009.5,
+      "median_per_pyeong_manwon": 5983.3,
+      "build_year": "2026"
+    },
+    {
+      "rank": 10,
+      "gu": "노원구",
+      "dong": "상계동",
+      "apt": "상계주공9(고층)",
+      "trades": 55,
+      "max_per_pyeong_manwon": 4170.3,
+      "median_per_pyeong_manwon": 3640.7,
+      "build_year": "1988"
+    },
+    {
+      "rank": 11,
+      "gu": "관악구",
+      "dong": "봉천동",
+      "apt": "백상앨리츠",
+      "trades": 55,
+      "max_per_pyeong_manwon": 4157.1,
+      "median_per_pyeong_manwon": 4030.7,
+      "build_year": "2026"
+    },
+    {
+      "rank": 12,
+      "gu": "노원구",
+      "dong": "상계동",
+      "apt": "보람아파트",
+      "trades": 50,
+      "max_per_pyeong_manwon": 3803.2,
+      "median_per_pyeong_manwon": 3306.3,
+      "build_year": "1988"
+    },
+    {
+      "rank": 13,
+      "gu": "노원구",
+      "dong": "중계동",
+      "apt": "중계그린1단지",
+      "trades": 50,
+      "max_per_pyeong_manwon": 4861.5,
+      "median_per_pyeong_manwon": 4394.4,
+      "build_year": "1990"
+    },
+    {
+      "rank": 14,
+      "gu": "송파구",
+      "dong": "신천동",
+      "apt": "파크리오",
+      "trades": 50,
+      "max_per_pyeong_manwon": 14799.6,
+      "median_per_pyeong_manwon": 11111.6,
+      "build_year": "2008"
+    },
+    {
+      "rank": 15,
+      "gu": "강북구",
+      "dong": "미아동",
+      "apt": "에스케이북한산시티",
+      "trades": 49,
+      "max_per_pyeong_manwon": 4436.8,
+      "median_per_pyeong_manwon": 3192.1,
+      "build_year": "2004"
+    },
+    {
+      "rank": 16,
+      "gu": "중구",
+      "dong": "신당동",
+      "apt": "남산타운",
+      "trades": 48,
+      "max_per_pyeong_manwon": 8796.7,
+      "median_per_pyeong_manwon": 7010.4,
+      "build_year": "2002"
+    },
+    {
+      "rank": 17,
+      "gu": "노원구",
+      "dong": "상계동",
+      "apt": "상계주공14(고층)",
+      "trades": 48,
+      "max_per_pyeong_manwon": 4302.7,
+      "median_per_pyeong_manwon": 3561.9,
+      "build_year": "1989"
+    },
+    {
+      "rank": 18,
+      "gu": "성북구",
+      "dong": "정릉동",
+      "apt": "정릉풍림아이원",
+      "trades": 47,
+      "max_per_pyeong_manwon": 3856.8,
+      "median_per_pyeong_manwon": 2799.1,
+      "build_year": "2005"
+    },
+    {
+      "rank": 19,
+      "gu": "도봉구",
+      "dong": "창동",
+      "apt": "주공17단지",
+      "trades": 47,
+      "max_per_pyeong_manwon": 3806.2,
+      "median_per_pyeong_manwon": 3016.9,
+      "build_year": "1989"
+    },
+    {
+      "rank": 20,
+      "gu": "노원구",
+      "dong": "하계동",
+      "apt": "미성",
+      "trades": 47,
+      "max_per_pyeong_manwon": 7946.6,
+      "median_per_pyeong_manwon": 6032.7,
+      "build_year": "1986"
+    },
+    {
+      "rank": 21,
+      "gu": "노원구",
+      "dong": "상계동",
+      "apt": "상계주공6(고층)",
+      "trades": 45,
+      "max_per_pyeong_manwon": 5443.0,
+      "median_per_pyeong_manwon": 4558.9,
+      "build_year": "1988"
+    },
+    {
+      "rank": 22,
+      "gu": "송파구",
+      "dong": "문정동",
+      "apt": "올림픽훼밀리타운",
+      "trades": 45,
+      "max_per_pyeong_manwon": 10531.6,
+      "median_per_pyeong_manwon": 7675.2,
+      "build_year": "1988"
+    },
+    {
+      "rank": 23,
+      "gu": "노원구",
+      "dong": "중계동",
+      "apt": "중계무지개",
+      "trades": 44,
+      "max_per_pyeong_manwon": 4671.1,
+      "median_per_pyeong_manwon": 4095.0,
+      "build_year": "1991"
+    },
+    {
+      "rank": 24,
+      "gu": "노원구",
+      "dong": "상계동",
+      "apt": "상계주공1(고층)",
+      "trades": 44,
+      "max_per_pyeong_manwon": 4442.4,
+      "median_per_pyeong_manwon": 3675.6,
+      "build_year": "1988"
+    },
+    {
+      "rank": 25,
+      "gu": "노원구",
+      "dong": "상계동",
+      "apt": "상계주공4(고층)",
+      "trades": 43,
+      "max_per_pyeong_manwon": 4501.3,
+      "median_per_pyeong_manwon": 3932.1,
+      "build_year": "1988"
+    },
+    {
+      "rank": 26,
+      "gu": "노원구",
+      "dong": "공릉동",
+      "apt": "태강아파트(아이파크)",
+      "trades": 42,
+      "max_per_pyeong_manwon": 4432.2,
+      "median_per_pyeong_manwon": 4165.6,
+      "build_year": "1999"
+    },
+    {
+      "rank": 27,
+      "gu": "중랑구",
+      "dong": "신내동",
+      "apt": "신내9진흥",
+      "trades": 41,
+      "max_per_pyeong_manwon": 3972.5,
+      "median_per_pyeong_manwon": 3168.3,
+      "build_year": "1996"
+    },
+    {
+      "rank": 28,
+      "gu": "노원구",
+      "dong": "상계동",
+      "apt": "상계주공7(고층)",
+      "trades": 41,
+      "max_per_pyeong_manwon": 5136.8,
+      "median_per_pyeong_manwon": 4567.5,
+      "build_year": "1988"
+    },
+    {
+      "rank": 29,
+      "gu": "노원구",
+      "dong": "상계동",
+      "apt": "상계주공2(고층)",
+      "trades": 40,
+      "max_per_pyeong_manwon": 4802.6,
+      "median_per_pyeong_manwon": 3903.6,
+      "build_year": "1987"
+    },
+    {
+      "rank": 30,
+      "gu": "노원구",
+      "dong": "월계동",
+      "apt": "한진한화그랑빌",
+      "trades": 40,
+      "max_per_pyeong_manwon": 5846.1,
+      "median_per_pyeong_manwon": 4435.2,
+      "build_year": "2002"
+    },
+    {
+      "rank": 31,
+      "gu": "노원구",
+      "dong": "상계동",
+      "apt": "은빛2단지",
+      "trades": 39,
+      "max_per_pyeong_manwon": 3314.1,
+      "median_per_pyeong_manwon": 3015.5,
+      "build_year": "1998"
+    },
+    {
+      "rank": 32,
+      "gu": "서대문구",
+      "dong": "북가좌동",
+      "apt": "DMC래미안e편한세상",
+      "trades": 39,
+      "max_per_pyeong_manwon": 8048.1,
+      "median_per_pyeong_manwon": 5992.9,
+      "build_year": "2012"
+    },
+    {
+      "rank": 33,
+      "gu": "송파구",
+      "dong": "잠실동",
+      "apt": "잠실엘스",
+      "trades": 39,
+      "max_per_pyeong_manwon": 16540.0,
+      "median_per_pyeong_manwon": 13164.0,
+      "build_year": "2008"
+    },
+    {
+      "rank": 34,
+      "gu": "노원구",
+      "dong": "월계동",
+      "apt": "동신",
+      "trades": 38,
+      "max_per_pyeong_manwon": 4435.1,
+      "median_per_pyeong_manwon": 3611.3,
+      "build_year": "1983"
+    },
+    {
+      "rank": 35,
+      "gu": "송파구",
+      "dong": "잠실동",
+      "apt": "트리지움",
+      "trades": 38,
+      "max_per_pyeong_manwon": 16120.5,
+      "median_per_pyeong_manwon": 12452.7,
+      "build_year": "2007"
+    },
+    {
+      "rank": 36,
+      "gu": "노원구",
+      "dong": "상계동",
+      "apt": "상계주공16(고층)",
+      "trades": 37,
+      "max_per_pyeong_manwon": 3533.2,
+      "median_per_pyeong_manwon": 3072.9,
+      "build_year": "1988"
+    },
+    {
+      "rank": 37,
+      "gu": "금천구",
+      "dong": "시흥동",
+      "apt": "관악산벽산타운5",
+      "trades": 37,
+      "max_per_pyeong_manwon": 2757.6,
+      "median_per_pyeong_manwon": 2268.2,
+      "build_year": "2004"
+    },
+    {
+      "rank": 38,
+      "gu": "관악구",
+      "dong": "신림동",
+      "apt": "관악산휴먼시아2단지",
+      "trades": 37,
+      "max_per_pyeong_manwon": 3736.2,
+      "median_per_pyeong_manwon": 2879.0,
+      "build_year": "2008"
+    },
+    {
+      "rank": 39,
+      "gu": "성북구",
+      "dong": "돈암동",
+      "apt": "한진(609-1)",
+      "trades": 36,
+      "max_per_pyeong_manwon": 4910.4,
+      "median_per_pyeong_manwon": 4050.4,
+      "build_year": "1998"
+    },
+    {
+      "rank": 40,
+      "gu": "도봉구",
+      "dong": "도봉동",
+      "apt": "한신",
+      "trades": 36,
+      "max_per_pyeong_manwon": 2638.7,
+      "median_per_pyeong_manwon": 2393.5,
+      "build_year": "1995"
+    },
+    {
+      "rank": 41,
+      "gu": "노원구",
+      "dong": "상계동",
+      "apt": "상계주공10(고층)",
+      "trades": 35,
+      "max_per_pyeong_manwon": 4633.7,
+      "median_per_pyeong_manwon": 3846.6,
+      "build_year": "1988"
+    },
+    {
+      "rank": 42,
+      "gu": "관악구",
+      "dong": "봉천동",
+      "apt": "관악푸르지오",
+      "trades": 35,
+      "max_per_pyeong_manwon": 6813.6,
+      "median_per_pyeong_manwon": 6214.3,
+      "build_year": "2004"
+    },
+    {
+      "rank": 43,
+      "gu": "관악구",
+      "dong": "봉천동",
+      "apt": "관악드림(동아)",
+      "trades": 35,
+      "max_per_pyeong_manwon": 6602.8,
+      "median_per_pyeong_manwon": 4941.6,
+      "build_year": "2003"
+    },
+    {
+      "rank": 44,
+      "gu": "성동구",
+      "dong": "금호동1가",
+      "apt": "벽산",
+      "trades": 34,
+      "max_per_pyeong_manwon": 9326.9,
+      "median_per_pyeong_manwon": 7015.4,
+      "build_year": "1996"
+    },
+    {
+      "rank": 45,
+      "gu": "노원구",
+      "dong": "하계동",
+      "apt": "장미(시영6)",
+      "trades": 34,
+      "max_per_pyeong_manwon": 5075.6,
+      "median_per_pyeong_manwon": 4736.8,
+      "build_year": "1989"
+    },
+    {
+      "rank": 46,
+      "gu": "강서구",
+      "dong": "화곡동",
+      "apt": "강서힐스테이트",
+      "trades": 34,
+      "max_per_pyeong_manwon": 7852.6,
+      "median_per_pyeong_manwon": 5717.8,
+      "build_year": "2015"
+    },
+    {
+      "rank": 47,
+      "gu": "송파구",
+      "dong": "문정동",
+      "apt": "문정시영",
+      "trades": 34,
+      "max_per_pyeong_manwon": 10411.3,
+      "median_per_pyeong_manwon": 8662.2,
+      "build_year": "1989"
+    },
+    {
+      "rank": 48,
+      "gu": "성북구",
+      "dong": "하월곡동",
+      "apt": "월곡두산위브",
+      "trades": 33,
+      "max_per_pyeong_manwon": 5523.0,
+      "median_per_pyeong_manwon": 3897.6,
+      "build_year": "2003"
+    },
+    {
+      "rank": 49,
+      "gu": "양천구",
+      "dong": "목동",
+      "apt": "목동신시가지7",
+      "trades": 33,
+      "max_per_pyeong_manwon": 14050.3,
+      "median_per_pyeong_manwon": 12756.6,
+      "build_year": "1986"
+    },
+    {
+      "rank": 50,
+      "gu": "구로구",
+      "dong": "개봉동",
+      "apt": "한마을",
+      "trades": 33,
+      "max_per_pyeong_manwon": 5643.8,
+      "median_per_pyeong_manwon": 4966.7,
+      "build_year": "1999"
+    },
+    {
+      "rank": 51,
+      "gu": "송파구",
+      "dong": "가락동",
+      "apt": "가락(1차)쌍용아파트",
+      "trades": 33,
+      "max_per_pyeong_manwon": 10758.2,
+      "median_per_pyeong_manwon": 9047.9,
+      "build_year": "1997"
+    },
+    {
+      "rank": 52,
+      "gu": "도봉구",
+      "dong": "창동",
+      "apt": "창동주공3단지(해등마을)",
+      "trades": 32,
+      "max_per_pyeong_manwon": 5362.9,
+      "median_per_pyeong_manwon": 4274.0,
+      "build_year": "1990"
+    },
+    {
+      "rank": 53,
+      "gu": "은평구",
+      "dong": "수색동",
+      "apt": "DMC롯데캐슬더퍼스트",
+      "trades": 32,
+      "max_per_pyeong_manwon": 6726.3,
+      "median_per_pyeong_manwon": 6257.6,
+      "build_year": "2021"
+    },
+    {
+      "rank": 54,
+      "gu": "은평구",
+      "dong": "불광동",
+      "apt": "라이프미성",
+      "trades": 32,
+      "max_per_pyeong_manwon": 4658.8,
+      "median_per_pyeong_manwon": 4041.9,
+      "build_year": "1988"
+    },
+    {
+      "rank": 55,
+      "gu": "강서구",
+      "dong": "공항동",
+      "apt": "더트루엘마곡HQ",
+      "trades": 32,
+      "max_per_pyeong_manwon": 4723.1,
+      "median_per_pyeong_manwon": 4398.2,
+      "build_year": "2024"
+    },
+    {
+      "rank": 56,
+      "gu": "강서구",
+      "dong": "가양동",
+      "apt": "강변",
+      "trades": 32,
+      "max_per_pyeong_manwon": 7631.0,
+      "median_per_pyeong_manwon": 6778.6,
+      "build_year": "1992"
+    },
+    {
+      "rank": 57,
+      "gu": "구로구",
+      "dong": "구로동",
+      "apt": "현대",
+      "trades": 32,
+      "max_per_pyeong_manwon": 5404.9,
+      "median_per_pyeong_manwon": 3657.5,
+      "build_year": "1988"
+    },
+    {
+      "rank": 58,
+      "gu": "관악구",
+      "dong": "봉천동",
+      "apt": "두산",
+      "trades": 32,
+      "max_per_pyeong_manwon": 7117.0,
+      "median_per_pyeong_manwon": 5297.4,
+      "build_year": "2000"
+    },
+    {
+      "rank": 59,
+      "gu": "강남구",
+      "dong": "개포동",
+      "apt": "개포자이프레지던스",
+      "trades": 32,
+      "max_per_pyeong_manwon": 18132.9,
+      "median_per_pyeong_manwon": 14497.4,
+      "build_year": "2023"
+    },
+    {
+      "rank": 60,
+      "gu": "강동구",
+      "dong": "고덕동",
+      "apt": "고덕그라시움",
+      "trades": 32,
+      "max_per_pyeong_manwon": 11620.8,
+      "median_per_pyeong_manwon": 9925.4,
+      "build_year": "2019"
+    },
+    {
+      "rank": 61,
+      "gu": "강북구",
+      "dong": "미아동",
+      "apt": "벽산라이브파크",
+      "trades": 31,
+      "max_per_pyeong_manwon": 3911.9,
+      "median_per_pyeong_manwon": 2726.0,
+      "build_year": "2004"
+    },
+    {
+      "rank": 62,
+      "gu": "노원구",
+      "dong": "하계동",
+      "apt": "청솔(시영7)",
+      "trades": 31,
+      "max_per_pyeong_manwon": 4387.7,
+      "median_per_pyeong_manwon": 3899.3,
+      "build_year": "1989"
+    },
+    {
+      "rank": 63,
+      "gu": "강서구",
+      "dong": "등촌동",
+      "apt": "부영",
+      "trades": 31,
+      "max_per_pyeong_manwon": 5247.3,
+      "median_per_pyeong_manwon": 4427.4,
+      "build_year": "1994"
+    },
+    {
+      "rank": 64,
+      "gu": "관악구",
+      "dong": "봉천동",
+      "apt": "벽산블루밍",
+      "trades": 31,
+      "max_per_pyeong_manwon": 6061.6,
+      "median_per_pyeong_manwon": 5262.6,
+      "build_year": "2005"
+    },
+    {
+      "rank": 65,
+      "gu": "성북구",
+      "dong": "길음동",
+      "apt": "길음뉴타운2단지푸르지오",
+      "trades": 30,
+      "max_per_pyeong_manwon": 5696.8,
+      "median_per_pyeong_manwon": 4260.2,
+      "build_year": "2005"
+    },
+    {
+      "rank": 66,
+      "gu": "노원구",
+      "dong": "중계동",
+      "apt": "주공5",
+      "trades": 30,
+      "max_per_pyeong_manwon": 4925.6,
+      "median_per_pyeong_manwon": 3898.3,
+      "build_year": "1992"
+    },
+    {
+      "rank": 67,
+      "gu": "은평구",
+      "dong": "응암동",
+      "apt": "녹번역e편한세상캐슬",
+      "trades": 30,
+      "max_per_pyeong_manwon": 7718.7,
+      "median_per_pyeong_manwon": 6946.8,
+      "build_year": "2021"
+    },
+    {
+      "rank": 68,
+      "gu": "강서구",
+      "dong": "방화동",
+      "apt": "방화5",
+      "trades": 30,
+      "max_per_pyeong_manwon": 5612.6,
+      "median_per_pyeong_manwon": 4632.9,
+      "build_year": "1994"
+    },
+    {
+      "rank": 69,
+      "gu": "강서구",
+      "dong": "가양동",
+      "apt": "가양2단지(성지)",
+      "trades": 30,
+      "max_per_pyeong_manwon": 7631.0,
+      "median_per_pyeong_manwon": 6803.6,
+      "build_year": "1992"
+    },
+    {
+      "rank": 70,
+      "gu": "강서구",
+      "dong": "방화동",
+      "apt": "방화그린",
+      "trades": 30,
+      "max_per_pyeong_manwon": 4863.9,
+      "median_per_pyeong_manwon": 3935.5,
+      "build_year": "1993"
+    },
+    {
+      "rank": 71,
+      "gu": "금천구",
+      "dong": "시흥동",
+      "apt": "벽산",
+      "trades": 30,
+      "max_per_pyeong_manwon": 2355.0,
+      "median_per_pyeong_manwon": 1956.5,
+      "build_year": "2000"
+    },
+    {
+      "rank": 72,
+      "gu": "서초구",
+      "dong": "잠원동",
+      "apt": "메이플자이",
+      "trades": 30,
+      "max_per_pyeong_manwon": 23487.2,
+      "median_per_pyeong_manwon": 19831.9,
+      "build_year": "2025"
+    },
+    {
+      "rank": 73,
+      "gu": "중구",
+      "dong": "황학동",
+      "apt": "롯데캐슬",
+      "trades": 29,
+      "max_per_pyeong_manwon": 5928.8,
+      "median_per_pyeong_manwon": 5057.7,
+      "build_year": "2008"
+    },
+    {
+      "rank": 74,
+      "gu": "중랑구",
+      "dong": "중화동",
+      "apt": "한신아파트상가동유치원동(103~109)",
+      "trades": 29,
+      "max_per_pyeong_manwon": 5348.9,
+      "median_per_pyeong_manwon": 4646.7,
+      "build_year": "1997"
+    },
+    {
+      "rank": 75,
+      "gu": "노원구",
+      "dong": "상계동",
+      "apt": "상계주공3(고층)",
+      "trades": 29,
+      "max_per_pyeong_manwon": 5692.0,
+      "median_per_pyeong_manwon": 4745.9,
+      "build_year": "1987"
+    },
+    {
+      "rank": 76,
+      "gu": "강서구",
+      "dong": "가양동",
+      "apt": "가양6단지",
+      "trades": 29,
+      "max_per_pyeong_manwon": 7930.6,
+      "median_per_pyeong_manwon": 7017.4,
+      "build_year": "1992"
+    },
+    {
+      "rank": 77,
+      "gu": "구로구",
+      "dong": "구로동",
+      "apt": "구로두산",
+      "trades": 29,
+      "max_per_pyeong_manwon": 5013.5,
+      "median_per_pyeong_manwon": 4406.3,
+      "build_year": "1998"
+    },
+    {
+      "rank": 78,
+      "gu": "강동구",
+      "dong": "암사동",
+      "apt": "롯데캐슬퍼스트",
+      "trades": 29,
+      "max_per_pyeong_manwon": 9643.5,
+      "median_per_pyeong_manwon": 7099.4,
+      "build_year": "2008"
+    },
+    {
+      "rank": 79,
+      "gu": "중랑구",
+      "dong": "면목동",
+      "apt": "면목한신",
+      "trades": 28,
+      "max_per_pyeong_manwon": 3732.2,
+      "median_per_pyeong_manwon": 3137.2,
+      "build_year": "1987"
+    },
+    {
+      "rank": 80,
+      "gu": "강서구",
+      "dong": "가양동",
+      "apt": "가양도시개발9-2단지",
+      "trades": 28,
+      "max_per_pyeong_manwon": 6949.5,
+      "median_per_pyeong_manwon": 6486.4,
+      "build_year": "1993"
+    },
+    {
+      "rank": 81,
+      "gu": "금천구",
+      "dong": "가산동",
+      "apt": "두산",
+      "trades": 28,
+      "max_per_pyeong_manwon": 4088.1,
+      "median_per_pyeong_manwon": 3496.9,
+      "build_year": "1998"
+    },
+    {
+      "rank": 82,
+      "gu": "관악구",
+      "dong": "신림동",
+      "apt": "신림현대",
+      "trades": 28,
+      "max_per_pyeong_manwon": 4646.7,
+      "median_per_pyeong_manwon": 4077.7,
+      "build_year": "1993"
+    },
+    {
+      "rank": 83,
+      "gu": "강남구",
+      "dong": "개포동",
+      "apt": "개포래미안포레스트",
+      "trades": 28,
+      "max_per_pyeong_manwon": 16992.4,
+      "median_per_pyeong_manwon": 12962.6,
+      "build_year": "2020"
+    },
+    {
+      "rank": 84,
+      "gu": "강남구",
+      "dong": "도곡동",
+      "apt": "도곡렉슬",
+      "trades": 28,
+      "max_per_pyeong_manwon": 15982.9,
+      "median_per_pyeong_manwon": 12361.6,
+      "build_year": "2006"
+    },
+    {
+      "rank": 85,
+      "gu": "강동구",
+      "dong": "암사동",
+      "apt": "선사현대아파트",
+      "trades": 28,
+      "max_per_pyeong_manwon": 8924.1,
+      "median_per_pyeong_manwon": 8148.1,
+      "build_year": "2000"
+    },
+    {
+      "rank": 86,
+      "gu": "동대문구",
+      "dong": "제기동",
+      "apt": "한신아파트",
+      "trades": 27,
+      "max_per_pyeong_manwon": 6187.3,
+      "median_per_pyeong_manwon": 4563.2,
+      "build_year": "1996"
+    },
+    {
+      "rank": 87,
+      "gu": "성북구",
+      "dong": "석관동",
+      "apt": "두산",
+      "trades": 27,
+      "max_per_pyeong_manwon": 5677.8,
+      "median_per_pyeong_manwon": 4850.9,
+      "build_year": "1998"
+    },
+    {
+      "rank": 88,
+      "gu": "강서구",
+      "dong": "화곡동",
+      "apt": "우장산아이파크,이편한세상",
+      "trades": 27,
+      "max_per_pyeong_manwon": 7991.7,
+      "median_per_pyeong_manwon": 6224.9,
+      "build_year": "2008"
+    },
+    {
+      "rank": 89,
+      "gu": "구로구",
+      "dong": "신도림동",
+      "apt": "미성",
+      "trades": 27,
+      "max_per_pyeong_manwon": 6234.9,
+      "median_per_pyeong_manwon": 5131.7,
+      "build_year": "1987"
+    },
+    {
+      "rank": 90,
+      "gu": "금천구",
+      "dong": "시흥동",
+      "apt": "남서울힐스테이트",
+      "trades": 27,
+      "max_per_pyeong_manwon": 4973.9,
+      "median_per_pyeong_manwon": 3704.0,
+      "build_year": "2014"
+    },
+    {
+      "rank": 91,
+      "gu": "영등포구",
+      "dong": "신길동",
+      "apt": "우성1",
+      "trades": 27,
+      "max_per_pyeong_manwon": 7791.7,
+      "median_per_pyeong_manwon": 5954.5,
+      "build_year": "1985"
+    },
+    {
+      "rank": 92,
+      "gu": "강북구",
+      "dong": "수유동",
+      "apt": "수유벽산1차",
+      "trades": 26,
+      "max_per_pyeong_manwon": 3213.5,
+      "median_per_pyeong_manwon": 2669.3,
+      "build_year": "1993"
+    },
+    {
+      "rank": 93,
+      "gu": "강북구",
+      "dong": "미아동",
+      "apt": "삼각산아이원",
+      "trades": 26,
+      "max_per_pyeong_manwon": 4425.6,
+      "median_per_pyeong_manwon": 3079.2,
+      "build_year": "2003"
+    },
+    {
+      "rank": 94,
+      "gu": "도봉구",
+      "dong": "쌍문동",
+      "apt": "한양2",
+      "trades": 26,
+      "max_per_pyeong_manwon": 2498.3,
+      "median_per_pyeong_manwon": 2260.4,
+      "build_year": "1988"
+    },
+    {
+      "rank": 95,
+      "gu": "도봉구",
+      "dong": "도봉동",
+      "apt": "서원",
+      "trades": 26,
+      "max_per_pyeong_manwon": 2710.6,
+      "median_per_pyeong_manwon": 2391.2,
+      "build_year": "1996"
+    },
+    {
+      "rank": 96,
+      "gu": "노원구",
+      "dong": "하계동",
+      "apt": "벽산",
+      "trades": 26,
+      "max_per_pyeong_manwon": 3701.2,
+      "median_per_pyeong_manwon": 2753.7,
+      "build_year": "1988"
+    },
+    {
+      "rank": 97,
+      "gu": "노원구",
+      "dong": "하계동",
+      "apt": "한신1",
+      "trades": 26,
+      "max_per_pyeong_manwon": 4675.7,
+      "median_per_pyeong_manwon": 3935.5,
+      "build_year": "1988"
+    },
+    {
+      "rank": 98,
+      "gu": "송파구",
+      "dong": "거여동",
+      "apt": "거여1단지",
+      "trades": 26,
+      "max_per_pyeong_manwon": 8430.5,
+      "median_per_pyeong_manwon": 7763.6,
+      "build_year": "1997"
+    },
+    {
+      "rank": 99,
+      "gu": "동대문구",
+      "dong": "답십리동",
+      "apt": "래미안위브",
+      "trades": 25,
+      "max_per_pyeong_manwon": 8927.1,
+      "median_per_pyeong_manwon": 6651.3,
+      "build_year": "2014"
+    },
+    {
+      "rank": 100,
+      "gu": "동대문구",
+      "dong": "전농동",
+      "apt": "전농우성",
+      "trades": 25,
+      "max_per_pyeong_manwon": 4819.7,
+      "median_per_pyeong_manwon": 4175.1,
+      "build_year": "1992"
+    },
+    {
+      "rank": 101,
+      "gu": "동대문구",
+      "dong": "전농동",
+      "apt": "래미안크레시티",
+      "trades": 25,
+      "max_per_pyeong_manwon": 8982.3,
+      "median_per_pyeong_manwon": 6673.1,
+      "build_year": "2014"
+    },
+    {
+      "rank": 102,
+      "gu": "중랑구",
+      "dong": "묵동",
+      "apt": "신내",
+      "trades": 25,
+      "max_per_pyeong_manwon": 4118.1,
+      "median_per_pyeong_manwon": 3319.1,
+      "build_year": "1996"
+    },
+    {
+      "rank": 103,
+      "gu": "성북구",
+      "dong": "길음동",
+      "apt": "길음뉴타운4단지(e편한세상)",
+      "trades": 25,
+      "max_per_pyeong_manwon": 6504.7,
+      "median_per_pyeong_manwon": 4950.5,
+      "build_year": "2005"
+    },
+    {
+      "rank": 104,
+      "gu": "도봉구",
+      "dong": "창동",
+      "apt": "동아청솔",
+      "trades": 25,
+      "max_per_pyeong_manwon": 5078.2,
+      "median_per_pyeong_manwon": 4448.9,
+      "build_year": "1997"
+    },
+    {
+      "rank": 105,
+      "gu": "도봉구",
+      "dong": "창동",
+      "apt": "창동주공4단지",
+      "trades": 25,
+      "max_per_pyeong_manwon": 3872.4,
+      "median_per_pyeong_manwon": 3442.2,
+      "build_year": "1991"
+    },
+    {
+      "rank": 106,
+      "gu": "강동구",
+      "dong": "고덕동",
+      "apt": "아남1",
+      "trades": 25,
+      "max_per_pyeong_manwon": 6662.7,
+      "median_per_pyeong_manwon": 5976.2,
+      "build_year": "1996"
+    },
+    {
+      "rank": 107,
+      "gu": "강북구",
+      "dong": "미아동",
+      "apt": "두산위브트레지움",
+      "trades": 24,
+      "max_per_pyeong_manwon": 5302.4,
+      "median_per_pyeong_manwon": 3889.6,
+      "build_year": "2011"
+    },
+    {
+      "rank": 108,
+      "gu": "도봉구",
+      "dong": "쌍문동",
+      "apt": "빌드아르떼APT",
+      "trades": 24,
+      "max_per_pyeong_manwon": 2743.7,
+      "median_per_pyeong_manwon": 2729.5,
+      "build_year": "2024"
+    },
+    {
+      "rank": 109,
+      "gu": "노원구",
+      "dong": "월계동",
+      "apt": "현대",
+      "trades": 24,
+      "max_per_pyeong_manwon": 5266.1,
+      "median_per_pyeong_manwon": 4455.7,
+      "build_year": "1988"
+    },
+    {
+      "rank": 110,
+      "gu": "마포구",
+      "dong": "아현동",
+      "apt": "더클래시",
+      "trades": 24,
+      "max_per_pyeong_manwon": 12403.0,
+      "median_per_pyeong_manwon": 11459.9,
+      "build_year": "2022"
+    },
+    {
+      "rank": 111,
+      "gu": "구로구",
+      "dong": "고척동",
+      "apt": "대우",
+      "trades": 24,
+      "max_per_pyeong_manwon": 3941.4,
+      "median_per_pyeong_manwon": 3445.8,
+      "build_year": "1999"
+    },
+    {
+      "rank": 112,
+      "gu": "용산구",
+      "dong": "한강로3가",
+      "apt": "센트럴파크",
+      "trades": 23,
+      "max_per_pyeong_manwon": 12212.6,
+      "median_per_pyeong_manwon": 11248.4,
+      "build_year": "2020"
+    },
+    {
+      "rank": 113,
+      "gu": "중랑구",
+      "dong": "신내동",
+      "apt": "신내6대주",
+      "trades": 23,
+      "max_per_pyeong_manwon": 4503.4,
+      "median_per_pyeong_manwon": 3816.9,
+      "build_year": "1996"
+    },
+    {
+      "rank": 114,
+      "gu": "성북구",
+      "dong": "길음동",
+      "apt": "길음뉴타운8단지(래미안)",
+      "trades": 23,
+      "max_per_pyeong_manwon": 7714.8,
+      "median_per_pyeong_manwon": 5915.7,
+      "build_year": "2010"
+    },
+    {
+      "rank": 115,
+      "gu": "노원구",
+      "dong": "공릉동",
+      "apt": "풍림아파트A",
+      "trades": 23,
+      "max_per_pyeong_manwon": 4660.3,
+      "median_per_pyeong_manwon": 3695.2,
+      "build_year": "2001"
+    },
+    {
+      "rank": 116,
+      "gu": "은평구",
+      "dong": "불광동",
+      "apt": "북한산현대힐스테이트3차아파트",
+      "trades": 23,
+      "max_per_pyeong_manwon": 5124.8,
+      "median_per_pyeong_manwon": 4377.4,
+      "build_year": "2010"
+    },
+    {
+      "rank": 117,
+      "gu": "구로구",
+      "dong": "개봉동",
+      "apt": "현대홈타운",
+      "trades": 23,
+      "max_per_pyeong_manwon": 5251.3,
+      "median_per_pyeong_manwon": 4278.8,
+      "build_year": "2001"
+    },
+    {
+      "rank": 118,
+      "gu": "금천구",
+      "dong": "독산동",
+      "apt": "금천롯데캐슬골드파크1차",
+      "trades": 23,
+      "max_per_pyeong_manwon": 5840.9,
+      "median_per_pyeong_manwon": 4933.9,
+      "build_year": "2016"
+    },
+    {
+      "rank": 119,
+      "gu": "동작구",
+      "dong": "사당동",
+      "apt": "스타팰리스이수",
+      "trades": 23,
+      "max_per_pyeong_manwon": 7588.0,
+      "median_per_pyeong_manwon": 7514.8,
+      "build_year": "2026"
+    },
+    {
+      "rank": 120,
+      "gu": "관악구",
+      "dong": "봉천동",
+      "apt": "관악드림(삼성)",
+      "trades": 23,
+      "max_per_pyeong_manwon": 6624.9,
+      "median_per_pyeong_manwon": 4863.8,
+      "build_year": "2003"
+    },
+    {
+      "rank": 121,
+      "gu": "서초구",
+      "dong": "반포동",
+      "apt": "래미안원베일리",
+      "trades": 23,
+      "max_per_pyeong_manwon": 27814.2,
+      "median_per_pyeong_manwon": 22959.6,
+      "build_year": "2023"
+    },
+    {
+      "rank": 122,
+      "gu": "강남구",
+      "dong": "수서동",
+      "apt": "까치마을",
+      "trades": 23,
+      "max_per_pyeong_manwon": 14830.0,
+      "median_per_pyeong_manwon": 13815.9,
+      "build_year": "1993"
+    },
+    {
+      "rank": 123,
+      "gu": "강동구",
+      "dong": "암사동",
+      "apt": "프라이어팰리스",
+      "trades": 23,
+      "max_per_pyeong_manwon": 9148.6,
+      "median_per_pyeong_manwon": 6615.6,
+      "build_year": "2007"
+    },
+    {
+      "rank": 124,
+      "gu": "강동구",
+      "dong": "고덕동",
+      "apt": "래미안힐스테이트고덕",
+      "trades": 23,
+      "max_per_pyeong_manwon": 10193.1,
+      "median_per_pyeong_manwon": 8157.4,
+      "build_year": "2016"
+    },
+    {
+      "rank": 125,
+      "gu": "성동구",
+      "dong": "행당동",
+      "apt": "행당한진타운",
+      "trades": 22,
+      "max_per_pyeong_manwon": 9317.5,
+      "median_per_pyeong_manwon": 7609.9,
+      "build_year": "2000"
+    },
+    {
+      "rank": 126,
+      "gu": "동대문구",
+      "dong": "장안동",
+      "apt": "래미안장안2차",
+      "trades": 22,
+      "max_per_pyeong_manwon": 6334.6,
+      "median_per_pyeong_manwon": 5220.8,
+      "build_year": "2007"
+    },
+    {
+      "rank": 127,
+      "gu": "동대문구",
+      "dong": "전농동",
+      "apt": "전농SK",
+      "trades": 22,
+      "max_per_pyeong_manwon": 6423.0,
+      "median_per_pyeong_manwon": 4817.6,
+      "build_year": "2000"
+    },
+    {
+      "rank": 128,
+      "gu": "성북구",
+      "dong": "길음동",
+      "apt": "길음동동부센트레빌(1278-0)",
+      "trades": 22,
+      "max_per_pyeong_manwon": 6226.1,
+      "median_per_pyeong_manwon": 4928.9,
+      "build_year": "2003"
+    },
+    {
+      "rank": 129,
+      "gu": "성북구",
+      "dong": "길음동",
+      "apt": "길음뉴타운1단지(래미안길음1차)",
+      "trades": 22,
+      "max_per_pyeong_manwon": 6888.2,
+      "median_per_pyeong_manwon": 6326.2,
+      "build_year": "2003"
+    },
+    {
+      "rank": 130,
+      "gu": "노원구",
+      "dong": "상계동",
+      "apt": "은빛1단지",
+      "trades": 22,
+      "max_per_pyeong_manwon": 3198.3,
+      "median_per_pyeong_manwon": 2909.3,
+      "build_year": "1998"
+    },
+    {
+      "rank": 131,
+      "gu": "노원구",
+      "dong": "상계동",
+      "apt": "상계주공13(고층)",
+      "trades": 22,
+      "max_per_pyeong_manwon": 3508.4,
+      "median_per_pyeong_manwon": 3111.2,
+      "build_year": "1989"
+    },
+    {
+      "rank": 132,
+      "gu": "은평구",
+      "dong": "수색동",
+      "apt": "DMCSK뷰아이파크포레",
+      "trades": 22,
+      "max_per_pyeong_manwon": 6836.5,
+      "median_per_pyeong_manwon": 5759.9,
+      "build_year": "2025"
+    },
+    {
+      "rank": 133,
+      "gu": "서대문구",
+      "dong": "홍제동",
+      "apt": "유원하나",
+      "trades": 22,
+      "max_per_pyeong_manwon": 3318.7,
+      "median_per_pyeong_manwon": 2896.9,
+      "build_year": "1996"
+    },
+    {
+      "rank": 134,
+      "gu": "양천구",
+      "dong": "신월동",
+      "apt": "신월시영",
+      "trades": 22,
+      "max_per_pyeong_manwon": 5050.5,
+      "median_per_pyeong_manwon": 4762.3,
+      "build_year": "1988"
+    },
+    {
+      "rank": 135,
+      "gu": "강서구",
+      "dong": "화곡동",
+      "apt": "화곡푸르지오",
+      "trades": 22,
+      "max_per_pyeong_manwon": 4702.9,
+      "median_per_pyeong_manwon": 3235.3,
+      "build_year": "2002"
+    },
+    {
+      "rank": 136,
+      "gu": "구로구",
+      "dong": "구로동",
+      "apt": "한신",
+      "trades": 22,
+      "max_per_pyeong_manwon": 4134.1,
+      "median_per_pyeong_manwon": 3547.9,
+      "build_year": "1988"
+    },
+    {
+      "rank": 137,
+      "gu": "구로구",
+      "dong": "신도림동",
+      "apt": "대림1",
+      "trades": 22,
+      "max_per_pyeong_manwon": 7478.1,
+      "median_per_pyeong_manwon": 7008.5,
+      "build_year": "1999"
+    },
+    {
+      "rank": 138,
+      "gu": "금천구",
+      "dong": "독산동",
+      "apt": "금천롯데캐슬골드파크3차",
+      "trades": 22,
+      "max_per_pyeong_manwon": 6008.7,
+      "median_per_pyeong_manwon": 5782.9,
+      "build_year": "2018"
+    },
+    {
+      "rank": 139,
+      "gu": "영등포구",
+      "dong": "신길동",
+      "apt": "삼성래미안",
+      "trades": 22,
+      "max_per_pyeong_manwon": 7020.6,
+      "median_per_pyeong_manwon": 4672.0,
+      "build_year": "1998"
+    },
+    {
+      "rank": 140,
+      "gu": "영등포구",
+      "dong": "대림동",
+      "apt": "현대3차",
+      "trades": 22,
+      "max_per_pyeong_manwon": 6906.7,
+      "median_per_pyeong_manwon": 5381.7,
+      "build_year": "1991"
+    },
+    {
+      "rank": 141,
+      "gu": "동작구",
+      "dong": "노량진동",
+      "apt": "신동아리버파크",
+      "trades": 22,
+      "max_per_pyeong_manwon": 8465.3,
+      "median_per_pyeong_manwon": 6270.4,
+      "build_year": "2001"
+    },
+    {
+      "rank": 142,
+      "gu": "관악구",
+      "dong": "봉천동",
+      "apt": "현대(관악)",
+      "trades": 22,
+      "max_per_pyeong_manwon": 5896.2,
+      "median_per_pyeong_manwon": 5416.6,
+      "build_year": "1992"
+    },
+    {
+      "rank": 143,
+      "gu": "송파구",
+      "dong": "잠실동",
+      "apt": "주공아파트 5단지",
+      "trades": 22,
+      "max_per_pyeong_manwon": 18107.7,
+      "median_per_pyeong_manwon": 17401.9,
+      "build_year": "1978"
+    },
+    {
+      "rank": 144,
+      "gu": "성북구",
+      "dong": "하월곡동",
+      "apt": "래미안월곡",
+      "trades": 21,
+      "max_per_pyeong_manwon": 6085.6,
+      "median_per_pyeong_manwon": 4482.6,
+      "build_year": "2006"
+    },
+    {
+      "rank": 145,
+      "gu": "강북구",
+      "dong": "미아동",
+      "apt": "삼성래미안트리베라2단지",
+      "trades": 21,
+      "max_per_pyeong_manwon": 5817.7,
+      "median_per_pyeong_manwon": 4392.6,
+      "build_year": "2010"
+    },
+    {
+      "rank": 146,
+      "gu": "도봉구",
+      "dong": "쌍문동",
+      "apt": "삼익세라믹",
+      "trades": 21,
+      "max_per_pyeong_manwon": 2643.7,
+      "median_per_pyeong_manwon": 2446.9,
+      "build_year": "1988"
+    },
+    {
+      "rank": 147,
+      "gu": "은평구",
+      "dong": "응암동",
+      "apt": "백련산힐스테이트1차",
+      "trades": 21,
+      "max_per_pyeong_manwon": 4989.5,
+      "median_per_pyeong_manwon": 3624.7,
+      "build_year": "2011"
+    },
+    {
+      "rank": 148,
+      "gu": "서대문구",
+      "dong": "남가좌동",
+      "apt": "남가좌동현대",
+      "trades": 21,
+      "max_per_pyeong_manwon": 5843.6,
+      "median_per_pyeong_manwon": 5092.3,
+      "build_year": "1999"
+    },
+    {
+      "rank": 149,
+      "gu": "강남구",
+      "dong": "개포동",
+      "apt": "성원대치2단지아파트",
+      "trades": 21,
+      "max_per_pyeong_manwon": 15941.2,
+      "median_per_pyeong_manwon": 14384.0,
+      "build_year": "1992"
+    },
+    {
+      "rank": 150,
+      "gu": "종로구",
+      "dong": "평창동",
+      "apt": "그린나래",
+      "trades": 20,
+      "max_per_pyeong_manwon": 3599.3,
+      "median_per_pyeong_manwon": 3563.9,
+      "build_year": "2026"
+    },
+    {
+      "rank": 151,
+      "gu": "성동구",
+      "dong": "옥수동",
+      "apt": "현대",
+      "trades": 20,
+      "max_per_pyeong_manwon": 9538.2,
+      "median_per_pyeong_manwon": 6772.6,
+      "build_year": "1990"
+    },
+    {
+      "rank": 152,
+      "gu": "동대문구",
+      "dong": "장안동",
+      "apt": "장안현대홈타운(336)",
+      "trades": 20,
+      "max_per_pyeong_manwon": 6718.2,
+      "median_per_pyeong_manwon": 4752.1,
+      "build_year": "2003"
+    },
+    {
+      "rank": 153,
+      "gu": "중랑구",
+      "dong": "면목동",
+      "apt": "사가정센트럴아이파크",
+      "trades": 20,
+      "max_per_pyeong_manwon": 7448.0,
+      "median_per_pyeong_manwon": 5831.0,
+      "build_year": "2020"
+    },
+    {
+      "rank": 154,
+      "gu": "성북구",
+      "dong": "보문동6가",
+      "apt": "보문파크뷰자이",
+      "trades": 20,
+      "max_per_pyeong_manwon": 7577.1,
+      "median_per_pyeong_manwon": 5783.8,
+      "build_year": "2017"
+    },
+    {
+      "rank": 155,
+      "gu": "성북구",
+      "dong": "하월곡동",
+      "apt": "꿈의숲푸르지오",
+      "trades": 20,
+      "max_per_pyeong_manwon": 5458.9,
+      "median_per_pyeong_manwon": 5015.5,
+      "build_year": "2010"
+    },
+    {
+      "rank": 156,
+      "gu": "강북구",
+      "dong": "번동",
+      "apt": "주공1단지",
+      "trades": 20,
+      "max_per_pyeong_manwon": 4633.7,
+      "median_per_pyeong_manwon": 4122.2,
+      "build_year": "1991"
+    },
+    {
+      "rank": 157,
+      "gu": "노원구",
+      "dong": "월계동",
+      "apt": "삼호4",
+      "trades": 20,
+      "max_per_pyeong_manwon": 5402.1,
+      "median_per_pyeong_manwon": 4990.1,
+      "build_year": "1987"
+    },
+    {
+      "rank": 158,
+      "gu": "노원구",
+      "dong": "상계동",
+      "apt": "상계주공11(고층)",
+      "trades": 20,
+      "max_per_pyeong_manwon": 4567.5,
+      "median_per_pyeong_manwon": 3825.1,
+      "build_year": "1988"
+    },
+    {
+      "rank": 159,
+      "gu": "노원구",
+      "dong": "상계동",
+      "apt": "노원롯데캐슬시그니처",
+      "trades": 20,
+      "max_per_pyeong_manwon": 5454.9,
+      "median_per_pyeong_manwon": 4900.4,
+      "build_year": "2023"
+    },
+    {
+      "rank": 160,
+      "gu": "은평구",
+      "dong": "녹번동",
+      "apt": "북한산푸르지오",
+      "trades": 20,
+      "max_per_pyeong_manwon": 6254.5,
+      "median_per_pyeong_manwon": 4648.1,
+      "build_year": "2015"
+    },
+    {
+      "rank": 161,
+      "gu": "서대문구",
+      "dong": "남가좌동",
+      "apt": "DMC파크뷰자이1단지",
+      "trades": 20,
+      "max_per_pyeong_manwon": 8267.7,
+      "median_per_pyeong_manwon": 6419.6,
+      "build_year": "2015"
+    },
+    {
+      "rank": 162,
+      "gu": "마포구",
+      "dong": "도화동",
+      "apt": "한화오벨리스크",
+      "trades": 20,
+      "max_per_pyeong_manwon": 6163.4,
+      "median_per_pyeong_manwon": 5101.5,
+      "build_year": "2004"
+    },
+    {
+      "rank": 163,
+      "gu": "양천구",
+      "dong": "신정동",
+      "apt": "신트리4",
+      "trades": 20,
+      "max_per_pyeong_manwon": 5388.4,
+      "median_per_pyeong_manwon": 4929.0,
+      "build_year": "2000"
+    },
+    {
+      "rank": 164,
+      "gu": "강서구",
+      "dong": "등촌동",
+      "apt": "등촌1,2단지주공아파트",
+      "trades": 20,
+      "max_per_pyeong_manwon": 6319.3,
+      "median_per_pyeong_manwon": 5647.9,
+      "build_year": "1994"
+    },
+    {
+      "rank": 165,
+      "gu": "금천구",
+      "dong": "독산동",
+      "apt": "한신아파트",
+      "trades": 20,
+      "max_per_pyeong_manwon": 2697.6,
+      "median_per_pyeong_manwon": 2512.8,
+      "build_year": "1991"
+    },
+    {
+      "rank": 166,
+      "gu": "관악구",
+      "dong": "신림동",
+      "apt": "삼성산주공(주공3단지)",
+      "trades": 20,
+      "max_per_pyeong_manwon": 3105.4,
+      "median_per_pyeong_manwon": 2423.4,
+      "build_year": "2000"
+    },
+    {
+      "rank": 167,
+      "gu": "서초구",
+      "dong": "양재동",
+      "apt": "호반써밋양재",
+      "trades": 20,
+      "max_per_pyeong_manwon": 6311.5,
+      "median_per_pyeong_manwon": 6311.5,
+      "build_year": "2026"
+    },
+    {
+      "rank": 168,
+      "gu": "송파구",
+      "dong": "잠실동",
+      "apt": "레이크팰리스",
+      "trades": 20,
+      "max_per_pyeong_manwon": 14883.5,
+      "median_per_pyeong_manwon": 11692.3,
+      "build_year": "2006"
+    },
+    {
+      "rank": 169,
+      "gu": "강동구",
+      "dong": "성내동",
+      "apt": "성내동삼성아파트",
+      "trades": 20,
+      "max_per_pyeong_manwon": 7894.6,
+      "median_per_pyeong_manwon": 7535.8,
+      "build_year": "1999"
+    },
+    {
+      "rank": 170,
+      "gu": "중구",
+      "dong": "신당동",
+      "apt": "약수하이츠",
+      "trades": 19,
+      "max_per_pyeong_manwon": 8489.6,
+      "median_per_pyeong_manwon": 7010.4,
+      "build_year": "1999"
+    },
+    {
+      "rank": 171,
+      "gu": "중랑구",
+      "dong": "묵동",
+      "apt": "에이트플레이스",
+      "trades": 19,
+      "max_per_pyeong_manwon": 4473.4,
+      "median_per_pyeong_manwon": 4362.5,
+      "build_year": "2026"
+    },
+    {
+      "rank": 172,
+      "gu": "성북구",
+      "dong": "종암동",
+      "apt": "래미안크리시엘",
+      "trades": 19,
+      "max_per_pyeong_manwon": 6254.5,
+      "median_per_pyeong_manwon": 5345.3,
+      "build_year": "2004"
+    },
+    {
+      "rank": 173,
+      "gu": "성북구",
+      "dong": "종암동",
+      "apt": "종암에스케이",
+      "trades": 19,
+      "max_per_pyeong_manwon": 5487.3,
+      "median_per_pyeong_manwon": 4367.4,
+      "build_year": "1999"
+    },
+    {
+      "rank": 174,
+      "gu": "도봉구",
+      "dong": "창동",
+      "apt": "대우",
+      "trades": 19,
+      "max_per_pyeong_manwon": 3534.4,
+      "median_per_pyeong_manwon": 2843.1,
+      "build_year": "1995"
+    },
+    {
+      "rank": 175,
+      "gu": "은평구",
+      "dong": "응암동",
+      "apt": "백련산파크자이",
+      "trades": 19,
+      "max_per_pyeong_manwon": 5979.3,
+      "median_per_pyeong_manwon": 5086.8,
+      "build_year": "2021"
+    },
+    {
+      "rank": 176,
+      "gu": "은평구",
+      "dong": "응암동",
+      "apt": "백련산힐스테이트3차",
+      "trades": 19,
+      "max_per_pyeong_manwon": 4712.3,
+      "median_per_pyeong_manwon": 3621.8,
+      "build_year": "2011"
+    },
+    {
+      "rank": 177,
+      "gu": "서대문구",
+      "dong": "홍제동",
+      "apt": "홍제한양",
+      "trades": 19,
+      "max_per_pyeong_manwon": 5641.8,
+      "median_per_pyeong_manwon": 4761.1,
+      "build_year": "1993"
+    },
+    {
+      "rank": 178,
+      "gu": "양천구",
+      "dong": "신월동",
+      "apt": "목동센트럴아이파크위브2단지",
+      "trades": 19,
+      "max_per_pyeong_manwon": 7176.9,
+      "median_per_pyeong_manwon": 5291.1,
+      "build_year": "2020"
+    },
+    {
+      "rank": 179,
+      "gu": "강서구",
+      "dong": "등촌동",
+      "apt": "등촌동아이파크",
+      "trades": 19,
+      "max_per_pyeong_manwon": 4978.4,
+      "median_per_pyeong_manwon": 3399.1,
+      "build_year": "2004"
+    },
+    {
+      "rank": 180,
+      "gu": "강서구",
+      "dong": "내발산동",
+      "apt": "우장산힐스테이트",
+      "trades": 19,
+      "max_per_pyeong_manwon": 8267.3,
+      "median_per_pyeong_manwon": 6224.1,
+      "build_year": "2005"
+    },
+    {
+      "rank": 181,
+      "gu": "구로구",
+      "dong": "신도림동",
+      "apt": "대림2",
+      "trades": 19,
+      "max_per_pyeong_manwon": 7671.2,
+      "median_per_pyeong_manwon": 6878.8,
+      "build_year": "2001"
+    },
+    {
+      "rank": 182,
+      "gu": "동작구",
+      "dong": "상도동",
+      "apt": "대림아파트",
+      "trades": 19,
+      "max_per_pyeong_manwon": 8535.2,
+      "median_per_pyeong_manwon": 7007.1,
+      "build_year": "1993"
+    },
+    {
+      "rank": 183,
+      "gu": "관악구",
+      "dong": "봉천동",
+      "apt": "봉천우성",
+      "trades": 19,
+      "max_per_pyeong_manwon": 6140.3,
+      "median_per_pyeong_manwon": 4630.3,
+      "build_year": "2000"
+    },
+    {
+      "rank": 184,
+      "gu": "강남구",
+      "dong": "개포동",
+      "apt": "래미안블레스티지",
+      "trades": 19,
+      "max_per_pyeong_manwon": 15830.5,
+      "median_per_pyeong_manwon": 12648.3,
+      "build_year": "2019"
+    },
+    {
+      "rank": 185,
+      "gu": "강동구",
+      "dong": "상일동",
+      "apt": "고덕아르테온",
+      "trades": 19,
+      "max_per_pyeong_manwon": 10471.9,
+      "median_per_pyeong_manwon": 8948.3,
+      "build_year": "2020"
+    },
+    {
+      "rank": 186,
+      "gu": "성북구",
+      "dong": "돈암동",
+      "apt": "돈암동삼성",
+      "trades": 18,
+      "max_per_pyeong_manwon": 4897.5,
+      "median_per_pyeong_manwon": 4005.7,
+      "build_year": "1999"
+    },
+    {
+      "rank": 187,
+      "gu": "성북구",
+      "dong": "장위동",
+      "apt": "꿈의숲아이파크",
+      "trades": 18,
+      "max_per_pyeong_manwon": 7775.1,
+      "median_per_pyeong_manwon": 7047.9,
+      "build_year": "2022"
+    },
+    {
+      "rank": 188,
+      "gu": "성북구",
+      "dong": "상월곡동",
+      "apt": "동아에코빌",
+      "trades": 18,
+      "max_per_pyeong_manwon": 4825.0,
+      "median_per_pyeong_manwon": 4521.7,
+      "build_year": "2003"
+    },
+    {
+      "rank": 189,
+      "gu": "노원구",
+      "dong": "월계동",
+      "apt": "사슴3",
+      "trades": 18,
+      "max_per_pyeong_manwon": 3751.2,
+      "median_per_pyeong_manwon": 3172.2,
+      "build_year": "1995"
+    },
+    {
+      "rank": 190,
+      "gu": "노원구",
+      "dong": "상계동",
+      "apt": "상계주공12(고층)",
+      "trades": 18,
+      "max_per_pyeong_manwon": 4170.3,
+      "median_per_pyeong_manwon": 3746.0,
+      "build_year": "1988"
+    },
+    {
+      "rank": 191,
+      "gu": "서대문구",
+      "dong": "연희동",
+      "apt": "성원",
+      "trades": 18,
+      "max_per_pyeong_manwon": 4270.2,
+      "median_per_pyeong_manwon": 3822.4,
+      "build_year": "1998"
+    },
+    {
+      "rank": 192,
+      "gu": "서대문구",
+      "dong": "홍제동",
+      "apt": "홍제삼성래미안",
+      "trades": 18,
+      "max_per_pyeong_manwon": 6074.8,
+      "median_per_pyeong_manwon": 4903.6,
+      "build_year": "2001"
+    },
+    {
+      "rank": 193,
+      "gu": "서대문구",
+      "dong": "홍은동",
+      "apt": "홍은동벽산",
+      "trades": 18,
+      "max_per_pyeong_manwon": 4199.9,
+      "median_per_pyeong_manwon": 3287.9,
+      "build_year": "1997"
+    },
+    {
+      "rank": 194,
+      "gu": "양천구",
+      "dong": "신월동",
+      "apt": "목동센트럴아이파크위브4단지",
+      "trades": 18,
+      "max_per_pyeong_manwon": 7201.0,
+      "median_per_pyeong_manwon": 5543.4,
+      "build_year": "2020"
+    },
+    {
+      "rank": 195,
+      "gu": "강서구",
+      "dong": "방화동",
+      "apt": "청솔",
+      "trades": 18,
+      "max_per_pyeong_manwon": 4716.8,
+      "median_per_pyeong_manwon": 4199.4,
+      "build_year": "1994"
+    },
+    {
+      "rank": 196,
+      "gu": "구로구",
+      "dong": "개봉동",
+      "apt": "한진",
+      "trades": 18,
+      "max_per_pyeong_manwon": 3628.4,
+      "median_per_pyeong_manwon": 3281.0,
+      "build_year": "2000"
+    },
+    {
+      "rank": 197,
+      "gu": "구로구",
+      "dong": "구로동",
+      "apt": "구일우성",
+      "trades": 18,
+      "max_per_pyeong_manwon": 3336.9,
+      "median_per_pyeong_manwon": 3091.0,
+      "build_year": "1998"
+    },
+    {
+      "rank": 198,
+      "gu": "구로구",
+      "dong": "구로동",
+      "apt": "삼성래미안",
+      "trades": 18,
+      "max_per_pyeong_manwon": 5309.5,
+      "median_per_pyeong_manwon": 4202.4,
+      "build_year": "2004"
+    },
+    {
+      "rank": 199,
+      "gu": "영등포구",
+      "dong": "신길동",
+      "apt": "힐스테이트클래시안",
+      "trades": 18,
+      "max_per_pyeong_manwon": 9662.9,
+      "median_per_pyeong_manwon": 9248.7,
+      "build_year": "2020"
+    },
+    {
+      "rank": 200,
+      "gu": "관악구",
+      "dong": "신림동",
+      "apt": "신림푸르지오",
+      "trades": 18,
+      "max_per_pyeong_manwon": 4425.1,
+      "median_per_pyeong_manwon": 3339.2,
+      "build_year": "2005"
+    }
+  ]
+}
