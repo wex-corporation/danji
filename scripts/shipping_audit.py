@@ -84,10 +84,52 @@ def jaccard(a, b):
 
 def main():
     ap = argparse.ArgumentParser(description="출고 검사 (명세 8.3)")
+    ap.add_argument("--pack", help="로컬 팩 파일을 검사한다. 게시 전 판정용")
+    ap.add_argument("--packs", nargs="*", help="여러 팩을 합쳐 검사한다")
     ap.add_argument("--complex", dest="only")
     ap.add_argument("--threshold", type=float, default=0.55)
     ap.add_argument("--limit", type=int, default=300)
     args = ap.parse_args()
+
+    # 게시 전 판정: 로컬 팩을 읽는다. 명세 8.3은 '배치를 반려한다'이므로
+    # 검사 시점은 게시 후가 아니라 게시 전이 맞다.
+    files = ([args.pack] if args.pack else []) + list(args.packs or [])
+    if files:
+        posts = []
+        for fp in files:
+            pack = json.loads(Path(fp).read_text(encoding="utf-8"))
+            for b in pack["bundles"]:
+                po = b["payload"]["post"]
+                body = po.get("body") or ""
+                if len(body) < 80:
+                    continue
+                posts.append({"id": po["external_id"], "ext": po["external_id"],
+                              "cx": po.get("complex_external_id", "?"),
+                              "title": po.get("title", ""),
+                              "persona": po.get("persona_external_id", "?"),
+                              "masked": mask(body)})
+        for p in posts:
+            p["tok"] = tokens(p["masked"])
+        pairs = []
+        for a, b in combinations(posts, 2):
+            sim = jaccard(a["tok"], b["tok"])
+            if sim >= args.threshold:
+                pairs.append((sim, a, b))
+        pairs.sort(key=lambda x: -x[0])
+        involved = defaultdict(set)
+        for sim, a, b in pairs:
+            involved[a["cx"]].add(a["id"]); involved[b["cx"]].add(b["id"])
+        print(f"\n[게시 전 판정] 팩 {len(files)}개 · {len(posts)}편 · 임계값 {args.threshold}")
+        print(f"교체가능 쌍 {len(pairs)}건\n")
+        for sim, a, b in pairs[:10]:
+            print(f"  {sim:.2f}  [{a['cx'][:18]}] {a['title'][:30]}")
+            print(f"        [{b['cx'][:18]}] {b['title'][:30]}")
+        rej = [cx for cx, ids in involved.items() if len(ids) >= 3]
+        for cx in sorted({p["cx"] for p in posts}):
+            n = len(involved.get(cx, ()))
+            print(f"  {cx[:26]:28}교체가능 {n:>2}편  {'반려' if n >= 3 else ('주의' if n else '통과')}")
+        print(f"\n{'반려 대상: ' + ', '.join(rej) if rej else '전 단지 통과 — 게시 가능'}")
+        return 0 if not rej else 1
 
     cxs = [c for c in get("/api/v1/complexes?limit=50")["items"]
            if c["post_count"] > 0 and "테스트" not in c["name"]]

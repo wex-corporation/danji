@@ -502,6 +502,18 @@
         "부러움"
       ],
       "avatar_color": "#6366f1"
+    },
+    {
+      "external_id": "wb-persona-outlier",
+      "handle": "이단지만다른점",
+      "avatar_label": "다른",
+      "tagline": "같은 잣대로 재면 이 단지만 튀는 숫자가 하나씩 있습니다",
+      "stance": "특이값 추적",
+      "expertise": [
+        "단지 비교",
+        "공개 자료"
+      ],
+      "avatar_color": "#0891b2"
     }
   ]
 }
