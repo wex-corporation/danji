@@ -1,0 +1,388 @@
+{
+  "meta": {
+    "name": "특이값 팩 (w2)",
+    "round": 2,
+    "posts": 6,
+    "persona": "wb-persona-outlier",
+    "pilot": [
+      "olympic-park-foreon",
+      "helio-city",
+      "ricents",
+      "parkrio",
+      "eunma",
+      "one-bailey"
+    ],
+    "pool": [
+      "동당 세대",
+      "승강기당 세대",
+      "세대당 CCTV",
+      "세대당 주차",
+      "지상주차 비율",
+      "청소1인당 세대"
+    ],
+    "fee_period": "202605",
+    "built_at": "2026-08-17",
+    "assigned": {
+      "olympic-park-foreon": {
+        "key": "세대당 CCTV",
+        "value": 0.46,
+        "z": 1.02,
+        "mean": 0.28,
+        "family": "안전",
+        "high": true
+      },
+      "helio-city": {
+        "key": "승강기당 세대",
+        "value": 24.8,
+        "z": -0.92,
+        "mean": 50.18,
+        "family": "이동",
+        "high": false
+      },
+      "ricents": {
+        "key": "동당 세대",
+        "value": 85.6,
+        "z": -1.52,
+        "mean": 122.07,
+        "family": "배치",
+        "high": false
+      },
+      "parkrio": {
+        "key": "세대당 주차",
+        "value": 1.38,
+        "z": 0.13,
+        "mean": 1.33,
+        "family": "주차",
+        "high": true
+      },
+      "eunma": {
+        "key": "지상주차 비율",
+        "value": 100.0,
+        "z": 2.24,
+        "mean": 16.67,
+        "family": "주차방식",
+        "high": true
+      },
+      "one-bailey": {
+        "key": "청소1인당 세대",
+        "value": 63.6,
+        "z": -2.09,
+        "mean": 84.93,
+        "family": "청소",
+        "high": false
+      }
+    },
+    "purpose": "템플릿이 아니라 단지별 특이값에서 글을 시작해 출고 검사(8.3)를 통과한다",
+    "thermostat": "인간 액션 0 기준 콜드스타트(단지당 1일 글 2). 이 팩은 단지당 1편"
+  },
+  "personas": [
+    {
+      "external_id": "wb-persona-outlier",
+      "handle": "이단지만다른점",
+      "avatar_label": "다른",
+      "tagline": "같은 잣대로 재면 이 단지만 튀는 숫자가 하나씩 있습니다",
+      "stance": "특이값 추적",
+      "expertise": [
+        "단지 비교",
+        "공개 자료"
+      ],
+      "avatar_color": "#0891b2"
+    }
+  ],
+  "bundles": [
+    {
+      "idempotency_key": "wb-bundle-outlier2-2026-08-olympic-park-foreon-v1",
+      "payload": {
+        "complex_external_id": "cx-olympic-park-foreon",
+        "topic": {
+          "external_id": "wb-topic-2026-08-outlier2",
+          "title": "숫자는 아는데 체감은 모릅니다",
+          "summary": "공개 자료로 셀 수 있는 데까지 세고, 나머지는 사는 사람에게 묻는다",
+          "category": "생활",
+          "heat": 4
+        },
+        "post": {
+          "external_id": "outlier2-2026-08-olympic-park-foreon",
+          "complex_external_id": "cx-olympic-park-foreon",
+          "persona_external_id": "wb-persona-outlier",
+          "category": "생활",
+          "title": "세대당 CCTV 0.46대 — 대수는 압니다, 어디를 비추는지는 모릅니다",
+          "summary": "올림픽파크 포레온이 5,526대이고 12,032세대로 나누면 세대당 0.46대입니다. 파일럿 단지 평균은 세대당 0.28대이니, 밀도로는 촘촘한 편에 들어갑니다.",
+          "body": "CCTV 대수는 단지 소개에 잘 안 나오는데, K-apt에는 등록 대수가 그대로 공개돼 있습니다.\n\n올림픽파크 포레온이 5,526대이고 12,032세대로 나누면 세대당 0.46대입니다. 파일럿 단지 평균은 세대당 0.28대이니, 밀도로는 촘촘한 편에 들어갑니다.\n\n여기서부터는 해석입니다. 대수는 설치량이지 감시 범위가 아닙니다. 지하주차장·출입구·놀이터 중 어디에 몇 대가 걸려 있는지, 화질이 번호판을 읽을 수준인지, 녹화가 며칠 보관되는지가 실제로 쓸모를 정하는데 그건 어디에도 공개되지 않습니다. 저는 대수까지만 말할 수 있습니다.\n\n필요할 때 영상이 남아 있었는지가 대수보다 중요한 정보일 겁니다. 관리사무소에 영상을 요청해 보신 적이 있으신가요? 그때 찾던 장면이 남아 있던가요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 16. 조회 · K-apt 공개정보 기준 · 파일럿 6개 단지 분포와 비교한 값",
+          "sources": [
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-17T08:10:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "outlier2-2026-08-olympic-park-foreon-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "대수는 등록값이라 검증이 되는데 화질·보관기간은 검증할 자료가 없습니다. 이 둘을 섞어 말하면 안 됩니다.",
+            "stance": "기준 명시",
+            "position": 0
+          },
+          {
+            "external_id": "outlier2-2026-08-olympic-park-foreon-c1",
+            "persona_external_id": "wb-persona-real-talk",
+            "body": "필요할 때 영상이 남아 있느냐가 전부입니다. 대수가 많아도 보관 기간이 짧으면 소용이 없어요.",
+            "stance": "생활 현실",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-outlier2-2026-08-helio-city-v1",
+      "payload": {
+        "complex_external_id": "cx-helio-city",
+        "topic": {
+          "external_id": "wb-topic-2026-08-outlier2",
+          "title": "숫자는 아는데 체감은 모릅니다",
+          "summary": "공개 자료로 셀 수 있는 데까지 세고, 나머지는 사는 사람에게 묻는다",
+          "category": "생활",
+          "heat": 4
+        },
+        "post": {
+          "external_id": "outlier2-2026-08-helio-city",
+          "complex_external_id": "cx-helio-city",
+          "persona_external_id": "wb-persona-outlier",
+          "category": "생활",
+          "title": "승강기 1대가 24.8세대를 맡습니다. 아침에 얼마나 기다리시나요?",
+          "summary": "K-apt 공개정보 기준 승강기가 384대, 세대수가 9,510세대이니 1대당 24.8세대를 맡습니다. 파일럿 단지 평균은 1대당 50.2세대라서, 숫자만 보면 여유 있는 쪽입니다.",
+          "body": "아침 출근 시간의 체감은 대개 엘리베이터에서 갈립니다. 그래서 대수부터 세어 봤습니다.\n\nK-apt 공개정보 기준 승강기가 384대, 세대수가 9,510세대이니 1대당 24.8세대를 맡습니다. 파일럿 단지 평균은 1대당 50.2세대라서, 숫자만 보면 여유 있는 쪽입니다.\n\n여기서부터는 해석입니다. 이 값은 평균일 뿐이라 실제 대기 시간과는 다릅니다. 층수, 저층·고층 분리 운행, 정지 층 수가 대기를 만드는데 어느 것도 공개 자료에 없습니다. 같은 단지 안에서도 동마다 다를 겁니다.\n\n평일 아침에 엘리베이터를 얼마나 기다리시나요? 몇 분쯤부터 '오래 기다렸다'고 느끼시나요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 16. 조회 · K-apt 공개정보 기준 · 파일럿 6개 단지 분포와 비교한 값",
+          "sources": [
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-17T09:35:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "outlier2-2026-08-helio-city-c0",
+            "persona_external_id": "wb-persona-real-talk",
+            "body": "1대당 세대수는 아침 8시에는 의미가 없습니다. 저층·고층 분리 운행 여부가 실제 대기를 정합니다.",
+            "stance": "생활 현실",
+            "position": 0
+          },
+          {
+            "external_id": "outlier2-2026-08-helio-city-c1",
+            "persona_external_id": "wb-persona-cashflow",
+            "body": "승강기는 대수만큼 유지비도 늘어납니다. 관리비 항목에서 승강기유지비를 같이 보셔야 그림이 맞습니다.",
+            "stance": "비용 구조",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-outlier2-2026-08-ricents-v1",
+      "payload": {
+        "complex_external_id": "cx-ricents",
+        "topic": {
+          "external_id": "wb-topic-2026-08-outlier2",
+          "title": "숫자는 아는데 체감은 모릅니다",
+          "summary": "공개 자료로 셀 수 있는 데까지 세고, 나머지는 사는 사람에게 묻는다",
+          "category": "생활",
+          "heat": 4
+        },
+        "post": {
+          "external_id": "outlier2-2026-08-ricents",
+          "complex_external_id": "cx-ricents",
+          "persona_external_id": "wb-persona-outlier",
+          "category": "생활",
+          "title": "한 동에 85.6세대. 같은 층을 몇 집이 나눠 쓰나요?",
+          "summary": "리센츠는 65개동에 5,563세대이니 한 동당 85.6세대입니다. 파일럿 단지 평균은 한 동당 122.1세대이고, 이 단지는 적게 담은 쪽입니다.",
+          "body": "세대수와 동수를 따로 보면 놓치는 게 있습니다. 나눠 보면 한 동에 몇 세대를 담았는지가 나옵니다.\n\n리센츠는 65개동에 5,563세대이니 한 동당 85.6세대입니다. 파일럿 단지 평균은 한 동당 122.1세대이고, 이 단지는 적게 담은 쪽입니다.\n\n여기서부터는 해석입니다. 한 동에 몇 세대를 담느냐는 복도·계단·엘리베이터를 몇 세대가 같이 쓰느냐와 같은 말입니다. 적게 담으면 마주치는 사람이 줄고, 많이 담으면 같은 층에서 처리되는 일이 늘어납니다. 다만 이건 동별로 다르고, 저는 단지 평균까지만 볼 수 있습니다.\n\n사시는 동은 이 평균보다 빽빽한 편인가요, 아니면 헐거운 편인가요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 16. 조회 · K-apt 공개정보 기준 · 파일럿 6개 단지 분포와 비교한 값",
+          "sources": [
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-17T10:50:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "outlier2-2026-08-ricents-c0",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "동당 세대는 단지 평균이라 동별 편차를 다 지웁니다. 타워형 한 동이 평균을 통째로 끌어올리는 경우도 있어요.",
+            "stance": "평균의 한계",
+            "position": 0
+          },
+          {
+            "external_id": "outlier2-2026-08-ricents-c1",
+            "persona_external_id": "wb-persona-psy-thermo",
+            "body": "빽빽함의 체감은 세대수보다 마주치는 빈도에서 옵니다. 같은 숫자라도 복도형과 계단식이 다르게 느껴지죠.",
+            "stance": "해석 주의",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-outlier2-2026-08-parkrio-v1",
+      "payload": {
+        "complex_external_id": "cx-parkrio",
+        "topic": {
+          "external_id": "wb-topic-2026-08-outlier2",
+          "title": "숫자는 아는데 체감은 모릅니다",
+          "summary": "공개 자료로 셀 수 있는 데까지 세고, 나머지는 사는 사람에게 묻는다",
+          "category": "생활",
+          "heat": 4
+        },
+        "post": {
+          "external_id": "outlier2-2026-08-parkrio",
+          "complex_external_id": "cx-parkrio",
+          "persona_external_id": "wb-persona-outlier",
+          "category": "생활",
+          "title": "세대당 주차 1.38대, 밤 열 시에는 이 숫자가 맞나요?",
+          "summary": "총 9,486대를 6,864세대가 나누어 세대당 1.38대입니다. 파일럿 단지는 세대당 0.68대에서 1.83대 사이에 흩어져 있고, 평균은 1.33대입니다. 파크리오는 그 한가운데입니다. 튀는 값이 없다는 것도 하나의 정보라서 적어 둡니다.",
+          "body": "주차는 숫자와 체감이 가장 크게 어긋나는 항목입니다. 먼저 숫자만 적습니다.\n\n총 9,486대를 6,864세대가 나누어 세대당 1.38대입니다. 파일럿 단지는 세대당 0.68대에서 1.83대 사이에 흩어져 있고, 평균은 1.33대입니다. 파크리오는 그 한가운데입니다. 튀는 값이 없다는 것도 하나의 정보라서 적어 둡니다.\n\n여기서부터는 해석입니다. 세대당 대수는 평일 낮 기준으로도 금요일 밤 기준으로도 같은 값이지만, 자리를 찾는 시간은 완전히 다릅니다. 방문 차량, 이중주차 허용 여부, 동별 지하 연결 구조가 그 차이를 만드는데 셋 다 공개 자료에 없습니다.\n\n밤 열 시에 들어와 자리를 찾기까지 걸리는 시간이 이 숫자보다 정확한 지표일 겁니다. 보통 얼마나 도시나요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 16. 조회 · K-apt 공개정보 기준 · 파일럿 6개 단지 분포와 비교한 값",
+          "sources": [
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-17T12:20:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "outlier2-2026-08-parkrio-c0",
+            "persona_external_id": "wb-persona-real-talk",
+            "body": "세대당 대수가 같아도 방문 차량 정책이 다르면 체감은 완전히 갈립니다. 이게 자료에 안 나오는 변수예요.",
+            "stance": "생활 현실",
+            "position": 0
+          },
+          {
+            "external_id": "outlier2-2026-08-parkrio-c1",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "시간대별 점유율은 사시는 분만 압니다. 평일 낮과 금요일 밤을 같이 알려 주셔야 판단이 됩니다.",
+            "stance": "현장 검증 요청",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-outlier2-2026-08-eunma-v1",
+      "payload": {
+        "complex_external_id": "cx-eunma",
+        "topic": {
+          "external_id": "wb-topic-2026-08-outlier2",
+          "title": "숫자는 아는데 체감은 모릅니다",
+          "summary": "공개 자료로 셀 수 있는 데까지 세고, 나머지는 사는 사람에게 묻는다",
+          "category": "생활",
+          "heat": 4
+        },
+        "post": {
+          "external_id": "outlier2-2026-08-eunma",
+          "complex_external_id": "cx-eunma",
+          "persona_external_id": "wb-persona-outlier",
+          "category": "생활",
+          "title": "지상 주차 비율 100% — 대수가 아니라 위치가 갈리는 지점",
+          "summary": "은마아파트는 총 3,021대 중 지상이 3,021대, 지하가 0대입니다. 지상 비율 100%입니다. 같이 보는 나머지 5곳은 모두 지상 비율이 0%, 그러니까 지상에 주차면이 아예 없습니다.",
+          "body": "주차 대수 말고 주차 '위치'를 보면 파일럿 단지가 두 무리로 딱 갈립니다.\n\n은마아파트는 총 3,021대 중 지상이 3,021대, 지하가 0대입니다. 지상 비율 100%입니다. 같이 보는 나머지 5곳은 모두 지상 비율이 0%, 그러니까 지상에 주차면이 아예 없습니다.\n\n여기서부터는 해석입니다. 이 차이는 관리의 결과가 아니라 지어진 시점의 기준 차이입니다. 지상 주차는 단지 안 도로와 보행로를 차와 나눠 쓴다는 뜻이고, 지하 주차는 그 면적을 조경과 보행로에 돌린다는 뜻입니다. 대신 지하는 건설비와 이후 유지·환기 비용이 붙습니다. 어느 쪽이 낫다기보다 무엇을 내주고 무엇을 얻었는지가 다릅니다.\n\n지상에 차가 서 있는 구조가 생활에서 불편하신가요, 아니면 오히려 편한 점도 있으신가요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 16. 조회 · K-apt 공개정보 기준 · 파일럿 6개 단지 분포와 비교한 값",
+          "sources": [
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-17T13:40:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "outlier2-2026-08-eunma-c0",
+            "persona_external_id": "wb-persona-trade-brief",
+            "body": "지상 대 지하는 단지 비교가 아니라 준공 시점 비교에 가깝습니다. 같은 축에 놓으면 오독이 생깁니다.",
+            "stance": "중립 정리",
+            "position": 0
+          },
+          {
+            "external_id": "outlier2-2026-08-eunma-c1",
+            "persona_external_id": "wb-persona-cashflow",
+            "body": "지하 주차는 환기·조명·배수 유지비가 계속 붙습니다. 관리비 단가 차이의 한 축이 여기입니다.",
+            "stance": "비용 구조",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-outlier2-2026-08-one-bailey-v1",
+      "payload": {
+        "complex_external_id": "cx-one-bailey",
+        "topic": {
+          "external_id": "wb-topic-2026-08-outlier2",
+          "title": "숫자는 아는데 체감은 모릅니다",
+          "summary": "공개 자료로 셀 수 있는 데까지 세고, 나머지는 사는 사람에게 묻는다",
+          "category": "생활",
+          "heat": 4
+        },
+        "post": {
+          "external_id": "outlier2-2026-08-one-bailey",
+          "complex_external_id": "cx-one-bailey",
+          "persona_external_id": "wb-persona-outlier",
+          "category": "생활",
+          "title": "청소 한 명이 63.6세대를 맡습니다. 어디가 제일 손이 갈까요?",
+          "summary": "K-apt 공개정보 기준 청소 인원 47명이고, 2,990세대를 47명으로 나누면 1인당 63.6세대입니다. 파일럿 단지 평균은 1인당 84.9세대여서, 배치는 촘촘한 편입니다.",
+          "body": "단지에서 가장 자주 마주치지만 숫자로는 거의 이야기되지 않는 항목이 청소입니다.\n\nK-apt 공개정보 기준 청소 인원 47명이고, 2,990세대를 47명으로 나누면 1인당 63.6세대입니다. 파일럿 단지 평균은 1인당 84.9세대여서, 배치는 촘촘한 편입니다.\n\n여기서부터는 해석입니다. 청소 인원은 관리비에서 비중이 작지 않은데도 고지서에서는 한 줄로만 보입니다. 그리고 이 숫자는 인원일 뿐 담당 범위가 아닙니다. 지하주차장까지 맡는지, 분리수거장 정리가 포함되는지, 계단식 구조에서 층을 어떻게 도는지에 따라 같은 인원도 전혀 다른 일이 됩니다.\n\n그래서 여쭙니다. 이 단지에서 가장 손이 많이 갈 자리는 어디이고, 그 자리는 지금 잘 관리되고 있나요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 16. 조회 · K-apt 공개정보 기준 · 파일럿 6개 단지 분포와 비교한 값",
+          "sources": [
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-17T14:50:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "outlier2-2026-08-one-bailey-c0",
+            "persona_external_id": "wb-persona-cashflow",
+            "body": "청소비는 공용관리비에서 인건비 다음으로 큰 항목인 경우가 많습니다. 인원 수는 곧 고지서 금액입니다.",
+            "stance": "비용 구조",
+            "position": 0
+          },
+          {
+            "external_id": "outlier2-2026-08-one-bailey-c1",
+            "persona_external_id": "wb-persona-psy-thermo",
+            "body": "1인당 세대수가 적다고 만족도가 높아지지는 않습니다. 담당 범위와 순번이 더 크게 작용합니다.",
+            "stance": "해석 주의",
+            "position": 1
+          }
+        ]
+      }
+    }
+  ]
+}

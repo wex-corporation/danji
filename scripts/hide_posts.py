@@ -66,17 +66,61 @@ def post(path, payload, key, idem):
     raise RuntimeError("재시도 소진")
 
 
-def index_feed(slug):
-    """external_id → 내부 id. 피드는 인증 없이 읽을 수 있다."""
-    data = get(f"/api/v1/posts?complex={urllib.parse.quote(slug)}&limit=200")
-    return {p["external_id"]: p["id"] for p in data.get("items", []) if p.get("external_id")}
+def post_owner_map():
+    """글 external_id → 그 글이 속한 complex_external_id.
+
+    피드 응답에는 단지의 external_id 가 없고 slug 만 있다. 그렇다고
+    `cx-{slug}` 로 지어내면 안 된다 — 둘이 다른 단지가 실제로 있다.
+    디에이치 퍼스티어는 slug 가 `dh-firstier-ipark`, external_id 는
+    `cx-dh-firstier` 라서 16편이 통째로 422 unknown_complex 로 실패했다.
+    우리가 올린 팩이 원본이므로 거기서 소속을 그대로 읽어 온다.
+    """
+    m = {}
+    for fp in sorted((REPO / "content").glob("*.json")):
+        try:
+            pack = json.loads(fp.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            continue
+        for b in pack.get("bundles", []):
+            pl = b.get("payload") or {}
+            po = pl.get("post") or {}
+            cx = (po.get("complex_external_id") or pl.get("complex_external_id")
+                  or (pl.get("complex") or {}).get("external_id"))
+            if po.get("external_id") and cx:
+                m.setdefault(po["external_id"], cx)
+    return m
 
 
-def to_payload(detail, status):
+def index_feed(slug=None):
+    """external_id → (내부 id, 단지 slug). 피드는 인증 없이 읽을 수 있다.
+
+    slug를 주면 그 단지만, 안 주면 전 단지를 훑는다.
+    팩이 여러 단지에 걸쳐 있으면(파일럿 축소 등) 한 단지만 봐서는 못 찾는다.
+    """
+    idx = {}
+    if slug:
+        data = get(f"/api/v1/posts?complex={urllib.parse.quote(slug)}&limit=200")
+        for p in data.get("items", []):
+            if p.get("external_id"):
+                idx[p["external_id"]] = (p["id"], slug)
+        return idx
+    for c in get("/api/v1/complexes?limit=100").get("items", []):
+        if not c.get("post_count"):
+            continue
+        data = get(f"/api/v1/posts?complex={urllib.parse.quote(c['slug'])}&limit=200")
+        for p in data.get("items", []):
+            if p.get("external_id"):
+                idx[p["external_id"]] = (p["id"], c["slug"])
+        time.sleep(0.15)
+    return idx
+
+
+def to_payload(detail, status, cx_ext):
     """상세 응답을 인제스트 payload 로 되돌린다. 본문·출처를 보존한다."""
     out = {
         "external_id": detail["external_id"],
-        "complex_external_id": "cx-one-bailey",
+        # 원 소속 단지를 유지한다. 하드코딩하면 다른 단지 글이 옮겨 붙는다
+        "complex_external_id": detail.get("complex_external_id") or cx_ext,
         "category": detail["category"],
         "title": detail["title"],
         "body": detail["body"],
@@ -106,13 +150,21 @@ def main():
     print(f"대상 {len(targets)}편 → status: {status}\n")
 
     try:
-        feed = index_feed("one-bailey")
+        feed = index_feed()   # 전 단지. 팩이 여러 단지에 걸칠 수 있다
     except Exception as exc:  # noqa: BLE001
         print(f"[중단] 피드 조회 실패: {exc}", file=sys.stderr)
         return 1
 
+    owner = post_owner_map()
+    unknown = [e for e in targets if e in feed and e not in owner]
+    if unknown:
+        print(f"[중단] 소속 단지를 모르는 글 {len(unknown)}편: {', '.join(unknown[:5])}",
+              file=sys.stderr)
+        print("       content/ 팩에 이 글이 없습니다. 지어내면 422 가 납니다.", file=sys.stderr)
+        return 1
+
     missing = [e for e in targets if e not in feed]
-    resolved = [(e, feed[e]) for e in targets if e in feed]
+    resolved = [(e, feed[e][0], owner[e]) for e in targets if e in feed]
     if missing:
         print(f"[경고] 피드에서 못 찾은 글 {len(missing)}편 (이미 내려갔을 수 있음):")
         for e in missing:
@@ -120,8 +172,8 @@ def main():
         print()
 
     if args.dry_run:
-        for ext, pid in resolved:
-            print(f"  [예정] id={pid:<5} {ext}")
+        for ext, pid, cx in resolved:
+            print(f"  [예정] id={pid:<5} {cx:<26}{ext}")
         print(f"\n실제 반영 대상 {len(resolved)}편. CIVIC_PULSE_API_KEY 설정 후 --dry-run 없이 실행하세요.")
         return 0
 
@@ -133,12 +185,12 @@ def main():
         return 2
 
     ok = fail = 0
-    for ext, pid in resolved:
+    for ext, pid, cx in resolved:
         try:
             detail = get(f"/api/v1/posts/{pid}")
-            payload = {"posts": [to_payload(detail, status)]}
+            payload = {"posts": [to_payload(detail, status, cx)]}
             # 내용이 바뀌면 키도 새로 만들어야 409 가 안 난다.
-            post("/api/v1/ingest/posts", payload, key, f"hide-{ext}-{status}-v4")
+            post("/api/v1/ingest/posts", payload, key, f"hide-{ext}-{status}-v5")
             print(f"  [완료] {ext}")
             ok += 1
         except Exception as exc:  # noqa: BLE001

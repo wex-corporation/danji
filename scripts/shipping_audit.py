@@ -89,6 +89,8 @@ def main():
     ap.add_argument("--complex", dest="only")
     ap.add_argument("--threshold", type=float, default=0.55)
     ap.add_argument("--limit", type=int, default=300)
+    ap.add_argument("--emit-hide", metavar="PATH",
+                    help="반려 단지의 교체가능 글 external_id 를 hide 팩으로 쓴다")
     args = ap.parse_args()
 
     # 게시 전 판정: 로컬 팩을 읽는다. 명세 8.3은 '배치를 반려한다'이므로
@@ -190,6 +192,23 @@ def main():
         print(f"  {c['name'][:20]:22}교체가능 {n:>2}편  {verdict}")
 
     print(f"\n반려 대상 단지 {len(rejected)}곳" + (f": {', '.join(rejected)}" if rejected else ""))
+
+    if args.emit_hide:
+        # 반려 단지에서 '교체 가능' 판정을 받은 글만 골라 낸다.
+        # 반려는 배치 단위지만 내리는 건 글 단위여야 한다 — 통과한 글까지
+        # 같이 내리면 단지가 빈 화면이 된다.
+        by_id = {p["id"]: p for p in posts}
+        hide = [by_id[i]["ext"] for cx in rejected for i in sorted(involved[cx])
+                if by_id[i].get("ext")]
+        Path(args.emit_hide).write_text(json.dumps({
+            "meta": {"generated_by": "shipping_audit.py --emit-hide",
+                     "threshold": args.threshold,
+                     "rejected_complexes": rejected,
+                     "note": "명세 8.3 반려. 삭제가 아니라 hidden 으로 내린 뒤 특이값 방식으로 재생성한다"},
+            "personas": [], "bundles": [],
+            "hide_external_ids": hide,
+        }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        print(f"→ {args.emit_hide} ({len(hide)}편)")
     out = REPO / "data" / "shipping-audit.json"
     out.write_text(json.dumps({
         "checked_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
