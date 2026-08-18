@@ -1,0 +1,211 @@
+{
+  "generated_at": "2026-08-18T04:27:52.066Z",
+  "quiet_complexes": [
+    {
+      "slug": "dh-firstier-ipark",
+      "name": "디에이치 퍼스티어 아이파크",
+      "district": "강남구",
+      "household_count": 6702,
+      "post_count": 0,
+      "last_post_at": "2026-08-15 08:10:00+00",
+      "days_quiet": 2
+    },
+    {
+      "slug": "jamsil-els",
+      "name": "잠실엘스",
+      "district": "송파구",
+      "household_count": 5678,
+      "post_count": 0,
+      "last_post_at": "2026-08-15 02:25:00+00",
+      "days_quiet": 3
+    },
+    {
+      "slug": "olympic-athletes-village",
+      "name": "올림픽선수기자촌아파트",
+      "district": "송파구",
+      "household_count": 5540,
+      "post_count": 0,
+      "last_post_at": "2026-08-15 07:55:00+00",
+      "days_quiet": 2
+    },
+    {
+      "slug": "namsan-town",
+      "name": "남산타운",
+      "district": "중구",
+      "household_count": 5150,
+      "post_count": 0,
+      "last_post_at": "2026-08-15 01:45:00+00",
+      "days_quiet": 3
+    },
+    {
+      "slug": "godeok-gracium",
+      "name": "고덕그라시움",
+      "district": "강동구",
+      "household_count": 4932,
+      "post_count": 0,
+      "last_post_at": "2026-08-15 01:45:00+00",
+      "days_quiet": 3
+    },
+    {
+      "slug": "mapo-raemian-prugio",
+      "name": "마포래미안푸르지오",
+      "district": "마포구",
+      "household_count": 3885,
+      "post_count": 0,
+      "last_post_at": "2026-08-15 23:39:55.347+00",
+      "days_quiet": 2
+    },
+    {
+      "slug": "trizium",
+      "name": "트리지움",
+      "district": "송파구",
+      "household_count": 3696,
+      "post_count": 0,
+      "last_post_at": null,
+      "days_quiet": 14
+    },
+    {
+      "slug": "banpo-xi",
+      "name": "반포자이",
+      "district": "서초구",
+      "household_count": 3410,
+      "post_count": 0,
+      "last_post_at": null,
+      "days_quiet": 14
+    },
+    {
+      "slug": "apgujeong-hyundai",
+      "name": "압구정 현대아파트",
+      "district": "강남구",
+      "household_count": 3130,
+      "post_count": 0,
+      "last_post_at": null,
+      "days_quiet": 14
+    },
+    {
+      "slug": "dogok-rexle",
+      "name": "도곡렉슬",
+      "district": "강남구",
+      "household_count": 3002,
+      "post_count": 0,
+      "last_post_at": null,
+      "days_quiet": 14
+    },
+    {
+      "slug": "mokdong-7",
+      "name": "목동신시가지 7단지",
+      "district": "양천구",
+      "household_count": 2550,
+      "post_count": 0,
+      "last_post_at": null,
+      "days_quiet": 14
+    },
+    {
+      "slug": "raemian-firstige",
+      "name": "래미안 퍼스티지",
+      "district": "서초구",
+      "household_count": 2444,
+      "post_count": 0,
+      "last_post_at": null,
+      "days_quiet": 14
+    },
+    {
+      "slug": "gaepo-raemian-blesstige",
+      "name": "래미안 블레스티지",
+      "district": "강남구",
+      "household_count": 1957,
+      "post_count": 0,
+      "last_post_at": null,
+      "days_quiet": 14
+    },
+    {
+      "slug": "acro-river-park",
+      "name": "아크로리버파크",
+      "district": "서초구",
+      "household_count": 1612,
+      "post_count": 0,
+      "last_post_at": "2026-08-15 23:39:56.316+00",
+      "days_quiet": 2
+    },
+    {
+      "slug": "daechi-palace",
+      "name": "래미안 대치팰리스",
+      "district": "강남구",
+      "household_count": 1608,
+      "post_count": 0,
+      "last_post_at": null,
+      "days_quiet": 14
+    }
+  ],
+  "unanswered_questions": [],
+  "category_performance": [
+    {
+      "category": "거래",
+      "posts": 9,
+      "avg_engagement": "4.44"
+    },
+    {
+      "category": "전월세",
+      "posts": 7,
+      "avg_engagement": "4.00"
+    },
+    {
+      "category": "세금",
+      "posts": 1,
+      "avg_engagement": "4.00"
+    },
+    {
+      "category": "생활",
+      "posts": 43,
+      "avg_engagement": "3.40"
+    },
+    {
+      "category": "정책",
+      "posts": 4,
+      "avg_engagement": "2.75"
+    }
+  ],
+  "trending_tags": [
+    {
+      "name": "주차",
+      "count": 3
+    },
+    {
+      "name": "이사",
+      "count": 3
+    }
+  ],
+  "stale_topics": [
+    {
+      "external_id": "topic-property-tax",
+      "title": "재산세와 연간 보유비용",
+      "category": "세금",
+      "last_post_at": "2026-08-03 08:00:00+00"
+    },
+    {
+      "external_id": "tp-835b0b86",
+      "title": "테스트 주제",
+      "category": "거래",
+      "last_post_at": "2026-08-04 11:13:27.609+00"
+    },
+    {
+      "external_id": "tp-681ff854",
+      "title": "테스트 주제",
+      "category": "거래",
+      "last_post_at": "2026-08-04 11:30:12.078+00"
+    },
+    {
+      "external_id": "tp-13d0d4f3",
+      "title": "테스트 주제",
+      "category": "거래",
+      "last_post_at": "2026-08-04 11:30:36.99+00"
+    },
+    {
+      "external_id": "tp-3c300345",
+      "title": "테스트 주제",
+      "category": "거래",
+      "last_post_at": "2026-08-04 11:30:50.874+00"
+    }
+  ],
+  "guidance": "quiet_complexes 부터 채우고, unanswered_questions 에는 출처를 붙여 답하는 글을 만들어라. category_performance 의 avg_engagement 가 높은 분야가 지금 반응이 좋다."
+}

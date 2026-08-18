@@ -1,0 +1,52 @@
+{
+  "slug": "eunma",
+  "complex_name": "은마아파트",
+  "rtms_apt_names": [
+    "은마"
+  ],
+  "months": [
+    "202605",
+    "202606",
+    "202607"
+  ],
+  "sample_size": 146,
+  "household_count": 4424,
+  "household_count_source": "kaptdaCnt",
+  "complete": true,
+  "min_sample": 30,
+  "metrics": {
+    "전세 비중": 45.2,
+    "갱신계약 비율": 45.9,
+    "갱신요구권 사용률": 27.4,
+    "전월세 회전율": 3.3,
+    "60㎡이하 계약 비중": 0.0,
+    "저층 계약 비중": 25.3
+  },
+  "raw_stats": {
+    "note": "가격 항목은 대조용이다. 콘텐츠에는 파생 지표만 쓴다",
+    "jeonse_count": 66,
+    "jeonse_median_deposit_manwon": 73000,
+    "area_mix_m2": [
+      {
+        "area_m2": 76.79,
+        "count": 89
+      },
+      {
+        "area_m2": 84.43,
+        "count": 57
+      }
+    ]
+  },
+  "contract_type_mix": {
+    "신규": 70,
+    "갱신": 67
+  },
+  "fetched_at": "2026-08-18T04:19:26+0000",
+  "note": "계약일 기준 집계. 계약일로부터 30일 이내 신고이므로 최근 달은 아직 덜 찼다. 지표는 전부 비가격이며 보증금·월세는 raw_stats 대조용이다",
+  "source": {
+    "label": "국토교통부 아파트 전월세 실거래가 자료",
+    "url": "https://www.data.go.kr/data/15058017/openapi.do",
+    "publisher": "국토교통부"
+  },
+  "failures": []
+}

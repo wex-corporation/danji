@@ -1,0 +1,64 @@
+{
+  "slug": "ricents",
+  "complex_name": "리센츠",
+  "rtms_apt_names": [
+    "리센츠"
+  ],
+  "months": [
+    "202605",
+    "202606",
+    "202607"
+  ],
+  "sample_size": 223,
+  "household_count": 5563,
+  "household_count_source": "kaptdaCnt",
+  "complete": true,
+  "min_sample": 30,
+  "metrics": {
+    "전세 비중": 41.7,
+    "갱신계약 비율": 49.3,
+    "갱신요구권 사용률": 29.6,
+    "전월세 회전율": 4.0,
+    "60㎡이하 계약 비중": 28.3,
+    "저층 계약 비중": 7.2
+  },
+  "raw_stats": {
+    "note": "가격 항목은 대조용이다. 콘텐츠에는 파생 지표만 쓴다",
+    "jeonse_count": 93,
+    "jeonse_median_deposit_manwon": 126000,
+    "area_mix_m2": [
+      {
+        "area_m2": 84.99,
+        "count": 134
+      },
+      {
+        "area_m2": 27.68,
+        "count": 52
+      },
+      {
+        "area_m2": 124.22,
+        "count": 22
+      },
+      {
+        "area_m2": 59.99,
+        "count": 11
+      },
+      {
+        "area_m2": 98.55,
+        "count": 4
+      }
+    ]
+  },
+  "contract_type_mix": {
+    "신규": 104,
+    "갱신": 110
+  },
+  "fetched_at": "2026-08-18T04:19:26+0000",
+  "note": "계약일 기준 집계. 계약일로부터 30일 이내 신고이므로 최근 달은 아직 덜 찼다. 지표는 전부 비가격이며 보증금·월세는 raw_stats 대조용이다",
+  "source": {
+    "label": "국토교통부 아파트 전월세 실거래가 자료",
+    "url": "https://www.data.go.kr/data/15058017/openapi.do",
+    "publisher": "국토교통부"
+  },
+  "failures": []
+}

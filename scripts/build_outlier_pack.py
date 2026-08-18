@@ -29,11 +29,13 @@
   이전 라운드 배정도 검증에서 확인한다.
 
   1라운드 — 파일럿 5곳, 규모·설비·인력·비용·시대 (게시 완료)
-  2라운드 — 파일럿 6곳(원베일리 추가), 배치·이동·안전·주차·주차방식·청소
+  2라운드 — 파일럿 6곳(원베일리 추가), 배치·이동·안전·주차·주차방식·청소 (게시 완료)
+  3라운드 — 소재 축을 K-apt 에서 **전월세 실거래**로 바꿨다.
+            회전·임대차유형·층·권리·평형구성·갱신. 가격(보증금)은 쓰지 않는다
 
 실행:
-  python3 build_outlier_pack.py            # 2라운드
-  python3 build_outlier_pack.py --round 1  # 1라운드 재생성(게시분과 동일해야 한다)
+  python3 build_outlier_pack.py            # 3라운드
+  python3 build_outlier_pack.py --round 1  # 이전 라운드 재생성(게시분과 동일해야 한다)
 """
 
 import argparse
@@ -45,7 +47,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 FEE_PERIOD = "202605"
-NOW = "2026-08-17T15:20:00+09:00"   # 생성 시점(KST). 미래 게시를 막는 기준
+NOW = "2026-08-18T13:20:00+09:00"   # 생성 시점(KST). 미래 게시를 막는 기준
 
 # 명세 10.1 Phase 0 — 파일럿 3~5곳. 거래량 상위 + 화제성으로 골랐고,
 # 2라운드에서 원베일리를 더해 6곳이 됐다(운영자 결정).
@@ -78,6 +80,8 @@ SRC_BASIS = {"label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI
              "url": "https://www.data.go.kr/data/15058453/openapi.do", "publisher": "국토교통부"}
 SRC_FEE = {"label": "공동주택관리비(공용관리비)정보제공서비스 OpenAPI",
            "url": "https://www.data.go.kr/data/15057937/openapi.do", "publisher": "국토교통부"}
+SRC_RENT = {"label": "국토교통부 아파트 전월세 실거래가 자료",
+            "url": "https://www.data.go.kr/data/15058017/openapi.do", "publisher": "국토교통부"}
 
 def _batchim(w):
     for ch in reversed(w.rstrip(")]}」』\"' ")):
@@ -88,8 +92,16 @@ def _batchim(w):
     return False
 
 
+# J() 가 받는 건 **받침에 따라 갈리는 조사쌍**뿐이다.
+# '에서'처럼 갈리지 않는 조사를 넘기면 두 글자를 쌍으로 오해해서
+# '파크리오서' 같은 말이 나온다. 실제로 났던 사고라 화이트리스트로 막는다.
+JOSA_PAIRS = {"은는", "이가", "을를", "과와", "아야", "으로로"}
+
+
 def J(word, pair):
     """받침 판정 후 조사 선택. '올림픽파크 포레온는' 같은 사고를 막는다."""
+    if pair not in JOSA_PAIRS:
+        raise ValueError(f"J()는 조사쌍만 받는다. '{pair}'는 쌍이 아니다 — 그냥 붙여 쓸 것")
     return word + (pair[0] if _batchim(word) else pair[1])
 
 
@@ -113,7 +125,9 @@ BAD_RO = ["명로", "층로", "원로", "동로", "분로"]
 UNIT = {"세대수": "세대", "동수": "개동", "최고층": "층", "준공연도": "년",
         "승강기당 세대": "세대", "세대당 CCTV": "대", "EV 충전기 비율": "%",
         "경비1인당 세대": "세대", "청소1인당 세대": "세대", "㎡당 공용관리비": "원",
-        "동당 세대": "세대", "세대당 주차": "대", "지상주차 비율": "%"}
+        "동당 세대": "세대", "세대당 주차": "대", "지상주차 비율": "%",
+        "전세 비중": "%", "갱신계약 비율": "%", "갱신요구권 사용률": "%",
+        "전월세 회전율": "%", "60㎡이하 계약 비중": "%", "저층 계약 비중": "%"}
 
 # 지표 계열. 프레임이 여기서 갈린다.
 # 라운드마다 다르다. 1라운드는 설비·인력을 한 계열로 묶었는데, 2라운드에서는
@@ -141,12 +155,26 @@ POOL_R1 = ["세대수", "동수", "최고층", "준공연도", "승강기당 세
 POOL_R2 = ["동당 세대", "승강기당 세대", "세대당 CCTV", "세대당 주차",
            "지상주차 비율", "청소1인당 세대"]
 
+# 3라운드는 지표 축 자체를 바꿨다. K-apt 시설·인력·비용은 1·2라운드가 다 썼고,
+# 같은 축에서 지표만 더 파면 프레임이 겹친다. 전월세 실거래가 새 축이다.
+FAMILY_R3 = {
+    "전월세 회전율": "회전",
+    "전세 비중": "임대차유형",
+    "저층 계약 비중": "층",
+    "갱신요구권 사용률": "권리",
+    "60㎡이하 계약 비중": "평형구성",
+    "갱신계약 비율": "갱신",
+}
+POOL_R3 = list(FAMILY_R3)
+
 # 85㎡ 초과 세대 비율은 쓰지 않는다.
 #   K-apt 면적 구간이 단지마다 기준이 어긋난다. 리센츠는 전용면적 기준으로
 #   들어가 있는데(84.99㎡가 60~85 구간) 은마는 4,424세대 중 4,400세대가
 #   85~135 구간이다. 은마 주력은 전용 76.79·84.43㎡라 전용 기준이면 그 구간에
 #   들어갈 수 없다. 원자료가 공급면적으로 채워졌거나 오류다.
-#   어느 쪽인지 확인하지 못했으므로 인용하지 않는다(CLAUDE.md 4장).
+#   전월세 실거래로 확인했다 — 은마 계약은 전용 76.79㎡·84.43㎡ 두 종뿐이고
+#   85㎡ 초과가 0건이다. K-apt 구간 쪽이 틀렸다. 계속 인용하지 않는다(CLAUDE.md 4장).
+#   대신 실거래 원본 면적(excluUseAr)은 신뢰할 수 있어 3라운드에서 쓴다.
 
 
 def load(pilot):
@@ -154,7 +182,11 @@ def load(pilot):
     for slug in pilot:
         i = json.loads((REPO / "data" / "complex-info" / f"{slug}.json").read_text(encoding="utf-8"))
         fee = json.loads((REPO / "data" / "mgmt-fees" / f"{slug}.json").read_text(encoding="utf-8"))
-        rows[slug] = {"info": i, "fee": fee["periods"].get(FEE_PERIOD)}
+        rent_path = REPO / "data" / "rents" / f"{slug}.json"
+        rent = json.loads(rent_path.read_text(encoding="utf-8")) if rent_path.exists() else None
+        # 프레임 시그니처를 바꾸지 않으려고 info 에 실어 보낸다. 프레임은 info["_rent"] 로 읽는다
+        i["_rent"] = rent
+        rows[slug] = {"info": i, "fee": fee["periods"].get(FEE_PERIOD), "rent": rent}
     return rows
 
 
@@ -184,6 +216,11 @@ def metrics(rows, pool):
             m["지상주차 비율"] = round(i["parking_ground"] / i["parking_total"] * 100, 1)
         if fee and fee.get("complete") and fee.get("per_m2_won"):
             m["㎡당 공용관리비"] = round(fee["per_m2_won"])
+        # 전월세 파생 지표. 표본이 모자라면 rent_volume.py 가 complete: false 로 남기고
+        # metrics 를 null 로 둔다. 그걸 그대로 존중한다 — 억지로 채우면 가짜 비율이 된다.
+        rent = r.get("rent")
+        if rent and rent.get("complete") and rent.get("metrics"):
+            m.update(rent["metrics"])
         out[slug] = {k: v for k, v in m.items() if v is not None and k in pool}
     return out
 
@@ -393,10 +430,123 @@ K-apt 공개정보 기준 청소 인원 {info['staff_clean']}명이고, {info['h
 그래서 여쭙니다. 이 단지에서 가장 손이 많이 갈 자리는 어디이고, 그 자리는 지금 잘 관리되고 있나요?""")
 
 
+# ── 3라운드 프레임 6종 ────────────────────────────────────────────
+# 소재 축이 K-apt 에서 전월세 실거래로 바뀌었다. 보증금·월세 금액은 쓰지 않는다.
+# 전부 비율 지표라서 표본 수를 함께 밝혀야 정직한 글이 된다.
+
+def _rent(info):
+    return info["_rent"]
+
+
+def _period(r):
+    ms = r["months"]
+    return f"{ms[0][:4]}년 {int(ms[0][4:])}~{int(ms[-1][4:])}월"
+
+
+def frame_turnover(name, info, p, peers):
+    """회전 — 전월세 회전율. 표본이 적다는 사실 자체가 소재다."""
+    r = _rent(info)
+    v, mu = p["value"], p["mean"]
+    n, hh = r["sample_size"], r["household_count"]
+    rare = "드문" if not p["high"] else "잦은"
+    return (
+        f"""임대차 계약이 얼마나 자주 일어나는지는 잘 세어 보지 않습니다. 그런데 이 항목에서 {J(name, "은는")} 확실히 갈립니다.
+
+{_period(r)} 계약분 기준으로 신고된 전월세 계약이 {n}건입니다. {hh:,}세대로 나누면 {v}%입니다. 같은 기간 파일럿 단지 평균은 {mu:.1f}%이니, 회전이 {rare} 쪽입니다.
+
+여기서부터는 해석입니다. 회전이 드물다는 건 두 가지로 읽힙니다. 자리를 잡고 잘 안 움직인다는 뜻일 수도 있고, 애초에 임대로 나오는 집이 적다는 뜻일 수도 있습니다. 공개 자료로는 이 둘을 가르지 못합니다. 신고 기한이 계약일로부터 30일이라 최근 계약 일부가 아직 안 잡혔을 가능성도 함께 적어 둡니다.
+
+최근 몇 달 사이에 같은 라인이나 옆집에서 이사 나가는 걸 보신 적 있으신가요?""")
+
+
+def frame_lease_type(name, info, p, peers):
+    """임대차유형 — 전세 비중. 전세와 월세의 구성비만 본다. 금액은 쓰지 않는다."""
+    r = _rent(info)
+    v, mu, n = p["value"], p["mean"], r["sample_size"]
+    jeonse = round(n * v / 100)
+    return (
+        f"""전세와 월세 중 어느 쪽이 많은지는 단지마다 꽤 다릅니다. 계약 건수로만 세어 봤습니다.
+
+{_period(r)} 신고된 계약 {n}건 가운데 월세 없이 보증금만 있는 계약이 {jeonse}건, 즉 {v}%입니다. 파일럿 단지 평균은 {mu:.1f}%입니다. 금액은 보지 않고 건수만 센 값입니다.
+
+여기서부터는 해석입니다. 이 비율은 단지의 좋고 나쁨이 아니라 **계약 형태의 구성**입니다. 작은 평형이 많으면 월세 비중이 올라가고, 집주인이 실거주가 아닌 경우가 많아도 올라갑니다. 어느 쪽이 이 단지에서 작용하는지는 공개 자료에 없습니다.
+
+이 단지로 들어오실 때 전세와 월세 중 어느 쪽을 먼저 알아보셨나요? 그때 선택지가 실제로 있었나요?""")
+
+
+def frame_floor(name, info, p, peers):
+    """층 — 저층 계약 비중. 저층이 시장에 얼마나 나오는가."""
+    r = _rent(info)
+    v, mu, n = p["value"], p["mean"], r["sample_size"]
+    cnt = round(n * v / 100)
+    few = "적은" if not p["high"] else "많은"
+    return (
+        f"""임대차 신고에는 층이 함께 들어갑니다. 그래서 어느 층이 시장에 나오는지를 셀 수 있습니다.
+
+{_period(r)} 계약 {n}건 중 1~3층 계약이 {cnt}건, {v}%입니다. 파일럿 단지 평균은 {mu:.1f}%이니 저층이 시장에 나오는 빈도가 {few} 편입니다.
+
+여기서부터는 해석입니다. 저층 계약이 적은 데는 두 가지 이유가 섞입니다. 애초에 저층 세대 수가 적을 수도 있고, 저층에 사시는 분들이 덜 옮기실 수도 있습니다. 단지 전체 층별 세대 수는 공개돼 있지 않아서 저는 여기까지만 말할 수 있습니다.
+
+저층에 살아 보셨거나 가까이서 보신 적이 있다면, 실제로 어떤 점이 다르던가요?""")
+
+
+def frame_right(name, info, p, peers):
+    """권리 — 갱신요구권 사용률. 제도 설명을 먼저 하고 숫자를 붙인다."""
+    r = _rent(info)
+    v, mu, n = p["value"], p["mean"], r["sample_size"]
+    cnt = round(n * v / 100)
+    much = "많이" if p["high"] else "적게"
+    return (
+        f"""임대차 신고 자료에는 계약갱신요구권을 썼는지가 표시됩니다. 세입자가 살던 집에서 한 번 더 계약하겠다고 요구할 수 있는 권리이고, 2020년 제도 도입 이후 신고 항목이 됐습니다.
+
+{_period(r)} {name}에서 신고된 계약 {n}건 중 이 권리를 썼다고 표시된 계약이 {cnt}건, {v}%입니다. 파일럿 단지 평균은 {mu:.1f}%이니 {much} 쓰인 편입니다.
+
+여기서부터는 해석입니다. 행사율이 높다는 건 계속 살고 싶어 한 분이 많았다는 뜻이기도 하고, 그냥 두면 조건이 맞지 않았다는 뜻이기도 합니다. 같은 숫자가 정반대로 읽힙니다. 그리고 이건 임대인과 임차인 중 누가 옳으냐의 문제가 아니라 그 시기 이 단지에서 무슨 대화가 오갔는지의 기록입니다.
+
+갱신 계약을 해 보셨거나 요청을 받아 보신 적이 있으신가요? 그때 대화는 어떻게 풀렸나요?""")
+
+
+def frame_areamix(name, info, p, peers):
+    """평형구성 — 60㎡이하 계약 비중. 실거래 원본 면적이라 신뢰할 수 있다."""
+    r = _rent(info)
+    v, mu, n = p["value"], p["mean"], r["sample_size"]
+    mix = (r.get("raw_stats") or {}).get("area_mix_m2") or []
+    top = " · ".join(f"전용 {m['area_m2']}㎡ {m['count']}건" for m in mix[:3])
+    none = v == 0
+    lead = ("작은 집이 아예 없습니다" if none else f"작은 집 비중이 {v}%에 그칩니다")
+    return (
+        f"""임대차 신고에는 전용면적이 그대로 들어갑니다. 이걸 모으면 이 단지에 어떤 크기의 집이 실제로 오가는지가 나옵니다.
+
+{_period(r)} 계약 {n}건의 구성은 이렇습니다 — {top}. 전용 60㎡ 이하는 {round(n*v/100)}건, {v}%입니다. 파일럿 단지 평균은 {mu:.1f}%이니 이 단지는 {lead}.
+
+여기서부터는 해석입니다. 작은 집이 없다는 건 혼자 살거나 둘이 사는 분이 이 단지로 들어올 문이 좁다는 뜻입니다. 대신 한 번 들어온 가구가 오래 머무는 구조가 되기도 합니다. 좋고 나쁨보다 **누가 들어올 수 있는 단지인가**가 정해지는 지점입니다.
+
+이 단지에 작은 집이 있었다면 지금과 무엇이 달랐을까요? 혹은 지금 구성이 더 낫다고 보시나요?""")
+
+
+def frame_renewal(name, info, p, peers):
+    """갱신 — 갱신계약 비율. 신규와 갱신의 비율로 단지의 나이를 읽는다."""
+    r = _rent(info)
+    v, mu, n = p["value"], p["mean"], r["sample_size"]
+    year = int(info["use_approval_date"][:4])
+    low = "낮은" if not p["high"] else "높은"
+    cnt = round(n * v / 100)
+    return (
+        f"""계약이 새로 맺어진 것인지, 살던 분이 이어 간 것인지는 신고 자료에 구분돼 있습니다. 이 비율은 단지가 지금 어느 국면에 있는지를 보여 줍니다.
+
+{_period(r)} 신고된 계약 {n}건 중 갱신 전 조건이 함께 적힌 계약, 그러니까 살던 분이 이어 간 계약이 {cnt}건입니다. {v}%이고 파일럿 단지 평균 {mu:.1f}%보다 {low} 편입니다. 준공은 {year}년입니다.
+
+여기서부터는 해석입니다. 준공한 지 얼마 안 된 단지는 첫 임대차 계약이 아직 한 바퀴를 다 돌지 않아 갱신이 적게 잡힙니다. 그래서 이 숫자는 단지의 안정성보다 **경과한 시간**을 먼저 반영합니다. 몇 년 뒤 같은 지표를 다시 재면 그때는 다른 이야기를 할 수 있을 겁니다.
+
+지금 계신 곳에서 다음 계약 때 이어서 사실 생각이신가요? 그렇다면, 혹은 아니라면 이유는 무엇인가요?""")
+
+
 FRAMES = {"규모": frame_scale, "설비": frame_facility, "인력": frame_staff,
           "비용": frame_cost, "시대": frame_era,
           "배치": frame_layout, "이동": frame_elevator, "안전": frame_cctv,
-          "주차": frame_parking, "주차방식": frame_ground, "청소": frame_clean}
+          "주차": frame_parking, "주차방식": frame_ground, "청소": frame_clean,
+          "회전": frame_turnover, "임대차유형": frame_lease_type, "층": frame_floor,
+          "권리": frame_right, "평형구성": frame_areamix, "갱신": frame_renewal}
 
 TITLES = {
     "규모": lambda n, p: f"{p['key']} {p['value']:,}{UNIT.get(p['key'],'')}. 규모는 무엇을 나누고 무엇을 몰리게 하나요?",
@@ -410,6 +560,12 @@ TITLES = {
     "주차": lambda n, p: f"세대당 주차 {p['value']}대, 밤 열 시에는 이 숫자가 맞나요?",
     "주차방식": lambda n, p: f"지상 주차 비율 {p['value']:.0f}% — 대수가 아니라 위치가 갈리는 지점",
     "청소": lambda n, p: f"청소 한 명이 {p['value']:,}세대를 맡습니다. 어디가 제일 손이 갈까요?",
+    "회전": lambda n, p: f"석 달 임대차 계약이 세대수의 {p['value']}%. 여기는 사람이 잘 안 움직이나요?",
+    "임대차유형": lambda n, p: f"계약 {p['value']:.0f}%가 전세입니다. 들어오실 때 선택지가 있으셨나요?",
+    "층": lambda n, p: f"1~3층 계약이 {p['value']}%뿐입니다. 저층은 실제로 어떤가요?",
+    "권리": lambda n, p: f"계약갱신요구권 사용 {p['value']}% — 그때 대화는 어떻게 풀렸나요?",
+    "평형구성": lambda n, p: f"전용 60㎡ 이하 계약 {p['value']:.0f}%. 작은 집이 없다는 건 무슨 뜻일까요?",
+    "갱신": lambda n, p: f"계약 {p['value']}%만 갱신입니다. 다음 계약 때 이어서 사실 건가요?",
 }
 
 COMMENTS = {
@@ -435,12 +591,26 @@ COMMENTS = {
                  ("wb-persona-cashflow", "지하 주차는 환기·조명·배수 유지비가 계속 붙습니다. 관리비 단가 차이의 한 축이 여기입니다.", "비용 구조")],
     "청소": [("wb-persona-cashflow", "청소비는 공용관리비에서 인건비 다음으로 큰 항목인 경우가 많습니다. 인원 수는 곧 고지서 금액입니다.", "비용 구조"),
              ("wb-persona-psy-thermo", "1인당 세대수가 적다고 만족도가 높아지지는 않습니다. 담당 범위와 순번이 더 크게 작용합니다.", "해석 주의")],
+    "회전": [("wb-persona-trade-brief", "신고 기한이 30일이라 최근 달은 늘 덜 찬 상태로 보입니다. 회전율을 볼 때는 기간 끝을 한 달 잘라 두는 편이 안전합니다.", "중립 정리"),
+             ("wb-persona-field-scout", "계약이 적은 것과 물건이 없는 것은 다릅니다. 이건 사시는 분들이 체감으로 아시는 부분이에요.", "현장 검증 요청")],
+    "임대차유형": [("wb-persona-cashflow", "건수 기준 비율이라 금액 구성과는 다릅니다. 월세 한 건과 전세 한 건이 같은 무게로 세어졌다는 뜻입니다.", "기준 명시"),
+                  ("wb-persona-real-talk", "평형이 작을수록 월세가 붙습니다. 단지 성격이 아니라 평형 구성이 만드는 숫자인 경우가 많아요.", "생활 현실")],
+    "층": [("wb-persona-appraisal-check", "층별 세대 수가 공개되지 않아 분모를 모릅니다. 저층이 적게 나온 건지, 원래 적은 건지 이 자료로는 못 가릅니다.", "기준 명시"),
+           ("wb-persona-field-scout", "저층은 동과 향에 따라 편차가 큽니다. 같은 1층이라도 앞이 트였는지가 전부를 바꿔요.", "현장 관점")],
+    "권리": [("wb-persona-trade-brief", "갱신요구권 표시는 2020년 이후 신고분에만 있습니다. 그 이전과 직접 비교하면 안 됩니다.", "중립 정리"),
+             ("wb-persona-psy-thermo", "행사율이 높다고 갈등이 많았다고 볼 수는 없습니다. 조용히 합의된 갱신도 같은 칸에 들어갑니다.", "해석 주의")],
+    "평형구성": [("wb-persona-appraisal-check", "이 면적은 실거래 신고서의 전용면적 그대로입니다. 공급면적으로 바꿔 읽으면 숫자가 어긋납니다.", "기준 명시"),
+                ("wb-persona-real-talk", "작은 집이 없으면 처음 들어오는 문턱이 높아집니다. 대신 한번 들어온 가구는 오래 남는 경향이 있죠.", "생활 현실")],
+    "갱신": [("wb-persona-trade-brief", "준공 연차가 짧으면 갱신이 구조적으로 적게 잡힙니다. 같은 표에서 신축과 구축을 나란히 두면 오독이 생깁니다.", "중립 정리"),
+             ("wb-persona-cashflow", "갱신이냐 신규냐는 이사 비용이 드느냐 마느냐의 문제이기도 합니다. 가구 입장에서는 꽤 큰 차이예요.", "비용 구조")],
 }
 
 # 라운드 정의. 지표 풀·파일럿·날짜·출력 파일이 라운드마다 다르다.
 ROUNDS = {
+    # idem v2 — source_note 를 고쳤다. 1~4번 글이 쓰지도 않은 관리비 자료를
+    # 출처로 달고 있었다(비용 계열인 파크리오만 실제로 인용). 내용이 바뀌면 키를 올린다.
     1: {"pilot": PILOT_R1, "pool": POOL_R1, "family": FAMILY_R1, "out": "outlier-w1.json",
-        "prefix": "outlier-2026-08", "idem": "v1",
+        "prefix": "outlier-2026-08", "idem": "v2",
         "days": ["2026-08-12T19:20:00+09:00", "2026-08-13T18:40:00+09:00",
                  "2026-08-14T12:30:00+09:00", "2026-08-15T19:10:00+09:00",
                  "2026-08-16T11:20:00+09:00"],
@@ -457,6 +627,19 @@ ROUNDS = {
         "topic": {"external_id": "wb-topic-2026-08-outlier2", "title": "숫자는 아는데 체감은 모릅니다",
                   "summary": "공개 자료로 셀 수 있는 데까지 세고, 나머지는 사는 사람에게 묻는다",
                   "category": "생활", "heat": 4}},
+    # 3라운드는 소재 축이 전월세 실거래다. 카테고리도 '생활'이 아니라 '전월세'로 간다 —
+    # /insights/gaps 의 category_performance 에서 전월세가 참여도 2위인데 표본이 1편뿐이었다.
+    3: {"pilot": PILOT_R2, "pool": POOL_R3, "family": FAMILY_R3, "out": "outlier-w3.json",
+        "prefix": "outlier3-2026-08", "idem": "v1", "category": "전월세",
+        "sources": [SRC_RENT],
+        "note": ("2026. 8. 18. 조회 · 국토교통부 전월세 실거래 2026년 5~7월 계약분 · "
+                 "파일럿 6개 단지 분포와 비교한 값 · 보증금·월세 금액은 인용하지 않았다"),
+        "days": ["2026-08-18T08:20:00+09:00", "2026-08-18T09:40:00+09:00",
+                 "2026-08-18T10:35:00+09:00", "2026-08-18T11:25:00+09:00",
+                 "2026-08-18T12:15:00+09:00", "2026-08-18T13:05:00+09:00"],
+        "topic": {"external_id": "wb-topic-2026-08-outlier3", "title": "계약 기록이 말해 주는 것",
+                  "summary": "전월세 신고 자료로 셀 수 있는 것까지 세고, 금액은 건드리지 않는다",
+                  "category": "전월세", "heat": 4}},
 }
 
 def build(rnd):
@@ -476,15 +659,18 @@ def build(rnd):
                        key=lambda t: -t[1])
         body = FRAMES[p["family"]](name, info, p, peers)
         title = TITLES[p["family"]](name, p)
-        srcs = [SRC_FEE, SRC_BASIS] if p["family"] == "비용" else [SRC_BASIS]
+        # 안 쓴 자료를 쓴 것처럼 보이면 안 된다. 출처와 문구를 라운드·계열에 맞춘다.
+        srcs = cfg.get("sources")
+        if not srcs:
+            srcs = [SRC_FEE, SRC_BASIS] if p["family"] == "비용" else [SRC_BASIS]
         ext = f"{cfg['prefix']}-{slug}"
-        # 관리비를 인용하지 않는 글에 관리비 기준월을 적으면 안 쓴 자료를
-        # 쓴 것처럼 보인다. 계열에 따라 문구를 나눈다.
-        note = ("2026. 8. 16. 조회 · K-apt 공개정보 기준 · "
-                f"파일럿 {len(pilot)}개 단지 분포와 비교한 값")
-        if p["family"] == "비용":
-            note = ("2026. 8. 16. 조회 · K-apt 공개정보 및 2026년 5월분 공용관리비 기준 · "
+        note = cfg.get("note")
+        if not note:
+            note = ("2026. 8. 16. 조회 · K-apt 공개정보 기준 · "
                     f"파일럿 {len(pilot)}개 단지 분포와 비교한 값")
+            if p["family"] == "비용":
+                note = ("2026. 8. 16. 조회 · K-apt 공개정보 및 2026년 5월분 공용관리비 기준 · "
+                        f"파일럿 {len(pilot)}개 단지 분포와 비교한 값")
         bundles.append({
             "idempotency_key": f"wb-bundle-{ext}-{cfg['idem']}",
             "payload": {
@@ -492,7 +678,8 @@ def build(rnd):
                 "topic": cfg["topic"],
                 "post": {
                     "external_id": ext, "complex_external_id": CX[slug],
-                    "persona_external_id": PERSONA["external_id"], "category": "생활",
+                    "persona_external_id": PERSONA["external_id"],
+                    "category": cfg.get("category", "생활"),
                     "title": title, "summary": body.split("\n\n")[1][:220],
                     "body": body, "verification": "verified",
                     "source_note": note,
@@ -510,7 +697,7 @@ def build(rnd):
     return {
         "meta": {"name": f"특이값 팩 (w{rnd})", "round": rnd, "posts": len(bundles),
                  "persona": PERSONA["external_id"], "pilot": pilot, "pool": pool,
-                 "fee_period": FEE_PERIOD, "built_at": "2026-08-17",
+                 "fee_period": FEE_PERIOD, "built_at": NOW[:10],
                  "assigned": {s: picked[s] for s in pilot},
                  "purpose": "템플릿이 아니라 단지별 특이값에서 글을 시작해 출고 검사(8.3)를 통과한다",
                  "thermostat": "인간 액션 0 기준 콜드스타트(단지당 1일 글 2). 이 팩은 단지당 1편"},
@@ -575,6 +762,11 @@ def validate(pack):
     for w, want in [("47명", "47명으로"), ("8명", "8명으로"), ("2대", "2대로")]:
         if JR(w) != want:
             errs.append(f"조사 헬퍼 오류: JR({w}) → {JR(w)}")
+    try:
+        J("파크리오", "에서")          # 조사쌍이 아니므로 막혀야 한다
+        errs.append("J()가 조사쌍이 아닌 인자를 통과시켰다")
+    except ValueError:
+        pass
 
     # 라운드 간 중복 — 같은 단지가 같은 지표를 다시 받으면 글이 겹친다.
     prev = defaultdict(set)
