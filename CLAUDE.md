@@ -51,7 +51,9 @@
 | `data/trades/` | 국토부 실거래 집계. 거래량 랭킹과 평당가 |
 | `data/priority-complexes.json` | 운영 우선순위 15곳과 선정 근거 |
 | `docs/handoff-2026-08.md` | 서버 담당자용 — 도메인·SEO·UX·예측 마켓 |
-| `docs/cto-prompt-2026-08.md` | 위 문서 중 도메인·한 줄 답변·예측 마켓을 CTO의 Claude Code에 그대로 붙여넣을 프롬프트로 정리한 것 |
+| `docs/cto-brief-2026-08.md` | CTO가 읽는 브리프 — 진단·서비스 정체성·단계별 전략·홍보·법적 경계 |
+| `docs/cto-prompt-1-domain-oneline.md` | 붙여넣기용 프롬프트 ① 도메인 연결 + 무가입 한 줄 답변 |
+| `docs/cto-prompt-2-market.md` | 붙여넣기용 프롬프트 ② 예측 마켓. ①이 만든 게스트 토큰을 쓴다 |
 | `content/*.json` | 생성된 콘텐츠 팩. 게시 이력이자 재현 가능한 원본 |
 | `scripts/build_*.py` | 팩 생성기 |
 | `scripts/kapt_fees.py` | K-apt 관리비 조회(공공데이터포털 공식 OpenAPI). 1순위 경로 |
