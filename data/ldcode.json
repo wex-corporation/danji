@@ -1,0 +1,90 @@
+{
+  "note": "법정동코드는 손으로 적지 않는다. 매매 실거래 응답의 sggCd + umdCd 로 확정한다. 손으로 적었을 때 파일럿 6곳 중 4곳이 틀렸고, 틀려도 조회는 성공해서 엉뚱한 동의 값이 저장됐다",
+  "fetched_at": "2026-08-18T05:03:16+0000",
+  "complexes": {
+    "one-bailey": {
+      "ld_code": "1165010700",
+      "complex_name": "래미안 원베일리",
+      "gu": "서초구",
+      "dong": "반포동",
+      "address": "서울특별시 서초구 반포동 1-1 래미안원베일리",
+      "derived_from": {
+        "api": "국토교통부 아파트 매매 실거래가 상세 자료",
+        "fields": "sggCd + umdCd",
+        "months": [
+          "202607"
+        ]
+      }
+    },
+    "eunma": {
+      "ld_code": "1168010600",
+      "complex_name": "은마아파트",
+      "gu": "강남구",
+      "dong": "대치동",
+      "address": "서울특별시 강남구 대치동 316 은마",
+      "derived_from": {
+        "api": "국토교통부 아파트 매매 실거래가 상세 자료",
+        "fields": "sggCd + umdCd",
+        "months": [
+          "202607"
+        ]
+      }
+    },
+    "olympic-park-foreon": {
+      "ld_code": "1174010600",
+      "complex_name": "올림픽파크 포레온",
+      "gu": "강동구",
+      "dong": "둔촌동",
+      "address": "서울특별시 강동구 둔촌동 633- 올림픽파크포레온",
+      "derived_from": {
+        "api": "국토교통부 아파트 매매 실거래가 상세 자료",
+        "fields": "sggCd + umdCd",
+        "months": [
+          "202607"
+        ]
+      }
+    },
+    "helio-city": {
+      "ld_code": "1171010700",
+      "complex_name": "헬리오시티",
+      "gu": "송파구",
+      "dong": "가락동",
+      "address": "서울특별시 송파구 가락동 479 헬리오시티아파트",
+      "derived_from": {
+        "api": "국토교통부 아파트 매매 실거래가 상세 자료",
+        "fields": "sggCd + umdCd",
+        "months": [
+          "202607"
+        ]
+      }
+    },
+    "parkrio": {
+      "ld_code": "1171010200",
+      "complex_name": "파크리오",
+      "gu": "송파구",
+      "dong": "신천동",
+      "address": "서울특별시 송파구 신천동 17 잠실파크리오",
+      "derived_from": {
+        "api": "국토교통부 아파트 매매 실거래가 상세 자료",
+        "fields": "sggCd + umdCd",
+        "months": [
+          "202607"
+        ]
+      }
+    },
+    "ricents": {
+      "ld_code": "1171010100",
+      "complex_name": "리센츠",
+      "gu": "송파구",
+      "dong": "잠실동",
+      "address": "서울특별시 송파구 잠실동 22 잠실리센츠",
+      "derived_from": {
+        "api": "국토교통부 아파트 매매 실거래가 상세 자료",
+        "fields": "sggCd + umdCd",
+        "months": [
+          "202607"
+        ]
+      }
+    }
+  }
+}

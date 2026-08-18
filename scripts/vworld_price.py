@@ -15,15 +15,29 @@
 브이월드 개발키는 **발급 시 등록한 도메인에서만** 동작한다. 도메인이 다르면
 INCORRECT_KEY가 돌아온다(에러코드표 참조).
 
+**어디서 실행해야 하나 — 한국 IP가 필요하다.**
+api.vworld.kr 은 해외·데이터센터 IP를 막는다. 이 저장소의 실행 환경에서도,
+앤트로픽 서버를 경유해도 똑같이 502가 돌아온다. 프록시 정책이나 키 문제가 아니다.
+같은 유형: k-apt.go.kr, nsdi.go.kr, r-one.co.kr. 반대로 apis.data.go.kr,
+realtyprice.kr, reb.or.kr, kosis.kr 은 해외에서도 열린다.
+→ 국내 회선(운영자 PC)이나 국내 리전 서버에서 실행한다. 절차는 docs/vworld-run.md.
+
+법정동코드는 손으로 적지 않는다. `scripts/ldcode.py` 가 매매 실거래 응답의
+sggCd + umdCd 로 확정해 `data/ldcode.json` 에 남긴 값을 읽는다. 손으로 적었을 때
+파일럿 6곳 중 4곳이 틀렸고, **틀려도 조회는 성공해서** 엉뚱한 동의 값이 저장됐다.
+
 사용법:
+  python3 scripts/ldcode.py                          # 먼저 법정동코드 확정
   export VWORLD_API_KEY=...
   python3 vworld_price.py --check                    # 도달성·키 점검
-  python3 vworld_price.py --ldcode 1165010700        # 법정동 단위 조회
+  python3 vworld_price.py --year 2026                # 파일럿 전체
+  python3 vworld_price.py --only eunma               # 한 단지만
 """
 
 import argparse
 import json
 import os
+import re
 import socket
 import sys
 import time
@@ -50,16 +64,26 @@ VW_ERRORS = {
     "UNKNOWN_ERROR": "알 수 없는 오류",
 }
 
-# 우리가 다루는 단지의 법정동. 공시가격은 단지코드가 아니라 법정동 단위로 조회된다.
-LDCODE = {
-    "1165010700": "서초구 반포동",
-    "1168010600": "강남구 대치동",
-    "1171010200": "송파구 잠실동",
-    "1171010300": "송파구 신천동",
-    "1174010100": "강동구 상일동",
-    "1174010200": "강동구 둔촌동",
-    "1144012000": "마포구 아현동",
-}
+LDCODE_PATH = REPO / "data" / "ldcode.json"
+
+
+def load_targets(only=None):
+    """slug → {ld_code, complex_name, dong}. ldcode.py 가 만든 표를 읽는다."""
+    if not LDCODE_PATH.exists():
+        raise VWorldError(
+            f"{LDCODE_PATH.relative_to(REPO)} 가 없습니다. 먼저 `python3 scripts/ldcode.py` 를 실행하세요")
+    data = json.loads(LDCODE_PATH.read_text(encoding="utf-8"))["complexes"]
+    rows = {}
+    for slug, r in data.items():
+        if only and slug not in only:
+            continue
+        if not r.get("ld_code"):
+            print(f"[건너뜀] {slug}: 법정동코드 미확정 — {r.get('reason')}", file=sys.stderr)
+            continue
+        rows[slug] = r
+    if not rows:
+        raise VWorldError("조회할 단지가 없습니다")
+    return rows
 
 
 class VWorldError(RuntimeError):
@@ -92,10 +116,49 @@ def reachable():
         req = urllib.request.Request(f"https://{HOST}/", headers={"User-Agent": UA})
         with urllib.request.urlopen(req, timeout=10):
             return True, ip
-    except urllib.error.HTTPError:
-        return True, ip  # 4xx/5xx 라도 응답이 온 것이므로 도달은 된다
+    except urllib.error.HTTPError as exc:
+        if exc.code >= 500:
+            # 지오블록 엣지가 502 를 돌려준다. 응답이 왔다고 쓸 수 있는 게 아니다.
+            return False, f"{ip} 이 HTTP {exc.code} 만 돌려줍니다"
+        return True, ip                      # 4xx 는 서비스가 살아 있다는 뜻이다
     except (urllib.error.URLError, OSError) as exc:
         return False, f"{ip} TCP 는 열리나 HTTP 응답이 없음 ({exc})"
+
+
+def geo_hint(detail):
+    """접속 실패 안내. 원인은 이그레스 정책이 아니라 상대 쪽 해외 IP 차단이다."""
+    return "\n".join([
+        f"브이월드에 접속할 수 없습니다 ({detail}). 키 문제도, 프록시 정책 문제도 아닙니다.",
+        "api.vworld.kr 은 해외·데이터센터 IP를 막습니다 — k-apt.go.kr, nsdi.go.kr,",
+        "r-one.co.kr 이 같은 유형입니다. apis.data.go.kr 은 해외에서도 열립니다.",
+        "→ 국내 회선(운영자 PC)이나 국내 리전 서버에서 실행하세요. 절차: docs/vworld-run.md",
+    ])
+
+
+def match_items(items, target):
+    """법정동 응답에서 우리 단지 것만 골라낸다.
+
+    공시가격은 **법정동 단위**로 온다. 한 동에 여러 단지가 섞여 있으므로
+    골라내지 못하면 단지별 지표로 쓸 수 없다. 응답 스키마를 단정할 수 없어
+    값 전체를 훑어 단지명이나 지번이 들어 있는 레코드를 찾는다.
+    """
+    name = (target.get("complex_name") or "").replace(" ", "")
+    m = re.search(r"[가-힣]+동\s+(\d+)", target.get("address") or "")
+    bonbun = m.group(1).lstrip("0") if m else None
+
+    hits, how = [], []
+    for it in items:
+        vals = [str(v).strip() for v in it.values() if v is not None]
+        # 값을 하나로 이어 붙이면 지번이 옆 필드와 붙어 오탐이 난다. 필드별로 본다.
+        by_name = name and any(name in v.replace(" ", "") for v in vals)
+        # 지번은 0 으로 자리를 채워 오는 경우가 많다("0479"). 앞의 0 을 떼고 비교한다.
+        by_jibun = bonbun and any(v.isdigit() and v.lstrip("0") == bonbun for v in vals)
+        if by_name or by_jibun:
+            hits.append(it)
+            how.append("단지명 일치" if by_name else "지번 본번 일치")
+    if not hits:
+        return [], f"단지명({name})·지번({bonbun})으로 골라내지 못했다. 응답 필드를 눈으로 확인할 것"
+    return hits, f"{sorted(set(how))} 로 {len(hits)}건 식별"
 
 
 def _classify(text):
@@ -121,8 +184,7 @@ def fetch(key, ldcode, year=None, rows=100, page=1):
     except (urllib.error.URLError, OSError) as exc:
         ok, detail = reachable()
         if not ok:
-            raise VWorldError(f"{HOST} 에 접속할 수 없습니다 ({detail}). "
-                              "이 실행 환경의 이그레스 제한일 수 있습니다") from exc
+            raise VWorldError(geo_hint(detail)) from exc
         raise VWorldError(f"네트워크 실패: {exc}") from exc
 
     known = _classify(raw)
@@ -143,16 +205,14 @@ def fetch(key, ldcode, year=None, rows=100, page=1):
 def main():
     ap = argparse.ArgumentParser(description="브이월드 공동주택 공시가격 조회")
     ap.add_argument("--check", action="store_true", help="도달성과 키만 점검한다")
-    ap.add_argument("--ldcode", help="법정동코드 10자리")
+    ap.add_argument("--only", nargs="*", help="슬러그를 지정하면 그 단지만")
     ap.add_argument("--year", help="기준연도 (예: 2026)")
     args = ap.parse_args()
 
     ok, detail = reachable()
     print(f"[도달성] {HOST} → {'연결됨 ' + detail if ok else '연결 불가 — ' + detail}")
     if not ok:
-        print("\n이 환경에서는 브이월드에 접속할 수 없습니다. 키 문제가 아닙니다.", file=sys.stderr)
-        print("k-apt.go.kr 과 같은 유형의 이그레스 제한으로 보입니다.", file=sys.stderr)
-        print("접속 가능한 환경에서 같은 명령을 실행하면 그대로 동작합니다.", file=sys.stderr)
+        print("\n" + geo_hint(detail), file=sys.stderr)
         return 3
 
     try:
@@ -161,38 +221,64 @@ def main():
         print(f"[중단] {exc}", file=sys.stderr)
         return 2
 
+    try:
+        targets = load_targets(args.only)
+    except VWorldError as exc:
+        print(f"[중단] {exc}", file=sys.stderr)
+        return 2
+
     if args.check:
+        slug, first = next(iter(targets.items()))
         try:
-            items = fetch(key, next(iter(LDCODE)), args.year, rows=1)
-            print(f"[키] 정상 · 표본 {len(items)}건 수신")
+            items = fetch(key, first["ld_code"], args.year, rows=1)
+            print(f"[키] 정상 · {first['complex_name']}({first['dong']}) 표본 {len(items)}건 수신")
             return 0
         except VWorldError as exc:
             print(f"[키] 실패: {exc}", file=sys.stderr)
+            if "INCORRECT_KEY" in str(exc):
+                print("      vworld.kr 마이포털 > 인증키관리에서 등록 도메인에 localhost 를 추가하세요.",
+                      file=sys.stderr)
             return 1
 
-    targets = [args.ldcode] if args.ldcode else list(LDCODE)
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     ok_n = fail = 0
-    for code in targets:
+    for slug, t in targets.items():
+        code = t["ld_code"]
         try:
             items = fetch(key, code, args.year)
         except VWorldError as exc:
-            print(f"[실패] {code} {LDCODE.get(code,'')}: {exc}", file=sys.stderr)
+            print(f"[실패] {slug} {t['dong']}({code}): {exc}", file=sys.stderr)
             fail += 1
             continue
-        rec = {"ld_code": code, "ld_name": LDCODE.get(code, ""), "stdr_year": args.year,
-               "count": len(items), "items": items,
+        matched, how = match_items(items, t)
+        rec = {"slug": slug, "complex_name": t["complex_name"],
+               "ld_code": code, "ld_name": f"{t['gu']} {t['dong']}",
+               "stdr_year": args.year,
+               "count": len(items),
+               "matched_count": len(matched),
+               "matched": bool(matched),
+               "match_note": how,
+               "matched_items": matched,
+               "items": items,
                "fetched_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
                "source": {"label": "브이월드 공동주택 공시가격 속성조회",
                           "url": "https://www.vworld.kr/", "publisher": "국토교통부"},
                "usage_note": "공시가격은 가격 자료다. 홍보 페르소나 인용 금지, 세금·정책 분석만 사용."}
-        (OUT_DIR / f"{code}.json").write_text(
+        (OUT_DIR / f"{slug}.json").write_text(
             json.dumps(rec, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-        print(f"[완료] {code} {LDCODE.get(code,'')}: {len(items)}건")
+        flag = f"우리 단지 {len(matched)}건 식별" if matched else "**우리 단지를 못 골라냄**"
+        print(f"[완료] {slug} {t['dong']}: 동 전체 {len(items)}건 · {flag}")
         ok_n += 1
         time.sleep(0.5)
 
     print(f"\n성공 {ok_n} / 실패 {fail}")
+    unmatched = [s_ for s_ in targets
+                 if (OUT_DIR / f"{s_}.json").exists()
+                 and not json.loads((OUT_DIR / f"{s_}.json").read_text(encoding="utf-8"))["matched"]]
+    if unmatched:
+        print(f"[주의] 응답에서 우리 단지를 골라내지 못한 곳: {', '.join(unmatched)}", file=sys.stderr)
+        print("      공시가격은 법정동 단위라 한 동에 여러 단지가 섞입니다.", file=sys.stderr)
+        print("      골라내지 못하면 단지별 지표로 쓸 수 없습니다 — 글에 인용하지 마세요.", file=sys.stderr)
     return 0 if fail == 0 else 1
 
 

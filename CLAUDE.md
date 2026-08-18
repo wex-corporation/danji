@@ -64,7 +64,10 @@
 | `scripts/trade_volume.py` | 국토부 매매 실거래 조회. 거래량·평당가. 별도 활용신청 없이 기존 키로 됨 |
 | `scripts/rent_volume.py` | 국토부 전월세 실거래 조회. 전세비중·갱신률 등 비가격 지표 캐시 |
 | `scripts/gaps.py` | 사이클 시작 리포트. `/insights/gaps`를 **파일럿과 교집합해서** 읽는다 |
-| `scripts/vworld_price.py` | 브이월드 공동주택 공시가격. **현재 이 환경에서 접속 불가** |
+| `scripts/ldcode.py` | 단지 → 법정동코드 확정. 실거래 `sggCd`+`umdCd`로 뽑는다. 손으로 적지 않는다 |
+| `data/ldcode.json` | 그 결과. `vworld_price.py`가 읽는다 |
+| `scripts/vworld_price.py` | 브이월드 공동주택 공시가격. **해외 IP 차단이라 국내 회선에서만 된다** |
+| `docs/vworld-run.md` | 운영자가 국내 회선에서 공시가격을 받는 절차 |
 | `scripts/shipping_audit.py` | 출고 검사(명세 8.3). `--pack`으로 **게시 전** 판정한다 |
 | `scripts/build_outlier_pack.py` | 특이값 생성기. 단지별로 다른 지표·프레임을 강제한다 |
 | `scripts/hide_posts.py` | 글을 `status: hidden` 으로 내린다(삭제 아님) |
@@ -223,9 +226,21 @@ curl -X POST "$BASE_URL/api/v1/ingest/personas" \
      파크리오 2026-06에서 실제로 났던 사고이고, 지금은 걸러서 `complete: false`로 남긴다
    - **주의**: K-apt가 `kaptdaCnt`(세대수)를 0으로 비워 둔 단지가 있다(디에이치 퍼스티어).
      이때 `hoCnt`로 대체하고 `household_count_source`에 무엇을 썼는지 남긴다
-   - **공시가격(브이월드)은 이 환경에서 접속 불가.** DNS는 풀리고 443도 열리는데 HTTP 응답이 없다.
-     k-apt.go.kr과 같은 양상이다. 키 문제가 아니므로 접속 가능한 환경에서 `vworld_price.py`를 그대로 쓰면 된다.
+   - **공시가격(브이월드)은 해외 IP 차단이다 — 진단 완료.** (2026-08-18)
+     `api.vworld.kr`은 이 환경에서도, 앤트로픽 서버를 경유해도(WebFetch) 똑같이 502다.
+     프록시 거부 기록은 0건이고 키와도 무관하다. **한국 IP가 아니면 어떤 환경에서도 안 된다.**
+
+     | 막힘 | 열림 |
+     | --- | --- |
+     | `api.vworld.kr` · `nsdi.go.kr` · `k-apt.go.kr` · `r-one.co.kr` | `apis.data.go.kr` · `realtyprice.kr` · `reb.or.kr` · `kosis.kr` |
+
+     절차는 `docs/vworld-run.md`. 운영자가 국내 회선에서 한 번 돌려 결과만 커밋하면 된다.
      공시가격은 **가격 자료라 홍보 페르소나가 인용할 수 없다.** 세금·정책 분석 전용이다
+   - **`vworld_price.py`의 법정동코드 표가 틀려 있었다.** 손으로 적은 값이라 파일럿 6곳 중
+     4곳이 어긋났다(파크리오 자리에 잠실동 코드, 헬리오시티는 아예 없음).
+     **틀려도 조회는 성공한다** — 엉뚱한 동의 값이 정상 응답으로 저장된다.
+     이제 `scripts/ldcode.py`가 실거래 응답의 `sggCd`+`umdCd`로 확정한다.
+     법정동코드 10자리 = 시군구 5 + 읍면동 5다. 손으로 적지 않는다
 2. **원베일리 정리 — 게시 완료.** (2026-08-16) 27 → 14편(정리분). 홍보 2인 신설,
    관리비 글 실수치 갱신, 20편 hidden. 팬 듀오 3편이 더해져 최종 노출 17편
 3. **숫자비교표 파일럿 — 게시 완료.** 비교 3편(관리비 단가·주차·승강기), verified.
@@ -246,6 +261,10 @@ curl -X POST "$BASE_URL/api/v1/ingest/personas" \
    되살릴 경우 기준을 먼저 확인해야 한다. 신규 글들은 전부 1.83대(공식값)를 쓴다
 7. **생성기 구조.** `build_v3_pack.py`가 `build_top10_pack.py`를 파일 경로로 import한다.
    템플릿·단지 데이터·스케줄러를 모듈로 분리하는 게 맞다
+   - **4라운드 소재는 매매 실거래 비가격 지표로 간다**(운영자 결정). 공시가격을 기다리지 않는다.
+     후보: 거래 회전율(건수÷세대수) · 해제신고 비율(`cdealType`) · 층별 거래 분포 ·
+     면적대 구성 · 중개거래 대 직거래(`dealingGbn`) · 매도자·매수자 구분(`slerGbn`/`buyerGbn`).
+     `trade_volume.py`로 이미 조회되고 금액은 건드리지 않는다
 8. **템플릿 반복 — 해소.** (2026-08-17)
    출고 검사 첫 실행에서 **11곳 중 10곳 반려**였다(마스킹 후 유사도 1.00 다수). 원인은 구조다 —
    템플릿 t1~t10에 단지를 인자로 넣으면 뼈대가 같을 수밖에 없다.
