@@ -24,6 +24,7 @@
 
 import argparse
 import json
+import os
 import re
 import sys
 import time
@@ -33,7 +34,7 @@ from itertools import combinations
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
-BASE = "https://3-36-105-64.sslip.io"
+BASE = os.environ.get("BASE_URL", "https://danji.life")
 UA = "danji-content-agent/1.0"
 
 # 마스킹 대상. 이걸 안 지우면 단지명 때문에 전부 달라 보인다.

@@ -1,0 +1,61 @@
+{
+  "slug": "eunma",
+  "complex_name": "은마아파트",
+  "topic": "도서관",
+  "headline": "구립도서관이 단지 상가 2층에 들어와 있다",
+  "facts": [
+    {
+      "statement": "강남구립 대치도서관 주소는 서울특별시 강남구 삼성로 212, 은마상가 2층 215호입니다",
+      "source": {
+        "label": "강남구통합도서관 — 대치도서관",
+        "url": "https://library.gangnam.go.kr/dchlib/index.do",
+        "publisher": "강남구",
+        "checked_at": "2026-08-18"
+      }
+    },
+    {
+      "statement": "자료실과 노트북석은 평일 09:00~21:00, 주말 09:00~18:00에 엽니다",
+      "source": {
+        "label": "강남구통합도서관 — 대치도서관",
+        "url": "https://library.gangnam.go.kr/dchlib/index.do",
+        "publisher": "강남구",
+        "checked_at": "2026-08-18"
+      }
+    },
+    {
+      "statement": "열람실은 평일과 주말 모두 06:00~21:00에 엽니다",
+      "source": {
+        "label": "강남구통합도서관 — 대치도서관",
+        "url": "https://library.gangnam.go.kr/dchlib/index.do",
+        "publisher": "강남구",
+        "checked_at": "2026-08-18"
+      }
+    },
+    {
+      "statement": "휴관일은 매주 화요일과 법정공휴일입니다",
+      "source": {
+        "label": "강남구통합도서관 — 대치도서관",
+        "url": "https://library.gangnam.go.kr/dchlib/index.do",
+        "publisher": "강남구",
+        "checked_at": "2026-08-18"
+      }
+    },
+    {
+      "statement": "일반 열람실 좌석은 78석입니다",
+      "source": {
+        "label": "강남구통합도서관 — 대치도서관",
+        "url": "https://library.gangnam.go.kr/dchlib/index.do",
+        "publisher": "강남구",
+        "checked_at": "2026-08-18"
+      }
+    }
+  ],
+  "unknowns": [
+    "열람실 78석이 아침 6시에 얼마나 차는지",
+    "상가 2층까지 올라가는 동선이 어떤지",
+    "단지에 사시는 분들이 실제로 이용하시는지"
+  ],
+  "checked_at": "2026-08-18",
+  "note": "공식 공개 페이지에서 확인한 사실만 담는다. 출처 URL과 확인 날짜가 없는 사실은 넣지 않는다. 생성기가 source.url 없는 fact 를 만나면 중단한다",
+  "robots_note": "강동구청 robots.txt 는 AI 봇에 /web/*/contents/ 만 허용하고 게시판(bbs)은 막는다. 인용 경로가 허용 범위인지 확인하고 담았다"
+}

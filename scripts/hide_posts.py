@@ -32,7 +32,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 PACK = REPO / "content" / "onebailey-v4.json"
-BASE = os.environ.get("BASE_URL", "https://3-36-105-64.sslip.io")
+BASE = os.environ.get("BASE_URL", "https://danji.life")
 UA = "danji-content-agent/1.0"
 
 

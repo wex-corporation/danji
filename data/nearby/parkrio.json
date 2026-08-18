@@ -1,0 +1,43 @@
+{
+  "slug": "parkrio",
+  "complex_name": "파크리오",
+  "topic": "하천 산책로",
+  "headline": "구를 한 바퀴 도는 산책로가 네 개 하천으로 이어져 있다",
+  "facts": [
+    {
+      "statement": "송파둘레길은 성내천길·장지천길·탄천길·한강길 네 코스로 나뉩니다",
+      "source": {
+        "label": "송파구 문화관광 — 송파둘레길 코스",
+        "url": "https://www.songpa.go.kr/culture/contents.do?key=3777",
+        "publisher": "송파구청",
+        "checked_at": "2026-08-18"
+      }
+    },
+    {
+      "statement": "성내천길은 6km이고 안내에 적힌 소요시간은 1시간 30분입니다",
+      "source": {
+        "label": "송파구 문화관광 — 송파둘레길 코스",
+        "url": "https://www.songpa.go.kr/culture/contents.do?key=3777",
+        "publisher": "송파구청",
+        "checked_at": "2026-08-18"
+      }
+    },
+    {
+      "statement": "장지천길은 4.4km에 1시간 10분, 탄천길은 7.4km에 2시간, 한강길은 3.2km에 50분입니다",
+      "source": {
+        "label": "송파구 문화관광 — 송파둘레길 코스",
+        "url": "https://www.songpa.go.kr/culture/contents.do?key=3777",
+        "publisher": "송파구청",
+        "checked_at": "2026-08-18"
+      }
+    }
+  ],
+  "unknowns": [
+    "단지에서 어느 코스로 진입하는 게 가장 짧은지",
+    "야간 조도가 어떤지",
+    "여름 장마철에 통제되는 구간이 있는지"
+  ],
+  "checked_at": "2026-08-18",
+  "note": "공식 공개 페이지에서 확인한 사실만 담는다. 출처 URL과 확인 날짜가 없는 사실은 넣지 않는다. 생성기가 source.url 없는 fact 를 만나면 중단한다",
+  "robots_note": "강동구청 robots.txt 는 AI 봇에 /web/*/contents/ 만 허용하고 게시판(bbs)은 막는다. 인용 경로가 허용 범위인지 확인하고 담았다"
+}

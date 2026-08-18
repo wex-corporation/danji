@@ -1,0 +1,52 @@
+{
+  "slug": "one-bailey",
+  "complex_name": "래미안 원베일리",
+  "topic": "한강 분수",
+  "headline": "같은 동에 있는 다리에서 하루 다섯 번 분수가 나온다",
+  "facts": [
+    {
+      "statement": "반포대교 달빛무지개분수는 길이 1,140m로 2008년 기네스북에 세계에서 가장 긴 교량 분수로 올랐습니다",
+      "source": {
+        "label": "서울특별시 — 반포 달빛무지개분수 재가동",
+        "url": "https://news.seoul.go.kr/env/archives/518101",
+        "publisher": "서울특별시",
+        "checked_at": "2026-08-18"
+      }
+    },
+    {
+      "statement": "노즐 380개에서 분당 약 190톤의 물을 뿜습니다",
+      "source": {
+        "label": "서울특별시 — 반포 달빛무지개분수 재가동",
+        "url": "https://news.seoul.go.kr/env/archives/518101",
+        "publisher": "서울특별시",
+        "checked_at": "2026-08-18"
+      }
+    },
+    {
+      "statement": "4월부터 10월까지 가동하고 1회 20분씩 하루 5회, 7~8월 성수기에는 6회 돌립니다",
+      "source": {
+        "label": "서울특별시 — 반포 달빛무지개분수 재가동",
+        "url": "https://news.seoul.go.kr/env/archives/518101",
+        "publisher": "서울특별시",
+        "checked_at": "2026-08-18"
+      }
+    },
+    {
+      "statement": "가동 시각은 12:00, 19:30, 20:00, 20:30, 21:00이고 성수기에는 21:30이 더해집니다",
+      "source": {
+        "label": "서울특별시 — 반포 달빛무지개분수 재가동",
+        "url": "https://news.seoul.go.kr/env/archives/518101",
+        "publisher": "서울특별시",
+        "checked_at": "2026-08-18"
+      }
+    }
+  ],
+  "unknowns": [
+    "단지 쪽에서 분수 소리가 들리는지",
+    "가동 시간대에 주변 교통이 달라지는지",
+    "어느 지점에서 봐야 잘 보이는지"
+  ],
+  "checked_at": "2026-08-18",
+  "note": "공식 공개 페이지에서 확인한 사실만 담는다. 출처 URL과 확인 날짜가 없는 사실은 넣지 않는다. 생성기가 source.url 없는 fact 를 만나면 중단한다",
+  "robots_note": "강동구청 robots.txt 는 AI 봇에 /web/*/contents/ 만 허용하고 게시판(bbs)은 막는다. 인용 경로가 허용 범위인지 확인하고 담았다"
+}

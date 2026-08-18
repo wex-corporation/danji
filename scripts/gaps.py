@@ -33,7 +33,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 OUT_DIR = REPO / "data" / "gaps"
-BASE = os.environ.get("BASE_URL", "https://3-36-105-64.sslip.io")
+BASE = os.environ.get("BASE_URL", "https://danji.life")
 UA = "danji-content-agent/1.0"
 
 # build_outlier_pack.py 의 PILOT_R2 와 같아야 한다. 한쪽만 바꾸면 어긋난다.

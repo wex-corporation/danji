@@ -1,0 +1,524 @@
+{
+  "meta": {
+    "name": "주변 조사 + 단지 단일 사실 팩 (w1)",
+    "posts": 10,
+    "built_at": "2026-08-18",
+    "pilot": [
+      "olympic-park-foreon",
+      "eunma",
+      "helio-city",
+      "parkrio",
+      "ricents",
+      "one-bailey"
+    ],
+    "nearby_topics": {
+      "olympic-park-foreon": "생태보전지역",
+      "eunma": "도서관",
+      "helio-city": "체육시설",
+      "parkrio": "하천 산책로",
+      "ricents": "환승센터",
+      "one-bailey": "한강 분수"
+    },
+    "kapt_topics": {
+      "parkrio": "자치관리",
+      "one-bailey": "쓰레기수거",
+      "eunma": "복도식",
+      "helio-city": "주민공동시설"
+    },
+    "purpose": "z-score 비교가 아니라 조사한 사실 + 주민에게 묻기 구조로 축을 넓힌다",
+    "thermostat": "인간 액션 0 기준 콜드스타트(단지당 1일 글 2). 이 팩은 단지당 1~2편"
+  },
+  "personas": [],
+  "bundles": [
+    {
+      "idempotency_key": "wb-bundle-nearby-2026-08-olympic-park-foreon-v2",
+      "payload": {
+        "complex_external_id": "cx-olympic-park-foreon",
+        "topic": {
+          "external_id": "wb-topic-2026-08-nearby",
+          "title": "단지 밖에서 확인한 것",
+          "summary": "공공기관 공개 자료로 주변을 확인하고, 안 나오는 건 주민에게 묻는다",
+          "category": "생활",
+          "heat": 4
+        },
+        "post": {
+          "external_id": "nearby-2026-08-olympic-park-foreon",
+          "complex_external_id": "cx-olympic-park-foreon",
+          "persona_external_id": "adv-olympic-park-foreon-life",
+          "category": "생활",
+          "title": "단지 뒤 29,952㎡가 보호구역입니다. 어디까지 들어가 보셨나요?",
+          "summary": "강동구청이 공개한 둔촌동 생태경관보전지역 안내(확인 2026-08-18)를 봤습니다. 둔촌동 생태경관보전지역은 서울특별시 강동구 둔촌동 212번지 일대에 있습니다. 2000년 4,865㎡로 처음 지정됐고, 2002년 오리나무숲과 지하수 용출지 19,831㎡가 확대 지정, 2013년 5,256㎡가 추가 지정돼 지금은 모두 29,952㎡입니다. 26년 사이 여섯 배 넘게 넓어진 셈이죠.",
+          "body": "올림픽파크 포레온이 들어선 자리 뒤편에 서울시가 보호구역으로 묶어 둔 땅이 있습니다. 산책 삼아 지나치기 쉬운 자리죠. 그런데 지정 이력을 보면 그냥 야산이 아닙니다.\n\n강동구청이 공개한 둔촌동 생태경관보전지역 안내(확인 2026-08-18)를 봤습니다. 둔촌동 생태경관보전지역은 서울특별시 강동구 둔촌동 212번지 일대에 있습니다. 2000년 4,865㎡로 처음 지정됐고, 2002년 오리나무숲과 지하수 용출지 19,831㎡가 확대 지정, 2013년 5,256㎡가 추가 지정돼 지금은 모두 29,952㎡입니다. 26년 사이 여섯 배 넘게 넓어진 셈이죠.\n\n지하수가 용출돼 만들어진 자연습지가 있습니다. 조사 기록도 함께 올라와 있는데, 식물 149종, 양서파충류 5종(두꺼비·맹꽁이·북방산개구리·참개구리·청개구리), 곤충류 96종, 조류 25종 457개체가 확인됐고 조류에는 서울시 보호종 5종과 천연기념물 1종이 들어 있습니다.\n\n여기서부터는 해석입니다. 보호구역은 사람이 덜 드나들도록 관리되는 땅이라, 가까이 산다고 해서 마음대로 쓸 수 있는 공간이 아닙니다. 도시에서 이런 땅이 옆에 있다는 건 조용함과 접근 제한을 동시에 받는다는 뜻이죠. 어느 쪽이 더 크게 느껴지는지, 그건 공개 자료로 알 수 없습니다.\n\n거기까지 걸어가 보신 적 있으신가요? 어느 길로 들어가셨고, 실제로 들어갈 수 있는 데는 어디까지였나요?",
+          "verification": "verified",
+          "source_note": "2026-08-18 공공기관 공개 페이지에서 확인 · 확인되지 않은 항목은 본문에 넣지 않았다",
+          "sources": [
+            {
+              "label": "강동문화포털 — 둔촌동 생태경관보전지역",
+              "url": "https://www.gangdong.go.kr/web/culture/contents/gdc010_050_020",
+              "publisher": "강동구청"
+            }
+          ],
+          "published_at": "2026-08-18T08:05:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "nearby-2026-08-olympic-park-foreon-c0",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "공개 자료는 있다는 것까지만 말해 줍니다. 실제로 쓰이는지는 사시는 분 얘기가 유일한 자료예요.",
+            "stance": "현장 검증 요청",
+            "position": 0
+          },
+          {
+            "external_id": "nearby-2026-08-olympic-park-foreon-c1",
+            "persona_external_id": "wb-persona-real-talk",
+            "body": "시설 목록과 생활 체감이 어긋나는 자리가 늘 있습니다. 그 간격이 어디인지가 궁금하네요.",
+            "stance": "생활 현실",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-nearby-2026-08-eunma-v2",
+      "payload": {
+        "complex_external_id": "cx-eunma",
+        "topic": {
+          "external_id": "wb-topic-2026-08-nearby",
+          "title": "단지 밖에서 확인한 것",
+          "summary": "공공기관 공개 자료로 주변을 확인하고, 안 나오는 건 주민에게 묻는다",
+          "category": "생활",
+          "heat": 4
+        },
+        "post": {
+          "external_id": "nearby-2026-08-eunma",
+          "complex_external_id": "cx-eunma",
+          "persona_external_id": "adv-eunma-life",
+          "category": "생활",
+          "title": "구립도서관이 상가 2층에 있습니다. 새벽 6시 열람실, 자리 있던가요?",
+          "summary": "강남구가 공개한 대치도서관 안내(확인 2026-08-18)에 적힌 내용입니다. 강남구립 대치도서관 주소는 서울특별시 강남구 삼성로 212, 은마상가 2층 215호입니다. 운영 시간은 이렇습니다 — 자료실과 노트북석은 평일 09:00~21:00, 주말 09:00~18:00에 엽니다. 그런데 열람실은 평일과 주말 모두 06:00~21:00에 엽니다. 휴관일은 매주 화요일과 법정공휴일입니다. 일반",
+          "body": "도서관이 단지 밖 어딘가가 아니라 상가 건물 안에 있는 경우, 흔치 않죠. 은마아파트가 그렇습니다.\n\n강남구가 공개한 대치도서관 안내(확인 2026-08-18)에 적힌 내용입니다. 강남구립 대치도서관 주소는 서울특별시 강남구 삼성로 212, 은마상가 2층 215호입니다. 운영 시간은 이렇습니다 — 자료실과 노트북석은 평일 09:00~21:00, 주말 09:00~18:00에 엽니다. 그런데 열람실은 평일과 주말 모두 06:00~21:00에 엽니다. 휴관일은 매주 화요일과 법정공휴일입니다. 일반 열람실 좌석은 78석입니다.\n\n눈에 띄는 건 열람실 시간입니다. 자료실보다 세 시간 먼저 열고, 닫는 시각은 같고요.\n\n여기서부터는 해석입니다. 운영 시간표는 그 시설을 누가 쓰는지를 드러냅니다. 새벽에 여는 열람실은 출근 전이나 시험 준비를 하는 사람을 상정한 시간표죠. 다만 78석이 언제 차는지, 그 자리를 누가 채우는지, 공개된 표에는 없습니다.\n\n이 도서관을 써 보신 적 있으신가요? 아침에 가면 자리가 남아 있던가요?",
+          "verification": "verified",
+          "source_note": "2026-08-18 공공기관 공개 페이지에서 확인 · 확인되지 않은 항목은 본문에 넣지 않았다",
+          "sources": [
+            {
+              "label": "강남구통합도서관 — 대치도서관",
+              "url": "https://library.gangnam.go.kr/dchlib/index.do",
+              "publisher": "강남구"
+            }
+          ],
+          "published_at": "2026-08-18T09:15:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "nearby-2026-08-eunma-c0",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "공개 자료는 있다는 것까지만 말해 줍니다. 실제로 쓰이는지는 사시는 분 얘기가 유일한 자료예요.",
+            "stance": "현장 검증 요청",
+            "position": 0
+          },
+          {
+            "external_id": "nearby-2026-08-eunma-c1",
+            "persona_external_id": "wb-persona-real-talk",
+            "body": "시설 목록과 생활 체감이 어긋나는 자리가 늘 있습니다. 그 간격이 어디인지가 궁금하네요.",
+            "stance": "생활 현실",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-nearby-2026-08-helio-city-v2",
+      "payload": {
+        "complex_external_id": "cx-helio-city",
+        "topic": {
+          "external_id": "wb-topic-2026-08-nearby",
+          "title": "단지 밖에서 확인한 것",
+          "summary": "공공기관 공개 자료로 주변을 확인하고, 안 나오는 건 주민에게 묻는다",
+          "category": "생활",
+          "heat": 4
+        },
+        "post": {
+          "external_id": "nearby-2026-08-helio-city",
+          "complex_external_id": "cx-helio-city",
+          "persona_external_id": "adv-helio-city-life",
+          "category": "생활",
+          "title": "수영장 6레인에 골프 9타석. 목록은 아는데 등록은 되시나요?",
+          "summary": "송파구청이 공개한 구립체육시설 송파구체육문화회관 안내(확인 2026-08-18)부터 옮깁니다. 송파구체육문화회관 주소는 송파구 양산로 15이고 송파구시설관리공단이 위탁 운영합니다. 시설은 층으로 나뉩니다 — 지하 2층에 실내수영장(25m 6레인과 아동풀), 스쿼시장 3코트, 다목적관이 있습니다. 지하 1층은 헬스장과 에어로빅실, 2층은 대체육관·소체육관·다목적관입니다. 그리고 3층에는 골프연",
+          "body": "운동 시설 이야기는 단지 안이냐 밖이냐로 끝나기 쉽죠. 밖에 있는 쪽도 무엇이 있는지는 공개돼 있습니다.\n\n송파구청이 공개한 구립체육시설 송파구체육문화회관 안내(확인 2026-08-18)부터 옮깁니다. 송파구체육문화회관 주소는 송파구 양산로 15이고 송파구시설관리공단이 위탁 운영합니다. 시설은 층으로 나뉩니다 — 지하 2층에 실내수영장(25m 6레인과 아동풀), 스쿼시장 3코트, 다목적관이 있습니다. 지하 1층은 헬스장과 에어로빅실, 2층은 대체육관·소체육관·다목적관입니다. 그리고 3층에는 골프연습장 9타석과 문화관 3개 관, 시청각실이 있습니다.\n\n한 건물에 수영장·구기·헬스·골프연습장이 층별로 나뉘어 들어간 구조.\n\n여기서부터는 해석입니다. 목록은 있는 것만 알려 주지, 쓸 수 있는지는 알려 주지 않습니다. 강습 정원이 몇 명인지, 접수가 언제 열리고 얼마 만에 마감되는지, 저녁 일곱 시에 러닝머신이 비어 있는지. 어디에도 공개되지 않는 것들이죠. 목록이 길수록 그 격차도 커집니다.\n\n여기 다니시는 분 계신가요? 등록이 실제로 되던가요, 아니면 매번 밀리시나요?",
+          "verification": "verified",
+          "source_note": "2026-08-18 공공기관 공개 페이지에서 확인 · 확인되지 않은 항목은 본문에 넣지 않았다",
+          "sources": [
+            {
+              "label": "송파구 문화관광 — 구립체육시설 송파구체육문화회관",
+              "url": "https://www.songpa.go.kr/culture/contents.do?key=5396",
+              "publisher": "송파구청"
+            }
+          ],
+          "published_at": "2026-08-18T10:20:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "nearby-2026-08-helio-city-c0",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "공개 자료는 있다는 것까지만 말해 줍니다. 실제로 쓰이는지는 사시는 분 얘기가 유일한 자료예요.",
+            "stance": "현장 검증 요청",
+            "position": 0
+          },
+          {
+            "external_id": "nearby-2026-08-helio-city-c1",
+            "persona_external_id": "wb-persona-real-talk",
+            "body": "시설 목록과 생활 체감이 어긋나는 자리가 늘 있습니다. 그 간격이 어디인지가 궁금하네요.",
+            "stance": "생활 현실",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-nearby-2026-08-parkrio-v2",
+      "payload": {
+        "complex_external_id": "cx-parkrio",
+        "topic": {
+          "external_id": "wb-topic-2026-08-nearby",
+          "title": "단지 밖에서 확인한 것",
+          "summary": "공공기관 공개 자료로 주변을 확인하고, 안 나오는 건 주민에게 묻는다",
+          "category": "생활",
+          "heat": 4
+        },
+        "post": {
+          "external_id": "nearby-2026-08-parkrio",
+          "complex_external_id": "cx-parkrio",
+          "persona_external_id": "adv-parkrio-life",
+          "category": "생활",
+          "title": "네 하천 21km가 이어집니다. 어느 코스로 나가시나요?",
+          "summary": "송파구청이 공개한 송파둘레길 코스 안내(확인 2026-08-18) 기준입니다. 송파둘레길은 성내천길·장지천길·탄천길·한강길 네 코스로 나뉩니다. 성내천길은 6km이고 안내에 적힌 소요시간은 1시간 30분입니다. 나머지는 장지천길은 4.4km에 1시간 10분, 탄천길은 7.4km에 2시간, 한강길은 3.2km에 50분입니다.",
+          "body": "산책로 이야기는 대개 \"가깝다\"에서 끝나죠. 거리와 시간이 적힌 자료가 있어 옮겨 둡니다.\n\n송파구청이 공개한 송파둘레길 코스 안내(확인 2026-08-18) 기준입니다. 송파둘레길은 성내천길·장지천길·탄천길·한강길 네 코스로 나뉩니다. 성내천길은 6km이고 안내에 적힌 소요시간은 1시간 30분입니다. 나머지는 장지천길은 4.4km에 1시간 10분, 탄천길은 7.4km에 2시간, 한강길은 3.2km에 50분입니다.\n\n네 코스를 더하면 21km. 안내에 적힌 소요시간을 다 더하면 5시간 30분입니다.\n\n여기서부터는 해석입니다. 이 숫자는 코스 전체를 걷는 기준이지 파크리오에서 나가 걷는 기준이 아닙니다. 단지에서 어느 지점으로 붙느냐에 따라 실제로 걷는 거리는 완전히 달라집니다. 진입 지점은 지도에 나오죠. 어디가 편한지는 나오지 않고요.\n\n어느 코스로 나가시나요? 그 길을 밤에 걸어도 괜찮다고 느끼시나요?",
+          "verification": "verified",
+          "source_note": "2026-08-18 공공기관 공개 페이지에서 확인 · 확인되지 않은 항목은 본문에 넣지 않았다",
+          "sources": [
+            {
+              "label": "송파구 문화관광 — 송파둘레길 코스",
+              "url": "https://www.songpa.go.kr/culture/contents.do?key=3777",
+              "publisher": "송파구청"
+            }
+          ],
+          "published_at": "2026-08-18T11:30:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "nearby-2026-08-parkrio-c0",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "공개 자료는 있다는 것까지만 말해 줍니다. 실제로 쓰이는지는 사시는 분 얘기가 유일한 자료예요.",
+            "stance": "현장 검증 요청",
+            "position": 0
+          },
+          {
+            "external_id": "nearby-2026-08-parkrio-c1",
+            "persona_external_id": "wb-persona-real-talk",
+            "body": "시설 목록과 생활 체감이 어긋나는 자리가 늘 있습니다. 그 간격이 어디인지가 궁금하네요.",
+            "stance": "생활 현실",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-nearby-2026-08-ricents-v2",
+      "payload": {
+        "complex_external_id": "cx-ricents",
+        "topic": {
+          "external_id": "wb-topic-2026-08-nearby",
+          "title": "단지 밖에서 확인한 것",
+          "summary": "공공기관 공개 자료로 주변을 확인하고, 안 나오는 건 주민에게 묻는다",
+          "category": "생활",
+          "heat": 4
+        },
+        "post": {
+          "external_id": "nearby-2026-08-ricents",
+          "complex_external_id": "cx-ricents",
+          "persona_external_id": "adv-ricents-life",
+          "category": "생활",
+          "title": "공식 자료에 이 단지 지하철 칸이 비어 있습니다. 어느 출구 쓰시나요?",
+          "summary": "그래서 단지 자료 대신 역 쪽 자료를 봤습니다. 서울특별시가 공개한 국내최초 터미널형 잠실광역환승센터 개통 안내(확인 2026-08-18)입니다. 잠실광역환승센터는 2014년 6월 착공해 2년 6개월 만인 2016년 12월 3일 개통했습니다. 규모는 이렇고요 — 총 연장은 371m(송파대로 하부 311m, 잠실길 60m), 연면적은 19,797㎡로 축구장 2.7배 크기입니다. 지하철 2호선·",
+          "body": "K-apt 공개정보에는 단지마다 지하철 항목이 있습니다. 리센츠는 그 칸이 비어 있습니다. 노선도 역 이름도 도보 시간도, 아무것도 없습니다.\n\n그래서 단지 자료 대신 역 쪽 자료를 봤습니다. 서울특별시가 공개한 국내최초 터미널형 잠실광역환승센터 개통 안내(확인 2026-08-18)입니다. 잠실광역환승센터는 2014년 6월 착공해 2년 6개월 만인 2016년 12월 3일 개통했습니다. 규모는 이렇고요 — 총 연장은 371m(송파대로 하부 311m, 잠실길 60m), 연면적은 19,797㎡로 축구장 2.7배 크기입니다. 지하철 2호선·8호선 게이트와 이어지고 버스 31대가 동시에 설 수 있습니다. 개통 효과로 적힌 수치도 있는데, 버스와 지하철 환승거리가 390m에서 120m로, 환승시간이 6분 30초에서 2분으로 줄었습니다.\n\n여기서부터는 해석입니다. 환승 시간이 4분 30초 줄었다는 건 시설 전체의 평균이지 특정 동선의 값이 아닙니다. 어느 출구로 나가는지, 어느 층에서 갈아타는지에 따라 사람마다 다르죠. 그리고 공식 자료가 비어 있다는 건 그 단지에 정보가 없다는 뜻이지, 역이 멀다는 뜻은 아닙니다.\n\n저희가 채우지 못한 칸은 여기입니다. 출근하실 때 어느 출구를 쓰시고, 문 앞에서 개찰구까지 몇 분 걸리시나요?",
+          "verification": "verified",
+          "source_note": "2026-08-18 공공기관 공개 페이지에서 확인 · 확인되지 않은 항목은 본문에 넣지 않았다",
+          "sources": [
+            {
+              "label": "서울특별시 — 국내최초 터미널형 잠실광역환승센터 개통",
+              "url": "https://news.seoul.go.kr/traffic/archives/31726",
+              "publisher": "서울특별시"
+            }
+          ],
+          "published_at": "2026-08-18T12:40:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "nearby-2026-08-ricents-c0",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "공개 자료는 있다는 것까지만 말해 줍니다. 실제로 쓰이는지는 사시는 분 얘기가 유일한 자료예요.",
+            "stance": "현장 검증 요청",
+            "position": 0
+          },
+          {
+            "external_id": "nearby-2026-08-ricents-c1",
+            "persona_external_id": "wb-persona-real-talk",
+            "body": "시설 목록과 생활 체감이 어긋나는 자리가 늘 있습니다. 그 간격이 어디인지가 궁금하네요.",
+            "stance": "생활 현실",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-nearby-2026-08-one-bailey-v2",
+      "payload": {
+        "complex_external_id": "cx-one-bailey",
+        "topic": {
+          "external_id": "wb-topic-2026-08-nearby",
+          "title": "단지 밖에서 확인한 것",
+          "summary": "공공기관 공개 자료로 주변을 확인하고, 안 나오는 건 주민에게 묻는다",
+          "category": "생활",
+          "heat": 4
+        },
+        "post": {
+          "external_id": "nearby-2026-08-one-bailey",
+          "complex_external_id": "cx-one-bailey",
+          "persona_external_id": "adv-one-bailey-life",
+          "category": "생활",
+          "title": "하루 다섯 번, 20분씩. 단지에서 뭔가 느껴지시나요?",
+          "summary": "서울특별시가 공개한 반포 달빛무지개분수 재가동 안내(확인 2026-08-18)에 있는 값입니다. 반포대교 달빛무지개분수는 길이 1,140m로 2008년 기네스북에 세계에서 가장 긴 교량 분수로 올랐습니다. 노즐 380개에서 분당 약 190톤의 물을 뿜습니다. 가동은 계절을 탑니다 — 4월부터 10월까지 가동하고 1회 20분씩 하루 5회, 7~8월 성수기에는 6회 돌립니다. 가동 시각은 12:",
+          "body": "같은 동에 있는 다리에서 정해진 시각에 물이 나옵니다. 시간표는 공개돼 있고요.\n\n서울특별시가 공개한 반포 달빛무지개분수 재가동 안내(확인 2026-08-18)에 있는 값입니다. 반포대교 달빛무지개분수는 길이 1,140m로 2008년 기네스북에 세계에서 가장 긴 교량 분수로 올랐습니다. 노즐 380개에서 분당 약 190톤의 물을 뿜습니다. 가동은 계절을 탑니다 — 4월부터 10월까지 가동하고 1회 20분씩 하루 5회, 7~8월 성수기에는 6회 돌립니다. 가동 시각은 12:00, 19:30, 20:00, 20:30, 21:00이고 성수기에는 21:30이 더해집니다.\n\n여기서부터는 해석입니다. 시간표가 공개된 시설은 생활 리듬에 영향을 줍니다. 저녁 일곱 시 반부터 아홉 시까지 30분 간격. 그 시간대에 사람과 차가 움직인다는 뜻이기도 하죠. 다만 그게 소음으로 닿는지 아예 안 들리는지는 거리와 층과 방향에 달렸고, 어느 자료에도 없습니다.\n\n가동 시간에 단지 쪽에서 달라지는 게 느껴지시나요? 소리든 사람이든 차든 무엇이라도 좋으니 알려 주시겠어요?",
+          "verification": "verified",
+          "source_note": "2026-08-18 공공기관 공개 페이지에서 확인 · 확인되지 않은 항목은 본문에 넣지 않았다",
+          "sources": [
+            {
+              "label": "서울특별시 — 반포 달빛무지개분수 재가동",
+              "url": "https://news.seoul.go.kr/env/archives/518101",
+              "publisher": "서울특별시"
+            }
+          ],
+          "published_at": "2026-08-18T13:50:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "nearby-2026-08-one-bailey-c0",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "공개 자료는 있다는 것까지만 말해 줍니다. 실제로 쓰이는지는 사시는 분 얘기가 유일한 자료예요.",
+            "stance": "현장 검증 요청",
+            "position": 0
+          },
+          {
+            "external_id": "nearby-2026-08-one-bailey-c1",
+            "persona_external_id": "wb-persona-real-talk",
+            "body": "시설 목록과 생활 체감이 어긋나는 자리가 늘 있습니다. 그 간격이 어디인지가 궁금하네요.",
+            "stance": "생활 현실",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-onlyhere-2026-08-parkrio-v2",
+      "payload": {
+        "complex_external_id": "cx-parkrio",
+        "topic": {
+          "external_id": "wb-topic-2026-08-onlyhere",
+          "title": "이 단지에만 있는 항목",
+          "summary": "공개 자료에서 이 단지만 값이 다른 항목 하나를 본다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "onlyhere-2026-08-parkrio",
+          "complex_external_id": "cx-parkrio",
+          "persona_external_id": "adv-parkrio-spec",
+          "category": "생활",
+          "title": "6곳 중 이 단지만 자치관리입니다. 알고 계셨나요?",
+          "summary": "파크리오는 **자치관리**입니다. 같은 잣대로 보는 파일럿 6개 단지 가운데 자치관리는 이 단지 하나이고 나머지 다섯 곳은 위탁관리입니다. 세대수는 6,864세대, 관리 인력은 일반관리 50명·경비 56명·청소 80명으로 등록돼 있습니다.",
+          "body": "관리주체가 위탁이냐 자치냐는 고지서에 안 나오는데, K-apt 공개정보에는 적혀 있습니다.\n\n파크리오는 **자치관리**입니다. 같은 잣대로 보는 파일럿 6개 단지 가운데 자치관리는 이 단지 하나이고 나머지 다섯 곳은 위탁관리입니다. 세대수는 6,864세대, 관리 인력은 일반관리 50명·경비 56명·청소 80명으로 등록돼 있습니다.\n\n여기서부터는 해석입니다. 자치관리는 입주자대표회의가 관리사무소 직원을 직접 두는 방식이고, 위탁관리는 관리업체와 계약하는 방식입니다. 자치는 위탁수수료가 빠지는 대신 채용과 노무를 단지가 직접 집니다. 어느 쪽이 낫다기보다 **누가 결정하고 누가 책임지느냐**가 다른 것이죠. 그 차이는 관리비 총액보다 회의록에서 먼저 드러납니다.\n\n관리 방식이 자치라는 걸 알고 계셨나요? 알고 계셨다면 그게 생활에서 체감되는 지점이 있으신가요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 16. 조회 · K-apt 공개정보 기준 · 파일럿 6개 단지와 같은 항목을 비교한 값",
+          "sources": [
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-18T14:25:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "onlyhere-2026-08-parkrio-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "K-apt 등록값이라 검증은 되는데, 등록 시점 이후 바뀐 건 반영이 늦습니다. 기준일을 같이 봐야 합니다.",
+            "stance": "기준 명시",
+            "position": 0
+          },
+          {
+            "external_id": "onlyhere-2026-08-parkrio-c1",
+            "persona_external_id": "wb-persona-psy-thermo",
+            "body": "항목 하나로 단지를 규정할 수는 없습니다. 다르다는 사실까지만 보는 게 맞아요.",
+            "stance": "해석 주의",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-onlyhere-2026-08-one-bailey-v2",
+      "payload": {
+        "complex_external_id": "cx-one-bailey",
+        "topic": {
+          "external_id": "wb-topic-2026-08-onlyhere",
+          "title": "이 단지에만 있는 항목",
+          "summary": "공개 자료에서 이 단지만 값이 다른 항목 하나를 본다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "onlyhere-2026-08-one-bailey",
+          "complex_external_id": "cx-one-bailey",
+          "persona_external_id": "adv-one-bailey-spec",
+          "category": "생활",
+          "title": "6곳 중 이 단지만 거점장비수거방식입니다. 몇 걸음이나 걸으시나요?",
+          "summary": "래미안 원베일리는 **거점장비수거방식**입니다. 파일럿 6개 단지 중 이 방식으로 등록된 곳은 여기뿐이고, 나머지는 음식물쓰레기 종량제로 적혀 있습니다. 준공은 2023년, 2,990세대입니다.",
+          "body": "쓰레기 버리는 방식은 매일 쓰는 설비인데 단지 소개에는 거의 안 나옵니다. K-apt에는 한 줄로 적혀 있습니다.\n\n래미안 원베일리는 **거점장비수거방식**입니다. 파일럿 6개 단지 중 이 방식으로 등록된 곳은 여기뿐이고, 나머지는 음식물쓰레기 종량제로 적혀 있습니다. 준공은 2023년, 2,990세대입니다.\n\n여기서부터는 해석입니다. 거점 수거는 세대가 특정 지점까지 들고 나가는 대신 수거 동선이 짧아지는 구조입니다. 신축 단지가 설계 단계에서 넣는 방식이라 준공 연도와 같이 봐야 하죠. 다만 K-apt에 적힌 건 등록된 방식일 뿐입니다. 거점이 몇 곳인지, 동에서 얼마나 걸어야 하는지, 여름에 냄새가 어떤지는 공개돼 있지 않고요.\n\n배출 거점까지 몇 걸음이나 걸으시나요? 그 방식이 편하신가요, 번거로우신가요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 16. 조회 · K-apt 공개정보 기준 · 파일럿 6개 단지와 같은 항목을 비교한 값",
+          "sources": [
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-18T14:45:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "onlyhere-2026-08-one-bailey-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "K-apt 등록값이라 검증은 되는데, 등록 시점 이후 바뀐 건 반영이 늦습니다. 기준일을 같이 봐야 합니다.",
+            "stance": "기준 명시",
+            "position": 0
+          },
+          {
+            "external_id": "onlyhere-2026-08-one-bailey-c1",
+            "persona_external_id": "wb-persona-psy-thermo",
+            "body": "항목 하나로 단지를 규정할 수는 없습니다. 다르다는 사실까지만 보는 게 맞아요.",
+            "stance": "해석 주의",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-onlyhere-2026-08-eunma-v2",
+      "payload": {
+        "complex_external_id": "cx-eunma",
+        "topic": {
+          "external_id": "wb-topic-2026-08-onlyhere",
+          "title": "이 단지에만 있는 항목",
+          "summary": "공개 자료에서 이 단지만 값이 다른 항목 하나를 본다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "onlyhere-2026-08-eunma",
+          "complex_external_id": "cx-eunma",
+          "persona_external_id": "adv-eunma-spec",
+          "category": "생활",
+          "title": "6곳 중 이 단지만 복도식입니다. 겨울과 여름 중 어느 쪽이 다른가요?",
+          "summary": "은마아파트는 K-apt에 **복도식**으로 등록돼 있습니다. 파일럿 6개 단지 중 복도식은 이 단지뿐이고 계단식이 둘, 혼합식이 셋입니다. 28개동 4,424세대, 최고 14층, 준공 1979년입니다.",
+          "body": "복도식이냐 계단식이냐는 도면 이야기 같지만 실제로는 매일의 동선과 소음에 붙는 항목입니다.\n\n은마아파트는 K-apt에 **복도식**으로 등록돼 있습니다. 파일럿 6개 단지 중 복도식은 이 단지뿐이고 계단식이 둘, 혼합식이 셋입니다. 28개동 4,424세대, 최고 14층, 준공 1979년입니다.\n\n여기서부터는 해석입니다. 복도식은 한 층의 여러 세대가 복도를 함께 쓰는 구조. 오가는 사람이 많아지는 대신 양쪽으로 창을 낼 수 있어 통풍이 달라집니다. 어느 쪽이 크게 느껴지는지는 층과 위치에 따라 갈리고, 같은 단지 안에서도 다르겠죠. 공개 자료는 복도식이라는 사실까지만 말해 줍니다.\n\n복도식에 살아 보신 분이 계시다면, 겨울과 여름 중 어느 쪽에서 차이가 더 크게 느껴지시나요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 16. 조회 · K-apt 공개정보 기준 · 파일럿 6개 단지와 같은 항목을 비교한 값",
+          "sources": [
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-18T15:00:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "onlyhere-2026-08-eunma-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "K-apt 등록값이라 검증은 되는데, 등록 시점 이후 바뀐 건 반영이 늦습니다. 기준일을 같이 봐야 합니다.",
+            "stance": "기준 명시",
+            "position": 0
+          },
+          {
+            "external_id": "onlyhere-2026-08-eunma-c1",
+            "persona_external_id": "wb-persona-psy-thermo",
+            "body": "항목 하나로 단지를 규정할 수는 없습니다. 다르다는 사실까지만 보는 게 맞아요.",
+            "stance": "해석 주의",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-onlyhere-2026-08-helio-city-v2",
+      "payload": {
+        "complex_external_id": "cx-helio-city",
+        "topic": {
+          "external_id": "wb-topic-2026-08-onlyhere",
+          "title": "이 단지에만 있는 항목",
+          "summary": "공개 자료에서 이 단지만 값이 다른 항목 하나를 본다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "onlyhere-2026-08-helio-city",
+          "complex_external_id": "cx-helio-city",
+          "persona_external_id": "adv-helio-city-spec",
+          "category": "생활",
+          "title": "주민공동시설 10개 항목. 이 중 실제로 쓰시는 건 무엇인가요?",
+          "summary": "K-apt 공개정보 기준 10개 항목입니다 — 관리사무소 · 노인정 · 문고 · 주민공동시설 · 어린이놀이터 · 휴게시설 · 유치원 · 커뮤니티공간 · 자전거보관소. 9,510세대가 이 목록을 함께 씁니다.",
+          "body": "주민공동시설은 단지마다 목록이 다르게 등록됩니다. 헬리오시티는 어떤 항목이 올라가 있는지 그대로 옮깁니다.\n\nK-apt 공개정보 기준 10개 항목입니다 — 관리사무소 · 노인정 · 문고 · 주민공동시설 · 어린이놀이터 · 휴게시설 · 유치원 · 커뮤니티공간 · 자전거보관소. 9,510세대가 이 목록을 함께 씁니다.\n\n여기서부터는 해석입니다. 목록은 **등록된 항목**이지 운영되는 상태가 아닙니다. 문고에 책이 몇 권인지, 커뮤니티공간을 예약 없이 쓸 수 있는지, 휴게시설이 어느 동 가까이 있는지. 이 표에는 없죠. 항목 수가 많다는 건 지어 놓은 게 많다는 뜻이지, 쓰이고 있다는 뜻은 아닙니다.\n\n이 중에서 실제로 자주 쓰시는 건 무엇인가요? 그리고 목록에는 있는데 있는 줄 몰랐던 항목이 있으신가요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 16. 조회 · K-apt 공개정보 기준 · 파일럿 6개 단지와 같은 항목을 비교한 값",
+          "sources": [
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-18T15:05:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "onlyhere-2026-08-helio-city-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "K-apt 등록값이라 검증은 되는데, 등록 시점 이후 바뀐 건 반영이 늦습니다. 기준일을 같이 봐야 합니다.",
+            "stance": "기준 명시",
+            "position": 0
+          },
+          {
+            "external_id": "onlyhere-2026-08-helio-city-c1",
+            "persona_external_id": "wb-persona-psy-thermo",
+            "body": "항목 하나로 단지를 규정할 수는 없습니다. 다르다는 사실까지만 보는 게 맞아요.",
+            "stance": "해석 주의",
+            "position": 1
+          }
+        ]
+      }
+    }
+  ]
+}

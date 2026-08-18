@@ -1,0 +1,52 @@
+{
+  "slug": "helio-city",
+  "complex_name": "헬리오시티",
+  "topic": "체육시설",
+  "headline": "구립 체육시설 한 곳에 수영장·스쿼시·골프연습장이 같이 있다",
+  "facts": [
+    {
+      "statement": "송파구체육문화회관 주소는 송파구 양산로 15이고 송파구시설관리공단이 위탁 운영합니다",
+      "source": {
+        "label": "송파구 문화관광 — 구립체육시설 송파구체육문화회관",
+        "url": "https://www.songpa.go.kr/culture/contents.do?key=5396",
+        "publisher": "송파구청",
+        "checked_at": "2026-08-18"
+      }
+    },
+    {
+      "statement": "지하 2층에 실내수영장(25m 6레인과 아동풀), 스쿼시장 3코트, 다목적관이 있습니다",
+      "source": {
+        "label": "송파구 문화관광 — 구립체육시설 송파구체육문화회관",
+        "url": "https://www.songpa.go.kr/culture/contents.do?key=5396",
+        "publisher": "송파구청",
+        "checked_at": "2026-08-18"
+      }
+    },
+    {
+      "statement": "지하 1층은 헬스장과 에어로빅실, 2층은 대체육관·소체육관·다목적관입니다",
+      "source": {
+        "label": "송파구 문화관광 — 구립체육시설 송파구체육문화회관",
+        "url": "https://www.songpa.go.kr/culture/contents.do?key=5396",
+        "publisher": "송파구청",
+        "checked_at": "2026-08-18"
+      }
+    },
+    {
+      "statement": "3층에는 골프연습장 9타석과 문화관 3개 관, 시청각실이 있습니다",
+      "source": {
+        "label": "송파구 문화관광 — 구립체육시설 송파구체육문화회관",
+        "url": "https://www.songpa.go.kr/culture/contents.do?key=5396",
+        "publisher": "송파구청",
+        "checked_at": "2026-08-18"
+      }
+    }
+  ],
+  "unknowns": [
+    "단지에서 실제 이동 시간이 얼마인지",
+    "수영장 강습 자리가 잡히는지",
+    "저녁 시간대에 얼마나 붐비는지"
+  ],
+  "checked_at": "2026-08-18",
+  "note": "공식 공개 페이지에서 확인한 사실만 담는다. 출처 URL과 확인 날짜가 없는 사실은 넣지 않는다. 생성기가 source.url 없는 fact 를 만나면 중단한다",
+  "robots_note": "강동구청 robots.txt 는 AI 봇에 /web/*/contents/ 만 허용하고 게시판(bbs)은 막는다. 인용 경로가 허용 범위인지 확인하고 담았다"
+}

@@ -1,0 +1,52 @@
+{
+  "slug": "olympic-park-foreon",
+  "complex_name": "올림픽파크 포레온",
+  "topic": "생태보전지역",
+  "headline": "단지 뒤편 야산이 서울시 생태경관보전지역이다",
+  "facts": [
+    {
+      "statement": "둔촌동 생태경관보전지역은 서울특별시 강동구 둔촌동 212번지 일대에 있습니다",
+      "source": {
+        "label": "강동문화포털 — 둔촌동 생태경관보전지역",
+        "url": "https://www.gangdong.go.kr/web/culture/contents/gdc010_050_020",
+        "publisher": "강동구청",
+        "checked_at": "2026-08-18"
+      }
+    },
+    {
+      "statement": "2000년 4,865㎡로 처음 지정됐고, 2002년 오리나무숲과 지하수 용출지 19,831㎡가 확대 지정, 2013년 5,256㎡가 추가 지정돼 지금은 모두 29,952㎡입니다",
+      "source": {
+        "label": "강동문화포털 — 둔촌동 생태경관보전지역",
+        "url": "https://www.gangdong.go.kr/web/culture/contents/gdc010_050_020",
+        "publisher": "강동구청",
+        "checked_at": "2026-08-18"
+      }
+    },
+    {
+      "statement": "지하수가 용출돼 만들어진 자연습지가 있습니다",
+      "source": {
+        "label": "강동문화포털 — 둔촌동 생태경관보전지역",
+        "url": "https://www.gangdong.go.kr/web/culture/contents/gdc010_050_020",
+        "publisher": "강동구청",
+        "checked_at": "2026-08-18"
+      }
+    },
+    {
+      "statement": "식물 149종, 양서파충류 5종(두꺼비·맹꽁이·북방산개구리·참개구리·청개구리), 곤충류 96종, 조류 25종 457개체가 확인됐고 조류에는 서울시 보호종 5종과 천연기념물 1종이 들어 있습니다",
+      "source": {
+        "label": "강동문화포털 — 둔촌동 생태경관보전지역",
+        "url": "https://www.gangdong.go.kr/web/culture/contents/gdc010_050_020",
+        "publisher": "강동구청",
+        "checked_at": "2026-08-18"
+      }
+    }
+  ],
+  "unknowns": [
+    "단지에서 어느 길로 접근하는지",
+    "실제로 걸어 들어갈 수 있는 구간이 어디까지인지",
+    "습지 쪽에서 소리나 냄새가 생활에 닿는지"
+  ],
+  "checked_at": "2026-08-18",
+  "note": "공식 공개 페이지에서 확인한 사실만 담는다. 출처 URL과 확인 날짜가 없는 사실은 넣지 않는다. 생성기가 source.url 없는 fact 를 만나면 중단한다",
+  "robots_note": "강동구청 robots.txt 는 AI 봇에 /web/*/contents/ 만 허용하고 게시판(bbs)은 막는다. 인용 경로가 허용 범위인지 확인하고 담았다"
+}

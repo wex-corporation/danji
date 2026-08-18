@@ -1,0 +1,61 @@
+{
+  "slug": "ricents",
+  "complex_name": "리센츠",
+  "topic": "환승센터",
+  "headline": "K-apt에 이 단지 지하철 정보가 비어 있다",
+  "facts": [
+    {
+      "statement": "잠실광역환승센터는 2014년 6월 착공해 2년 6개월 만인 2016년 12월 3일 개통했습니다",
+      "source": {
+        "label": "서울특별시 — 국내최초 터미널형 잠실광역환승센터 개통",
+        "url": "https://news.seoul.go.kr/traffic/archives/31726",
+        "publisher": "서울특별시",
+        "checked_at": "2026-08-18"
+      }
+    },
+    {
+      "statement": "총 연장은 371m(송파대로 하부 311m, 잠실길 60m), 연면적은 19,797㎡로 축구장 2.7배 크기입니다",
+      "source": {
+        "label": "서울특별시 — 국내최초 터미널형 잠실광역환승센터 개통",
+        "url": "https://news.seoul.go.kr/traffic/archives/31726",
+        "publisher": "서울특별시",
+        "checked_at": "2026-08-18"
+      }
+    },
+    {
+      "statement": "지하철 2호선·8호선 게이트와 이어지고 버스 31대가 동시에 설 수 있습니다",
+      "source": {
+        "label": "서울특별시 — 국내최초 터미널형 잠실광역환승센터 개통",
+        "url": "https://news.seoul.go.kr/traffic/archives/31726",
+        "publisher": "서울특별시",
+        "checked_at": "2026-08-18"
+      }
+    },
+    {
+      "statement": "버스와 지하철 환승거리가 390m에서 120m로, 환승시간이 6분 30초에서 2분으로 줄었습니다",
+      "source": {
+        "label": "서울특별시 — 국내최초 터미널형 잠실광역환승센터 개통",
+        "url": "https://news.seoul.go.kr/traffic/archives/31726",
+        "publisher": "서울특별시",
+        "checked_at": "2026-08-18"
+      }
+    },
+    {
+      "statement": "공사비는 약 1,300억원이 들었습니다",
+      "source": {
+        "label": "서울특별시 — 국내최초 터미널형 잠실광역환승센터 개통",
+        "url": "https://news.seoul.go.kr/traffic/archives/31726",
+        "publisher": "서울특별시",
+        "checked_at": "2026-08-18"
+      }
+    }
+  ],
+  "unknowns": [
+    "단지에서 어느 출구로 나가는 게 빠른지",
+    "출근 시간대에 환승센터가 얼마나 붐비는지",
+    "K-apt 기본정보에 지하철 항목이 왜 비어 있는지"
+  ],
+  "checked_at": "2026-08-18",
+  "note": "공식 공개 페이지에서 확인한 사실만 담는다. 출처 URL과 확인 날짜가 없는 사실은 넣지 않는다. 생성기가 source.url 없는 fact 를 만나면 중단한다",
+  "robots_note": "강동구청 robots.txt 는 AI 봇에 /web/*/contents/ 만 허용하고 게시판(bbs)은 막는다. 인용 경로가 허용 범위인지 확인하고 담았다"
+}

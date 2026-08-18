@@ -3,7 +3,7 @@
 """TOP10 대단지 콘텐츠 팩(100편) 게시 스크립트."""
 import json, os, sys, time, urllib.request, urllib.error
 
-BASE_URL = os.environ.get("BASE_URL", "https://3-36-105-64.sslip.io")
+BASE_URL = os.environ.get("BASE_URL", "https://danji.life")
 API_KEY = os.environ["CIVIC_PULSE_API_KEY"]
 
 def call(method, path, body=None, idem=None, timeout=40):
