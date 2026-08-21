@@ -1,0 +1,284 @@
+{
+  "meta": {
+    "name": "짧은 카드 팩 (w1)",
+    "posts": 5,
+    "built_at": "2026-08-21",
+    "assigned": {
+      "olympic-park-foreon": "동수",
+      "eunma": "준공연도",
+      "helio-city": "세대당 CCTV",
+      "parkrio": "최고층",
+      "ricents": "부과면적 비율",
+      "one-bailey": "관리인력1인당 세대"
+    },
+    "skipped": [
+      {
+        "slug": "one-bailey",
+        "already": 2
+      }
+    ],
+    "purpose": "공유 카드에 캡처되는 짧은 형식. 제목이 곧 캡처물이다",
+    "note": "짧은 글은 뼈대가 같으면 유사도가 빨리 오른다. 단지마다 지표와 뼈대를 다르게 준다"
+  },
+  "personas": [
+    {
+      "external_id": "wb-persona-num-compare",
+      "handle": "숫자비교표",
+      "avatar_label": "표",
+      "tagline": "같은 잣대로 재지 않으면 비교가 아닙니다",
+      "stance": "기준 통일",
+      "expertise": [
+        "공개 자료",
+        "단지 비교"
+      ],
+      "avatar_color": "#7c3aed"
+    }
+  ],
+  "bundles": [
+    {
+      "idempotency_key": "wb-bundle-card-2026-08-olympic-park-foreon-v1",
+      "payload": {
+        "complex_external_id": "cx-olympic-park-foreon",
+        "topic": {
+          "external_id": "wb-topic-2026-08-card",
+          "title": "우리 단지는 얼마인가",
+          "summary": "같은 잣대로 잰 값 하나를 짧게 놓는다. 판단은 사는 사람이 한다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "card-2026-08-olympic-park-foreon",
+          "complex_external_id": "cx-olympic-park-foreon",
+          "persona_external_id": "wb-persona-num-compare",
+          "category": "생활",
+          "title": "85개동에 12,032세대. 정문까지 몇 분 걸리시나요?",
+          "summary": "올림픽파크 포레온은 85개동입니다. 12,032세대가 여기에 나뉘어 있습니다.",
+          "body": "올림픽파크 포레온은 85개동입니다. 12,032세대가 여기에 나뉘어 있습니다.\n\n같은 잣대로 잰 파일럿 6곳은 23개동에서 85개동 사이입니다. K-apt 공개정보 기준입니다.\n\n동이 많으면 단지 안에서 걷는 거리가 길어집니다. 사시는 동에서 정문까지 몇 분 걸리시나요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 16. 조회 · K-apt 공개정보 기준 · 파일럿 6개 단지와 같은 항목을 비교",
+          "sources": [
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-21T08:40:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "card-2026-08-olympic-park-foreon-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "같은 항목을 같은 기준으로 재야 비교가 됩니다. 이 표는 그것만 맞춰 둔 값이에요.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "card-2026-08-olympic-park-foreon-c1",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "숫자가 생활에서 어떻게 나타나는지는 사시는 분만 압니다. 그 대목이 비어 있어요.",
+            "stance": "현장 검증 요청",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-card-2026-08-eunma-v1",
+      "payload": {
+        "complex_external_id": "cx-eunma",
+        "topic": {
+          "external_id": "wb-topic-2026-08-card",
+          "title": "우리 단지는 얼마인가",
+          "summary": "같은 잣대로 잰 값 하나를 짧게 놓는다. 판단은 사는 사람이 한다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "card-2026-08-eunma",
+          "complex_external_id": "cx-eunma",
+          "persona_external_id": "wb-persona-num-compare",
+          "category": "생활",
+          "title": "사용승인 1979년. 6곳 중 이 단지만 70년대",
+          "summary": "사용승인 1979년. K-apt에 그렇게 등록돼 있습니다.",
+          "body": "사용승인 1979년. K-apt에 그렇게 등록돼 있습니다.\n\n파일럿 6곳 중 나머지 다섯은 2008년에서 2024년 사이입니다. 29년 차이가 나는 셈입니다.\n\n준공 연도는 설계 기준이 언제 것이냐를 정합니다. 그 시대가 남긴 것 중에 지금도 괜찮다 싶은 게 있나요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 16. 조회 · K-apt 공개정보 기준 · 파일럿 6개 단지와 같은 항목을 비교",
+          "sources": [
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-21T10:10:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "card-2026-08-eunma-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "같은 항목을 같은 기준으로 재야 비교가 됩니다. 이 표는 그것만 맞춰 둔 값이에요.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "card-2026-08-eunma-c1",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "숫자가 생활에서 어떻게 나타나는지는 사시는 분만 압니다. 그 대목이 비어 있어요.",
+            "stance": "현장 검증 요청",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-card-2026-08-helio-city-v1",
+      "payload": {
+        "complex_external_id": "cx-helio-city",
+        "topic": {
+          "external_id": "wb-topic-2026-08-card",
+          "title": "우리 단지는 얼마인가",
+          "summary": "같은 잣대로 잰 값 하나를 짧게 놓는다. 판단은 사는 사람이 한다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "card-2026-08-helio-city",
+          "complex_external_id": "cx-helio-city",
+          "persona_external_id": "wb-persona-num-compare",
+          "category": "생활",
+          "title": "세대당 CCTV 0.28대. 필요할 때 영상 받아 보셨나요?",
+          "summary": "CCTV 2,685대, 9,510세대. 세대당 0.28대입니다.",
+          "body": "CCTV 2,685대, 9,510세대. 세대당 0.28대입니다.\n\n파일럿 6곳은 세대당 0.02대에서 0.53대 사이에 있습니다.\n\n다만 이건 등록 대수일 뿐입니다. 어디를 비추는지, 녹화가 며칠 남는지는 공개돼 있지 않습니다. 필요할 때 영상을 받아 보신 적 있으신가요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 16. 조회 · K-apt 공개정보 기준 · 파일럿 6개 단지와 같은 항목을 비교",
+          "sources": [
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-21T11:40:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "card-2026-08-helio-city-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "같은 항목을 같은 기준으로 재야 비교가 됩니다. 이 표는 그것만 맞춰 둔 값이에요.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "card-2026-08-helio-city-c1",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "숫자가 생활에서 어떻게 나타나는지는 사시는 분만 압니다. 그 대목이 비어 있어요.",
+            "stance": "현장 검증 요청",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-card-2026-08-parkrio-v1",
+      "payload": {
+        "complex_external_id": "cx-parkrio",
+        "topic": {
+          "external_id": "wb-topic-2026-08-card",
+          "title": "우리 단지는 얼마인가",
+          "summary": "같은 잣대로 잰 값 하나를 짧게 놓는다. 판단은 사는 사람이 한다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "card-2026-08-parkrio",
+          "complex_external_id": "cx-parkrio",
+          "persona_external_id": "wb-persona-num-compare",
+          "category": "생활",
+          "title": "최고 36층. 대기와 조망 중 어느 쪽이 더 크게 느껴지나요?",
+          "summary": "최고 36층. 파일럿 6곳은 14층에서 36층 사이입니다.",
+          "body": "최고 36층. 파일럿 6곳은 14층에서 36층 사이입니다.\n\nK-apt 공개정보에 있는 값이고, 단지 전체에서 가장 높은 층을 말합니다. 모든 동이 그 높이라는 뜻은 아닙니다.\n\n층이 높아지면 엘리베이터 대기와 조망이 같이 달라집니다. 어느 쪽이 더 크게 느껴지시나요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 16. 조회 · K-apt 공개정보 기준 · 파일럿 6개 단지와 같은 항목을 비교",
+          "sources": [
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-21T13:20:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "card-2026-08-parkrio-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "같은 항목을 같은 기준으로 재야 비교가 됩니다. 이 표는 그것만 맞춰 둔 값이에요.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "card-2026-08-parkrio-c1",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "숫자가 생활에서 어떻게 나타나는지는 사시는 분만 압니다. 그 대목이 비어 있어요.",
+            "stance": "현장 검증 요청",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-card-2026-08-ricents-v1",
+      "payload": {
+        "complex_external_id": "cx-ricents",
+        "topic": {
+          "external_id": "wb-topic-2026-08-card",
+          "title": "우리 단지는 얼마인가",
+          "summary": "같은 잣대로 잰 값 하나를 짧게 놓는다. 판단은 사는 사람이 한다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "card-2026-08-ricents",
+          "complex_external_id": "cx-ricents",
+          "persona_external_id": "wb-persona-num-compare",
+          "category": "생활",
+          "title": "같은 집을 부르는 면적이 1.30배 차이 납니다",
+          "summary": "같은 집을 두 면적으로 부릅니다. 리센츠는 전용면적 합 447,330㎡, 관리비 부과면적 581,999㎡입니다. 부과면적이 전용의 1.30배입니다.",
+          "body": "같은 집을 두 면적으로 부릅니다. 리센츠는 전용면적 합 447,330㎡, 관리비 부과면적 581,999㎡입니다. 부과면적이 전용의 1.30배입니다.\n\n파일럿 6곳은 1.29배에서 1.46배 사이입니다.\n\n평당가든 관리비든 어느 면적으로 나눴는지에 따라 값이 달라집니다. 고지서에 적힌 면적이 몇 ㎡인지 보신 적 있으신가요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 16. 조회 · K-apt 공개정보 기준 · 파일럿 6개 단지와 같은 항목을 비교",
+          "sources": [
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-21T15:00:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "card-2026-08-ricents-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "같은 항목을 같은 기준으로 재야 비교가 됩니다. 이 표는 그것만 맞춰 둔 값이에요.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "card-2026-08-ricents-c1",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "숫자가 생활에서 어떻게 나타나는지는 사시는 분만 압니다. 그 대목이 비어 있어요.",
+            "stance": "현장 검증 요청",
+            "position": 1
+          }
+        ]
+      }
+    }
+  ]
+}
