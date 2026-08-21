@@ -1,0 +1,590 @@
+{
+  "meta": {
+    "name": "짧은 카드 팩 (w2)",
+    "round": 2,
+    "posts": 11,
+    "built_at": "2026-08-21",
+    "assigned": {
+      "acro-river-park": "세대당 CCTV(전체)",
+      "dh-firstier": "EV 충전기 비율",
+      "eunma": "세대당 주차",
+      "godeok-gracium": "경비1인당 세대",
+      "helio-city": "㎡당 공용관리비",
+      "jamsil-els": "지상 주차 대수",
+      "mapo-raemian-prugio": "난방방식",
+      "olympic-park-foreon": "청소1인당 세대",
+      "one-bailey": "세대수",
+      "parkrio": "동당 세대",
+      "ricents": "승강기당 세대"
+    },
+    "skipped": [],
+    "over_cap": [
+      {
+        "slug": "one-bailey",
+        "already": 2
+      }
+    ],
+    "purpose": "공유 카드에 캡처되는 짧은 형식. 제목이 곧 캡처물이다",
+    "note": "K-apt 정보가 있는 11곳 전체. 비교군도 11곳"
+  },
+  "personas": [
+    {
+      "external_id": "wb-persona-num-compare",
+      "handle": "숫자비교표",
+      "avatar_label": "표",
+      "tagline": "같은 잣대로 재지 않으면 비교가 아닙니다",
+      "stance": "기준 통일",
+      "expertise": [
+        "공개 자료",
+        "단지 비교"
+      ],
+      "avatar_color": "#7c3aed"
+    }
+  ],
+  "bundles": [
+    {
+      "idempotency_key": "wb-bundle-card2-2026-08-acro-river-park-v1",
+      "payload": {
+        "complex_external_id": "cx-acro-river-park",
+        "topic": {
+          "external_id": "wb-topic-2026-08-card",
+          "title": "우리 단지는 얼마인가",
+          "summary": "같은 잣대로 잰 값 하나를 짧게 놓는다. 판단은 사는 사람이 한다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "card2-2026-08-acro-river-park",
+          "complex_external_id": "cx-acro-river-park",
+          "persona_external_id": "wb-persona-num-compare",
+          "category": "생활",
+          "title": "세대당 CCTV 1.33대. 11곳 중 여기만 1대를 넘습니다",
+          "summary": "CCTV 2,150대. 세대는 1,612입니다. 나누면 세대당 1.33대.",
+          "body": "CCTV 2,150대. 세대는 1,612입니다. 나누면 세대당 1.33대.\n\nK-apt에 같은 항목이 공개된 서울 11개 단지 중 세대당 1대를 넘는 곳은 여기뿐입니다. 나머지는 0.02대에서 0.58대 사이에 있고요.\n\n대수는 성능이 아닙니다. 어디를 비추는지, 녹화가 며칠 남는지는 공개값에 없습니다. 관리사무소에 영상을 요청해 보신 적 있나요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 16. 조회 · K-apt 공개정보 기준 · 같은 항목이 공개된 11개 단지와 비교",
+          "sources": [
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-21T08:10:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "card2-2026-08-acro-river-park-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "같은 항목을 같은 기준으로 재야 비교가 됩니다. 이 표는 그것만 맞춰 둔 값이에요.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "card2-2026-08-acro-river-park-c1",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "숫자가 생활에서 어떻게 나타나는지는 사시는 분만 압니다. 그 대목이 비어 있어요.",
+            "stance": "현장 검증 요청",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-card2-2026-08-dh-firstier-v1",
+      "payload": {
+        "complex_external_id": "cx-dh-firstier",
+        "topic": {
+          "external_id": "wb-topic-2026-08-card",
+          "title": "우리 단지는 얼마인가",
+          "summary": "같은 잣대로 잰 값 하나를 짧게 놓는다. 판단은 사는 사람이 한다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "card2-2026-08-dh-firstier",
+          "complex_external_id": "cx-dh-firstier",
+          "persona_external_id": "wb-persona-num-compare",
+          "category": "생활",
+          "title": "충전기 2,066대. 세 집 걸러 한 자리",
+          "summary": "세 집 걸러 한 자리. 전기차 충전기 2,066대를 6,702세대로 나누면 30.8%입니다.",
+          "body": "세 집 걸러 한 자리. 전기차 충전기 2,066대를 6,702세대로 나누면 30.8%입니다.\n\nK-apt에 같은 항목이 공개된 서울 11개 단지 중 그다음으로 많은 곳이 13.9%예요. 자릿수가 다릅니다.\n\n많다고 자리가 남는다는 뜻은 아닙니다. 완속인지 급속인지도 공개값에 없고요. 대기 없이 꽂고 계신가요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 16. 조회 · K-apt 공개정보 기준 · 같은 항목이 공개된 11개 단지와 비교",
+          "sources": [
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-21T09:20:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "card2-2026-08-dh-firstier-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "같은 항목을 같은 기준으로 재야 비교가 됩니다. 이 표는 그것만 맞춰 둔 값이에요.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "card2-2026-08-dh-firstier-c1",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "숫자가 생활에서 어떻게 나타나는지는 사시는 분만 압니다. 그 대목이 비어 있어요.",
+            "stance": "현장 검증 요청",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-card2-2026-08-eunma-v1",
+      "payload": {
+        "complex_external_id": "cx-eunma",
+        "topic": {
+          "external_id": "wb-topic-2026-08-card",
+          "title": "우리 단지는 얼마인가",
+          "summary": "같은 잣대로 잰 값 하나를 짧게 놓는다. 판단은 사는 사람이 한다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "card2-2026-08-eunma",
+          "complex_external_id": "cx-eunma",
+          "persona_external_id": "wb-persona-num-compare",
+          "category": "생활",
+          "title": "세대당 주차 0.68대. 밤에 어디에 대시나요?",
+          "summary": "주차 자리가 세대 수보다 적으면 어떻게 될까요. 등록 주차 3,021대, 4,424세대. 세대당 0.68대입니다.",
+          "body": "주차 자리가 세대 수보다 적으면 어떻게 될까요. 등록 주차 3,021대, 4,424세대. 세대당 0.68대입니다.\n\nK-apt에 같은 항목이 공개된 서울 11개 단지 중 1대에 못 미치는 곳은 여기 하나입니다. 나머지는 1.18대에서 1.93대 사이.\n\n등록된 3,021대는 전부 지상입니다. 지하 주차장은 K-apt 공개값에 0대로 돼 있어요. 밤에 대실 자리를 어떻게 찾으시나요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 16. 조회 · K-apt 공개정보 기준 · 같은 항목이 공개된 11개 단지와 비교",
+          "sources": [
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-21T10:30:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "card2-2026-08-eunma-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "같은 항목을 같은 기준으로 재야 비교가 됩니다. 이 표는 그것만 맞춰 둔 값이에요.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "card2-2026-08-eunma-c1",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "숫자가 생활에서 어떻게 나타나는지는 사시는 분만 압니다. 그 대목이 비어 있어요.",
+            "stance": "현장 검증 요청",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-card2-2026-08-godeok-gracium-v1",
+      "payload": {
+        "complex_external_id": "cx-godeok-gracium",
+        "topic": {
+          "external_id": "wb-topic-2026-08-card",
+          "title": "우리 단지는 얼마인가",
+          "summary": "같은 잣대로 잰 값 하나를 짧게 놓는다. 판단은 사는 사람이 한다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "card2-2026-08-godeok-gracium",
+          "complex_external_id": "cx-godeok-gracium",
+          "persona_external_id": "wb-persona-num-compare",
+          "category": "생활",
+          "title": "경비 1명이 145세대. 야간에 마주치시나요?",
+          "summary": "경비 34명이 4,932세대를 맡습니다. 1명당 145.1세대.",
+          "body": "경비 34명이 4,932세대를 맡습니다. 1명당 145.1세대.\n\n같은 방식으로 잰 10곳은 47.1세대에서 145.7세대 사이입니다. 여기는 위쪽에 있어요.\n\n숫자가 크다고 근무가 부실하다는 뜻은 아닙니다. 순찰 동선과 근무 편성에 따라 체감이 갈리니까요. 야간에 사람을 마주치시나요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 16. 조회 · K-apt 공개정보 기준 · 같은 항목이 공개된 10개 단지와 비교",
+          "sources": [
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-21T11:30:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "card2-2026-08-godeok-gracium-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "같은 항목을 같은 기준으로 재야 비교가 됩니다. 이 표는 그것만 맞춰 둔 값이에요.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "card2-2026-08-godeok-gracium-c1",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "숫자가 생활에서 어떻게 나타나는지는 사시는 분만 압니다. 그 대목이 비어 있어요.",
+            "stance": "현장 검증 요청",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-card2-2026-08-helio-city-v1",
+      "payload": {
+        "complex_external_id": "cx-helio-city",
+        "topic": {
+          "external_id": "wb-topic-2026-08-card",
+          "title": "우리 단지는 얼마인가",
+          "summary": "같은 잣대로 잰 값 하나를 짧게 놓는다. 판단은 사는 사람이 한다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "card2-2026-08-helio-city",
+          "complex_external_id": "cx-helio-city",
+          "persona_external_id": "wb-persona-num-compare",
+          "category": "생활",
+          "title": "㎡당 1,089원. 84㎡면 한 달 9만원꼴",
+          "summary": "2026년 5월 공용관리비를 관리비 부과면적으로 나누면 ㎡당 1,089원입니다. 부과면적 84㎡라면 한 달 91,000원꼴이고요.",
+          "body": "2026년 5월 공용관리비를 관리비 부과면적으로 나누면 ㎡당 1,089원입니다. 부과면적 84㎡라면 한 달 91,000원꼴이고요.\n\nK-apt에 같은 항목이 공개된 서울 11개 단지는 ㎡당 888원에서 1,798원 사이에 있습니다.\n\n개별사용료와 장기수선충당금은 빠진 값입니다. 고지서 총액과는 다릅니다. 이번 달 고지서의 공용관리비 항목, 얼마 찍혀 있나요?",
+          "verification": "verified",
+          "source_note": "2026년 5월분 · K-apt 공용관리비를 관리비 부과면적으로 나눈 값 · 같은 방식으로 잰 11개 단지와 비교",
+          "sources": [
+            {
+              "label": "공동주택 관리비 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058566/openapi.do",
+              "publisher": "국토교통부"
+            },
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-21T12:40:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "card2-2026-08-helio-city-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "같은 항목을 같은 기준으로 재야 비교가 됩니다. 이 표는 그것만 맞춰 둔 값이에요.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "card2-2026-08-helio-city-c1",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "숫자가 생활에서 어떻게 나타나는지는 사시는 분만 압니다. 그 대목이 비어 있어요.",
+            "stance": "현장 검증 요청",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-card2-2026-08-jamsil-els-v1",
+      "payload": {
+        "complex_external_id": "cx-jamsil-els",
+        "topic": {
+          "external_id": "wb-topic-2026-08-card",
+          "title": "우리 단지는 얼마인가",
+          "summary": "같은 잣대로 잰 값 하나를 짧게 놓는다. 판단은 사는 사람이 한다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "card2-2026-08-jamsil-els",
+          "complex_external_id": "cx-jamsil-els",
+          "persona_external_id": "wb-persona-num-compare",
+          "category": "생활",
+          "title": "지상 주차 10대. 나머지 7,445대는 지하",
+          "summary": "지상 주차 10대. 지하 7,445대.",
+          "body": "지상 주차 10대. 지하 7,445대.\n\n5,678세대 단지에서 지상에 남은 자리가 10대라는 뜻입니다. K-apt에 같은 항목이 공개된 서울 11개 단지 가운데 지상 자리가 아예 없는 곳이 9곳, 반대로 전량 지상인 곳도 한 곳 있습니다.\n\n지상이 비면 걷기는 편하고 짐 옮기기는 번거로워집니다. 이사나 장 볼 때는 어디에 대시나요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 16. 조회 · K-apt 공개정보 기준 · 같은 항목이 공개된 11개 단지와 비교",
+          "sources": [
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-21T13:50:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "card2-2026-08-jamsil-els-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "같은 항목을 같은 기준으로 재야 비교가 됩니다. 이 표는 그것만 맞춰 둔 값이에요.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "card2-2026-08-jamsil-els-c1",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "숫자가 생활에서 어떻게 나타나는지는 사시는 분만 압니다. 그 대목이 비어 있어요.",
+            "stance": "현장 검증 요청",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-card2-2026-08-mapo-raemian-prugio-v1",
+      "payload": {
+        "complex_external_id": "cx-mapo-raemian-prugio",
+        "topic": {
+          "external_id": "wb-topic-2026-08-card",
+          "title": "우리 단지는 얼마인가",
+          "summary": "같은 잣대로 잰 값 하나를 짧게 놓는다. 판단은 사는 사람이 한다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "card2-2026-08-mapo-raemian-prugio",
+          "complex_external_id": "cx-mapo-raemian-prugio",
+          "persona_external_id": "wb-persona-num-compare",
+          "category": "생활",
+          "title": "11곳 중 열 곳이 지역난방. 여기만 개별난방",
+          "summary": "K-apt에 같은 항목이 공개된 서울 11개 단지 가운데 10곳이 지역난방입니다. 여기만 개별난방이고요.",
+          "body": "K-apt에 같은 항목이 공개된 서울 11개 단지 가운데 10곳이 지역난방입니다. 여기만 개별난방이고요.\n\n지역난방은 열병합발전소에서 만든 열을 받아 쓰고, 개별난방은 집집마다 보일러를 돌립니다. 요금 체계도, 고장 났을 때 부르는 곳도 다릅니다.\n\n보일러 교체 주기가 돌아오면 그 비용은 세대 몫이 됩니다. 지금 쓰시는 보일러는 몇 년 되셨나요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 16. 조회 · K-apt 공개정보 기준 · 같은 항목이 공개된 11개 단지와 비교",
+          "sources": [
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-21T14:40:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "card2-2026-08-mapo-raemian-prugio-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "같은 항목을 같은 기준으로 재야 비교가 됩니다. 이 표는 그것만 맞춰 둔 값이에요.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "card2-2026-08-mapo-raemian-prugio-c1",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "숫자가 생활에서 어떻게 나타나는지는 사시는 분만 압니다. 그 대목이 비어 있어요.",
+            "stance": "현장 검증 요청",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-card2-2026-08-olympic-park-foreon-v1",
+      "payload": {
+        "complex_external_id": "cx-olympic-park-foreon",
+        "topic": {
+          "external_id": "wb-topic-2026-08-card",
+          "title": "우리 단지는 얼마인가",
+          "summary": "같은 잣대로 잰 값 하나를 짧게 놓는다. 판단은 사는 사람이 한다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "card2-2026-08-olympic-park-foreon",
+          "complex_external_id": "cx-olympic-park-foreon",
+          "persona_external_id": "wb-persona-num-compare",
+          "category": "생활",
+          "title": "미화 1명이 91세대. 청소 주기 어떠신가요?",
+          "summary": "미화 132명. 12,032세대. 1명이 91.2세대를 맡는 계산입니다.",
+          "body": "미화 132명. 12,032세대. 1명이 91.2세대를 맡는 계산입니다.\n\n11곳은 52.0세대에서 96.2세대 사이입니다.\n\n같은 인원이라도 동이 흩어져 있으면 이동에만 시간이 갑니다. 여기는 85개동이고요. 계단이나 복도 청소 주기가 어떻게 느껴지시나요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 16. 조회 · K-apt 공개정보 기준 · 같은 항목이 공개된 11개 단지와 비교",
+          "sources": [
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-21T15:30:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "card2-2026-08-olympic-park-foreon-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "같은 항목을 같은 기준으로 재야 비교가 됩니다. 이 표는 그것만 맞춰 둔 값이에요.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "card2-2026-08-olympic-park-foreon-c1",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "숫자가 생활에서 어떻게 나타나는지는 사시는 분만 압니다. 그 대목이 비어 있어요.",
+            "stance": "현장 검증 요청",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-card2-2026-08-one-bailey-v1",
+      "payload": {
+        "complex_external_id": "cx-one-bailey",
+        "topic": {
+          "external_id": "wb-topic-2026-08-card",
+          "title": "우리 단지는 얼마인가",
+          "summary": "같은 잣대로 잰 값 하나를 짧게 놓는다. 판단은 사는 사람이 한다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "card2-2026-08-one-bailey",
+          "complex_external_id": "cx-one-bailey",
+          "persona_external_id": "wb-persona-num-compare",
+          "category": "생활",
+          "title": "2,990세대. 11곳 중 작은 쪽에서 두 번째",
+          "summary": "2,990세대. K-apt에 같은 항목이 공개된 서울 11개 단지를 세대수로 줄 세우면 작은 쪽에서 2번째입니다.",
+          "body": "2,990세대. K-apt에 같은 항목이 공개된 서울 11개 단지를 세대수로 줄 세우면 작은 쪽에서 2번째입니다.\n\n큰 쪽 끝이 12,032세대, 작은 쪽 끝이 1,612세대예요.\n\n세대가 적으면 공용 비용을 나눠 낼 머릿수도 적습니다. 시설 하나 고칠 때 세대당 부담이 달라지죠. 관리비 부과 안건이 올라오면 챙겨 보시는 편인가요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 16. 조회 · K-apt 공개정보 기준 · 같은 항목이 공개된 11개 단지와 비교",
+          "sources": [
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-21T16:20:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "card2-2026-08-one-bailey-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "같은 항목을 같은 기준으로 재야 비교가 됩니다. 이 표는 그것만 맞춰 둔 값이에요.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "card2-2026-08-one-bailey-c1",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "숫자가 생활에서 어떻게 나타나는지는 사시는 분만 압니다. 그 대목이 비어 있어요.",
+            "stance": "현장 검증 요청",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-card2-2026-08-parkrio-v1",
+      "payload": {
+        "complex_external_id": "cx-parkrio",
+        "topic": {
+          "external_id": "wb-topic-2026-08-card",
+          "title": "우리 단지는 얼마인가",
+          "summary": "같은 잣대로 잰 값 하나를 짧게 놓는다. 판단은 사는 사람이 한다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "card2-2026-08-parkrio",
+          "complex_external_id": "cx-parkrio",
+          "persona_external_id": "wb-persona-num-compare",
+          "category": "생활",
+          "title": "한 동에 104세대. 66개동이 그렇습니다",
+          "summary": "66개동, 6,864세대. 한 동에 평균 104.0세대입니다.",
+          "body": "66개동, 6,864세대. 한 동에 평균 104.0세대입니다.\n\n11곳은 76.2세대에서 158.0세대 사이예요. 여기는 가운데쯤입니다.\n\n한 동에 많이 담으면 승강기 앞이 붐비고, 적게 담으면 동 사이를 더 걷습니다. 어느 쪽이 더 크게 느껴지는지는 사는 사람만 알죠. 옆 동 이웃과는 마주치는 편이신가요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 16. 조회 · K-apt 공개정보 기준 · 같은 항목이 공개된 11개 단지와 비교",
+          "sources": [
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-21T17:10:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "card2-2026-08-parkrio-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "같은 항목을 같은 기준으로 재야 비교가 됩니다. 이 표는 그것만 맞춰 둔 값이에요.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "card2-2026-08-parkrio-c1",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "숫자가 생활에서 어떻게 나타나는지는 사시는 분만 압니다. 그 대목이 비어 있어요.",
+            "stance": "현장 검증 요청",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-card2-2026-08-ricents-v1",
+      "payload": {
+        "complex_external_id": "cx-ricents",
+        "topic": {
+          "external_id": "wb-topic-2026-08-card",
+          "title": "우리 단지는 얼마인가",
+          "summary": "같은 잣대로 잰 값 하나를 짧게 놓는다. 판단은 사는 사람이 한다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "card2-2026-08-ricents",
+          "complex_external_id": "cx-ricents",
+          "persona_external_id": "wb-persona-num-compare",
+          "category": "생활",
+          "title": "승강기 1대에 47세대. 몇 대 보내고 타시나요?",
+          "summary": "승강기 119대가 5,563세대를 나눠 맡습니다. 1대당 46.7세대.",
+          "body": "승강기 119대가 5,563세대를 나눠 맡습니다. 1대당 46.7세대.\n\n11곳은 24.8세대에서 105.3세대 사이입니다.\n\n이건 단지 전체를 합쳐 나눈 값입니다. 동마다 다르고, 출근 시간에는 같은 대수라도 체감이 달라집니다. 아침에 몇 대를 보내고 타시나요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 16. 조회 · K-apt 공개정보 기준 · 같은 항목이 공개된 11개 단지와 비교",
+          "sources": [
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-21T18:00:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "card2-2026-08-ricents-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "같은 항목을 같은 기준으로 재야 비교가 됩니다. 이 표는 그것만 맞춰 둔 값이에요.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "card2-2026-08-ricents-c1",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "숫자가 생활에서 어떻게 나타나는지는 사시는 분만 압니다. 그 대목이 비어 있어요.",
+            "stance": "현장 검증 요청",
+            "position": 1
+          }
+        ]
+      }
+    }
+  ]
+}
