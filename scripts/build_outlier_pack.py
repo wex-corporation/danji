@@ -40,8 +40,11 @@
 
 import argparse
 import json
+import os
 import statistics as st
 import sys
+import urllib.parse
+import urllib.request
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -65,6 +68,10 @@ CX = {
     "eunma": "cx-eunma",
     "one-bailey": "cx-one-bailey",
 }
+
+# 서모스탯을 게시된 피드까지 합쳐 세기 위한 것. external_id 와 피드 slug 는 다를 수 있다.
+FEED_BASE = os.environ.get("BASE_URL", "https://danji.life")
+FEED_SLUG = {v: k for k, v in CX.items()}
 
 PERSONA = {
     "external_id": "wb-persona-outlier",
@@ -706,7 +713,47 @@ def build(rnd):
     }
 
 
-def validate(pack):
+
+def published_today(feed_slug, day):
+    """그날 이미 게시된 편수를 서버에서 센다.
+
+    팩 안에서만 세면 팩 사이를 넘는 초과를 못 잡는다. 2026-08-18 에 원베일리가
+    특이값 1편 + 주변 2편으로 3편 나간 적이 있다 — 각 생성기가 자기 팩만 봤기 때문이다.
+    """
+    try:
+        req = urllib.request.Request(
+            f"{FEED_BASE}/api/v1/posts?complex={urllib.parse.quote(feed_slug)}&limit=100",
+            headers={"User-Agent": "danji-content-agent/1.0"})
+        with urllib.request.urlopen(req, timeout=25) as r:
+            items = json.load(r)["items"]
+    except Exception as exc:  # noqa: BLE001
+        print(f"  [주의] {feed_slug} 피드 조회 실패로 서모스탯을 확인하지 못했습니다: {exc}",
+              file=sys.stderr)
+        return None
+    return sum(1 for i in items if (i.get("published_at") or "").startswith(day))
+
+
+def cap_errors(posts, feed_of, ignore_cap=False):
+    """서모스탯(명세 6.3)을 게시된 피드까지 합쳐 센다.
+
+    ignore_cap 이면 반려하지 않고 경고만 남긴다. 출고 검사는 이 플래그와 무관하게
+    그대로 걸린다 — 진짜 상한은 서모스탯이 아니라 출고 검사다.
+    """
+    errs = []
+    per = Counter((p["complex_external_id"], p["published_at"][:10]) for p in posts)
+    for (cx, day), n in sorted(per.items()):
+        live = published_today(feed_of.get(cx, cx.removeprefix("cx-")), day)
+        # 재전송이면 이미 있는 글을 다시 세게 되므로, 팩 안 편수만으로도 초과면 그걸로 판정한다
+        total = n if live is None else max(n, live)
+        if total > 2:
+            msg = f"{cx} {day}: 팩 {n}편 + 게시분 포함 {total}편 — 콜드스타트 한도 2편 초과"
+            if ignore_cap:
+                print(f"  [한도 초과] {msg} (--ignore-cap 으로 진행)", file=sys.stderr)
+            else:
+                errs.append(msg)
+    return errs
+
+def validate(pack, ignore_cap=False):
     errs = []
     posts = [b["payload"]["post"] for b in pack["bundles"]]
     comments = [c for b in pack["bundles"] for c in b["payload"]["comments"]]
@@ -750,10 +797,8 @@ def validate(pack):
 
     # 서모스탯은 **단지당** 한도다. 전체 편수로 세면 6개 단지에 1편씩 올려도
     # 초과로 잡힌다. 명세 6.3의 단위는 단지다.
-    per = Counter((p["complex_external_id"], p["published_at"][:10]) for p in posts)
-    over = {f"{cx} {d}": n for (cx, d), n in per.items() if n > 2}
-    if over:
-        errs.append(f"서모스탯 콜드스타트(단지당 일 2편) 초과: {over}")
+    # 그리고 팩 안에서만 세면 안 된다 — 같은 날 다른 팩이 이미 올린 편수를 합산한다.
+    errs += cap_errors(posts, FEED_SLUG, ignore_cap)
 
     # 조사 정합성은 정규식으로 훑지 않는다. 동사 어미(없는·받는)에 오탐이 난다.
     # 헬퍼 자체를 단위 검증한다.
@@ -794,10 +839,12 @@ def validate(pack):
 def main():
     ap = argparse.ArgumentParser(description="특이값 기반 콘텐츠 생성기")
     ap.add_argument("--round", type=int, default=2, choices=sorted(ROUNDS))
+    ap.add_argument("--ignore-cap", action="store_true",
+                    help="서모스탯 한도를 넘겨도 반려하지 않는다. 출고 검사는 그대로 건다")
     args = ap.parse_args()
 
     pack = build(args.round)
-    errs = validate(pack)
+    errs = validate(pack, args.ignore_cap)
     if errs:
         print("자체 검증 실패:", file=sys.stderr)
         for e in errs:
