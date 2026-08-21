@@ -206,9 +206,9 @@ def f_fountain(name, d, i):
 def f_selfmanage(name, d, i):
     return f"""관리주체가 위탁이냐 자치냐는 고지서에 안 나오는데, K-apt 공개정보에는 적혀 있습니다.
 
-{J(name, '은는')} **자치관리**입니다. 같은 잣대로 보는 파일럿 6개 단지 가운데 자치관리는 이 단지 하나이고 나머지 다섯 곳은 위탁관리입니다. 세대수는 {i['household_count']:,}세대, 관리 인력은 일반관리 {i['staff_manage']}명·경비 {i['staff_security']}명·청소 {i['staff_clean']}명으로 등록돼 있습니다.
+{J(name, '은는')} 자치관리입니다. 같은 잣대로 보는 파일럿 6개 단지 가운데 자치관리는 이 단지 하나이고 나머지 다섯 곳은 위탁관리입니다. 세대수는 {i['household_count']:,}세대, 관리 인력은 일반관리 {i['staff_manage']}명·경비 {i['staff_security']}명·청소 {i['staff_clean']}명으로 등록돼 있습니다.
 
-여기서부터는 해석입니다. 자치관리는 입주자대표회의가 관리사무소 직원을 직접 두는 방식이고, 위탁관리는 관리업체와 계약하는 방식입니다. 자치는 위탁수수료가 빠지는 대신 채용과 노무를 단지가 직접 집니다. 어느 쪽이 낫다기보다 **누가 결정하고 누가 책임지느냐**가 다른 것이죠. 그 차이는 관리비 총액보다 회의록에서 먼저 드러납니다.
+여기서부터는 해석입니다. 자치관리는 입주자대표회의가 관리사무소 직원을 직접 두는 방식이고, 위탁관리는 관리업체와 계약하는 방식입니다. 자치는 위탁수수료가 빠지는 대신 채용과 노무를 단지가 직접 집니다. 어느 쪽이 낫다기보다 누가 결정하고 누가 책임지느냐가 다른 것이죠. 그 차이는 관리비 총액보다 회의록에서 먼저 드러납니다.
 
 관리 방식이 자치라는 걸 알고 계셨나요? 알고 계셨다면 그게 생활에서 체감되는 지점이 있으신가요?"""
 
@@ -216,7 +216,7 @@ def f_selfmanage(name, d, i):
 def f_garbage(name, d, i):
     return f"""쓰레기 버리는 방식은 매일 쓰는 설비인데 단지 소개에는 거의 안 나옵니다. K-apt에는 한 줄로 적혀 있습니다.
 
-{J(name, '은는')} **거점장비수거방식**입니다. 파일럿 6개 단지 중 이 방식으로 등록된 곳은 여기뿐이고, 나머지는 음식물쓰레기 종량제로 적혀 있습니다. 준공은 {i['use_approval_date'][:4]}년, {i['household_count']:,}세대입니다.
+{J(name, '은는')} 거점장비수거방식입니다. 파일럿 6개 단지 중 이 방식으로 등록된 곳은 여기뿐이고, 나머지는 음식물쓰레기 종량제로 적혀 있습니다. 준공은 {i['use_approval_date'][:4]}년, {i['household_count']:,}세대입니다.
 
 여기서부터는 해석입니다. 거점 수거는 세대가 특정 지점까지 들고 나가는 대신 수거 동선이 짧아지는 구조입니다. 신축 단지가 설계 단계에서 넣는 방식이라 준공 연도와 같이 봐야 하죠. 다만 K-apt에 적힌 건 등록된 방식일 뿐입니다. 거점이 몇 곳인지, 동에서 얼마나 걸어야 하는지, 여름에 냄새가 어떤지는 공개돼 있지 않고요.
 
@@ -226,7 +226,7 @@ def f_garbage(name, d, i):
 def f_corridor(name, d, i):
     return f"""복도식이냐 계단식이냐는 도면 이야기 같지만 실제로는 매일의 동선과 소음에 붙는 항목입니다.
 
-{J(name, '은는')} K-apt에 **복도식**으로 등록돼 있습니다. 파일럿 6개 단지 중 복도식은 이 단지뿐이고 계단식이 둘, 혼합식이 셋입니다. {i['dong_count']}개동 {i['household_count']:,}세대, 최고 {i['top_floor']}층, 준공 {i['use_approval_date'][:4]}년입니다.
+{J(name, '은는')} K-apt에 복도식으로 등록돼 있습니다. 파일럿 6개 단지 중 복도식은 이 단지뿐이고 계단식이 둘, 혼합식이 셋입니다. {i['dong_count']}개동 {i['household_count']:,}세대, 최고 {i['top_floor']}층, 준공 {i['use_approval_date'][:4]}년입니다.
 
 여기서부터는 해석입니다. 복도식은 한 층의 여러 세대가 복도를 함께 쓰는 구조. 오가는 사람이 많아지는 대신 양쪽으로 창을 낼 수 있어 통풍이 달라집니다. 어느 쪽이 크게 느껴지는지는 층과 위치에 따라 갈리고, 같은 단지 안에서도 다르겠죠. 공개 자료는 복도식이라는 사실까지만 말해 줍니다.
 
@@ -240,7 +240,7 @@ def f_welfare(name, d, i):
 
 K-apt 공개정보 기준 {len(items)}개 항목입니다 — {listed}. {i['household_count']:,}세대가 이 목록을 함께 씁니다.
 
-여기서부터는 해석입니다. 목록은 **등록된 항목**이지 운영되는 상태가 아닙니다. 문고에 책이 몇 권인지, 커뮤니티공간을 예약 없이 쓸 수 있는지, 휴게시설이 어느 동 가까이 있는지. 이 표에는 없죠. 항목 수가 많다는 건 지어 놓은 게 많다는 뜻이지, 쓰이고 있다는 뜻은 아닙니다.
+여기서부터는 해석입니다. 목록은 등록된 항목이지 운영되는 상태가 아닙니다. 문고에 책이 몇 권인지, 커뮤니티공간을 예약 없이 쓸 수 있는지, 휴게시설이 어느 동 가까이 있는지. 이 표에는 없죠. 항목 수가 많다는 건 지어 놓은 게 많다는 뜻이지, 쓰이고 있다는 뜻은 아닙니다.
 
 이 중에서 실제로 자주 쓰시는 건 무엇인가요? 그리고 목록에는 있는데 있는 줄 몰랐던 항목이 있으신가요?"""
 
@@ -300,7 +300,7 @@ def build():
             if item not in srcs:
                 srcs.append(item)
         bundles.append({
-            "idempotency_key": f"wb-bundle-{ext}-v2",
+            "idempotency_key": f"wb-bundle-{ext}-v3",
             "payload": {
                 "complex_external_id": CX[slug], "topic": TOPIC_NEARBY,
                 "post": {
@@ -327,7 +327,7 @@ def build():
         body = frame(name, None, i)
         ext = f"onlyhere-2026-08-{slug}"
         bundles.append({
-            "idempotency_key": f"wb-bundle-{ext}-v2",
+            "idempotency_key": f"wb-bundle-{ext}-v3",
             "payload": {
                 "complex_external_id": CX[slug], "topic": TOPIC_KAPT,
                 "post": {
@@ -381,6 +381,9 @@ def validate(pack):
         for w in BAN_PRICE + BAN_JUDGE + BAN_VAGUE + BAN_COMPARE + BAD_RO:
             if w in t:
                 errs.append(f"금지 표현 '{w}': {p['external_id']}")
+        # 서버가 본문 마크다운을 렌더링하지 않는다. ** 는 화면과 공유 카드에 그대로 보인다.
+        if "**" in t:
+            errs.append(f"마크다운 강조(**)는 렌더링되지 않는다: {p['external_id']}")
         if not p["body"].rstrip().endswith("?"):
             errs.append(f"질문으로 끝나지 않음: {p['external_id']}")
         if p["verification"] == "verified" and not p["sources"]:
