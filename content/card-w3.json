@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "name": "짧은 카드 팩 (w3)",
+    "round": 3,
+    "posts": 4,
+    "built_at": "2026-08-21",
+    "assigned": {
+      "acro-river-park": "60㎡이하 계약 비중",
+      "godeok-gracium": "갱신요구권 사용률",
+      "jamsil-els": "전월세 회전율",
+      "mapo-raemian-prugio": "저층 계약 비중"
+    },
+    "skipped": [],
+    "over_cap": [],
+    "purpose": "공유 카드에 캡처되는 짧은 형식. 제목이 곧 캡처물이다",
+    "note": "축을 바꾼다 — 전월세 실거래 신고서의 비가격 지표. 2라운드로 다시 연 5곳 중 표본이 충분한 4곳에 한 장씩"
+  },
+  "personas": [
+    {
+      "external_id": "wb-persona-num-compare",
+      "handle": "숫자비교표",
+      "avatar_label": "표",
+      "tagline": "같은 잣대로 재지 않으면 비교가 아닙니다",
+      "stance": "기준 통일",
+      "expertise": [
+        "공개 자료",
+        "단지 비교"
+      ],
+      "avatar_color": "#7c3aed"
+    }
+  ],
+  "bundles": [
+    {
+      "idempotency_key": "wb-bundle-card3-2026-08-acro-river-park-v1",
+      "payload": {
+        "complex_external_id": "cx-acro-river-park",
+        "topic": {
+          "external_id": "wb-topic-2026-08-card-rent",
+          "title": "계약서에 남은 숫자",
+          "summary": "전월세 신고서에서 가격을 뺀 값만 본다. 계약이 어떻게 맺어졌는지가 남는다",
+          "category": "전월세",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "card3-2026-08-acro-river-park",
+          "complex_external_id": "cx-acro-river-park",
+          "persona_external_id": "wb-persona-num-compare",
+          "category": "전월세",
+          "title": "60㎡ 이하가 45.3%. 사시는 평형은 어느 쪽인가요?",
+          "summary": "전용 60㎡ 이하 계약이 45.3%입니다. 신고된 53건 가운데 절반 가까이가 작은 평형이에요.",
+          "body": "전용 60㎡ 이하 계약이 45.3%입니다. 신고된 53건 가운데 절반 가까이가 작은 평형이에요.\n\n10곳은 0.0%에서 54.8%까지 벌어집니다. 단지마다 평형 구성이 다르니까요.\n\nK-apt 면적 구간표는 실거래와 어긋나는 곳이 있어 쓰지 않았습니다. 신고서에 적힌 전용면적을 그대로 셌어요. 사시는 평형은 어느 쪽인가요?",
+          "verification": "verified",
+          "source_note": "2026년 5~7월 계약일 기준 · 신고 53건 · 같은 방식으로 잰 10개 단지와 비교 · 보증금과 월세는 쓰지 않았습니다",
+          "sources": [
+            {
+              "label": "국토교통부 아파트 전월세 실거래가 자료",
+              "url": "https://www.data.go.kr/data/15058017/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-21T08:10:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "card3-2026-08-acro-river-park-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "같은 항목을 같은 기준으로 재야 비교가 됩니다. 이 표는 그것만 맞춰 둔 값이에요.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "card3-2026-08-acro-river-park-c1",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "숫자가 생활에서 어떻게 나타나는지는 사시는 분만 압니다. 그 대목이 비어 있어요.",
+            "stance": "현장 검증 요청",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-card3-2026-08-godeok-gracium-v1",
+      "payload": {
+        "complex_external_id": "cx-godeok-gracium",
+        "topic": {
+          "external_id": "wb-topic-2026-08-card-rent",
+          "title": "계약서에 남은 숫자",
+          "summary": "전월세 신고서에서 가격을 뺀 값만 본다. 계약이 어떻게 맺어졌는지가 남는다",
+          "category": "전월세",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "card3-2026-08-godeok-gracium",
+          "complex_external_id": "cx-godeok-gracium",
+          "persona_external_id": "wb-persona-num-compare",
+          "category": "전월세",
+          "title": "계약 155건 중 38.1%가 갱신요구권",
+          "summary": "신고된 전월세 계약 155건 가운데 38.1%가 갱신요구권을 쓴 계약입니다.",
+          "body": "신고된 전월세 계약 155건 가운데 38.1%가 갱신요구권을 쓴 계약입니다.\n\n같은 항목이 채워진 10곳은 14.3%에서 38.1%까지 벌어져요. 여기가 위쪽 끝이고, 그다음이 30.7%입니다.\n\n갱신요구권은 세입자가 2년을 한 번 더 요구할 수 있는 권리입니다. 신고서에 '사용'으로 적힌 건만 셌고, 합의로 조용히 연장한 계약은 여기 안 잡힙니다. 재계약 이야기는 어떻게 오갔나요?",
+          "verification": "verified",
+          "source_note": "2026년 5~7월 계약일 기준 · 신고 155건 · 같은 방식으로 잰 10개 단지와 비교 · 보증금과 월세는 쓰지 않았습니다",
+          "sources": [
+            {
+              "label": "국토교통부 아파트 전월세 실거래가 자료",
+              "url": "https://www.data.go.kr/data/15058017/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-21T09:20:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "card3-2026-08-godeok-gracium-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "같은 항목을 같은 기준으로 재야 비교가 됩니다. 이 표는 그것만 맞춰 둔 값이에요.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "card3-2026-08-godeok-gracium-c1",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "숫자가 생활에서 어떻게 나타나는지는 사시는 분만 압니다. 그 대목이 비어 있어요.",
+            "stance": "현장 검증 요청",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-card3-2026-08-jamsil-els-v1",
+      "payload": {
+        "complex_external_id": "cx-jamsil-els",
+        "topic": {
+          "external_id": "wb-topic-2026-08-card-rent",
+          "title": "계약서에 남은 숫자",
+          "summary": "전월세 신고서에서 가격을 뺀 값만 본다. 계약이 어떻게 맺어졌는지가 남는다",
+          "category": "전월세",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "card3-2026-08-jamsil-els",
+          "complex_external_id": "cx-jamsil-els",
+          "persona_external_id": "wb-persona-num-compare",
+          "category": "전월세",
+          "title": "석 달에 236건. 백 집 중 넉 집이 계약서",
+          "summary": "석 달 동안 신고된 전월세 계약이 236건. 5,678세대로 나누면 4.2%입니다.",
+          "body": "석 달 동안 신고된 전월세 계약이 236건. 5,678세대로 나누면 4.2%입니다.\n\n같은 기간을 같은 방식으로 잰 10곳은 0.6%에서 4.2% 사이예요. 여기가 그중 가장 높지만 4.0%가 바로 뒤에 붙어 있습니다.\n\n계약일 기준이고 신고 기한이 30일이라 최근 달은 아직 덜 찼습니다. 그래도 백 집 가운데 넉 집이 석 달 안에 계약서를 새로 썼다는 얘기죠. 주변에서 이사 소식 자주 들으시나요?",
+          "verification": "verified",
+          "source_note": "2026년 5~7월 계약일 기준 · 신고 236건 · 같은 방식으로 잰 10개 단지와 비교 · 보증금과 월세는 쓰지 않았습니다",
+          "sources": [
+            {
+              "label": "국토교통부 아파트 전월세 실거래가 자료",
+              "url": "https://www.data.go.kr/data/15058017/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-21T10:30:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "card3-2026-08-jamsil-els-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "같은 항목을 같은 기준으로 재야 비교가 됩니다. 이 표는 그것만 맞춰 둔 값이에요.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "card3-2026-08-jamsil-els-c1",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "숫자가 생활에서 어떻게 나타나는지는 사시는 분만 압니다. 그 대목이 비어 있어요.",
+            "stance": "현장 검증 요청",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-card3-2026-08-mapo-raemian-prugio-v1",
+      "payload": {
+        "complex_external_id": "cx-mapo-raemian-prugio",
+        "topic": {
+          "external_id": "wb-topic-2026-08-card-rent",
+          "title": "계약서에 남은 숫자",
+          "summary": "전월세 신고서에서 가격을 뺀 값만 본다. 계약이 어떻게 맺어졌는지가 남는다",
+          "category": "전월세",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "card3-2026-08-mapo-raemian-prugio",
+          "complex_external_id": "cx-mapo-raemian-prugio",
+          "persona_external_id": "wb-persona-num-compare",
+          "category": "전월세",
+          "title": "1~3층 계약 16.4%. 짐작 가는 이유 있으신가요?",
+          "summary": "1층에서 3층 사이 계약이 16.4%. 신고된 116건 중 그렇습니다.",
+          "body": "1층에서 3층 사이 계약이 16.4%. 신고된 116건 중 그렇습니다.\n\n같은 항목을 잰 10곳 가운데 2번째예요. 위로는 25.3%, 아래로는 4.3%까지 있습니다.\n\n여기서부터는 해석입니다. 저층은 승강기를 덜 타도 되고, 대신 채광과 사생활이 갈립니다. 왜 이 단지에서 저층 계약이 많은지는 신고서에 적혀 있지 않고요. 짐작 가는 이유가 있으신가요?",
+          "verification": "verified",
+          "source_note": "2026년 5~7월 계약일 기준 · 신고 116건 · 같은 방식으로 잰 10개 단지와 비교 · 실거래에 마포래미안푸르지오1단지·마포래미안푸르지오2단지·마포래미안푸르지오3단지·마포래미안푸르지오4단지로 나뉘어 신고돼 합산했습니다 · 보증금과 월세는 쓰지 않았습니다",
+          "sources": [
+            {
+              "label": "국토교통부 아파트 전월세 실거래가 자료",
+              "url": "https://www.data.go.kr/data/15058017/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-21T11:30:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "card3-2026-08-mapo-raemian-prugio-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "같은 항목을 같은 기준으로 재야 비교가 됩니다. 이 표는 그것만 맞춰 둔 값이에요.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "card3-2026-08-mapo-raemian-prugio-c1",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "숫자가 생활에서 어떻게 나타나는지는 사시는 분만 압니다. 그 대목이 비어 있어요.",
+            "stance": "현장 검증 요청",
+            "position": 1
+          }
+        ]
+      }
+    }
+  ]
+}

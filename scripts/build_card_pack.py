@@ -38,6 +38,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 INFO_DIR = REPO / "data" / "complex-info"
 FEE_DIR = REPO / "data" / "mgmt-fees"
+RENT_DIR = REPO / "data" / "rents"
 BASE = os.environ.get("BASE_URL", "https://danji.life")
 
 # 단지 디렉터리 slug → (인제스트 external_id, 피드 slug)
@@ -70,10 +71,15 @@ SRC_INFO = {"label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI"
             "url": "https://www.data.go.kr/data/15058453/openapi.do", "publisher": "국토교통부"}
 SRC_FEE = {"label": "공동주택 관리비 서비스(K-apt) OpenAPI",
            "url": "https://www.data.go.kr/data/15058566/openapi.do", "publisher": "국토교통부"}
+SRC_RENT = {"label": "국토교통부 아파트 전월세 실거래가 자료",
+            "url": "https://www.data.go.kr/data/15058017/openapi.do", "publisher": "국토교통부"}
 
 TOPIC = {"external_id": "wb-topic-2026-08-card", "title": "우리 단지는 얼마인가",
          "summary": "같은 잣대로 잰 값 하나를 짧게 놓는다. 판단은 사는 사람이 한다",
          "category": "생활", "heat": 3}
+TOPIC_RENT = {"external_id": "wb-topic-2026-08-card-rent", "title": "계약서에 남은 숫자",
+              "summary": "전월세 신고서에서 가격을 뺀 값만 본다. 계약이 어떻게 맺어졌는지가 남는다",
+              "category": "전월세", "heat": 3}
 
 BAN_JUDGE = ["최악", "꼴찌", "우수", "열등", "압도", "뒤처", "부럽", "명문", "상위권",
              "가장 좋", "가장 나쁜", "최고의", "최하"]
@@ -114,6 +120,20 @@ def fee(slug, period="202605"):
     if not p.get("complete") or not p.get("per_m2_available"):
         raise KeyError(f"{slug} {period} 관리비가 불완전하다")
     return p
+
+
+def rents():
+    """표본이 충분한 단지만 돌려준다. 부족한 곳은 아예 비교군에 넣지 않는다.
+
+    디에이치 퍼스티어는 3개월 신고가 1건이다. 이름 매칭 문제가 아니라
+    실제로 그렇다(2026-08-21 강남구 응답 전량 확인). 비율을 낼 수 없으므로 뺀다.
+    """
+    out = {}
+    for fp in sorted(RENT_DIR.glob("*.json")):
+        d = json.loads(fp.read_text(encoding="utf-8"))
+        if d.get("complete") and d.get("metrics"):
+            out[d["slug"]] = d
+    return out
 
 
 def published_today(feed_slug, day):
@@ -312,6 +332,51 @@ def r_elev(name, i, peers):
 이건 단지 전체를 합쳐 나눈 값입니다. 동마다 다르고, 출근 시간에는 같은 대수라도 체감이 달라집니다. 아침에 몇 대를 보내고 타시나요?""")
 
 
+# ── 3라운드 뼈대 4종 ───────────────────────────────────────────
+# 축이 다르다. K-apt 설비값이 아니라 전월세 실거래 신고서에서 나온 비가격 지표다.
+# 보증금·월세는 캐시에만 남기고 글에는 쓰지 않는다.
+
+def t_rr(name, i, peers, d):
+    v = d["metrics"]["갱신요구권 사용률"]
+    order = sorted(peers.values(), reverse=True)
+    return (f"""신고된 전월세 계약 {d['sample_size']}건 가운데 {v}%가 갱신요구권을 쓴 계약입니다.
+
+같은 항목이 채워진 {len(peers)}곳은 {order[-1]}%에서 {order[0]}%까지 벌어져요. 여기가 위쪽 끝이고, 그다음이 {order[1]}%입니다.
+
+갱신요구권은 세입자가 2년을 한 번 더 요구할 수 있는 권리입니다. 신고서에 '사용'으로 적힌 건만 셌고, 합의로 조용히 연장한 계약은 여기 안 잡힙니다. 재계약 이야기는 어떻게 오갔나요?""")
+
+
+def t_turn(name, i, peers, d):
+    v = d["metrics"]["전월세 회전율"]
+    order = sorted(peers.values(), reverse=True)
+    return (f"""석 달 동안 신고된 전월세 계약이 {d['sample_size']}건. {d['household_count']:,}세대로 나누면 {v}%입니다.
+
+같은 기간을 같은 방식으로 잰 {len(peers)}곳은 {order[-1]}%에서 {order[0]}% 사이예요. 여기가 그중 가장 높지만 {order[1]}%가 바로 뒤에 붙어 있습니다.
+
+계약일 기준이고 신고 기한이 30일이라 최근 달은 아직 덜 찼습니다. 그래도 백 집 가운데 넉 집이 석 달 안에 계약서를 새로 썼다는 얘기죠. 주변에서 이사 소식 자주 들으시나요?""")
+
+
+def t_low(name, i, peers, d):
+    v = d["metrics"]["저층 계약 비중"]
+    order = sorted(peers.values(), reverse=True)
+    rank = order.index(v) + 1
+    return (f"""1층에서 3층 사이 계약이 {v}%. 신고된 {d['sample_size']}건 중 그렇습니다.
+
+같은 항목을 잰 {len(peers)}곳 가운데 {rank}번째예요. 위로는 {order[0]}%, 아래로는 {order[-1]}%까지 있습니다.
+
+여기서부터는 해석입니다. 저층은 승강기를 덜 타도 되고, 대신 채광과 사생활이 갈립니다. 왜 이 단지에서 저층 계약이 많은지는 신고서에 적혀 있지 않고요. 짐작 가는 이유가 있으신가요?""")
+
+
+def t_small(name, i, peers, d):
+    v = d["metrics"]["60㎡이하 계약 비중"]
+    lo, hi = min(peers.values()), max(peers.values())
+    return (f"""전용 60㎡ 이하 계약이 {v}%입니다. 신고된 {d['sample_size']}건 가운데 절반 가까이가 작은 평형이에요.
+
+{len(peers)}곳은 {lo}%에서 {hi}%까지 벌어집니다. 단지마다 평형 구성이 다르니까요.
+
+K-apt 면적 구간표는 실거래와 어긋나는 곳이 있어 쓰지 않았습니다. 신고서에 적힌 전용면적을 그대로 셌어요. 사시는 평형은 어느 쪽인가요?""")
+
+
 # (지표 키, 값 함수, 뼈대, 제목)
 METRICS_R1 = {
     "동수": (lambda i: i["dong_count"], c_dong,
@@ -353,6 +418,13 @@ METRICS_R2 = {
                      lambda i, v: f"승강기 1대에 {v:.0f}세대. 몇 대 보내고 타시나요?"),
 }
 
+METRICS_R3 = {
+    "갱신요구권 사용률": (t_rr, lambda d, v: f"계약 {d['sample_size']}건 중 {v}%가 갱신요구권"),
+    "전월세 회전율": (t_turn, lambda d, v: f"석 달에 {d['sample_size']}건. 백 집 중 넉 집이 계약서"),
+    "저층 계약 비중": (t_low, lambda d, v: f"1~3층 계약 {v}%. 짐작 가는 이유 있으신가요?"),
+    "60㎡이하 계약 비중": (t_small, lambda d, v: f"60㎡ 이하가 {v}%. 사시는 평형은 어느 쪽인가요?"),
+}
+
 # 이 배치의 배정. 단지마다 지표가 달라야 마스킹 후에도 서로 다른 글이 된다.
 ASSIGN_R1 = [
     ("olympic-park-foreon", "동수"),
@@ -377,15 +449,32 @@ ASSIGN_R2 = [
     ("ricents", "승강기당 세대"),
 ]
 
+ASSIGN_R3 = [
+    ("acro-river-park", "60㎡이하 계약 비중"),
+    ("godeok-gracium", "갱신요구권 사용률"),
+    ("jamsil-els", "전월세 회전율"),
+    ("mapo-raemian-prugio", "저층 계약 비중"),
+]
+
 # 단지가 이전 라운드(특이값·주변·카드)에서 이미 쓴 지표. 같은 지표가 두 번 가면
 # 마스킹 후 유사도가 올라간다. validate() 가 이 표로 막는다.
 USED = {
-    "olympic-park-foreon": {"EV 충전기 비율", "세대당 CCTV", "전월세 회전율", "동수"},
-    "helio-city": {"경비1인당 세대", "승강기당 세대", "전세 비중", "세대당 CCTV"},
-    "ricents": {"세대수", "동당 세대", "저층 계약 비중", "부과면적 비율"},
-    "parkrio": {"㎡당 공용관리비", "세대당 주차", "갱신요구권 사용률", "최고층", "자치관리"},
-    "eunma": {"최고층", "지상주차 비율", "60㎡이하 계약 비중", "준공연도", "복도식"},
-    "one-bailey": {"청소1인당 세대", "갱신계약 비율", "관리인력1인당 세대", "쓰레기수거"},
+    "olympic-park-foreon": {"EV 충전기 비율", "세대당 CCTV", "전월세 회전율", "동수",
+                            "청소1인당 세대"},
+    "helio-city": {"경비1인당 세대", "승강기당 세대", "전세 비중", "세대당 CCTV",
+                   "㎡당 공용관리비"},
+    "ricents": {"세대수", "동당 세대", "저층 계약 비중", "부과면적 비율", "승강기당 세대"},
+    "parkrio": {"㎡당 공용관리비", "세대당 주차", "갱신요구권 사용률", "최고층", "자치관리",
+                "동당 세대"},
+    "eunma": {"최고층", "지상주차 비율", "60㎡이하 계약 비중", "준공연도", "복도식",
+              "세대당 주차"},
+    "one-bailey": {"청소1인당 세대", "갱신계약 비율", "관리인력1인당 세대", "쓰레기수거",
+                   "세대수"},
+    "acro-river-park": {"세대당 CCTV"},
+    "dh-firstier": {"EV 충전기 비율"},
+    "godeok-gracium": {"경비1인당 세대"},
+    "jamsil-els": {"지상 주차 대수"},
+    "mapo-raemian-prugio": {"난방방식"},
 }
 
 TIMES = ["T08:10:00+09:00", "T09:20:00+09:00", "T10:30:00+09:00", "T11:30:00+09:00",
@@ -404,7 +493,39 @@ ROUNDS = {
     2: {"assign": ASSIGN_R2, "metrics": METRICS_R2, "out": "card-w2.json",
         "prefix": "card2-2026-08-", "idem": "v1", "now": "2026-08-21T19:30:00+09:00",
         "note": "K-apt 정보가 있는 11곳 전체. 비교군도 11곳"},
+    3: {"assign": ASSIGN_R3, "metrics": METRICS_R3, "out": "card-w3.json",
+        "prefix": "card3-2026-08-", "idem": "v1", "now": "2026-08-21T20:40:00+09:00",
+        "axis": "rent", "category": "전월세",
+        "note": "축을 바꾼다 — 전월세 실거래 신고서의 비가격 지표. 2라운드로 다시 연 5곳 중 "
+                "표본이 충분한 4곳에 한 장씩"},
 }
+
+
+def card(cfg, slug, ext_id, title, body, note, src, idx, day=None):
+    """번들 하나. 라운드마다 값 만드는 방식은 달라도 봉투는 같다."""
+    day = day or cfg["now"][:10]
+    ext = f"{cfg['prefix']}{slug}"
+    cat = cfg.get("category", "생활")
+    return {
+        "idempotency_key": f"wb-bundle-{ext}-{cfg['idem']}",
+        "payload": {
+            "complex_external_id": ext_id,
+            "topic": TOPIC_RENT if cat == "전월세" else TOPIC,
+            "post": {
+                "external_id": ext, "complex_external_id": ext_id,
+                "persona_external_id": PERSONA["external_id"], "category": cat,
+                "title": title, "summary": body.split("\n\n")[0][:220],
+                "body": body, "verification": "verified",
+                "source_note": note, "sources": src,
+                "published_at": day + TIMES[idx], "status": "published",
+            },
+            "comments": [
+                {"external_id": f"{ext}-c{n}", "persona_external_id": pid,
+                 "body": b, "stance": s2, "position": n}
+                for n, (pid, b, s2) in enumerate(COMMENTS)
+            ],
+        },
+    }
 
 
 def build(rn, ignore_cap):
@@ -412,6 +533,8 @@ def build(rn, ignore_cap):
     day = cfg["now"][:10]
     slugs = [s for s, _ in cfg["assign"]]
     rows = {s: info(s) for s in (CX if rn == 2 else slugs)}
+    if cfg.get("axis") == "rent":
+        rows = {s: info(s) for s in CX}
     fees = {}
     if rn == 2:
         for s in rows:
@@ -419,6 +542,13 @@ def build(rn, ignore_cap):
                 fees[s] = round(fee(s)["per_m2_won"])
             except (KeyError, OSError):
                 pass          # 불완전한 달은 뺀다. 0원이라는 가짜 수치를 만들지 않는다
+
+    rent = rents() if cfg.get("axis") == "rent" else {}
+    missing = [s2 for s2, _ in cfg["assign"] if cfg.get("axis") == "rent" and s2 not in rent]
+    if missing:
+        print(f"[중단] 전월세 표본이 부족한 단지가 배정돼 있습니다: {', '.join(missing)}",
+              file=sys.stderr)
+        raise SystemExit(1)
 
     bundles, skipped, over = [], [], []
     idx = 0
@@ -431,6 +561,24 @@ def build(rn, ignore_cap):
             else:
                 skipped.append((slug, live))
                 continue
+        if cfg.get("axis") == "rent":
+            # 축이 다르다. 값도 비교군도 전월세 캐시에서 온다.
+            frame, title_fn = cfg["metrics"][key]
+            d = rent[slug]
+            peers = {s2: r["metrics"][key] for s2, r in rent.items()}
+            v = peers[slug]
+            i = rows[slug]
+            body = frame(i["complex_name"], i, peers, d)
+            title = title_fn(d, v)
+            src = [SRC_RENT]
+            note = (f"{d['months'][0][:4]}년 {int(d['months'][0][4:])}~{int(d['months'][-1][4:])}월 "
+                    f"계약일 기준 · 신고 {d['sample_size']}건 · 같은 방식으로 잰 {len(peers)}개 단지와 비교 · "
+                    + (f"실거래에 {'·'.join(d['rtms_apt_names'])}로 나뉘어 신고돼 합산했습니다 · "
+                       if len(d["rtms_apt_names"]) > 1 else "")
+                    + "보증금과 월세는 쓰지 않았습니다")
+            bundles.append(card(cfg, slug, ext_id, title, body, note, src, idx))
+            idx += 1
+            continue
         getter, frame, title_fn = cfg["metrics"][key]
         if getter is None:                      # 관리비처럼 별도 캐시에서 오는 지표
             peers, v = dict(fees), fees[slug]
@@ -448,26 +596,7 @@ def build(rn, ignore_cap):
         note = ("2026년 5월분 · K-apt 공용관리비를 관리비 부과면적으로 나눈 값 · "
                 f"같은 방식으로 잰 {len(peers)}개 단지와 비교") if getter is None else (
             f"2026. 8. 16. 조회 · K-apt 공개정보 기준 · 같은 항목이 공개된 {len(peers)}개 단지와 비교")
-        ext = f"{cfg['prefix']}{slug}"
-        bundles.append({
-            "idempotency_key": f"wb-bundle-{ext}-{cfg['idem']}",
-            "payload": {
-                "complex_external_id": ext_id, "topic": TOPIC,
-                "post": {
-                    "external_id": ext, "complex_external_id": ext_id,
-                    "persona_external_id": PERSONA["external_id"], "category": "생활",
-                    "title": title_fn(i, v), "summary": body.split("\n\n")[0][:220],
-                    "body": body, "verification": "verified",
-                    "source_note": note, "sources": src,
-                    "published_at": day + TIMES[idx], "status": "published",
-                },
-                "comments": [
-                    {"external_id": f"{ext}-c{n}", "persona_external_id": pid,
-                     "body": b, "stance": s2, "position": n}
-                    for n, (pid, b, s2) in enumerate(COMMENTS)
-                ],
-            },
-        })
+        bundles.append(card(cfg, slug, ext_id, title_fn(i, v), body, note, src, idx, day))
         idx += 1
 
     for slug, live in skipped:

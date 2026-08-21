@@ -1,0 +1,95 @@
+{
+  "slug": "mapo-raemian-prugio",
+  "complex_name": "마포래미안푸르지오",
+  "rtms_apt_names": [
+    "마포래미안푸르지오1단지",
+    "마포래미안푸르지오2단지",
+    "마포래미안푸르지오3단지",
+    "마포래미안푸르지오4단지"
+  ],
+  "months": [
+    "202605",
+    "202606",
+    "202607"
+  ],
+  "sample_size": 116,
+  "household_count": 3885,
+  "household_count_source": "kaptdaCnt",
+  "complete": true,
+  "min_sample": 30,
+  "metrics": {
+    "전세 비중": 44.0,
+    "갱신계약 비율": 45.7,
+    "갱신요구권 사용률": 23.3,
+    "전월세 회전율": 3.0,
+    "60㎡이하 계약 비중": 48.3,
+    "저층 계약 비중": 16.4
+  },
+  "raw_stats": {
+    "note": "가격 항목은 대조용이다. 콘텐츠에는 파생 지표만 쓴다",
+    "jeonse_count": 51,
+    "jeonse_median_deposit_manwon": 100000,
+    "area_mix_m2": [
+      {
+        "area_m2": 84.5978,
+        "count": 23
+      },
+      {
+        "area_m2": 59.9656,
+        "count": 21
+      },
+      {
+        "area_m2": 59.9236,
+        "count": 18
+      },
+      {
+        "area_m2": 84.8919,
+        "count": 15
+      },
+      {
+        "area_m2": 114.7267,
+        "count": 8
+      },
+      {
+        "area_m2": 84.3884,
+        "count": 6
+      },
+      {
+        "area_m2": 59.9452,
+        "count": 6
+      },
+      {
+        "area_m2": 114.588,
+        "count": 6
+      },
+      {
+        "area_m2": 59.9796,
+        "count": 5
+      },
+      {
+        "area_m2": 36.9796,
+        "count": 5
+      },
+      {
+        "area_m2": 114.2802,
+        "count": 2
+      },
+      {
+        "area_m2": 41.9838,
+        "count": 1
+      }
+    ]
+  },
+  "contract_type_mix": {
+    "신규": 58,
+    "갱신": 53
+  },
+  "fetched_at": "2026-08-21T08:39:28+0000",
+  "note": "계약일 기준 집계. 계약일로부터 30일 이내 신고이므로 최근 달은 아직 덜 찼다. 지표는 전부 비가격이며 보증금·월세는 raw_stats 대조용이다",
+  "source": {
+    "label": "국토교통부 아파트 전월세 실거래가 자료",
+    "url": "https://www.data.go.kr/data/15058017/openapi.do",
+    "publisher": "국토교통부"
+  },
+  "failures": []
+}
