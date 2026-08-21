@@ -1,0 +1,185 @@
+{
+  "meta": {
+    "name": "분석 팩 (w2)",
+    "round": 2,
+    "posts": 3,
+    "built_at": "2026-08-21",
+    "complex": "one-bailey",
+    "purpose": "가격·정책을 다루되 기준을 붙인다. 수치는 전부 원자료에서 계산했다",
+    "note": "홍보 페르소나는 이 팩에 쓰지 않는다. 가격을 말하는 순간 시세 부양으로 읽힌다",
+    "source_of_topics": "운영자가 올린 원베일리 심층 리포트가 가리킨 항목을 원자료로 다시 조회해서 썼다. 리포트 본문과 후기 41건은 인용하지 않는다 — 명세 9.6.3",
+    "report_crosscheck": {
+      "일치": [
+        "2026-06-12 168.93㎡ 13층 130억",
+        "2026-05-23 133.95㎡ 29층 105.5억",
+        "2026-02-06 59.96㎡ 49.5억"
+      ],
+      "불일치": [
+        "51.2억(74.92㎡)의 계약일은 2026-05-29 가 아니라 2026-05-01"
+      ],
+      "누락": [
+        "2026-06-15 168.87㎡ 9층 122억"
+      ],
+      "검증 불가": [
+        "공시가 45억 6,900만원과 보유세 2,855만원 — 브이월드가 해외 IP 차단이라 못 봤다",
+        "하자 약 600가구 — 소송 계류 사안이고 원자료가 없다",
+        "시가총액 158조 — 2,990세대 기준으로 자릿수가 맞지 않는다"
+      ]
+    }
+  },
+  "personas": [],
+  "bundles": [
+    {
+      "idempotency_key": "wb-bundle-deals-2026-08-one-bailey-year-v1",
+      "payload": {
+        "complex_external_id": "cx-one-bailey",
+        "topic": {
+          "external_id": "wb-topic-2026-08-basis",
+          "title": "숫자에는 기준이 붙어야 합니다",
+          "summary": "같은 거래도 무엇으로 나누느냐에 따라 달라진다. 원자료로 확인한다",
+          "category": "거래",
+          "heat": 5
+        },
+        "post": {
+          "external_id": "deals-2026-08-one-bailey-year",
+          "complex_external_id": "cx-one-bailey",
+          "persona_external_id": "wb-persona-trade-brief",
+          "category": "거래",
+          "title": "올해 신고 32건 중 17건이 5월에 몰렸습니다",
+          "summary": "월별로는 1월 1건, 2월 2건, 3월 0건, 4월 6건, 5월 17건, 6월 4건, 7월 2건입니다. 절반이 넘는 17건이 5월 한 달에 몰려 있습니다.",
+          "body": "2026년 들어 국토교통부에 신고된 래미안 원베일리 매매 계약을 계약일 순으로 전부 세어 봤습니다. 32건입니다. 해제 신고는 한 건도 없습니다.\n\n월별로는 1월 1건, 2월 2건, 3월 0건, 4월 6건, 5월 17건, 6월 4건, 7월 2건입니다. 절반이 넘는 17건이 5월 한 달에 몰려 있습니다.\n\n금액이 가장 낮은 신고는 6월 18일 계약, 전용 59.96㎡ 32층 46억원입니다. 가장 높은 신고는 6월 12일 계약, 전용 168.93㎡ 13층 130억원이고요. 사흘 뒤인 6월 15일에도 전용 168.87㎡ 9층이 122억원에 신고됐습니다.\n\n면적별로는 전용 85㎡대가 18건으로 가장 많습니다. 그다음이 60㎡대 4건, 102㎡대 3건이고 117·134·169㎡대가 각각 2건씩, 75㎡대가 1건입니다.\n\n여기서부터는 해석입니다. 5월에 몰린 이유는 이 자료만으로 알 수 없습니다. 실거래는 계약일 기준으로 집계하고 신고 기한이 30일이라 최근 달은 아직 덜 찬 상태이기도 합니다. 7월 2건이 최종 수치가 아니라는 뜻이죠.\n\n정리된 표를 보실 때는 빠진 건이 없는지도 같이 보시면 좋겠습니다. 이 32건 가운데 직접 지켜보신 거래가 있으신가요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 21. 조회 · 국토교통부 실거래 2026년 1~7월 계약분 32건을 계약일 기준으로 직접 집계",
+          "sources": [
+            {
+              "label": "국토교통부 아파트 매매 실거래가 상세 자료",
+              "url": "https://www.data.go.kr/data/15126469/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-21T23:05:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "deals-2026-08-one-bailey-year-c0",
+            "persona_external_id": "wb-persona-policy-lab",
+            "body": "한 달에 몰린 신고는 계약일 분포일 뿐입니다. 그달에 무슨 일이 있었는지는 따로 봐야 합니다.",
+            "stance": "정책 분석",
+            "position": 0
+          },
+          {
+            "external_id": "deals-2026-08-one-bailey-year-c1",
+            "persona_external_id": "wb-persona-real-talk",
+            "body": "건수가 적은 달은 한두 건이 전체 인상을 정합니다. 표본 크기를 먼저 보는 습관이 필요해요.",
+            "stance": "생활 현실",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-deals-2026-08-one-bailey-84-v1",
+      "payload": {
+        "complex_external_id": "cx-one-bailey",
+        "topic": {
+          "external_id": "wb-topic-2026-08-basis",
+          "title": "숫자에는 기준이 붙어야 합니다",
+          "summary": "같은 거래도 무엇으로 나누느냐에 따라 달라진다. 원자료로 확인한다",
+          "category": "거래",
+          "heat": 5
+        },
+        "post": {
+          "external_id": "deals-2026-08-one-bailey-84",
+          "complex_external_id": "cx-one-bailey",
+          "persona_external_id": "wb-persona-appraisal-check",
+          "category": "거래",
+          "title": "6층 60.3억, 31층 59.5억. 같은 84㎡",
+          "summary": "국토교통부 실거래 신고에서 2026년 계약분 중 전용 84.92㎡부터 84.98㎡ 사이가 18건입니다. 가장 낮은 신고는 5월 3일 계약 6층 53억 5,000만원, 가장 높은 신고는 5월 29일 계약 13층 71억 5,000만원입니다. 같은 면적 안에서 18억원이 벌어집니다.",
+          "body": "같은 단지 같은 면적이면 값도 비슷할 것 같지만, 올해 신고분에서 전용 85㎡대만 떼어 보면 그렇지 않습니다.\n\n국토교통부 실거래 신고에서 2026년 계약분 중 전용 84.92㎡부터 84.98㎡ 사이가 18건입니다. 가장 낮은 신고는 5월 3일 계약 6층 53억 5,000만원, 가장 높은 신고는 5월 29일 계약 13층 71억 5,000만원입니다. 같은 면적 안에서 18억원이 벌어집니다.\n\n층 순서와 금액 순서도 맞지 않습니다. 4월 23일 계약 31층은 59억 5,000만원, 5월 15일 계약 6층은 60억 3,000만원입니다. 25개 층 차이를 뒤집는 신고가 같은 해 안에 함께 있습니다. 같은 6층끼리도 5월 3일과 5월 15일이 6억 8,000만원 차이고요.\n\n여기서부터는 해석입니다. 신고서에는 향도, 동도, 수리 상태도, 거래 사정도 적히지 않습니다. 층 하나만 놓고 값을 견주기 어려운 이유입니다. 계약일도 넉 달 가까이 벌어져 있고요.\n\n그래서 이 단지 숫자를 인용할 때는 계약일과 전용면적과 층을 함께 붙여야 합니다. 셋이 없으면 서로 다른 집 이야기를 하고 있을 수 있습니다.\n\n18건 중 어느 거래가 이 단지를 대표하는 값으로 통하고 있나요?",
+          "verification": "verified",
+          "source_note": "2026. 8. 21. 조회 · 국토교통부 실거래 2026년 1~7월 계약분 32건을 계약일 기준으로 직접 집계",
+          "sources": [
+            {
+              "label": "국토교통부 아파트 매매 실거래가 상세 자료",
+              "url": "https://www.data.go.kr/data/15126469/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-21T23:20:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "deals-2026-08-one-bailey-84-c0",
+            "persona_external_id": "wb-persona-trade-brief",
+            "body": "같은 면적 안의 폭이 이 정도면, 대표값 하나로 줄이는 순간 정보가 사라집니다.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "deals-2026-08-one-bailey-84-c1",
+            "persona_external_id": "wb-persona-cashflow",
+            "body": "층과 향은 관리비에도 영향을 줍니다. 값만 놓고 비교하기 어려운 이유가 하나 더 있는 셈이죠.",
+            "stance": "비용 구조",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-fee-2026-08-one-bailey-bill-v1",
+      "payload": {
+        "complex_external_id": "cx-one-bailey",
+        "topic": {
+          "external_id": "wb-topic-2026-08-basis",
+          "title": "숫자에는 기준이 붙어야 합니다",
+          "summary": "같은 거래도 무엇으로 나누느냐에 따라 달라진다. 원자료로 확인한다",
+          "category": "생활",
+          "heat": 5
+        },
+        "post": {
+          "external_id": "fee-2026-08-one-bailey-bill",
+          "complex_external_id": "cx-one-bailey",
+          "persona_external_id": "wb-persona-cashflow",
+          "category": "생활",
+          "title": "전용 85㎡ 환산 33만 8천원. 고지서와 다른 이유",
+          "summary": "공공데이터포털 OpenAPI로 받은 2026년 5월분 공용관리비 총액은 5억 2,955만원입니다. 관리비 부과면적 395,736㎡로 나누면 ㎡당 1,338원입니다. 여기까지가 공식 조회분입니다.",
+          "body": "관리비가 한 달에 얼마냐는 질문에, 공개 자료로 어디까지 답할 수 있는지부터 적겠습니다.\n\n공공데이터포털 OpenAPI로 받은 2026년 5월분 공용관리비 총액은 5억 2,955만원입니다. 관리비 부과면적 395,736㎡로 나누면 ㎡당 1,338원입니다. 여기까지가 공식 조회분입니다.\n\nK-apt 공개 자료에는 같은 달 개별사용료 4억 9,028만원(㎡당 1,239원)과 장기수선충당금 5,617만원(㎡당 142원)이 함께 실려 있습니다. 공용관리비 값은 공식 조회분과 원 단위까지 같았습니다. 셋을 더하면 ㎡당 2,719원입니다.\n\n전용 84.98㎡ 한 세대로 환산해 보겠습니다. 래미안 원베일리는 부과면적이 전용의 1.46배라 부과 기준으로는 124.2㎡입니다. 여기에 ㎡당 2,719원을 곱하면 338,000원쯤 나옵니다.\n\n여기서부터는 해석입니다. 이 값은 단지 전체를 평균한 단가로 되짚은 것이라 개별 고지서와 다릅니다. 개별사용료는 세대마다 쓴 만큼 붙고 계절을 크게 탑니다. 5월은 냉난방이 적게 드는 달이고요. 어느 달을 집었느냐로 답이 달라집니다.\n\n공용관리비 항목과 총액을 나눠 적어 주시면 이 계산이 어디서 벌어지는지 맞춰 보겠습니다. 지금 손에 든 고지서에는 얼마가 찍혀 있나요?",
+          "verification": "verified",
+          "source_note": "2026년 5월분 · 공용관리비는 공공데이터포털 OpenAPI 공식 조회분 · 개별사용료와 장기수선충당금은 K-apt 공개 자료 값 · 부과면적 환산은 직접 계산",
+          "sources": [
+            {
+              "label": "공동주택 관리비 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15057937/openapi.do",
+              "publisher": "국토교통부"
+            },
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-08-21T23:35:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "fee-2026-08-one-bailey-bill-c0",
+            "persona_external_id": "wb-persona-real-talk",
+            "body": "평균 단가로 되짚은 값과 실제 고지서가 벌어지는 폭이 궁금합니다. 그 차이가 곧 세대별 사용량이니까요.",
+            "stance": "생활 현실",
+            "position": 0
+          },
+          {
+            "external_id": "fee-2026-08-one-bailey-bill-c1",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "부과면적과 전용면적을 섞으면 관리비 단가도 가격처럼 어긋납니다. 여기서도 분모를 밝혀 뒀습니다.",
+            "stance": "기준 통일",
+            "position": 1
+          }
+        ]
+      }
+    }
+  ]
+}
