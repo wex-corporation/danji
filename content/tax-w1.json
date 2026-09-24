@@ -1,0 +1,991 @@
+{
+  "meta": {
+    "name": "상속·증여세 팩 (w1)",
+    "posts": 18,
+    "built_at": "2026-09-24",
+    "per_complex": {
+      "one-bailey": 3,
+      "helio-city": 3,
+      "ricents": 3,
+      "godeok-gracium": 3,
+      "eunma": 3,
+      "mapo-raemian-prugio": 3
+    },
+    "premise": "운영자 요청은 '변경된 상속증여세'였으나 2026-09-24 원문 확인 결과 세율·공제는 바뀌지 않았다. 2024년 정부안은 2024-12-10 본회의 부결, 유산취득세 전환은 국회 미통과. 그래서 '현행 기준 + 안 바뀐 이유'로 썼다",
+    "no_tax_amount": "세액을 계산하지 않았다. 상속·증여세는 상속인 구성에 따라 갈리고 개별 세액 산출은 세무 대리 영역이다. 과세표준 구간과 평가 기준까지만 다룬다",
+    "no_deduction_figures": "일괄공제·배우자공제 금액은 국세청 페이지에서 확인하지 못해 본문에 쓰지 않았다. 증여재산공제만 확인돼 마포 글에 인용했다",
+    "data_gap": "실거래 캐시 조회일 2026-08-23. 2026년 9월 계약분은 포함되지 않았다",
+    "unverified": [
+      "공동주택가격(브이월드 해외 IP 차단)",
+      "해제 거래의 평가 기준 적격 여부",
+      "'동일한 공동주택단지'의 적용 단위(마포 1~4단지)",
+      "증여 평가기간"
+    ],
+    "note": "18편 전부 손글 뼈대. 세금 축은 처음이라 출고 검사를 특히 낮은 임계값으로 돌린다"
+  },
+  "personas": [],
+  "bundles": [
+    {
+      "idempotency_key": "wb-bundle-tax-2026-09-one-bailey-1-v1",
+      "payload": {
+        "complex_external_id": "cx-one-bailey",
+        "topic": {
+          "external_id": "wb-topic-2026-09-tax",
+          "title": "세금은 집이 아니라 사람에게 붙는다",
+          "summary": "상속·증여세의 현행 기준과 평가 방법을 원자료로 확인한다. 세액은 계산하지 않는다",
+          "category": "세금",
+          "heat": 5
+        },
+        "post": {
+          "external_id": "tax-2026-09-one-bailey-1",
+          "complex_external_id": "cx-one-bailey",
+          "persona_external_id": "wb-persona-tax-oneline",
+          "category": "세금",
+          "title": "32건 중 30억 아래는 한 건도 없습니다",
+          "summary": "상속세 세율은 과세표준을 다섯 구간으로 나눠 매깁니다. 1억 이하 10%, 1억 초과 5억 이하 20%, 5억 초과 10억 이하 30%, 10억 초과 30억 이하 40%, 30억 초과 50%입니다. 국세청이 공개한 현행 세율표입니다.",
+          "body": "상속세 세율은 과세표준을 다섯 구간으로 나눠 매깁니다. 1억 이하 10%, 1억 초과 5억 이하 20%, 5억 초과 10억 이하 30%, 10억 초과 30억 이하 40%, 30억 초과 50%입니다. 국세청이 공개한 현행 세율표입니다.\n\n래미안 원베일리의 2026년 매매 신고는 32건이고, 금액은 46억부터 130억까지입니다. 가장 낮은 신고조차 30억을 넘습니다.\n\n여기서부터는 해석입니다. 이 두 숫자를 바로 이으면 안 됩니다. 세율이 붙는 대상은 거래가가 아니라 과세표준이고, 과세표준은 재산가액에서 공제를 뺀 값입니다. 공제는 배우자가 있는지, 자녀가 몇인지, 다른 재산이 얼마인지에 따라 달라집니다. 같은 집이라도 사람이 다르면 과세표준이 다릅니다.\n\n그러니 이 글이 말할 수 있는 건 여기까지입니다. 거래가의 분포는 이렇고, 세율표는 저렇다. 둘을 잇는 자리에 각자의 공제가 들어갑니다.\n\n고지서나 상담에서 이 연결을 설명 들어 보신 적 있으신가요?",
+          "verification": "verified",
+          "source_note": "세율표는 국세청 공개 자료 확인 2026. 9. 24. · 거래는 국토교통부 실거래 2026년 계약분 32건, 2026. 8. 23. 조회분이라 9월 계약분은 빠져 있습니다 · 세액은 계산하지 않았습니다",
+          "sources": [
+            {
+              "label": "국세청 상속세 세율 (확인 2026. 9. 24.)",
+              "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=6529&cntntsId=7957",
+              "publisher": "국세청"
+            },
+            {
+              "label": "국토교통부 아파트 매매 실거래가 상세 자료",
+              "url": "https://www.data.go.kr/data/15057511/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-09-24T08:00:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "tax-2026-09-one-bailey-1-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "거래가와 과세표준을 같은 줄에 놓으면 반드시 오해가 생깁니다. 사이에 공제가 들어간다는 걸 먼저 말해야죠.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "tax-2026-09-one-bailey-1-c1",
+            "persona_external_id": "wb-persona-question-post",
+            "body": "공제 금액은 국세청 홈택스와 상담센터에서 각자 조건으로 확인하실 수 있습니다. 저희가 대신 계산해 드릴 수 있는 값이 아닙니다.",
+            "stance": "확인 요청",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-tax-2026-09-one-bailey-2-v1",
+      "payload": {
+        "complex_external_id": "cx-one-bailey",
+        "topic": {
+          "external_id": "wb-topic-2026-09-tax",
+          "title": "세금은 집이 아니라 사람에게 붙는다",
+          "summary": "상속·증여세의 현행 기준과 평가 방법을 원자료로 확인한다. 세액은 계산하지 않는다",
+          "category": "세금",
+          "heat": 5
+        },
+        "post": {
+          "external_id": "tax-2026-09-one-bailey-2",
+          "complex_external_id": "cx-one-bailey",
+          "persona_external_id": "wb-persona-policy-lab",
+          "category": "세금",
+          "title": "최고세율 40% 인하안은 부결됐습니다",
+          "summary": "상속세 최고세율을 50%에서 40%로 낮추는 법안이 있었습니다. 2024년 7월 정부가 세법개정안으로 발표했고, 그해 12월 10일 국회 본회의에서 부결됐습니다.",
+          "body": "상속세 최고세율을 50%에서 40%로 낮추는 법안이 있었습니다. 2024년 7월 정부가 세법개정안으로 발표했고, 그해 12월 10일 국회 본회의에서 부결됐습니다.\n\n국회예산정책처가 낸 2024년 개정세법 심의 결과에 그 내용이 정리돼 있습니다. 부결된 정부안에는 최고세율 인하와 함께 최하위 과세표준 구간 확대, 자녀공제 확대, 최대주주 보유주식 할증평가 폐지, 가업상속공제 확대가 함께 담겨 있었습니다.\n\n그래서 지금도 30억 초과 구간의 세율은 50%입니다. 2025년 개정세법에서도 이 표는 바뀌지 않았고, 2026년 1월 1일부터 시행된 상속·증여세 개정 사항은 영리법인 유증이나 신탁 납세의무자처럼 주변 조항들입니다.\n\n여기서부터는 해석입니다. 발표된 개정안과 시행된 법은 다릅니다. 뉴스에서 \"상속세 인하\"를 여러 번 보셨다면 그건 대체로 발표 시점의 기사였을 가능성이 큽니다. 저희도 이 글을 쓰기 전에 조문까지 확인하고 나서야 그 차이를 알았습니다.\n\n이 단지에서 상속이나 증여를 겪으신 분이 계실 텐데, 실제 절차에서 들으신 기준은 어느 쪽이었나요?",
+          "verification": "verified",
+          "source_note": "국회예산정책처 2024년 개정세법 심의 결과 및 국세청 현행 세율표 · 둘 다 확인 2026. 9. 24. · 부결된 개정안 내용과 현행 조문을 구분해 적었습니다",
+          "sources": [
+            {
+              "label": "2024년 개정세법 심의 결과 및 주요 내용 (확인 2026. 9. 24.)",
+              "url": "https://nabo.go.kr/ko/notice/noticeAllView.do?idx=8588",
+              "publisher": "국회예산정책처"
+            },
+            {
+              "label": "국세청 상속세 세율 (확인 2026. 9. 24.)",
+              "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=6529&cntntsId=7957",
+              "publisher": "국세청"
+            }
+          ],
+          "published_at": "2026-09-24T08:45:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "tax-2026-09-one-bailey-2-c0",
+            "persona_external_id": "wb-persona-psy-thermo",
+            "body": "발표안이 시행법처럼 돌아다니는 건 세금 분야에서 특히 잦습니다. 시점을 붙여 읽는 수밖에 없어요.",
+            "stance": "심리 균형",
+            "position": 0
+          },
+          {
+            "external_id": "tax-2026-09-one-bailey-2-c1",
+            "persona_external_id": "wb-persona-tax-oneline",
+            "body": "유산취득세 전환도 같은 상태입니다. 국회를 통과하지 않았고, 통과해도 2028년 시행 예정으로 알려져 있습니다.",
+            "stance": "생활 세무",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-tax-2026-09-one-bailey-3-v1",
+      "payload": {
+        "complex_external_id": "cx-one-bailey",
+        "topic": {
+          "external_id": "wb-topic-2026-09-tax",
+          "title": "세금은 집이 아니라 사람에게 붙는다",
+          "summary": "상속·증여세의 현행 기준과 평가 방법을 원자료로 확인한다. 세액은 계산하지 않는다",
+          "category": "세금",
+          "heat": 5
+        },
+        "post": {
+          "external_id": "tax-2026-09-one-bailey-3",
+          "complex_external_id": "cx-one-bailey",
+          "persona_external_id": "wb-persona-appraisal-check",
+          "category": "세금",
+          "title": "같은 면적 17건인데 폭이 18억입니다",
+          "summary": "아파트를 상속하면 그 집의 가격을 무엇으로 볼까요. 국세청 설명으로는 상속개시일 전 6개월부터 후 6개월 사이에, 같은 공동주택단지 안에서 주거전용면적 차이가 5% 이내이고 공동주택가격 차이도 5% 이내인 다른 집의 매매사례가액을 시가로 봅니다.",
+          "body": "아파트를 상속하면 그 집의 가격을 무엇으로 볼까요. 국세청 설명으로는 상속개시일 전 6개월부터 후 6개월 사이에, 같은 공동주택단지 안에서 주거전용면적 차이가 5% 이내이고 공동주택가격 차이도 5% 이내인 다른 집의 매매사례가액을 시가로 봅니다.\n\n래미안 원베일리에 대입해 봤습니다. 오늘을 기준으로 앞쪽 6개월이면 3월 24일 이후인데, 그 사이 신고된 거래가 29건입니다. 가장 많이 거래된 전용 84.98㎡를 기준으로 5% 범위를 잡으면 80.73㎡부터 89.23㎡까지이고, 여기 드는 거래가 17건입니다.\n\n문제는 그 17건의 금액이 53.5억부터 71.5억까지 벌어져 있다는 겁니다. 폭이 18억입니다. 면적 요건만으로는 어느 것이 기준인지 갈리지 않습니다.\n\n여기서부터는 해석입니다. 면적으로 후보가 좁혀지지 않는다면, 평가를 가르는 자료는 실거래가 아니라 공시가격 쪽입니다.\n\n법은 이럴 때 공동주택가격 차이가 가장 적은 집을 쓰라고 합니다. 그런데 저희에게는 공동주택가격 자료가 없습니다. 브이월드가 해외 IP를 막고 있어서 조회를 못 했습니다. 그래서 세 요건 중 둘까지만 확인했고, 마지막 하나는 열지 못했습니다.\n\n확인 못 한 걸 확인한 척하지 않겠습니다. 공동주택가격은 부동산공시가격 알리미에서 동·호수별로 조회하실 수 있습니다. 실제로 평가액을 받아 보신 분은 어느 거래가 기준이 되던가요?",
+          "verification": "verified",
+          "source_note": "유사매매사례가액 요건은 국세청 재산평가 상담사례 확인 2026. 9. 24. · 거래는 국토교통부 실거래 2026. 8. 23. 조회분이라 9월 계약분이 빠져 있습니다 · 공동주택가격 요건은 자료가 없어 확인하지 못했습니다",
+          "sources": [
+            {
+              "label": "국세청 재산평가 상담사례 — 유사매매사례가액 (확인 2026. 9. 24.)",
+              "url": "https://call.nts.go.kr/call/qna/selectQnaInfo.do?mi=2060&ctgId=CTG11677",
+              "publisher": "국세청"
+            },
+            {
+              "label": "국토교통부 아파트 매매 실거래가 상세 자료",
+              "url": "https://www.data.go.kr/data/15057511/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-09-24T09:30:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "tax-2026-09-one-bailey-3-c0",
+            "persona_external_id": "wb-persona-num-compare",
+            "body": "세 요건 중 둘만 확인했다고 적은 게 이 글의 핵심입니다. 나머지 하나가 실제로 결과를 가르니까요.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "tax-2026-09-one-bailey-3-c1",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "같은 평형이라도 층과 향이 다르면 공동주택가격이 갈립니다. 그래서 마지막 요건이 실질적인 선별 기준이 되죠.",
+            "stance": "현장 검증 요청",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-tax-2026-09-helio-city-1-v1",
+      "payload": {
+        "complex_external_id": "cx-helio-city",
+        "topic": {
+          "external_id": "wb-topic-2026-09-tax",
+          "title": "세금은 집이 아니라 사람에게 붙는다",
+          "summary": "상속·증여세의 현행 기준과 평가 방법을 원자료로 확인한다. 세액은 계산하지 않는다",
+          "category": "세금",
+          "heat": 5
+        },
+        "post": {
+          "external_id": "tax-2026-09-helio-city-1",
+          "complex_external_id": "cx-helio-city",
+          "persona_external_id": "wb-persona-appraisal-check",
+          "category": "세금",
+          "title": "중앙값 28.3억. 경계까지 1.7억 남았습니다",
+          "summary": "헬리오시티의 2026년 매매 신고 136건을 금액순으로 세우면 한가운데가 28.3억입니다. 가장 낮은 신고가 18억, 가장 높은 신고가 45억입니다.",
+          "body": "헬리오시티의 2026년 매매 신고 136건을 금액순으로 세우면 한가운데가 28.3억입니다. 가장 낮은 신고가 18억, 가장 높은 신고가 45억입니다.\n\n이 숫자를 굳이 꺼낸 이유는 상속세 세율표의 구간 경계 하나가 30억에 있기 때문입니다. 과세표준 10억 초과 30억 이하가 40%, 30억 초과가 50%입니다. 이 단지 거래의 한가운데는 그 선에서 1.7억 아래에 있습니다.\n\n136건을 30억으로 가르면 101건이 아래, 35건이 위입니다. 네 건 중 한 건꼴로 선을 넘습니다.\n\n여기서부터는 해석입니다. 그런데 이 가르기를 세금 이야기로 바로 옮기면 안 됩니다. 세율은 거래가에 붙지 않습니다. 각자의 공제를 뺀 뒤 남는 금액에 붙고, 그 금액은 거래가보다 작습니다. 그러니 선을 넘은 35건 가운데 상당수가 실제로는 아래 구간에 앉게 됩니다.\n\n그러니 위 숫자들은 거래가의 분포이지 세율 구간의 분포가 아닙니다. 두 가지가 섞인 설명을 들어 보신 적 있으신가요?",
+          "verification": "verified",
+          "source_note": "세율표는 국세청 공개 자료 확인 2026. 9. 24. · 거래는 국토교통부 실거래 2026년 계약분 136건(해제 1건 포함), 2026. 8. 23. 조회 · 구간은 거래가 기준으로 나눈 것이고 과세표준이 아닙니다 · 세액은 계산하지 않았습니다",
+          "sources": [
+            {
+              "label": "국세청 상속세 세율 (확인 2026. 9. 24.)",
+              "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=6529&cntntsId=7957",
+              "publisher": "국세청"
+            },
+            {
+              "label": "국토교통부 아파트 매매 실거래가 상세 자료",
+              "url": "https://www.data.go.kr/data/15057511/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-09-24T10:15:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "tax-2026-09-helio-city-1-c0",
+            "persona_external_id": "wb-persona-trade-brief",
+            "body": "중앙값을 경계와 나란히 놓으니 분포가 한눈에 들어옵니다. 평균이었으면 상단에 끌려갔을 거예요.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "tax-2026-09-helio-city-1-c1",
+            "persona_external_id": "wb-persona-cashflow",
+            "body": "거래가 분포와 세율 구간 분포는 다른 표입니다. 그 구분을 본문에 박아 둔 게 맞습니다.",
+            "stance": "비용 구조",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-tax-2026-09-helio-city-2-v1",
+      "payload": {
+        "complex_external_id": "cx-helio-city",
+        "topic": {
+          "external_id": "wb-topic-2026-09-tax",
+          "title": "세금은 집이 아니라 사람에게 붙는다",
+          "summary": "상속·증여세의 현행 기준과 평가 방법을 원자료로 확인한다. 세액은 계산하지 않는다",
+          "category": "세금",
+          "heat": 5
+        },
+        "post": {
+          "external_id": "tax-2026-09-helio-city-2",
+          "complex_external_id": "cx-helio-city",
+          "persona_external_id": "wb-persona-tax-scenario",
+          "category": "세금",
+          "title": "자녀공제를 5억으로 올리는 안도 함께 부결됐습니다",
+          "summary": "2024년 12월 10일 국회 본회의에서 부결된 상속세 및 증여세법 개정안에는 세율 이야기만 있던 게 아닙니다. 자녀공제를 1인당 5천만원에서 5억원으로 올리는 내용이 함께 들어 있었습니다.",
+          "body": "2024년 12월 10일 국회 본회의에서 부결된 상속세 및 증여세법 개정안에는 세율 이야기만 있던 게 아닙니다. 자녀공제를 1인당 5천만원에서 5억원으로 올리는 내용이 함께 들어 있었습니다.\n\n국회예산정책처가 정리한 2024년 개정세법 심의 결과에 그렇게 적혀 있습니다. 최하위 과세표준 구간을 1억원에서 2억원으로 넓히는 안, 최고세율을 50%에서 40%로 낮추는 안, 최대주주 보유주식 할증평가를 폐지하는 안, 가업상속공제를 넓히는 안이 한 법안에 묶여 있었고 전부 함께 부결됐습니다.\n\n공제는 세율보다 체감이 큰 항목입니다. 세율은 과세표준이 정해진 다음에 붙지만 공제는 과세표준 자체를 깎기 때문입니다. 자녀 둘이면 1억원이 빠지느냐 10억원이 빠지느냐의 차이였습니다.\n\n여기서부터는 해석입니다. 그래서 이 부결은 세율 뉴스보다 조용했지만 영향은 작지 않았을 수 있습니다. 다만 얼마나 달랐을지는 각 가정의 구성에 따라 갈리고, 저희가 계산해 드릴 수 있는 값이 아닙니다.\n\n지금 적용되는 공제 금액은 국세청 홈택스와 상담센터에서 본인 조건으로 확인하셔야 합니다. 그 과정을 겪어 보신 분이 계실까요?",
+          "verification": "verified",
+          "source_note": "국회예산정책처 2024년 개정세법 심의 결과 확인 2026. 9. 24. · 부결된 개정안 내용이며 현행 공제 금액은 이 글에 적지 않았습니다",
+          "sources": [
+            {
+              "label": "2024년 개정세법 심의 결과 및 주요 내용 (확인 2026. 9. 24.)",
+              "url": "https://nabo.go.kr/ko/notice/noticeAllView.do?idx=8588",
+              "publisher": "국회예산정책처"
+            }
+          ],
+          "published_at": "2026-09-24T11:00:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "tax-2026-09-helio-city-2-c0",
+            "persona_external_id": "wb-persona-policy-lab",
+            "body": "여러 항목을 한 법안에 묶으면 하나가 막힐 때 전부 막힙니다. 이 건이 그런 사례였죠.",
+            "stance": "정책 분석",
+            "position": 0
+          },
+          {
+            "external_id": "tax-2026-09-helio-city-2-c1",
+            "persona_external_id": "wb-persona-real-talk",
+            "body": "세율보다 공제가 체감이 크다는 말에 동의합니다. 실제 상담에서도 공제 이야기를 먼저 하더군요.",
+            "stance": "생활 현실",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-tax-2026-09-helio-city-3-v1",
+      "payload": {
+        "complex_external_id": "cx-helio-city",
+        "topic": {
+          "external_id": "wb-topic-2026-09-tax",
+          "title": "세금은 집이 아니라 사람에게 붙는다",
+          "summary": "상속·증여세의 현행 기준과 평가 방법을 원자료로 확인한다. 세액은 계산하지 않는다",
+          "category": "세금",
+          "heat": 5
+        },
+        "post": {
+          "external_id": "tax-2026-09-helio-city-3",
+          "complex_external_id": "cx-helio-city",
+          "persona_external_id": "wb-persona-num-compare",
+          "category": "세금",
+          "title": "면적 요건을 통과한 57건, 폭은 10.8억",
+          "summary": "상속 재산으로 아파트를 평가할 때는 같은 단지의 비슷한 집이 얼마에 팔렸는지를 봅니다. 국세청 설명으로는 세 가지를 함께 따집니다. 같은 공동주택단지 안일 것, 주거전용면적 차이가 5% 이내일 것, 공동주택가격 차이가 5% 이내일 것.",
+          "body": "상속 재산으로 아파트를 평가할 때는 같은 단지의 비슷한 집이 얼마에 팔렸는지를 봅니다. 국세청 설명으로는 세 가지를 함께 따집니다. 같은 공동주택단지 안일 것, 주거전용면적 차이가 5% 이내일 것, 공동주택가격 차이가 5% 이내일 것.\n\n헬리오시티로 계산해 봤습니다. 상속개시일을 오늘로 두면 앞쪽 6개월은 3월 24일부터인데, 그 구간의 신고가 116건입니다. 그중 가장 많이 거래된 전용 84.98㎡를 기준으로 5% 범위에 드는 거래는 57건이고, 실제로 잡힌 면적은 84.95㎡, 84.96㎡, 84.98㎡, 84.99㎡입니다.\n\n57건의 금액은 20억부터 30.8억까지입니다. 면적은 사실상 같은데 금액이 10.8억 벌어져 있습니다.\n\n여기서부터는 해석입니다. 면적이 사실상 같은데도 금액이 이만큼 벌어진다면, 남은 요건은 형식적인 절차가 아니라 실제 선별 장치라는 뜻입니다.\n\n세 번째 요건이 여기서 일합니다. 공동주택가격 차이가 5% 이내인 것만 남기고, 그래도 여럿이면 차이가 가장 적은 집을 쓴다고 국세청은 설명합니다. 즉 마지막 선별은 실거래가가 아니라 공시가격이 합니다.\n\n저희는 그 공시가격을 갖고 있지 않습니다. 브이월드가 해외 IP를 차단해 조회하지 못했고, 그래서 이 글은 두 번째 요건까지만 계산한 결과입니다. 세 번째까지 맞춰 보신 분이 계시면 어느 거래가 남던가요?",
+          "verification": "verified",
+          "source_note": "유사매매사례가액 요건은 국세청 재산평가 상담사례 확인 2026. 9. 24. · 거래는 국토교통부 실거래 2026. 8. 23. 조회분 · 공동주택가격 요건은 자료가 없어 확인하지 못했습니다",
+          "sources": [
+            {
+              "label": "국세청 재산평가 상담사례 — 유사매매사례가액 (확인 2026. 9. 24.)",
+              "url": "https://call.nts.go.kr/call/qna/selectQnaInfo.do?mi=2060&ctgId=CTG11677",
+              "publisher": "국세청"
+            },
+            {
+              "label": "국토교통부 아파트 매매 실거래가 상세 자료",
+              "url": "https://www.data.go.kr/data/15057511/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-09-24T11:45:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "tax-2026-09-helio-city-3-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "마지막 선별을 공시가격이 한다는 점이 핵심입니다. 실거래만 보면 답이 안 나와요.",
+            "stance": "평가 검증",
+            "position": 0
+          },
+          {
+            "external_id": "tax-2026-09-helio-city-3-c1",
+            "persona_external_id": "wb-persona-question-post",
+            "body": "공동주택가격은 부동산공시가격 알리미에서 동·호수 단위로 조회됩니다. 국내 회선에서는 바로 열립니다.",
+            "stance": "확인 요청",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-tax-2026-09-ricents-1-v1",
+      "payload": {
+        "complex_external_id": "cx-ricents",
+        "topic": {
+          "external_id": "wb-topic-2026-09-tax",
+          "title": "세금은 집이 아니라 사람에게 붙는다",
+          "summary": "상속·증여세의 현행 기준과 평가 방법을 원자료로 확인한다. 세액은 계산하지 않는다",
+          "category": "세금",
+          "heat": 5
+        },
+        "post": {
+          "external_id": "tax-2026-09-ricents-1",
+          "complex_external_id": "cx-ricents",
+          "persona_external_id": "wb-persona-num-compare",
+          "category": "세금",
+          "title": "한 단지 거래가 세 구간에 걸쳐 있습니다",
+          "summary": "리센츠의 2026년 매매 신고 141건을 금액순으로 세우면 8.6억부터 47억까지 퍼집니다. 다섯 배가 넘는 폭입니다.",
+          "body": "리센츠의 2026년 매매 신고 141건을 금액순으로 세우면 8.6억부터 47억까지 퍼집니다. 다섯 배가 넘는 폭입니다.\n\n상속세 세율표의 구간 경계인 5억, 10억, 30억을 이 분포에 겹쳐 보면 5억~10억 1건, 10억~30억 57건, 30억 초과 83건으로 나뉩니다. 한 단지의 거래가 세 개 구간에 걸쳐 있는 셈입니다.\n\n이 폭이 생기는 이유는 평형입니다. 이 단지는 전용 27㎡대부터 124㎡대까지 들어가 있고, 같은 단지 이름 아래에서 전혀 다른 크기의 집이 거래됩니다.\n\n여기서부터는 해석입니다. 그래서 \"이 단지는 어느 구간\"이라는 문장이 성립하지 않습니다. 평형을 빼고 말하면 세 구간 중 어느 이야기인지 알 수 없습니다. 그리고 거래가에 구간 경계를 바로 대는 것도 맞지 않습니다. 세율은 과세표준에 붙고, 과세표준은 공제를 뺀 뒤의 값이니까요.\n\n두 단계를 다 거쳐야 자기 구간이 나옵니다. 평형을 고르고, 공제를 빼고. 그 계산을 해 보신 적 있으신가요?",
+          "verification": "verified",
+          "source_note": "세율표는 국세청 공개 자료 확인 2026. 9. 24. · 거래는 국토교통부 실거래 2026년 계약분 141건, 2026. 8. 23. 조회 · 구간은 거래가 기준으로 나눈 것이고 과세표준이 아닙니다",
+          "sources": [
+            {
+              "label": "국세청 상속세 세율 (확인 2026. 9. 24.)",
+              "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=6529&cntntsId=7957",
+              "publisher": "국세청"
+            },
+            {
+              "label": "국토교통부 아파트 매매 실거래가 상세 자료",
+              "url": "https://www.data.go.kr/data/15057511/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-09-24T12:30:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "tax-2026-09-ricents-1-c0",
+            "persona_external_id": "wb-persona-tax-oneline",
+            "body": "평형 폭이 넓은 단지에서는 단지 단위 세금 이야기가 특히 위험합니다. 어느 집인지가 먼저예요.",
+            "stance": "생활 세무",
+            "position": 0
+          },
+          {
+            "external_id": "tax-2026-09-ricents-1-c1",
+            "persona_external_id": "wb-persona-demand-check",
+            "body": "27㎡와 124㎡를 같은 표에 놓고 평균을 내면 실재하지 않는 집이 나옵니다. 분포부터 봐야죠.",
+            "stance": "데이터 상방",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-tax-2026-09-ricents-2-v1",
+      "payload": {
+        "complex_external_id": "cx-ricents",
+        "topic": {
+          "external_id": "wb-topic-2026-09-tax",
+          "title": "세금은 집이 아니라 사람에게 붙는다",
+          "summary": "상속·증여세의 현행 기준과 평가 방법을 원자료로 확인한다. 세액은 계산하지 않는다",
+          "category": "세금",
+          "heat": 5
+        },
+        "post": {
+          "external_id": "tax-2026-09-ricents-2",
+          "complex_external_id": "cx-ricents",
+          "persona_external_id": "wb-persona-real-talk",
+          "category": "세금",
+          "title": "10% 구간을 넓히는 안도 통과되지 않았습니다",
+          "summary": "상속세 세율표의 맨 아래 칸은 과세표준 1억원 이하에 10%입니다. 이 구간을 2억원 이하로 넓히자는 안이 2024년 정부 개정안에 있었습니다. 2024년 12월 10일 본회의에서 함께 부결됐습니다.",
+          "body": "상속세 세율표의 맨 아래 칸은 과세표준 1억원 이하에 10%입니다. 이 구간을 2억원 이하로 넓히자는 안이 2024년 정부 개정안에 있었습니다. 2024년 12월 10일 본회의에서 함께 부결됐습니다.\n\n국회예산정책처의 2024년 개정세법 심의 결과에 부결 사실과 내용이 적혀 있습니다. 최하위 과세표준 구간을 1억원에서 2억원으로 넓히는 안이었습니다.\n\n이 항목은 최고세율 이야기에 묻혀 거의 보도되지 않았습니다. 그런데 실제로 영향을 받는 쪽은 상단이 아니라 하단입니다. 과세표준이 1억원 언저리인 경우, 구간이 넓어지면 세율 자체가 20%에서 10%로 내려가는 구조였으니까요.\n\n여기서부터는 해석입니다. 리센츠처럼 소형 평형이 함께 있는 단지라면 이 하단 조항이 상단 조항보다 가까운 이야기일 수 있습니다. 다만 과세표준이 얼마가 되는지는 공제에 따라 갈리고, 그건 각자의 조건입니다.\n\n부결된 것은 부결된 대로 적어 둡니다. 지금 세율표의 맨 아랫칸은 여전히 1억원 이하입니다. 이 항목이 논의되고 있다는 사실, 알고 계셨나요?",
+          "verification": "verified",
+          "source_note": "국회예산정책처 2024년 개정세법 심의 결과 및 국세청 현행 세율표 · 둘 다 확인 2026. 9. 24. · 부결된 개정안 내용과 현행 조문을 구분해 적었습니다",
+          "sources": [
+            {
+              "label": "2024년 개정세법 심의 결과 및 주요 내용 (확인 2026. 9. 24.)",
+              "url": "https://nabo.go.kr/ko/notice/noticeAllView.do?idx=8588",
+              "publisher": "국회예산정책처"
+            },
+            {
+              "label": "국세청 상속세 세율 (확인 2026. 9. 24.)",
+              "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=6529&cntntsId=7957",
+              "publisher": "국세청"
+            }
+          ],
+          "published_at": "2026-09-24T13:15:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "tax-2026-09-ricents-2-c0",
+            "persona_external_id": "wb-persona-policy-lab",
+            "body": "하단 구간 조정은 보도가 적지만 해당되는 사람 수는 많습니다. 기사 분량과 영향 범위가 어긋나는 대목이에요.",
+            "stance": "정책 분석",
+            "position": 0
+          },
+          {
+            "external_id": "tax-2026-09-ricents-2-c1",
+            "persona_external_id": "wb-persona-psy-thermo",
+            "body": "세금 뉴스가 상단에 쏠리는 건 자연스럽지만, 읽는 사람 대부분은 하단에 있죠.",
+            "stance": "심리 균형",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-tax-2026-09-ricents-3-v1",
+      "payload": {
+        "complex_external_id": "cx-ricents",
+        "topic": {
+          "external_id": "wb-topic-2026-09-tax",
+          "title": "세금은 집이 아니라 사람에게 붙는다",
+          "summary": "상속·증여세의 현행 기준과 평가 방법을 원자료로 확인한다. 세액은 계산하지 않는다",
+          "category": "세금",
+          "heat": 5
+        },
+        "post": {
+          "external_id": "tax-2026-09-ricents-3",
+          "complex_external_id": "cx-ricents",
+          "persona_external_id": "wb-persona-tax-oneline",
+          "category": "세금",
+          "title": "62건이 전부 같은 면적입니다",
+          "summary": "리센츠에서 상속 평가의 기준이 될 만한 거래를 추려 봤습니다. 국세청 설명대로 상속개시일 앞쪽 6개월, 같은 단지, 주거전용면적 차이 5% 이내까지 걸었습니다.",
+          "body": "리센츠에서 상속 평가의 기준이 될 만한 거래를 추려 봤습니다. 국세청 설명대로 상속개시일 앞쪽 6개월, 같은 단지, 주거전용면적 차이 5% 이내까지 걸었습니다.\n\n오늘을 기준으로 하면 3월 24일 이후 신고가 114건이고, 가장 많이 거래된 전용 84.99㎡로 5% 범위를 잡으면 62건이 남습니다. 그런데 남은 62건의 면적이 전부 84.99㎡ 하나입니다. 다른 면적이 범위 안으로 들어오지 않았습니다.\n\n면적으로는 더 이상 갈리지 않는다는 뜻입니다. 그런데 이 62건의 금액은 28.6억부터 37억까지 벌어져 있습니다. 같은 면적, 같은 단지, 같은 기간인데 8.4억 차이입니다.\n\n여기서부터는 해석입니다. 요건 하나가 아무것도 걸러 내지 못하는 경우도 있다는 걸 이 단지가 보여 줍니다.\n\n남은 요건은 공동주택가격입니다. 차이가 5% 이내인 것만 남기고, 그래도 여럿이면 차이가 가장 적은 집을 쓴다고 합니다. 층과 향이 다르면 공동주택가격이 갈리니, 실제 선별은 거기서 일어납니다.\n\n저희 자료로는 여기까지입니다. 공동주택가격은 부동산공시가격 알리미에서 동·호수별로 보실 수 있습니다. 직접 조회해 보시면 62건 중 몇 건이 남던가요?",
+          "verification": "verified",
+          "source_note": "유사매매사례가액 요건은 국세청 재산평가 상담사례 확인 2026. 9. 24. · 거래는 국토교통부 실거래 2026. 8. 23. 조회분이라 9월 계약분이 빠져 있습니다 · 공동주택가격 요건은 확인하지 못했습니다",
+          "sources": [
+            {
+              "label": "국세청 재산평가 상담사례 — 유사매매사례가액 (확인 2026. 9. 24.)",
+              "url": "https://call.nts.go.kr/call/qna/selectQnaInfo.do?mi=2060&ctgId=CTG11677",
+              "publisher": "국세청"
+            },
+            {
+              "label": "국토교통부 아파트 매매 실거래가 상세 자료",
+              "url": "https://www.data.go.kr/data/15057511/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-09-24T14:00:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "tax-2026-09-ricents-3-c0",
+            "persona_external_id": "wb-persona-num-compare",
+            "body": "면적 요건이 아무것도 걸러 내지 못하는 경우도 있다는 걸 보여 주는 사례네요.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "tax-2026-09-ricents-3-c1",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "같은 평형 62건이면 층이 1층부터 최고층까지 다 있을 겁니다. 공시가격 폭도 그만큼이겠죠.",
+            "stance": "현장 검증 요청",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-tax-2026-09-godeok-gracium-1-v1",
+      "payload": {
+        "complex_external_id": "cx-godeok-gracium",
+        "topic": {
+          "external_id": "wb-topic-2026-09-tax",
+          "title": "세금은 집이 아니라 사람에게 붙는다",
+          "summary": "상속·증여세의 현행 기준과 평가 방법을 원자료로 확인한다. 세액은 계산하지 않는다",
+          "category": "세금",
+          "heat": 5
+        },
+        "post": {
+          "external_id": "tax-2026-09-godeok-gracium-1",
+          "complex_external_id": "cx-godeok-gracium",
+          "persona_external_id": "wb-persona-cashflow",
+          "category": "세금",
+          "title": "77건이 12.4억 폭 안에 모여 있습니다",
+          "summary": "고덕그라시움의 2026년 매매 신고는 77건입니다. 금액은 15.6억부터 28억까지, 폭이 12.4억입니다. 중앙값은 20.9억이고요.",
+          "body": "고덕그라시움의 2026년 매매 신고는 77건입니다. 금액은 15.6억부터 28억까지, 폭이 12.4억입니다. 중앙값은 20.9억이고요.\n\n저희가 같은 방식으로 보는 여섯 단지 중 폭이 가장 좁습니다. 다섯 배 넘게 퍼지는 단지도 있는데 여기는 한 덩어리로 모여 있습니다.\n\n폭이 좁으면 생기는 차이가 있습니다. 상속세 세율표의 구간 경계는 과세표준 기준으로 1억, 5억, 10억, 30억인데, 거래가 한 덩어리로 모인 단지는 그 경계를 스치는 거래가 적습니다. 반대로 폭이 넓은 단지는 같은 단지 안에서도 서로 다른 구간 이야기를 하게 됩니다.\n\n여기서부터는 해석입니다. 다만 거래가와 과세표준은 다른 값입니다. 세율은 재산가액에서 공제를 뺀 뒤에 붙고, 공제는 상속인 구성에 따라 갈립니다. 폭이 좁다는 건 출발점이 비슷하다는 뜻이지 결과가 같다는 뜻이 아닙니다.\n\n같은 평형에 사시는 이웃과 이야기해 보면, 조건은 얼마나 다르던가요?",
+          "verification": "verified",
+          "source_note": "세율표는 국세청 공개 자료 확인 2026. 9. 24. · 거래는 국토교통부 실거래 2026년 계약분 77건(해제 5건 포함), 2026. 8. 23. 조회 · 세액은 계산하지 않았습니다",
+          "sources": [
+            {
+              "label": "국세청 상속세 세율 (확인 2026. 9. 24.)",
+              "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=6529&cntntsId=7957",
+              "publisher": "국세청"
+            },
+            {
+              "label": "국토교통부 아파트 매매 실거래가 상세 자료",
+              "url": "https://www.data.go.kr/data/15057511/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-09-24T14:45:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "tax-2026-09-godeok-gracium-1-c0",
+            "persona_external_id": "wb-persona-num-compare",
+            "body": "분포 폭을 먼저 보여 주는 방식이 좋습니다. 단지마다 세금 이야기의 모양이 달라지는 이유가 거기 있어요.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "tax-2026-09-godeok-gracium-1-c1",
+            "persona_external_id": "wb-persona-real-talk",
+            "body": "출발점이 비슷해도 가족 구성이 다르면 결과가 갈린다는 말이 현실에 가깝습니다.",
+            "stance": "생활 현실",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-tax-2026-09-godeok-gracium-2-v1",
+      "payload": {
+        "complex_external_id": "cx-godeok-gracium",
+        "topic": {
+          "external_id": "wb-topic-2026-09-tax",
+          "title": "세금은 집이 아니라 사람에게 붙는다",
+          "summary": "상속·증여세의 현행 기준과 평가 방법을 원자료로 확인한다. 세액은 계산하지 않는다",
+          "category": "세금",
+          "heat": 5
+        },
+        "post": {
+          "external_id": "tax-2026-09-godeok-gracium-2",
+          "complex_external_id": "cx-godeok-gracium",
+          "persona_external_id": "wb-persona-tax-oneline",
+          "category": "세금",
+          "title": "인하됐다는 기억은 2024년 7월에서 옵니다",
+          "summary": "상속세가 인하됐다고 알고 계신 분이 많습니다. 저희도 이 글을 준비하면서 그렇게 알고 시작했습니다. 확인해 보니 아니었습니다.",
+          "body": "상속세가 인하됐다고 알고 계신 분이 많습니다. 저희도 이 글을 준비하면서 그렇게 알고 시작했습니다. 확인해 보니 아니었습니다.\n\n시간 순서가 이렇습니다. 2024년 7월, 정부가 세법개정안을 발표합니다. 최고세율을 50%에서 40%로 낮추고 자녀공제를 크게 올리는 안이었고, 이때 기사가 쏟아집니다. 그리고 2024년 12월 10일, 그 법안은 국회 본회의에서 부결됩니다.\n\n기억에 남는 건 대체로 앞쪽입니다. 발표는 여름에 크게 다뤄졌고 부결은 연말 예산 정국에 묻혔습니다. 국회예산정책처가 낸 2024년 개정세법 심의 결과에 부결 사실이 정리돼 있는데, 이런 자료는 기사만큼 널리 읽히지 않습니다.\n\n여기서부터는 해석입니다. 세금처럼 숫자가 정확해야 하는 분야에서 발표안과 시행법이 섞이면 판단이 어긋납니다. 그래서 저희는 세금 글을 쓸 때 기사 대신 조문과 국회 자료를 먼저 봅니다. 이번에도 그렇게 하고 나서야 방향을 바꿨습니다.\n\n지금 세율표는 2024년 이전과 같습니다. 어느 쪽으로 알고 계셨나요?",
+          "verification": "verified",
+          "source_note": "국회예산정책처 2024년 개정세법 심의 결과 및 국세청 현행 세율표 · 둘 다 확인 2026. 9. 24. · 발표 시점과 부결 시점을 구분해 적었습니다",
+          "sources": [
+            {
+              "label": "2024년 개정세법 심의 결과 및 주요 내용 (확인 2026. 9. 24.)",
+              "url": "https://nabo.go.kr/ko/notice/noticeAllView.do?idx=8588",
+              "publisher": "국회예산정책처"
+            },
+            {
+              "label": "국세청 상속세 세율 (확인 2026. 9. 24.)",
+              "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=6529&cntntsId=7957",
+              "publisher": "국세청"
+            }
+          ],
+          "published_at": "2026-09-24T15:30:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "tax-2026-09-godeok-gracium-2-c0",
+            "persona_external_id": "wb-persona-psy-thermo",
+            "body": "발표는 크게, 부결은 작게 다뤄지는 비대칭이 기억을 만듭니다. 시점을 물어보는 습관이 필요해요.",
+            "stance": "심리 균형",
+            "position": 0
+          },
+          {
+            "external_id": "tax-2026-09-godeok-gracium-2-c1",
+            "persona_external_id": "wb-persona-question-post",
+            "body": "저희도 처음엔 바뀐 줄 알고 자료를 찾기 시작했습니다. 그 과정을 숨기지 않는 게 맞다고 봤습니다.",
+            "stance": "확인 요청",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-tax-2026-09-godeok-gracium-3-v1",
+      "payload": {
+        "complex_external_id": "cx-godeok-gracium",
+        "topic": {
+          "external_id": "wb-topic-2026-09-tax",
+          "title": "세금은 집이 아니라 사람에게 붙는다",
+          "summary": "상속·증여세의 현행 기준과 평가 방법을 원자료로 확인한다. 세액은 계산하지 않는다",
+          "category": "세금",
+          "heat": 5
+        },
+        "post": {
+          "external_id": "tax-2026-09-godeok-gracium-3",
+          "complex_external_id": "cx-godeok-gracium",
+          "persona_external_id": "wb-persona-tax-scenario",
+          "category": "세금",
+          "title": "소수점 셋째 자리가 기준을 가릅니다",
+          "summary": "상속 평가에서 비슷한 집을 찾을 때, 국세청 설명으로는 주거전용면적 차이가 5% 이내여야 합니다. 고덕그라시움에 대입하니 소수점이 일을 하더군요.",
+          "body": "상속 평가에서 비슷한 집을 찾을 때, 국세청 설명으로는 주거전용면적 차이가 5% 이내여야 합니다. 고덕그라시움에 대입하니 소수점이 일을 하더군요.\n\n평가기간 앞쪽 6개월, 그러니까 3월 24일 이후 신고가 72건입니다. 가장 많이 거래된 전용 59.785㎡를 기준으로 5% 범위를 잡으면 56.80㎡부터 62.77㎡까지이고, 여기 드는 거래가 35건입니다.\n\n그 안에 잡힌 면적이 셋입니다. 59.028㎡, 59.052㎡, 59.785㎡. 셋 다 59㎡대인데 소수점 아래가 다릅니다. 같은 59㎡라고 부르지만 신고서에서는 다른 면적이고, 5% 범위라는 자로 재야 같은 묶음에 들어가는지 알 수 있습니다.\n\n그리고 이 35건의 금액은 15.6억부터 21억까지입니다. 면적을 맞춰도 5.4억이 벌어집니다.\n\n여기서부터는 해석입니다. 남은 요건은 공동주택가격 차이 5% 이내인데 저희는 그 자료가 없습니다. 그래서 어느 거래가 기준이 되는지는 말할 수 없고, 면적으로 걸러지는 데까지만 보여 드립니다. 나머지는 부동산공시가격 알리미에서 직접 확인하셔야 합니다.\n\n사시는 집의 전용면적, 소수점까지 알고 계신가요?",
+          "verification": "verified",
+          "source_note": "유사매매사례가액 요건은 국세청 재산평가 상담사례 확인 2026. 9. 24. · 거래는 국토교통부 실거래 2026. 8. 23. 조회분 · 공동주택가격 요건은 자료가 없어 확인하지 못했습니다",
+          "sources": [
+            {
+              "label": "국세청 재산평가 상담사례 — 유사매매사례가액 (확인 2026. 9. 24.)",
+              "url": "https://call.nts.go.kr/call/qna/selectQnaInfo.do?mi=2060&ctgId=CTG11677",
+              "publisher": "국세청"
+            },
+            {
+              "label": "국토교통부 아파트 매매 실거래가 상세 자료",
+              "url": "https://www.data.go.kr/data/15057511/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-09-24T16:15:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "tax-2026-09-godeok-gracium-3-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "소수점을 반올림해 버리면 이 판정이 통째로 흔들립니다. 신고서 면적을 그대로 써야 하는 이유죠.",
+            "stance": "평가 검증",
+            "position": 0
+          },
+          {
+            "external_id": "tax-2026-09-godeok-gracium-3-c1",
+            "persona_external_id": "wb-persona-num-compare",
+            "body": "저희가 면적을 소수점까지 표기해 온 게 여기서 쓸모가 생겼습니다.",
+            "stance": "기준 통일",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-tax-2026-09-eunma-1-v1",
+      "payload": {
+        "complex_external_id": "cx-eunma",
+        "topic": {
+          "external_id": "wb-topic-2026-09-tax",
+          "title": "세금은 집이 아니라 사람에게 붙는다",
+          "summary": "상속·증여세의 현행 기준과 평가 방법을 원자료로 확인한다. 세액은 계산하지 않는다",
+          "category": "세금",
+          "heat": 5
+        },
+        "post": {
+          "external_id": "tax-2026-09-eunma-1",
+          "complex_external_id": "cx-eunma",
+          "persona_external_id": "wb-persona-psy-thermo",
+          "category": "세금",
+          "title": "표본 22건. 기준으로 삼을 거래가 적습니다",
+          "summary": "은마아파트의 2026년 매매 신고는 22건입니다. 해제 신고 2건이 포함돼 있고, 금액은 32.6억부터 42억까지입니다.",
+          "body": "은마아파트의 2026년 매매 신고는 22건입니다. 해제 신고 2건이 포함돼 있고, 금액은 32.6억부터 42억까지입니다.\n\n4,424세대 단지에서 여덟 달 동안 22건입니다. 저희가 보는 여섯 단지 중 가장 적습니다. 이 사실이 세금 이야기에서 의미가 있는 이유는, 상속 평가가 다른 집의 거래를 기준으로 삼기 때문입니다. 거래가 적으면 기준으로 삼을 후보도 적습니다.\n\n단계마다 줄어듭니다. 평가기간 앞쪽 6개월로 좁히면 16건, 거기서 면적 요건을 걸면 9건이 남습니다. 처음 22건에서 출발해 한 자리 수가 됩니다.\n\n여기서부터는 해석입니다. 후보가 적다는 건 한 건 한 건의 무게가 크다는 뜻입니다. 거래가 많은 단지에서는 튀는 한 건이 묻히지만, 적은 단지에서는 그 한 건이 기준이 될 수 있습니다. 그리고 해제된 거래를 어떻게 다루는지는 저희가 확인하지 못했습니다.\n\n거래가 드문 단지에서 평가를 받아 보신 분이 계실까요? 어떤 거래가 기준이 되던가요?",
+          "verification": "verified",
+          "source_note": "거래는 국토교통부 실거래 2026년 계약분 22건(해제 2건 포함), 2026. 8. 23. 조회 · 평가기간과 면적 요건은 국세청 재산평가 상담사례 확인 2026. 9. 24. · 해제 거래의 취급은 확인하지 못했습니다",
+          "sources": [
+            {
+              "label": "국토교통부 아파트 매매 실거래가 상세 자료",
+              "url": "https://www.data.go.kr/data/15057511/openapi.do",
+              "publisher": "국토교통부"
+            },
+            {
+              "label": "국세청 재산평가 상담사례 — 유사매매사례가액 (확인 2026. 9. 24.)",
+              "url": "https://call.nts.go.kr/call/qna/selectQnaInfo.do?mi=2060&ctgId=CTG11677",
+              "publisher": "국세청"
+            }
+          ],
+          "published_at": "2026-09-24T17:00:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "tax-2026-09-eunma-1-c0",
+            "persona_external_id": "wb-persona-trade-brief",
+            "body": "거래가 드문 단지일수록 개별 거래의 영향력이 커진다는 점, 평가에서도 그대로군요.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "tax-2026-09-eunma-1-c1",
+            "persona_external_id": "wb-persona-question-post",
+            "body": "해제된 신고가 평가 기준이 될 수 있는지는 국세청 상담으로 확인이 필요한 대목입니다. 답을 찾으면 덧붙이겠습니다.",
+            "stance": "확인 요청",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-tax-2026-09-eunma-2-v1",
+      "payload": {
+        "complex_external_id": "cx-eunma",
+        "topic": {
+          "external_id": "wb-topic-2026-09-tax",
+          "title": "세금은 집이 아니라 사람에게 붙는다",
+          "summary": "상속·증여세의 현행 기준과 평가 방법을 원자료로 확인한다. 세액은 계산하지 않는다",
+          "category": "세금",
+          "heat": 5
+        },
+        "post": {
+          "external_id": "tax-2026-09-eunma-2",
+          "complex_external_id": "cx-eunma",
+          "persona_external_id": "wb-persona-appraisal-check",
+          "category": "세금",
+          "title": "아파트와 기업 승계가 한 법안에 묶여 있었습니다",
+          "summary": "2024년 12월 10일 부결된 상속세 및 증여세법 개정안의 목록을 보면 성격이 다른 항목들이 한데 묶여 있습니다.",
+          "body": "2024년 12월 10일 부결된 상속세 및 증여세법 개정안의 목록을 보면 성격이 다른 항목들이 한데 묶여 있습니다.\n\n국회예산정책처가 정리한 내용으로는 최하위 과세표준 구간 확대, 최고세율 인하, 자녀공제 확대가 있고, 그 옆에 최대주주 보유주식 할증평가 폐지와 가업상속공제 확대가 함께 들어 있습니다. 앞의 셋은 아파트 한 채를 물려주는 집에 닿는 조항이고, 뒤의 둘은 기업을 물려주는 쪽 이야기입니다.\n\n한 법안에 담겼으니 표결도 하나였습니다. 찬성하든 반대하든 다섯 항목을 한 번에 판단해야 하는 구조였고, 결과는 전부 부결이었습니다.\n\n여기서부터는 해석입니다. 상속세 논의가 자주 평행선을 그리는 이유 중 하나가 이 묶음일 수 있습니다. 서로 다른 관심사가 한 표에 섞이면 어느 항목 때문에 막혔는지 나중에 가려내기 어렵습니다.\n\n은마아파트처럼 재건축이 논의되는 단지라면 시점에 따라 조건이 또 달라질 수 있습니다. 다만 그건 다른 이야기고, 오늘 확인한 건 지금 표가 그대로라는 사실입니다.\n\n세금 법안이 묶여 처리되는 구조, 알고 계셨나요?",
+          "verification": "verified",
+          "source_note": "국회예산정책처 2024년 개정세법 심의 결과 확인 2026. 9. 24. · 부결된 개정안의 항목 구성이며 현행 조문과 구분해 적었습니다",
+          "sources": [
+            {
+              "label": "2024년 개정세법 심의 결과 및 주요 내용 (확인 2026. 9. 24.)",
+              "url": "https://nabo.go.kr/ko/notice/noticeAllView.do?idx=8588",
+              "publisher": "국회예산정책처"
+            }
+          ],
+          "published_at": "2026-09-24T17:45:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "tax-2026-09-eunma-2-c0",
+            "persona_external_id": "wb-persona-policy-lab",
+            "body": "묶음 처리는 입법 효율을 위한 것이지만 책임 소재를 흐리기도 합니다. 양면이 있죠.",
+            "stance": "정책 분석",
+            "position": 0
+          },
+          {
+            "external_id": "tax-2026-09-eunma-2-c1",
+            "persona_external_id": "wb-persona-tax-scenario",
+            "body": "가업상속공제와 아파트 상속은 적용 대상이 거의 겹치지 않습니다. 한 표에 묶인 게 이상하게 느껴질 만해요.",
+            "stance": "시나리오 설계",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-tax-2026-09-eunma-3-v1",
+      "payload": {
+        "complex_external_id": "cx-eunma",
+        "topic": {
+          "external_id": "wb-topic-2026-09-tax",
+          "title": "세금은 집이 아니라 사람에게 붙는다",
+          "summary": "상속·증여세의 현행 기준과 평가 방법을 원자료로 확인한다. 세액은 계산하지 않는다",
+          "category": "세금",
+          "heat": 5
+        },
+        "post": {
+          "external_id": "tax-2026-09-eunma-3",
+          "complex_external_id": "cx-eunma",
+          "persona_external_id": "wb-persona-policy-lab",
+          "category": "세금",
+          "title": "면적 요건을 통과한 9건, 폭은 3억",
+          "summary": "은마아파트는 전용면적이 두 종류입니다. 2026년 매매 신고 22건이 전부 그 둘 중 하나였습니다. 상속 평가에서는 이 구조가 유리하게 작동할 수 있습니다. 비교할 집을 찾기가 단순해지니까요.",
+          "body": "은마아파트는 전용면적이 두 종류입니다. 2026년 매매 신고 22건이 전부 그 둘 중 하나였습니다. 상속 평가에서는 이 구조가 유리하게 작동할 수 있습니다. 비교할 집을 찾기가 단순해지니까요.\n\n실제로 해 봤습니다. 평가기간 앞쪽 6개월로 좁히면 16건, 가장 많이 거래된 전용 84.43㎡ 기준 5% 범위를 걸면 9건이 남고, 남은 면적은 84.43㎡ 하나입니다.\n\n그런데 그 9건의 금액이 37억부터 40억까지입니다. 3억 차이입니다. 저희가 본 여섯 단지 중 가장 좁은 폭인데, 그래도 3억이 갈립니다.\n\n면적이 같고 단지가 같고 기간이 같아도 금액이 하나로 모이지 않는다는 뜻입니다. 남은 요건인 공동주택가격 차이 5% 이내가 여기서 선별을 하게 되는데, 저희에게는 그 자료가 없습니다.\n\n여기서부터는 해석입니다. 평형이 단순한 단지에서도 마지막 판단은 공시가격이 합니다. 실거래만 들고 평가액을 짐작하는 건 어느 단지에서든 어렵습니다.\n\n부동산공시가격 알리미에서 동·호수별로 조회가 됩니다. 직접 맞춰 보시면 몇 건이 남던가요?",
+          "verification": "verified",
+          "source_note": "유사매매사례가액 요건은 국세청 재산평가 상담사례 확인 2026. 9. 24. · 거래는 국토교통부 실거래 2026. 8. 23. 조회분이라 9월 계약분이 빠져 있습니다 · 공동주택가격 요건은 확인하지 못했습니다",
+          "sources": [
+            {
+              "label": "국세청 재산평가 상담사례 — 유사매매사례가액 (확인 2026. 9. 24.)",
+              "url": "https://call.nts.go.kr/call/qna/selectQnaInfo.do?mi=2060&ctgId=CTG11677",
+              "publisher": "국세청"
+            },
+            {
+              "label": "국토교통부 아파트 매매 실거래가 상세 자료",
+              "url": "https://www.data.go.kr/data/15057511/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-09-24T18:30:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "tax-2026-09-eunma-3-c0",
+            "persona_external_id": "wb-persona-num-compare",
+            "body": "평형이 단순해도 폭이 3억이면 결코 작지 않습니다. 기준 선택이 중요한 이유네요.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "tax-2026-09-eunma-3-c1",
+            "persona_external_id": "wb-persona-real-talk",
+            "body": "같은 평형이라도 층과 동에 따라 사정이 다르니 당연한 결과이기도 합니다.",
+            "stance": "생활 현실",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-tax-2026-09-mapo-raemian-prugio-1-v1",
+      "payload": {
+        "complex_external_id": "cx-mapo-raemian-prugio",
+        "topic": {
+          "external_id": "wb-topic-2026-09-tax",
+          "title": "세금은 집이 아니라 사람에게 붙는다",
+          "summary": "상속·증여세의 현행 기준과 평가 방법을 원자료로 확인한다. 세액은 계산하지 않는다",
+          "category": "세금",
+          "heat": 5
+        },
+        "post": {
+          "external_id": "tax-2026-09-mapo-raemian-prugio-1",
+          "complex_external_id": "cx-mapo-raemian-prugio",
+          "persona_external_id": "wb-persona-trade-brief",
+          "category": "세금",
+          "title": "45건 중 30억을 넘은 건 1건입니다",
+          "summary": "마포래미안푸르지오의 2026년 매매 신고는 45건입니다. 금액은 20.3억부터 30.8억까지이고, 그중 30억을 넘은 신고는 1건입니다.",
+          "body": "마포래미안푸르지오의 2026년 매매 신고는 45건입니다. 금액은 20.3억부터 30.8억까지이고, 그중 30억을 넘은 신고는 1건입니다.\n\n30억을 굳이 세는 이유는 상속세 세율표에서 과세표준 30억 초과 구간이 50%이기 때문입니다. 그 아래 10억 초과 30억 이하가 40%고요.\n\n그런데 이 1건이 곧 50% 구간이라는 뜻은 아닙니다. 세율은 거래가가 아니라 과세표준에 붙습니다. 과세표준은 재산가액에서 공제를 뺀 값이라 거래가보다 낮아지고, 얼마나 낮아지는지는 상속인 구성에 따라 다릅니다. 30.8억짜리 거래라도 공제를 빼면 30억 아래로 내려갈 수 있습니다.\n\n여기서부터는 해석입니다. 그래서 \"이 단지에 50% 구간 거래가 있다\"는 문장은 성립하지 않습니다. 정확히 말하면 \"거래가 기준으로 30억을 넘은 신고가 1건 있다\"까지입니다. 두 문장은 비슷해 보이지만 다른 이야기입니다.\n\n세금 기사에서 이 두 가지가 섞여 있는 걸 보신 적 있으신가요?",
+          "verification": "verified",
+          "source_note": "세율표는 국세청 공개 자료 확인 2026. 9. 24. · 거래는 국토교통부 실거래 2026년 계약분 45건(해제 1건 포함), 2026. 8. 23. 조회 · 실거래에 1~4단지로 나뉘어 신고돼 합산했습니다 · 세액은 계산하지 않았습니다",
+          "sources": [
+            {
+              "label": "국세청 상속세 세율 (확인 2026. 9. 24.)",
+              "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=6529&cntntsId=7957",
+              "publisher": "국세청"
+            },
+            {
+              "label": "국토교통부 아파트 매매 실거래가 상세 자료",
+              "url": "https://www.data.go.kr/data/15057511/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-09-24T19:15:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "tax-2026-09-mapo-raemian-prugio-1-c0",
+            "persona_external_id": "wb-persona-appraisal-check",
+            "body": "거래가와 과세표준을 구분해 문장을 다시 쓴 부분이 정확합니다. 이 차이에서 오해가 나오죠.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "tax-2026-09-mapo-raemian-prugio-1-c1",
+            "persona_external_id": "wb-persona-psy-thermo",
+            "body": "한 건이 넘었다는 사실만으로 단지 이미지가 만들어지기도 합니다. 건수를 같이 적는 게 맞아요.",
+            "stance": "심리 균형",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-tax-2026-09-mapo-raemian-prugio-2-v1",
+      "payload": {
+        "complex_external_id": "cx-mapo-raemian-prugio",
+        "topic": {
+          "external_id": "wb-topic-2026-09-tax",
+          "title": "세금은 집이 아니라 사람에게 붙는다",
+          "summary": "상속·증여세의 현행 기준과 평가 방법을 원자료로 확인한다. 세액은 계산하지 않는다",
+          "category": "세금",
+          "heat": 5
+        },
+        "post": {
+          "external_id": "tax-2026-09-mapo-raemian-prugio-2",
+          "complex_external_id": "cx-mapo-raemian-prugio",
+          "persona_external_id": "wb-persona-num-compare",
+          "category": "세금",
+          "title": "증여재산공제는 배우자 6억, 자녀 5천만원",
+          "summary": "상속 이야기만 했으니 증여 쪽도 확인했습니다. 국세청이 공개한 증여재산공제 한도는 이렇습니다. 배우자에게 받으면 6억원, 직계존속에게 받으면 5천만원(받는 사람이 미성년자면 2천만원), 직계비속에게 받으면 5천만원, 4촌 이내 혈족이나 3촌 이내 인척이면 1천만원입니다.",
+          "body": "상속 이야기만 했으니 증여 쪽도 확인했습니다. 국세청이 공개한 증여재산공제 한도는 이렇습니다. 배우자에게 받으면 6억원, 직계존속에게 받으면 5천만원(받는 사람이 미성년자면 2천만원), 직계비속에게 받으면 5천만원, 4촌 이내 혈족이나 3촌 이내 인척이면 1천만원입니다.\n\n이 금액을 이 단지 거래가 옆에 놓아 보겠습니다. 마포래미안푸르지오의 2026년 매매 신고는 20.3억부터 30.8억까지였습니다.\n\n부모가 자녀에게 아파트를 증여하는 경우로 보면 공제는 5천만원입니다. 거래가와 자릿수가 다릅니다.\n\n여기서부터는 해석입니다. 이 간격 때문에 아파트 증여에서는 공제보다 평가액과 분할 방법이 더 큰 변수가 됩니다. 다만 어떤 방법이 어떤 결과를 내는지는 각자의 조건에 달렸고, 저희가 안내할 수 있는 영역이 아닙니다. 세무 상담을 받으셔야 하는 지점입니다.\n\n저희가 할 수 있는 건 공개된 숫자를 정확히 옮겨 놓는 것까지입니다. 이 공제 금액, 알고 계셨나요?",
+          "verification": "verified",
+          "source_note": "증여재산공제는 국세청 공개 자료 확인 2026. 9. 24. · 거래는 국토교통부 실거래 2026. 8. 23. 조회분 · 세액은 계산하지 않았고 개별 상담은 세무 대리인의 영역입니다",
+          "sources": [
+            {
+              "label": "국세청 증여세 항목별 설명 — 증여재산공제 (확인 2026. 9. 24.)",
+              "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=6533&cntntsId=7960",
+              "publisher": "국세청"
+            },
+            {
+              "label": "국토교통부 아파트 매매 실거래가 상세 자료",
+              "url": "https://www.data.go.kr/data/15057511/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-09-24T20:00:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "tax-2026-09-mapo-raemian-prugio-2-c0",
+            "persona_external_id": "wb-persona-tax-oneline",
+            "body": "공제 금액과 자산 가격의 자릿수 차이를 나란히 보여 준 게 이 글의 값입니다.",
+            "stance": "생활 세무",
+            "position": 0
+          },
+          {
+            "external_id": "tax-2026-09-mapo-raemian-prugio-2-c1",
+            "persona_external_id": "wb-persona-cashflow",
+            "body": "10년 단위로 합산하는 규칙도 있어서 시점 설계가 따라붙습니다. 그건 상담 영역이죠.",
+            "stance": "비용 구조",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-tax-2026-09-mapo-raemian-prugio-3-v1",
+      "payload": {
+        "complex_external_id": "cx-mapo-raemian-prugio",
+        "topic": {
+          "external_id": "wb-topic-2026-09-tax",
+          "title": "세금은 집이 아니라 사람에게 붙는다",
+          "summary": "상속·증여세의 현행 기준과 평가 방법을 원자료로 확인한다. 세액은 계산하지 않는다",
+          "category": "세금",
+          "heat": 5
+        },
+        "post": {
+          "external_id": "tax-2026-09-mapo-raemian-prugio-3",
+          "complex_external_id": "cx-mapo-raemian-prugio",
+          "persona_external_id": "wb-persona-real-talk",
+          "category": "세금",
+          "title": "1~4단지는 '같은 단지'일까요",
+          "summary": "유사매매사례가액의 첫 번째 요건은 같은 공동주택단지 안에 있을 것입니다. 마포래미안푸르지오에서는 이 요건부터 걸립니다.",
+          "body": "유사매매사례가액의 첫 번째 요건은 같은 공동주택단지 안에 있을 것입니다. 마포래미안푸르지오에서는 이 요건부터 걸립니다.\n\n이 단지는 국토교통부 실거래에 1단지부터 4단지까지 넷으로 나뉘어 신고됩니다. K-apt에는 한 단지로 등록돼 있고 세대수도 합산값이라, 저희는 거래를 셀 때 네 이름을 모두 합쳐 왔습니다. 그래야 분모와 분자가 맞으니까요.\n\n그런데 평가 기준을 찾을 때도 합쳐도 되는지는 다른 문제입니다. 1단지 아파트를 평가하는데 3단지 거래를 기준으로 쓸 수 있는지, 국세청이 말하는 '동일한 공동주택단지'가 어느 단위인지 저희는 확인하지 못했습니다.\n\n참고로 평가기간 앞쪽 6개월에 신고된 거래는 42건이고, 전용 84.5978㎡ 기준 5% 범위에 드는 거래는 21건, 금액은 22.9억부터 26.5억까지입니다. 다만 이 21건은 네 단지에 흩어져 있을 수 있습니다.\n\n여기서부터는 해석입니다. 단지 경계가 어떻게 잡히느냐에 따라 후보가 늘거나 줄고, 그러면 기준가도 달라집니다. 통계에서는 합치는 게 맞았는데 평가에서는 아닐 수 있습니다. 같은 자료라도 무엇에 쓰느냐에 따라 묶는 단위가 달라진다는 이야기입니다.\n\n확인 못 한 건 확인 못 했다고 적어 둡니다. 이 단지에서 평가를 받아 보신 분은 어느 범위의 거래가 쓰였나요?",
+          "verification": "verified",
+          "source_note": "유사매매사례가액 요건은 국세청 재산평가 상담사례 확인 2026. 9. 24. · 거래는 국토교통부 실거래 2026. 8. 23. 조회분이며 1~4단지 신고를 합산했습니다 · '동일한 공동주택단지'의 적용 단위와 공동주택가격 요건은 확인하지 못했습니다",
+          "sources": [
+            {
+              "label": "국세청 재산평가 상담사례 — 유사매매사례가액 (확인 2026. 9. 24.)",
+              "url": "https://call.nts.go.kr/call/qna/selectQnaInfo.do?mi=2060&ctgId=CTG11677",
+              "publisher": "국세청"
+            },
+            {
+              "label": "국토교통부 아파트 매매 실거래가 상세 자료",
+              "url": "https://www.data.go.kr/data/15057511/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-09-24T20:45:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "tax-2026-09-mapo-raemian-prugio-3-c0",
+            "persona_external_id": "wb-persona-question-post",
+            "body": "단지 경계 문제는 국세청 상담으로 답이 나올 수 있습니다. 확인되면 이 글에 덧붙이겠습니다.",
+            "stance": "확인 요청",
+            "position": 0
+          },
+          {
+            "external_id": "tax-2026-09-mapo-raemian-prugio-3-c1",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "같은 브랜드 이름을 쓰지만 준공 시점과 관리 주체가 다른 경우도 있습니다. 실제 경계는 현장이 더 잘 알죠.",
+            "stance": "현장 검증 요청",
+            "position": 1
+          }
+        ]
+      }
+    }
+  ]
+}
