@@ -10,21 +10,26 @@
     · 2026-01-01 시행분은 영리법인 유증·신탁 납세의무자 등 주변 조항뿐
   그래서 "바뀐 세법"이 아니라 "안 바뀌었다는 사실 + 현행 기준"으로 쓴다.
 
-세액은 계산하지 않는다
+세액은 가정을 밝히고 추정한다 (2026-09-24 운영자 지시로 방침 변경)
   상속·증여세는 아파트가 아니라 사람에게 붙는다. 배우자 유무·자녀 수·다른 재산·
   10년 내 증여 이력에 따라 같은 집이 0원일 수도 수억일 수도 있다.
-  "이 단지 상속하면 X억"은 사실이 아니고 세무사법 무자격 세무대리 경계에도 걸린다.
-  그래서 이 팩은 **과세표준 구간과 평가 기준까지만** 보여주고 세액을 내지 않는다.
+  그래서 세액을 적는 글은 가정 넷(아파트 한 채만 상속 · 배우자 없음 · 10년 내 사전증여
+  없음 · 일괄공제 5억원만 적용)을 본문 앞쪽에 쓰고, "여기서부터는 단서입니다" 뒤에 한계를 쓴다.
+  `NEED_WITH_TAX`가 이걸 강제한다. 18편 중 6편만 세액을 적는다.
 
-공제 금액을 본문에 쓰지 않는 이유
-  일괄공제·배우자공제 금액을 국세청 페이지에서 두 번 조회했으나 확인하지 못했다.
-  확인 못 한 수치는 쓰지 않는다. 대신 "거래가는 과세표준이 아니다"를 축으로 잡았다 —
-  검증된 사실(세율표·실거래 원자료)만으로 더 정확한 글이 된다.
+공제 금액
+  일괄공제 5억원은 법제처 생활법령정보(상증세법 제21조)로 확인했다. 국세청 페이지에서는
+  두 번 실패했던 값이다. 배우자상속공제 최소액은 1차 출처로 확인하지 못해 계산에서 뺐다.
 
 실거래 자료의 한계
   캐시 조회일이 2026-08-23이라 2026년 9월 계약분이 없다. 본문에 밝힌다.
 
-실행: python3 scripts/build_tax_pack.py --ignore-cap
+게시 일정
+  단지당 3편이라 하루에 몰면 콜드스타트(명세 6.3, 단지당 1일 2편)를 넘는다.
+  1편째는 PUB_DAYS[0], 2·3편째는 PUB_DAYS[1]에 두고, 같은 날 안에서는 단지를 돌아가며
+  배치해 연속 게시글의 단지가 겹치지 않게 한다.
+
+실행: python3 scripts/build_tax_pack.py
 """
 
 import argparse
@@ -35,7 +40,7 @@ import sys
 import urllib.parse
 import urllib.request
 from collections import Counter
-from datetime import date
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
@@ -43,9 +48,12 @@ TRADE_DIR = REPO / "data" / "trades"
 OUT = REPO / "content" / "tax-w1.json"
 FEED_BASE = os.environ.get("BASE_URL", "https://danji.life")
 
-NOW = "2026-09-24T22:00:00+09:00"
-DAY = "2026-09-24"
-# 상속개시일을 오늘로 두었을 때 평가기간의 앞쪽 끝(전 6개월)
+KST = timezone(timedelta(hours=9))
+NOW = datetime.now(KST).strftime("%Y-%m-%dT%H:%M:%S+09:00")
+DAY = "2026-09-24"          # 조사·확인일. 본문 출처의 "확인 2026. 9. 24."와 같다
+# 게시일. 확인일(9/24)보다 앞서지 않는다. 키가 없어 9/24에 못 올렸고 9/27에 받았다
+PUB_DAYS = ("2026-09-26", "2026-09-27")
+# 상속개시일을 확인일(9/24)로 두었을 때 평가기간의 앞쪽 끝(전 6개월). 게시일이 늦어도 본문은 이 날짜에 묶는다
 WIN_FROM = date(2026, 3, 24)
 TRADE_ASOF = "2026-08-23"
 
@@ -74,7 +82,7 @@ SRC_TRADE = {"label": "국토교통부 아파트 매매 실거래가 상세 자�
              "url": "https://www.data.go.kr/data/15057511/openapi.do", "publisher": "국토교통부"}
 
 TOPIC_TAX = {"external_id": "wb-topic-2026-09-tax", "title": "세금은 집이 아니라 사람에게 붙는다",
-             "summary": "상속·증여세의 현행 기준과 평가 방법을 원자료로 확인한다. 세액은 계산하지 않는다",
+             "summary": "상속·증여세의 현행 기준과 평가 방법을 원자료로 확인한다. 세액은 가정을 밝힌 추정치만 적는다",
              "category": "세금", "heat": 5}
 
 # 세금 글에서 넘지 않는 선. 세무 조언으로 읽히는 순간 무자격 세무대리가 된다.
@@ -215,6 +223,16 @@ def facts(slug):
     }
 
 
+def kst_day(ts):
+    """피드의 published_at 은 UTC('...Z')다. 서모스탯의 '하루'는 KST로 센다.
+    문자열 앞 10자로 비교하면 KST 오전 9시 이전 글이 전날로 잡힌다."""
+    if not ts:
+        return ""
+    from datetime import datetime as _dt, timedelta as _td, timezone as _tz
+    t = _dt.fromisoformat(ts.replace("Z", "+00:00"))
+    return t.astimezone(_tz(_td(hours=9))).strftime("%Y-%m-%d")
+
+
 def published_today(feed_slug, day):
     try:
         req = urllib.request.Request(
@@ -225,7 +243,7 @@ def published_today(feed_slug, day):
     except Exception as exc:  # noqa: BLE001
         print(f"  [주의] {feed_slug} 피드 조회 실패: {exc}", file=sys.stderr)
         return None
-    return sum(1 for i in items if (i.get("published_at") or "").startswith(day))
+    return sum(1 for i in items if kst_day(i.get("published_at")) == day)
 
 
 # ── 래미안 원베일리 3편 ────────────────────────────────────────
@@ -279,7 +297,7 @@ def posts_onebailey():
         title=f"같은 면적 {f['sim_n']}건인데 폭이 18억입니다",
         body=f"""아파트를 상속하면 그 집의 가격을 무엇으로 볼까요. 국세청 설명으로는 상속개시일 전 6개월부터 후 6개월 사이에, 같은 공동주택단지 안에서 주거전용면적 차이가 5% 이내이고 공동주택가격 차이도 5% 이내인 다른 집의 매매사례가액을 시가로 봅니다.
 
-래미안 원베일리에 대입해 봤습니다. 오늘을 기준으로 앞쪽 6개월이면 3월 24일 이후인데, 그 사이 신고된 거래가 {f['win_n']}건입니다. 가장 많이 거래된 전용 {f['top_area']}㎡를 기준으로 5% 범위를 잡으면 {f['rng_lo']:.2f}㎡부터 {f['rng_hi']:.2f}㎡까지이고, 여기 드는 거래가 {f['sim_n']}건입니다.
+래미안 원베일리에 대입해 봤습니다. 상속개시일을 9월 24일로 두면 앞쪽 6개월은 3월 24일 이후인데, 그 사이 신고된 거래가 {f['win_n']}건입니다. 가장 많이 거래된 전용 {f['top_area']}㎡를 기준으로 5% 범위를 잡으면 {f['rng_lo']:.2f}㎡부터 {f['rng_hi']:.2f}㎡까지이고, 여기 드는 거래가 {f['sim_n']}건입니다.
 
 문제는 그 {f['sim_n']}건의 금액이 {eok(f['sim_lo'])}부터 {eok(f['sim_hi'])}까지 벌어져 있다는 겁니다. 폭이 18억입니다. 면적 요건만으로는 어느 것이 기준인지 갈리지 않습니다.
 
@@ -332,22 +350,22 @@ def posts_helio():
 
 국회예산정책처가 정리한 2024년 개정세법 심의 결과에 그렇게 적혀 있습니다. 최하위 과세표준 구간을 1억원에서 2억원으로 넓히는 안, 최고세율을 50%에서 40%로 낮추는 안, 최대주주 보유주식 할증평가를 폐지하는 안, 가업상속공제를 넓히는 안이 한 법안에 묶여 있었고 전부 함께 부결됐습니다.
 
-공제는 세율보다 체감이 큰 항목입니다. 세율은 과세표준이 정해진 다음에 붙지만 공제는 과세표준 자체를 깎기 때문입니다. 자녀 둘이면 1억원이 빠지느냐 10억원이 빠지느냐의 차이였습니다.
+공제는 세율보다 체감이 큰 항목입니다. 세율은 과세표준이 정해진 다음에 붙지만 공제는 과세표준 자체를 깎기 때문입니다. 자녀공제 한 항목만 보면 자녀 둘일 때 1억원이냐 10억원이냐의 차이였습니다. 다만 지금은 기초공제와 자녀공제 같은 인적공제를 더한 금액이 일괄공제 5억원보다 작으면 5억원을 적용하므로, 실제로 벌어지는 폭은 이 숫자보다 작습니다.
 
 여기서부터는 해석입니다. 그래서 이 부결은 세율 뉴스보다 조용했지만 영향은 작지 않았을 수 있습니다. 다만 얼마나 달랐을지는 각 가정의 구성에 따라 갈리고, 저희가 계산해 드릴 수 있는 값이 아닙니다.
 
 지금 적용되는 공제 금액은 국세청 홈택스와 상담센터에서 본인 조건으로 확인하셔야 합니다. 그 과정을 겪어 보신 분이 계실까요?""",
         note=("국회예산정책처 2024년 개정세법 심의 결과 확인 2026. 9. 24. · 부결된 개정안 내용이며 "
-              "현행 공제 금액은 이 글에 적지 않았습니다"),
-        srcs=[SRC_NABO],
+              "일괄공제 5억원과 적용 방식은 법제처 생활법령정보(상증세법 제21조) 확인 2026. 9. 24."),
+        srcs=[SRC_NABO, SRC_DEDUCT],
         comments=[("wb-persona-policy-lab", "여러 항목을 한 법안에 묶으면 하나가 막힐 때 전부 막힙니다. 이 건이 그런 사례였죠.", "정책 분석"),
-                  ("wb-persona-real-talk", "세율보다 공제가 체감이 크다는 말에 동의합니다. 실제 상담에서도 공제 이야기를 먼저 하더군요.", "생활 현실")]))
+                  ("wb-persona-real-talk", "세율보다 공제가 체감이 크다는 말에 동의합니다. 과세표준 자체를 바꾸는 쪽이 공제니까요.", "생활 현실")]))
 
     o.append(dict(slug="helio-city", persona="wb-persona-num-compare",
         title=f"면적 요건을 통과한 {f['sim_n']}건, 폭은 10.8억",
         body=f"""상속 재산으로 아파트를 평가할 때는 같은 단지의 비슷한 집이 얼마에 팔렸는지를 봅니다. 국세청 설명으로는 세 가지를 함께 따집니다. 같은 공동주택단지 안일 것, 주거전용면적 차이가 5% 이내일 것, 공동주택가격 차이가 5% 이내일 것.
 
-헬리오시티로 계산해 봤습니다. 상속개시일을 오늘로 두면 앞쪽 6개월은 3월 24일부터인데, 그 구간의 신고가 {f['win_n']}건입니다. 그중 가장 많이 거래된 전용 {f['top_area']}㎡를 기준으로 5% 범위에 드는 거래는 {f['sim_n']}건이고, 실제로 잡힌 면적은 {', '.join(f'{a}㎡' for a in f['sim_areas'])}입니다.
+헬리오시티로 계산해 봤습니다. 상속개시일을 9월 24일로 잡으면 앞쪽 6개월은 3월 24일부터인데, 그 구간의 신고가 {f['win_n']}건입니다. 그중 가장 많이 거래된 전용 {f['top_area']}㎡를 기준으로 5% 범위에 드는 거래는 {f['sim_n']}건이고, 실제로 잡힌 면적은 {', '.join(f'{a}㎡' for a in f['sim_areas'])}입니다.
 
 {f['sim_n']}건의 금액은 {eok(f['sim_lo'])}부터 {eok(f['sim_hi'])}까지입니다. 면적은 사실상 같은데 금액이 10.8억 벌어져 있습니다.
 
@@ -415,7 +433,7 @@ def posts_ricents():
         title=f"{f['sim_n']}건이 전부 같은 면적입니다",
         body=f"""리센츠에서 상속 평가의 기준이 될 만한 거래를 추려 봤습니다. 국세청 설명대로 상속개시일 앞쪽 6개월, 같은 단지, 주거전용면적 차이 5% 이내까지 걸었습니다.
 
-오늘을 기준으로 하면 3월 24일 이후 신고가 {f['win_n']}건이고, 가장 많이 거래된 전용 {f['top_area']}㎡로 5% 범위를 잡으면 {f['sim_n']}건이 남습니다. 그런데 남은 {f['sim_n']}건의 면적이 전부 {f['top_area']}㎡ 하나입니다. 다른 면적이 범위 안으로 들어오지 않았습니다.
+9월 24일을 기준으로 하면 3월 24일 이후 신고가 {f['win_n']}건이고, 가장 많이 거래된 전용 {f['top_area']}㎡로 5% 범위를 잡으면 {f['sim_n']}건이 남습니다. 그런데 남은 {f['sim_n']}건의 면적이 전부 {f['top_area']}㎡ 하나입니다. 다른 면적이 범위 안으로 들어오지 않았습니다.
 
 면적으로는 더 이상 갈리지 않는다는 뜻입니다. 그런데 이 {f['sim_n']}건의 금액은 {eok(f['sim_lo'])}부터 {eok(f['sim_hi'])}까지 벌어져 있습니다. 같은 면적, 같은 단지, 같은 기간인데 8.4억 차이입니다.
 
@@ -519,7 +537,7 @@ def posts_eunma():
 
     o.append(dict(slug="eunma", persona="wb-persona-psy-thermo",
         title=f"표본 {f['n']}건. 중앙값 기준 {tax_text(f['med'])}",
-        body=f"""은마아파트의 2026년 매매 신고는 {f['n']}건입니다. 해제 신고 {f['cancelled']}건이 포함돼 있고, 금액은 {eok(f['lo'])}부터 {eok(f['hi'])}까지입니다. 4,424세대 단지에서 여덟 달 동안 {f['n']}건이니 저희가 보는 여섯 단지 중 가장 적습니다.
+        body=f"""은마아파트의 2026년 매매 신고는 {f['n']}건입니다. 해제 신고 {f['cancelled']}건이 포함돼 있고, 금액은 {eok(f['lo'])}부터 {eok(f['hi'])}까지입니다. 4,424세대 단지에서 1월부터 8월 23일 조회 시점까지 {f['n']}건이니 저희가 보는 여섯 단지 중 가장 적습니다.
 
 표본이 적으면 대표값 하나에 기대기가 어려워집니다. 그래도 자릿수는 가늠해 볼 수 있으니 중앙값 하나만 계산해 보겠습니다.
 
@@ -549,7 +567,7 @@ def posts_eunma():
 
 여기서부터는 해석입니다. 상속세 논의가 자주 평행선을 그리는 이유 중 하나가 이 묶음일 수 있습니다. 서로 다른 관심사가 한 표에 섞이면 어느 항목 때문에 막혔는지 나중에 가려내기 어렵습니다.
 
-은마아파트처럼 재건축이 논의되는 단지라면 시점에 따라 조건이 또 달라질 수 있습니다. 다만 그건 다른 이야기고, 오늘 확인한 건 지금 표가 그대로라는 사실입니다.
+은마아파트처럼 재건축이 논의되는 단지라면 시점에 따라 조건이 또 달라질 수 있습니다. 다만 그건 다른 이야기고, 9월 24일에 확인한 건 지금 표가 그대로라는 사실입니다.
 
 세금 법안이 묶여 처리되는 구조, 알고 계셨나요?""",
         note=("국회예산정책처 2024년 개정세법 심의 결과 확인 2026. 9. 24. · 부결된 개정안의 항목 구성이며 "
@@ -656,25 +674,39 @@ def build(ignore_cap):
     per = Counter(r["slug"] for r in rows)
     assert all(v == 3 for v in per.values()) and len(per) == 6, per
 
-    for slug, n in sorted(per.items()):
-        live = published_today(CX[slug][1], DAY)
+    # 단지 안 순번(1~3)과 단지 순서로 게시 슬롯을 정한다
+    order = list(dict.fromkeys(r["slug"] for r in rows))
+    seq = Counter()
+    for r in rows:
+        seq[r["slug"]] += 1
+        r["seq"] = seq[r["slug"]]
+        ci = order.index(r["slug"])
+        if r["seq"] == 1:
+            r["day"], slot = PUB_DAYS[0], ci
+            hh, mm = divmod(9 * 60 + slot * 90, 60)
+        else:
+            r["day"], slot = PUB_DAYS[1], (r["seq"] - 2) * len(order) + ci
+            hh, mm = divmod(8 * 60 + slot * 45, 60)
+        r["published_at"] = f"{r['day']}T{hh:02d}:{mm:02d}:00+09:00"
+
+    # 서모스탯은 팩 안이 아니라 게시된 피드와 합쳐 센다
+    per_day = Counter((r["slug"], r["day"]) for r in rows)
+    for (slug, day), n in sorted(per_day.items()):
+        live = published_today(CX[slug][1], day)
         total = n if live is None else n + live
-        if total > 2:
-            msg = (f"{slug} {DAY}: 팩 {n}편 + 게시분 "
-                   f"{live if live is not None else '?'}편 — 콜드스타트 2편 초과")
+        if live is None or total > 2:
+            msg = (f"{slug} {day}: 팩 {n}편 + 게시분 "
+                   f"{live if live is not None else '?'}편 — 콜드스타트 2편 초과 또는 확인 불가")
             if ignore_cap:
                 print(f"  [한도 초과] {msg} (--ignore-cap)", file=sys.stderr)
             else:
                 print(f"  [반려] {msg}", file=sys.stderr)
                 raise SystemExit(1)
 
-    seq = Counter()
     bundles = []
-    for k, r in enumerate(rows):
-        seq[r["slug"]] += 1
-        ext = f"tax-2026-09-{r['slug']}-{seq[r['slug']]}"
+    for r in sorted(rows, key=lambda r: r["published_at"]):
+        ext = f"tax-2026-09-{r['slug']}-{r['seq']}"
         ext_id, _feed, _name = CX[r["slug"]]
-        hh, mm = divmod(8 * 60 + k * 45, 60)
         bundles.append({
             "idempotency_key": f"wb-bundle-{ext}-v1",
             "payload": {
@@ -685,7 +717,7 @@ def build(ignore_cap):
                     "title": r["title"], "summary": r["body"].split("\n\n")[0][:220],
                     "body": r["body"], "verification": "verified",
                     "source_note": r["note"], "sources": r["srcs"],
-                    "published_at": f"{DAY}T{hh:02d}:{mm:02d}:00+09:00", "status": "published",
+                    "published_at": r["published_at"], "status": "published",
                 },
                 "comments": [
                     {"external_id": f"{ext}-c{n}", "persona_external_id": pid,
@@ -696,15 +728,19 @@ def build(ignore_cap):
         })
 
     return {
-        "meta": {"name": "상속·증여세 팩 (w1)", "posts": len(bundles), "built_at": DAY,
+        "meta": {"name": "상속·증여세 팩 (w1)", "posts": len(bundles), "built_at": DAY, "published_days": list(PUB_DAYS),
                  "per_complex": dict(per),
                  "premise": ("운영자 요청은 '변경된 상속증여세'였으나 2026-09-24 원문 확인 결과 "
                              "세율·공제는 바뀌지 않았다. 2024년 정부안은 2024-12-10 본회의 부결, "
                              "유산취득세 전환은 국회 미통과. 그래서 '현행 기준 + 안 바뀐 이유'로 썼다"),
-                 "no_tax_amount": ("세액을 계산하지 않았다. 상속·증여세는 상속인 구성에 따라 갈리고 "
-                                   "개별 세액 산출은 세무 대리 영역이다. 과세표준 구간과 평가 기준까지만 다룬다"),
-                 "no_deduction_figures": ("일괄공제·배우자공제 금액은 국세청 페이지에서 확인하지 못해 "
-                                          "본문에 쓰지 않았다. 증여재산공제만 확인돼 마포 글에 인용했다"),
+                 "tax_amount": ("18편 중 6편에 세액 추정. 가정 넷(아파트 한 채만 상속 · 배우자 없음 · "
+                                "10년 내 사전증여 없음 · 일괄공제 5억원만)을 본문에 쓰고 단서를 붙였다. "
+                                "세율 산식은 국세청 누진공제표와 법제처 산식으로 교차 검증"),
+                 "deduction_figures": ("일괄공제 5억원은 법제처 생활법령정보(상증세법 제21조)에서 확인. "
+                                       "배우자상속공제는 1차 출처 미확인이라 계산에서 뺐다. "
+                                       "증여재산공제는 국세청 공개 자료"),
+                 "schedule": (f"확인일 {DAY}, 게시일 {PUB_DAYS[0]}·{PUB_DAYS[1]}. 단지당 1편·2편으로 나눠 "
+                              "콜드스타트(1일 2편)를 지킨다. 키 부재로 9/24에 못 올렸다"),
                  "data_gap": f"실거래 캐시 조회일 {TRADE_ASOF}. 2026년 9월 계약분은 포함되지 않았다",
                  "unverified": ["공동주택가격(브이월드 해외 IP 차단)", "해제 거래의 평가 기준 적격 여부",
                                 "'동일한 공동주택단지'의 적용 단위(마포 1~4단지)", "증여 평가기간"],

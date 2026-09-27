@@ -94,6 +94,16 @@ def won(manwon):
     return f"{rest:,}만원"
 
 
+def kst_day(ts):
+    """피드의 published_at 은 UTC('...Z')다. 서모스탯의 '하루'는 KST로 센다.
+    문자열 앞 10자로 비교하면 KST 오전 9시 이전 글이 전날로 잡힌다."""
+    if not ts:
+        return ""
+    from datetime import datetime as _dt, timedelta as _td, timezone as _tz
+    t = _dt.fromisoformat(ts.replace("Z", "+00:00"))
+    return t.astimezone(_tz(_td(hours=9))).strftime("%Y-%m-%d")
+
+
 def published_today(cx_ext, day):
     """그날 이미 게시된 편수를 서버에서 센다.
 
@@ -109,7 +119,7 @@ def published_today(cx_ext, day):
     except Exception as exc:  # noqa: BLE001
         print(f"[주의] 피드 조회 실패로 서모스탯을 확인하지 못했습니다: {exc}", file=sys.stderr)
         return None
-    return sum(1 for i in items if (i.get("published_at") or "").startswith(day))
+    return sum(1 for i in items if kst_day(i.get("published_at")) == day)
 
 
 def oku(manwon):
