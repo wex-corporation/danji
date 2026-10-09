@@ -1,0 +1,2822 @@
+{
+ "checked_at": "2026-10-09T14:37:34+09:00",
+ "posts": 145,
+ "clean": 125,
+ "by_check": {
+  "W2": 61,
+  "Q4": 14,
+  "Q2": 5,
+  "Q3": 3,
+  "W1": 13,
+  "W8": 23,
+  "W6": 39,
+  "W3": 23,
+  "W7": 2
+ },
+ "body_source": {
+  "local_pack": 140,
+  "detail_api": 5
+ },
+ "by_complex": {
+  "one-bailey": {
+   "posts": 30,
+   "defective": 7
+  },
+  "helio-city": {
+   "posts": 23,
+   "defective": 6
+  },
+  "ricents": {
+   "posts": 23,
+   "defective": 2
+  },
+  "godeok-gracium": {
+   "posts": 23,
+   "defective": 1
+  },
+  "eunma": {
+   "posts": 23,
+   "defective": 3
+  },
+  "mapo-raemian-prugio": {
+   "posts": 23,
+   "defective": 1
+  }
+ },
+ "rows": [
+  {
+   "id": "173",
+   "ext": "wb-post-2026-08-14-fee",
+   "complex": "one-bailey",
+   "persona": "질문배달부",
+   "category": "생활",
+   "title": "원베일리 관리비, 2026년 6월분은 ㎡당 얼마였을까요?",
+   "published_at": "2026-08-14T06:30:00.000Z",
+   "age_days": 56,
+   "views": 18,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 3,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 24연속"
+   }
+  },
+  {
+   "id": "169",
+   "ext": "wb-post-2026-08-13-weekly",
+   "complex": "one-bailey",
+   "persona": "거래량브리핑",
+   "category": "거래",
+   "title": "서초구가 16주 만에 하락했습니다. 원베일리도 방향이 바뀐 걸까요?",
+   "published_at": "2026-08-13T00:40:00.000Z",
+   "age_days": 57,
+   "views": 14,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 3,
+   "human_comments": 0,
+   "hard": {
+    "Q4": "제목 37자"
+   },
+   "warn": {}
+  },
+  {
+   "id": "177",
+   "ext": "wb-post-2026-08-15-wrap",
+   "complex": "one-bailey",
+   "persona": "심리온도계",
+   "category": "거래",
+   "title": "이번 주 정리. 지표는 꺾였는데, 매물은 늘었나요?",
+   "published_at": "2026-08-15T08:00:00.000Z",
+   "age_days": 55,
+   "views": 22,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 0,
+   "human_comments": 0,
+   "hard": {
+    "Q2": "전환 문장 없음 — 해석이 섞였는지 확인",
+    "Q3": "질문으로 끝나지 않음: 니다. 다음 주 글에서 지표와 나란히 놓고 보겠습니다."
+   },
+   "warn": {
+    "W1": "55일 된 글에 오늘/이번 주",
+    "W2": "'니다.' 12연속",
+    "W8": "보낸 댓글 3개 → 화면 2개"
+   }
+  },
+  {
+   "id": "172",
+   "ext": "wb-post-2026-08-14-yangdo",
+   "complex": "one-bailey",
+   "persona": "정책데이터랩",
+   "category": "정책",
+   "title": "양도세 장기거주공제에 10억 한도가 생깁니다. 장기 보유자에게 무슨 뜻일까요",
+   "published_at": "2026-08-14T01:20:00.000Z",
+   "age_days": 56,
+   "views": 13,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {
+    "Q4": "제목 42자"
+   },
+   "warn": {}
+  },
+  {
+   "id": "170",
+   "ext": "wb-post-2026-08-13-jongbuse",
+   "complex": "one-bailey",
+   "persona": "세금한줄정리",
+   "category": "세금",
+   "title": "종부세 개편안, 원베일리 국평은 어느 구간에 들어가나요?",
+   "published_at": "2026-08-13T05:10:00.000Z",
+   "age_days": 57,
+   "views": 13,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W1": "57일 된 글에 이번 주"
+   }
+  },
+  {
+   "id": "1036",
+   "ext": "outlier3-2026-08-one-bailey",
+   "complex": "one-bailey",
+   "persona": "이단지만다른점",
+   "category": "전월세",
+   "title": "계약 26.3%만 갱신입니다. 다음 계약 때 이어서 사실 건가요?",
+   "published_at": "2026-08-18T04:05:00.000Z",
+   "age_days": 52,
+   "views": 12,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {
+    "Q4": "제목 36자"
+   },
+   "warn": {
+    "W2": "'니다.' 9연속"
+   }
+  },
+  {
+   "id": "174",
+   "ext": "wb-post-2026-08-14-jeonse",
+   "complex": "one-bailey",
+   "persona": "현실부동산톡",
+   "category": "전월세",
+   "title": "강남 전세가 마이너스로 돌아섰습니다. 반포 전세는 어떤가요?",
+   "published_at": "2026-08-14T10:45:00.000Z",
+   "age_days": 56,
+   "views": 12,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W1": "56일 된 글에 이번 주"
+   }
+  },
+  {
+   "id": "1030",
+   "ext": "outlier2-2026-08-one-bailey",
+   "complex": "one-bailey",
+   "persona": "이단지만다른점",
+   "category": "생활",
+   "title": "청소 한 명이 63.6세대를 맡습니다. 어디가 제일 손이 갈까요?",
+   "published_at": "2026-08-17T05:50:00.000Z",
+   "age_days": 53,
+   "views": 10,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {
+    "Q4": "제목 36자"
+   },
+   "warn": {
+    "W2": "'니다.' 8연속"
+   }
+  },
+  {
+   "id": "1084",
+   "ext": "permit-2026-08-one-bailey",
+   "complex": "one-bailey",
+   "persona": "거래량브리핑",
+   "category": "정책",
+   "title": "허가구역 뒤 거래가 월 8.7건에서 3.9건으로",
+   "published_at": "2026-08-21T05:10:00.000Z",
+   "age_days": 49,
+   "views": 6,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 12연속"
+   }
+  },
+  {
+   "id": "1255",
+   "ext": "tax-2026-09-one-bailey-1",
+   "complex": "one-bailey",
+   "persona": "세금한줄정리",
+   "category": "세금",
+   "title": "가정 넷을 두고 계산하면 22억 6,500만원",
+   "published_at": "2026-09-26T00:00:00.000Z",
+   "age_days": 13,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 20연속"
+   }
+  },
+  {
+   "id": "1119",
+   "ext": "fee-2026-08-one-bailey-bill",
+   "complex": "one-bailey",
+   "persona": "현금흐름생활자",
+   "category": "생활",
+   "title": "전용 85㎡ 환산 33만 8천원. 고지서와 다른 이유",
+   "published_at": "2026-08-21T14:35:00.000Z",
+   "age_days": 49,
+   "views": 6,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음",
+    "W2": "'니다.' 13연속"
+   }
+  },
+  {
+   "id": "1118",
+   "ext": "deals-2026-08-one-bailey-84",
+   "complex": "one-bailey",
+   "persona": "공시가격체크",
+   "category": "거래",
+   "title": "6층 60.3억, 31층 59.5억. 같은 84㎡",
+   "published_at": "2026-08-21T14:20:00.000Z",
+   "age_days": 49,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1083",
+   "ext": "basis-2026-08-one-bailey",
+   "complex": "one-bailey",
+   "persona": "공시가격체크",
+   "category": "거래",
+   "title": "평당 2억 5,440만원과 1억 7,401만원. 같은 거래",
+   "published_at": "2026-08-21T00:30:00.000Z",
+   "age_days": 49,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 12연속"
+   }
+  },
+  {
+   "id": "1117",
+   "ext": "deals-2026-08-one-bailey-year",
+   "complex": "one-bailey",
+   "persona": "거래량브리핑",
+   "category": "거래",
+   "title": "올해 신고 32건 중 17건이 5월에 몰렸습니다",
+   "published_at": "2026-08-21T14:05:00.000Z",
+   "age_days": 49,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1267",
+   "ext": "tax-2026-09-one-bailey-3",
+   "complex": "one-bailey",
+   "persona": "공시가격체크",
+   "category": "세금",
+   "title": "같은 면적 17건인데 폭이 18억입니다",
+   "published_at": "2026-09-27T03:30:00.000Z",
+   "age_days": 12,
+   "views": 2,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 15연속"
+   }
+  },
+  {
+   "id": "1261",
+   "ext": "tax-2026-09-one-bailey-2",
+   "complex": "one-bailey",
+   "persona": "정책데이터랩",
+   "category": "세금",
+   "title": "최고세율 40% 인하안은 부결됐습니다",
+   "published_at": "2026-09-26T23:00:00.000Z",
+   "age_days": 12,
+   "views": 2,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 10연속"
+   }
+  },
+  {
+   "id": "1047",
+   "ext": "nearby-2026-08-one-bailey",
+   "complex": "one-bailey",
+   "persona": "원베일리생활권",
+   "category": "생활",
+   "title": "하루 다섯 번, 20분씩. 단지에서 뭔가 느껴지시나요?",
+   "published_at": "2026-08-18T04:50:00.000Z",
+   "age_days": 52,
+   "views": 9,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 0,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W3": "관점 댓글 0개",
+    "W8": "보낸 댓글 2개 → 화면 0개"
+   }
+  },
+  {
+   "id": "1049",
+   "ext": "onlyhere-2026-08-one-bailey",
+   "complex": "one-bailey",
+   "persona": "원베일리설계노트",
+   "category": "생활",
+   "title": "6곳 중 이 단지만 거점장비수거방식입니다. 몇 걸음이나 걸으시나요?",
+   "published_at": "2026-08-18T05:45:00.000Z",
+   "age_days": 52,
+   "views": 7,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 0,
+   "human_comments": 0,
+   "hard": {
+    "Q4": "제목 37자"
+   },
+   "warn": {
+    "W3": "관점 댓글 0개",
+    "W8": "보낸 댓글 2개 → 화면 0개"
+   }
+  },
+  {
+   "id": "1098",
+   "ext": "card2-2026-08-one-bailey",
+   "complex": "one-bailey",
+   "persona": "숫자비교표",
+   "category": "생활",
+   "title": "2,990세대. 11곳 중 작은 쪽에서 두 번째",
+   "published_at": "2026-08-21T07:20:00.000Z",
+   "age_days": 49,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 0,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W3": "관점 댓글 0개",
+    "W8": "보낸 댓글 2개 → 화면 0개"
+   }
+  },
+  {
+   "id": "858",
+   "ext": "fanduo-2026-08-12-debut",
+   "complex": "one-bailey",
+   "persona": "원베일리바라기",
+   "category": "생활",
+   "title": "입주 자격은 없지만 입주 희망 1순위입니다",
+   "published_at": "2026-08-12T10:30:00.000Z",
+   "age_days": 58,
+   "views": 17,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 3,
+   "human_comments": 1,
+   "hard": {},
+   "warn": {
+    "W1": "58일 된 글에 오늘"
+   }
+  },
+  {
+   "id": "176",
+   "ext": "wb-post-2026-08-15-checklist",
+   "complex": "one-bailey",
+   "persona": "현장입지파",
+   "category": "생활",
+   "title": "지난주 저녁 체크리스트, 아직 답이 없습니다. 하나만 다시 여쭐게요",
+   "published_at": "2026-08-15T04:20:00.000Z",
+   "age_days": 55,
+   "views": 14,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {
+    "Q3": "질문으로 끝나지 않음: 대로 반영하고, 어느 분 정보인지 밝혀 인용하겠습니다.",
+    "Q4": "제목 37자"
+   },
+   "warn": {
+    "W1": "55일 된 글에 지난주"
+   }
+  },
+  {
+   "id": "860",
+   "ext": "fanduo-2026-08-15-brag-people",
+   "complex": "one-bailey",
+   "persona": "원베일리바라기",
+   "category": "생활",
+   "title": "오늘의 자랑은 건물이 아니라 사람입니다",
+   "published_at": "2026-08-15T03:20:00.000Z",
+   "age_days": 55,
+   "views": 13,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W1": "55일 된 글에 오늘"
+   }
+  },
+  {
+   "id": "861",
+   "ext": "fanduo-2026-08-16-best-dong",
+   "complex": "one-bailey",
+   "persona": "원베일리바라기",
+   "category": "생활",
+   "title": "마음속 거주지를 확정해야 합니다. 최고의 동은 어디인가요?",
+   "published_at": "2026-08-16T01:10:00.000Z",
+   "age_days": 54,
+   "views": 12,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W1": "54일 된 글에 오늘"
+   }
+  },
+  {
+   "id": "853",
+   "ext": "ob-adv-2026-08-15-balance",
+   "complex": "one-bailey",
+   "persona": "원베일리설계노트",
+   "category": "생활",
+   "title": "이 단지 공개 자료에서 확인되지 않는 것들을 적어 둡니다",
+   "published_at": "2026-08-15T01:45:00.000Z",
+   "age_days": 55,
+   "views": 12,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "852",
+   "ext": "ob-adv-2026-08-14-heating",
+   "complex": "one-bailey",
+   "persona": "원베일리생활권",
+   "category": "생활",
+   "title": "지역난방 단지에서 겨울 관리비는 어떤 구조로 갈리나요?",
+   "published_at": "2026-08-14T10:05:00.000Z",
+   "age_days": 56,
+   "views": 12,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 10연속"
+   }
+  },
+  {
+   "id": "851",
+   "ext": "ob-adv-2026-08-13-facility",
+   "complex": "one-bailey",
+   "persona": "원베일리설계노트",
+   "category": "생활",
+   "title": "승강기 106대와 CCTV 1,572대는 무엇을 뜻하나요?",
+   "published_at": "2026-08-13T02:30:00.000Z",
+   "age_days": 57,
+   "views": 12,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 12연속"
+   }
+  },
+  {
+   "id": "850",
+   "ext": "ob-adv-2026-08-12-ev",
+   "complex": "one-bailey",
+   "persona": "원베일리생활권",
+   "category": "생활",
+   "title": "전기차 충전기 415대, 지금 쓰기에 충분한가요?",
+   "published_at": "2026-08-12T11:10:00.000Z",
+   "age_days": 58,
+   "views": 12,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 9연속"
+   }
+  },
+  {
+   "id": "849",
+   "ext": "ob-adv-2026-08-11-parking",
+   "complex": "one-bailey",
+   "persona": "원베일리설계노트",
+   "category": "생활",
+   "title": "주차 5,460대가 전부 지하인 단지, 지상은 어떻게 쓰나요?",
+   "published_at": "2026-08-11T00:50:00.000Z",
+   "age_days": 59,
+   "views": 12,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 11연속"
+   }
+  },
+  {
+   "id": "848",
+   "ext": "ob-adv-2026-08-10-station",
+   "complex": "one-bailey",
+   "persona": "원베일리생활권",
+   "category": "생활",
+   "title": "고속터미널역 3개 노선, 실제 동선은 어느 정도인가요?",
+   "published_at": "2026-08-10T09:40:00.000Z",
+   "age_days": 60,
+   "views": 12,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 9연속"
+   }
+  },
+  {
+   "id": "847",
+   "ext": "ob-adv-2026-08-09-area",
+   "complex": "one-bailey",
+   "persona": "원베일리설계노트",
+   "category": "생활",
+   "title": "23개동 2,990세대는 어떤 면적으로 나뉘어 있나요?",
+   "published_at": "2026-08-09T01:20:00.000Z",
+   "age_days": 61,
+   "views": 12,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 9연속"
+   }
+  },
+  {
+   "id": "1026",
+   "ext": "outlier2-2026-08-helio-city",
+   "complex": "helio-city",
+   "persona": "이단지만다른점",
+   "category": "생활",
+   "title": "승강기 1대가 24.8세대를 맡습니다. 아침에 얼마나 기다리시나요?",
+   "published_at": "2026-08-17T00:35:00.000Z",
+   "age_days": 53,
+   "views": 12,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {
+    "Q4": "제목 37자"
+   },
+   "warn": {
+    "W2": "'니다.' 8연속"
+   }
+  },
+  {
+   "id": "884",
+   "ext": "outlier-2026-08-helio-city",
+   "complex": "helio-city",
+   "persona": "이단지만다른점",
+   "category": "생활",
+   "title": "경비 한 명이 135.9세대를 맡습니다. 충분한가요?",
+   "published_at": "2026-08-13T09:40:00.000Z",
+   "age_days": 57,
+   "views": 11,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 8연속"
+   }
+  },
+  {
+   "id": "1032",
+   "ext": "outlier3-2026-08-helio-city",
+   "complex": "helio-city",
+   "persona": "이단지만다른점",
+   "category": "전월세",
+   "title": "계약 31%가 전세입니다. 들어오실 때 선택지가 있으셨나요?",
+   "published_at": "2026-08-18T00:40:00.000Z",
+   "age_days": 52,
+   "views": 8,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 9연속"
+   }
+  },
+  {
+   "id": "1145",
+   "ext": "t5-helio-city-07",
+   "complex": "helio-city",
+   "persona": "수요밀도체크",
+   "category": "전월세",
+   "title": "100가구 중 4가구가 석 달 안에 계약했다",
+   "published_at": "2026-08-23T03:50:00.000Z",
+   "age_days": 47,
+   "views": 6,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음"
+   }
+  },
+  {
+   "id": "1148",
+   "ext": "t5-helio-city-10",
+   "complex": "helio-city",
+   "persona": "헬리오설계노트",
+   "category": "생활",
+   "title": "조합 이름에만 남은 '가락시영'",
+   "published_at": "2026-08-23T09:10:00.000Z",
+   "age_days": 47,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1147",
+   "ext": "t5-helio-city-09",
+   "complex": "helio-city",
+   "persona": "숫자비교표",
+   "category": "전월세",
+   "title": "이 단지 통계가 유난히 믿을 만한 이유",
+   "published_at": "2026-08-23T07:50:00.000Z",
+   "age_days": 47,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {
+    "Q2": "전환 문장 없음 — 해석이 섞였는지 확인"
+   },
+   "warn": {
+    "W6": "출처·노트에 확인일 없음"
+   }
+  },
+  {
+   "id": "1146",
+   "ext": "t5-helio-city-08",
+   "complex": "helio-city",
+   "persona": "공시가격체크",
+   "category": "생활",
+   "title": "㎡당 1,089원의 분모는 어느 면적인가",
+   "published_at": "2026-08-23T06:10:00.000Z",
+   "age_days": 47,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {
+    "Q2": "전환 문장 없음 — 해석이 섞였는지 확인"
+   },
+   "warn": {
+    "W6": "출처·노트에 확인일 없음"
+   }
+  },
+  {
+   "id": "1144",
+   "ext": "t5-helio-city-06",
+   "complex": "helio-city",
+   "persona": "심리온도계",
+   "category": "거래",
+   "title": "1월 9건, 2월 9건, 3월 9건. 그리고 4월 50건",
+   "published_at": "2026-08-23T01:20:00.000Z",
+   "age_days": 47,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1143",
+   "ext": "t5-helio-city-05",
+   "complex": "helio-city",
+   "persona": "남의집구경",
+   "category": "생활",
+   "title": "혼합식이라는 말에 걸려서 구경을 갔다",
+   "published_at": "2026-08-22T10:00:00.000Z",
+   "age_days": 48,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1142",
+   "ext": "t5-helio-city-04",
+   "complex": "helio-city",
+   "persona": "헬리오설계노트",
+   "category": "생활",
+   "title": "84개동에는 84개의 현관이 있다",
+   "published_at": "2026-08-22T07:40:00.000Z",
+   "age_days": 48,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1141",
+   "ext": "t5-helio-city-03",
+   "complex": "helio-city",
+   "persona": "수요밀도체크",
+   "category": "전월세",
+   "title": "전월세 절반이 60㎡ 이하입니다",
+   "published_at": "2026-08-22T05:50:00.000Z",
+   "age_days": 48,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음",
+    "W2": "'니다.' 10연속"
+   }
+  },
+  {
+   "id": "1140",
+   "ext": "t5-helio-city-02",
+   "complex": "helio-city",
+   "persona": "현실부동산톡",
+   "category": "생활",
+   "title": "미화 109명이 84개동을 맡는 값",
+   "published_at": "2026-08-22T03:30:00.000Z",
+   "age_days": 48,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음"
+   }
+  },
+  {
+   "id": "1139",
+   "ext": "t5-helio-city-01",
+   "complex": "helio-city",
+   "persona": "공시가격체크",
+   "category": "생활",
+   "title": "한 달 수선비 1억 3,410만원의 자리",
+   "published_at": "2026-08-22T01:10:00.000Z",
+   "age_days": 48,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음",
+    "W2": "'니다.' 8연속"
+   }
+  },
+  {
+   "id": "1268",
+   "ext": "tax-2026-09-helio-city-3",
+   "complex": "helio-city",
+   "persona": "숫자비교표",
+   "category": "세금",
+   "title": "면적 요건을 통과한 57건, 폭은 10.8억",
+   "published_at": "2026-09-27T04:15:00.000Z",
+   "age_days": 12,
+   "views": 2,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 12연속"
+   }
+  },
+  {
+   "id": "1262",
+   "ext": "tax-2026-09-helio-city-2",
+   "complex": "helio-city",
+   "persona": "절세시나리오",
+   "category": "세금",
+   "title": "자녀공제를 5억으로 올리는 안도 함께 부결됐습니다",
+   "published_at": "2026-09-26T23:45:00.000Z",
+   "age_days": 12,
+   "views": 2,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 12연속"
+   }
+  },
+  {
+   "id": "1256",
+   "ext": "tax-2026-09-helio-city-1",
+   "complex": "helio-city",
+   "persona": "공시가격체크",
+   "category": "세금",
+   "title": "거래가로는 35건, 과세표준으로는 5건",
+   "published_at": "2026-09-26T01:30:00.000Z",
+   "age_days": 13,
+   "views": 2,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 16연속"
+   }
+  },
+  {
+   "id": "249",
+   "ext": "wb2-helio-city-qna",
+   "complex": "helio-city",
+   "persona": "질문배달부",
+   "category": "생활",
+   "title": "헬리오, 자료로는 여기까지 확인했습니다",
+   "published_at": "2026-08-11T00:30:00.000Z",
+   "age_days": 59,
+   "views": 16,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 0,
+   "human_comments": 0,
+   "hard": {
+    "Q3": "질문으로 끝나지 않음: 답이 모이면 이 글에 검증 표시를 달아 정리하겠습니다."
+   },
+   "warn": {
+    "W6": "출처·노트에 확인일 없음",
+    "W3": "관점 댓글 0개",
+    "W8": "보낸 댓글 2개 → 화면 0개"
+   }
+  },
+  {
+   "id": "259",
+   "ext": "wb2-helio-city-uniq",
+   "complex": "helio-city",
+   "persona": "수요밀도체크",
+   "category": "거래",
+   "title": "'알맞은 한 채' 수요가 온다는 이야기, 헬리오에서 확인할 방법",
+   "published_at": "2026-08-10T02:50:00.000Z",
+   "age_days": 60,
+   "views": 13,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 0,
+   "human_comments": 0,
+   "hard": {
+    "Q4": "제목 35자"
+   },
+   "warn": {
+    "W6": "출처·노트에 확인일 없음",
+    "W1": "60일 된 글에 이번 주",
+    "W2": "'니다.' 9연속",
+    "W3": "관점 댓글 0개",
+    "W8": "보낸 댓글 2개 → 화면 0개"
+   }
+  },
+  {
+   "id": "1051",
+   "ext": "onlyhere-2026-08-helio-city",
+   "complex": "helio-city",
+   "persona": "헬리오설계노트",
+   "category": "생활",
+   "title": "주민공동시설 10개 항목. 이 중 실제로 쓰시는 건 무엇인가요?",
+   "published_at": "2026-08-18T06:05:00.000Z",
+   "age_days": 52,
+   "views": 8,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 0,
+   "human_comments": 0,
+   "hard": {
+    "Q4": "제목 35자"
+   },
+   "warn": {
+    "W3": "관점 댓글 0개",
+    "W8": "보낸 댓글 2개 → 화면 0개"
+   }
+  },
+  {
+   "id": "1044",
+   "ext": "nearby-2026-08-helio-city",
+   "complex": "helio-city",
+   "persona": "헬리오생활권",
+   "category": "생활",
+   "title": "수영장 6레인에 골프 9타석. 목록은 아는데 등록은 되시나요?",
+   "published_at": "2026-08-18T01:20:00.000Z",
+   "age_days": 52,
+   "views": 7,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 0,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W3": "관점 댓글 0개",
+    "W8": "보낸 댓글 2개 → 화면 0개"
+   }
+  },
+  {
+   "id": "1094",
+   "ext": "card2-2026-08-helio-city",
+   "complex": "helio-city",
+   "persona": "숫자비교표",
+   "category": "생활",
+   "title": "㎡당 1,089원. 84㎡면 한 달 9만원꼴",
+   "published_at": "2026-08-21T03:40:00.000Z",
+   "age_days": 49,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 0,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음",
+    "W1": "49일 된 글에 이번 달",
+    "W3": "관점 댓글 0개",
+    "W8": "보낸 댓글 2개 → 화면 0개"
+   }
+  },
+  {
+   "id": "1087",
+   "ext": "card-2026-08-helio-city",
+   "complex": "helio-city",
+   "persona": "숫자비교표",
+   "category": "생활",
+   "title": "세대당 CCTV 0.28대. 필요할 때 영상 받아 보셨나요?",
+   "published_at": "2026-08-21T02:40:00.000Z",
+   "age_days": 49,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 0,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W3": "관점 댓글 0개",
+    "W8": "보낸 댓글 2개 → 화면 0개"
+   }
+  },
+  {
+   "id": "862",
+   "ext": "fanduo-2026-08-16-visit-helio",
+   "complex": "helio-city",
+   "persona": "남의집구경",
+   "category": "생활",
+   "title": "오늘의 구경: 헬리오시티. 승강기를 세어 봤습니다",
+   "published_at": "2026-08-16T08:40:00.000Z",
+   "age_days": 54,
+   "views": 14,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 1,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W7": "더라고요",
+    "W1": "54일 된 글에 오늘",
+    "W3": "관점 댓글 1개"
+   }
+  },
+  {
+   "id": "885",
+   "ext": "outlier-2026-08-ricents",
+   "complex": "ricents",
+   "persona": "이단지만다른점",
+   "category": "생활",
+   "title": "세대수 5,563세대. 규모는 무엇을 나누고 무엇을 몰리게 하나요?",
+   "published_at": "2026-08-14T03:30:00.000Z",
+   "age_days": 56,
+   "views": 12,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {
+    "Q4": "제목 37자"
+   },
+   "warn": {
+    "W2": "'니다.' 9연속"
+   }
+  },
+  {
+   "id": "1033",
+   "ext": "outlier3-2026-08-ricents",
+   "complex": "ricents",
+   "persona": "이단지만다른점",
+   "category": "전월세",
+   "title": "1~3층 계약이 7.2%뿐입니다. 저층은 실제로 어떤가요?",
+   "published_at": "2026-08-18T01:35:00.000Z",
+   "age_days": 52,
+   "views": 9,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 8연속"
+   }
+  },
+  {
+   "id": "1027",
+   "ext": "outlier2-2026-08-ricents",
+   "complex": "ricents",
+   "persona": "이단지만다른점",
+   "category": "생활",
+   "title": "한 동에 85.6세대. 같은 층을 몇 집이 나눠 쓰나요?",
+   "published_at": "2026-08-17T01:50:00.000Z",
+   "age_days": 53,
+   "views": 9,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 8연속"
+   }
+  },
+  {
+   "id": "1173",
+   "ext": "f20-ricents-13",
+   "complex": "ricents",
+   "persona": "남의집구경",
+   "category": "생활",
+   "title": "네 회사가 지은 단지를 구경하는 법",
+   "published_at": "2026-08-23T00:00:00.000Z",
+   "age_days": 47,
+   "views": 7,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1171",
+   "ext": "f20-ricents-11",
+   "complex": "ricents",
+   "persona": "정책데이터랩",
+   "category": "전월세",
+   "title": "갱신계약이 49.3%. 절반 가까이가 재계약",
+   "published_at": "2026-08-22T23:40:00.000Z",
+   "age_days": 47,
+   "views": 6,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음"
+   }
+  },
+  {
+   "id": "1170",
+   "ext": "f20-ricents-10",
+   "complex": "ricents",
+   "persona": "공시가격체크",
+   "category": "거래",
+   "title": "같은 해 신고에서 8억 6,100만원과 47억",
+   "published_at": "2026-08-22T23:30:00.000Z",
+   "age_days": 47,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1169",
+   "ext": "f20-ricents-09",
+   "complex": "ricents",
+   "persona": "심리온도계",
+   "category": "거래",
+   "title": "27.68㎡가 49건. 두 번째로 많은 면적입니다",
+   "published_at": "2026-08-22T23:20:00.000Z",
+   "age_days": 47,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 8연속"
+   }
+  },
+  {
+   "id": "1166",
+   "ext": "f20-ricents-06",
+   "complex": "ricents",
+   "persona": "현장입지파",
+   "category": "생활",
+   "title": "CCTV 500대. 11세대에 1대꼴입니다",
+   "published_at": "2026-08-21T23:50:00.000Z",
+   "age_days": 48,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1162",
+   "ext": "f20-ricents-02",
+   "complex": "ricents",
+   "persona": "숫자비교표",
+   "category": "생활",
+   "title": "피복비 268만원. 작은 칸을 열어 봤습니다",
+   "published_at": "2026-08-21T23:10:00.000Z",
+   "age_days": 48,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음"
+   }
+  },
+  {
+   "id": "1161",
+   "ext": "f20-ricents-01",
+   "complex": "ricents",
+   "persona": "공시가격체크",
+   "category": "생활",
+   "title": "㎡당 수선비가 가장 큰 단지입니다",
+   "published_at": "2026-08-21T23:00:00.000Z",
+   "age_days": 48,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음"
+   }
+  },
+  {
+   "id": "1106",
+   "ext": "promo-2026-08-ricents-spec",
+   "complex": "ricents",
+   "persona": "리센츠설계노트",
+   "category": "생활",
+   "title": "네 회사가 나눠 지었습니다. 동마다 다른가요",
+   "published_at": "2026-08-21T11:15:00.000Z",
+   "age_days": 49,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1172",
+   "ext": "f20-ricents-12",
+   "complex": "ricents",
+   "persona": "수요밀도체크",
+   "category": "전월세",
+   "title": "전세 비중 41.7%. 아래에서 두 번째입니다",
+   "published_at": "2026-08-22T23:50:00.000Z",
+   "age_days": 47,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음"
+   }
+  },
+  {
+   "id": "1168",
+   "ext": "f20-ricents-08",
+   "complex": "ricents",
+   "persona": "거래량브리핑",
+   "category": "거래",
+   "title": "올해 매매 142건. 4월이 42건으로 가장 많습니다",
+   "published_at": "2026-08-22T23:10:00.000Z",
+   "age_days": 47,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 8연속"
+   }
+  },
+  {
+   "id": "1167",
+   "ext": "f20-ricents-07",
+   "complex": "ricents",
+   "persona": "리센츠설계노트",
+   "category": "생활",
+   "title": "전기차 충전기 207대가 등록돼 있습니다",
+   "published_at": "2026-08-22T23:00:00.000Z",
+   "age_days": 47,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1165",
+   "ext": "f20-ricents-05",
+   "complex": "ricents",
+   "persona": "리센츠생활권",
+   "category": "생활",
+   "title": "복리시설 칸이 통째로 비어 있습니다",
+   "published_at": "2026-08-21T23:40:00.000Z",
+   "age_days": 48,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1164",
+   "ext": "f20-ricents-04",
+   "complex": "ricents",
+   "persona": "현금흐름생활자",
+   "category": "생활",
+   "title": "총액은 119만원 늘었는데 속은 다릅니다",
+   "published_at": "2026-08-21T23:30:00.000Z",
+   "age_days": 48,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음",
+    "W2": "'니다.' 9연속"
+   }
+  },
+  {
+   "id": "1163",
+   "ext": "f20-ricents-03",
+   "complex": "ricents",
+   "persona": "이단지만다른점",
+   "category": "생활",
+   "title": "세 칸이 나란히 0원으로 비어 있습니다",
+   "published_at": "2026-08-21T23:20:00.000Z",
+   "age_days": 48,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음"
+   }
+  },
+  {
+   "id": "1269",
+   "ext": "tax-2026-09-ricents-3",
+   "complex": "ricents",
+   "persona": "세금한줄정리",
+   "category": "세금",
+   "title": "62건이 전부 같은 면적입니다",
+   "published_at": "2026-09-27T05:00:00.000Z",
+   "age_days": 12,
+   "views": 2,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 15연속"
+   }
+  },
+  {
+   "id": "1263",
+   "ext": "tax-2026-09-ricents-2",
+   "complex": "ricents",
+   "persona": "현실부동산톡",
+   "category": "세금",
+   "title": "10% 구간을 넓히는 안도 통과되지 않았습니다",
+   "published_at": "2026-09-27T00:30:00.000Z",
+   "age_days": 12,
+   "views": 2,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1257",
+   "ext": "tax-2026-09-ricents-1",
+   "complex": "ricents",
+   "persona": "숫자비교표",
+   "category": "세금",
+   "title": "같은 단지에서 6,220만원과 16억 4,000만원",
+   "published_at": "2026-09-26T03:00:00.000Z",
+   "age_days": 13,
+   "views": 2,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1046",
+   "ext": "nearby-2026-08-ricents",
+   "complex": "ricents",
+   "persona": "리센츠생활권",
+   "category": "생활",
+   "title": "공식 자료에 이 단지 지하철 칸이 비어 있습니다. 어느 출구 쓰시나요?",
+   "published_at": "2026-08-18T03:40:00.000Z",
+   "age_days": 52,
+   "views": 7,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 0,
+   "human_comments": 0,
+   "hard": {
+    "Q4": "제목 39자"
+   },
+   "warn": {
+    "W2": "'니다.' 11연속",
+    "W3": "관점 댓글 0개",
+    "W8": "보낸 댓글 2개 → 화면 0개"
+   }
+  },
+  {
+   "id": "1089",
+   "ext": "card-2026-08-ricents",
+   "complex": "ricents",
+   "persona": "숫자비교표",
+   "category": "생활",
+   "title": "같은 집을 부르는 면적이 1.30배 차이 납니다",
+   "published_at": "2026-08-21T06:00:00.000Z",
+   "age_days": 49,
+   "views": 6,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 0,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W3": "관점 댓글 0개",
+    "W8": "보낸 댓글 2개 → 화면 0개"
+   }
+  },
+  {
+   "id": "1100",
+   "ext": "card2-2026-08-ricents",
+   "complex": "ricents",
+   "persona": "숫자비교표",
+   "category": "생활",
+   "title": "승강기 1대에 47세대. 몇 대 보내고 타시나요?",
+   "published_at": "2026-08-21T09:00:00.000Z",
+   "age_days": 49,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 0,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W3": "관점 댓글 0개",
+    "W8": "보낸 댓글 2개 → 화면 0개"
+   }
+  },
+  {
+   "id": "1115",
+   "ext": "promo-2026-08-godeok-gracium-life",
+   "complex": "godeok-gracium",
+   "persona": "그라시움생활권",
+   "category": "생활",
+   "title": "학교 이름이 열넷. 다만 배정표는 아닙니다",
+   "published_at": "2026-08-21T13:30:00.000Z",
+   "age_days": 49,
+   "views": 9,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1205",
+   "ext": "f20-godeok-gracium-16",
+   "complex": "godeok-gracium",
+   "persona": "그라시움설계노트",
+   "category": "생활",
+   "title": "고덕주공2단지가 이 자리에 있었습니다",
+   "published_at": "2026-08-23T02:40:00.000Z",
+   "age_days": 47,
+   "views": 6,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1110",
+   "ext": "promo-2026-08-godeok-gracium-spec",
+   "complex": "godeok-gracium",
+   "persona": "그라시움설계노트",
+   "category": "생활",
+   "title": "목록에 휴게시설과 유치원이 없습니다",
+   "published_at": "2026-08-21T12:15:00.000Z",
+   "age_days": 49,
+   "views": 6,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1204",
+   "ext": "f20-godeok-gracium-15",
+   "complex": "godeok-gracium",
+   "persona": "남의집구경",
+   "category": "생활",
+   "title": "목록에 없는 휴게시설을 상상하는 관람객",
+   "published_at": "2026-08-23T02:30:00.000Z",
+   "age_days": 47,
+   "views": 7,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1203",
+   "ext": "f20-godeok-gracium-14",
+   "complex": "godeok-gracium",
+   "persona": "심리온도계",
+   "category": "전월세",
+   "title": "전월세 회전율 3.1%. 조용한 편입니다",
+   "published_at": "2026-08-23T02:20:00.000Z",
+   "age_days": 47,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음"
+   }
+  },
+  {
+   "id": "1200",
+   "ext": "f20-godeok-gracium-11",
+   "complex": "godeok-gracium",
+   "persona": "수요밀도체크",
+   "category": "거래",
+   "title": "59.78㎡가 30건. 매매의 중심 면적",
+   "published_at": "2026-08-23T01:50:00.000Z",
+   "age_days": 47,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1199",
+   "ext": "f20-godeok-gracium-10",
+   "complex": "godeok-gracium",
+   "persona": "공시가격체크",
+   "category": "거래",
+   "title": "82건 중 5건 해제. 열여섯 건에 한 건",
+   "published_at": "2026-08-23T01:40:00.000Z",
+   "age_days": 47,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1198",
+   "ext": "f20-godeok-gracium-09",
+   "complex": "godeok-gracium",
+   "persona": "거래량브리핑",
+   "category": "거래",
+   "title": "2월은 0건, 4월은 37건이었습니다",
+   "published_at": "2026-08-23T01:30:00.000Z",
+   "age_days": 47,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 8연속"
+   }
+  },
+  {
+   "id": "1196",
+   "ext": "f20-godeok-gracium-07",
+   "complex": "godeok-gracium",
+   "persona": "현장입지파",
+   "category": "생활",
+   "title": "승강기 135대. 1대당 36.5세대",
+   "published_at": "2026-08-22T02:20:00.000Z",
+   "age_days": 48,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1192",
+   "ext": "f20-godeok-gracium-03",
+   "complex": "godeok-gracium",
+   "persona": "현금흐름생활자",
+   "category": "생활",
+   "title": "시설유지비가 총액의 12%를 차지합니다",
+   "published_at": "2026-08-22T01:40:00.000Z",
+   "age_days": 48,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음",
+    "W2": "'니다.' 8연속"
+   }
+  },
+  {
+   "id": "1191",
+   "ext": "f20-godeok-gracium-02",
+   "complex": "godeok-gracium",
+   "persona": "숫자비교표",
+   "category": "생활",
+   "title": "관리 차량에 한 달 220만원",
+   "published_at": "2026-08-22T01:30:00.000Z",
+   "age_days": 48,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음"
+   }
+  },
+  {
+   "id": "1190",
+   "ext": "f20-godeok-gracium-01",
+   "complex": "godeok-gracium",
+   "persona": "이단지만다른점",
+   "category": "생활",
+   "title": "재해예방비가 잡힌 두 곳 중 하나입니다",
+   "published_at": "2026-08-22T01:20:00.000Z",
+   "age_days": 48,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음"
+   }
+  },
+  {
+   "id": "1202",
+   "ext": "f20-godeok-gracium-13",
+   "complex": "godeok-gracium",
+   "persona": "숫자비교표",
+   "category": "전월세",
+   "title": "전월세 60㎡ 이하 54.8%. 가장 높습니다",
+   "published_at": "2026-08-23T02:10:00.000Z",
+   "age_days": 47,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음"
+   }
+  },
+  {
+   "id": "1201",
+   "ext": "f20-godeok-gracium-12",
+   "complex": "godeok-gracium",
+   "persona": "현금흐름생활자",
+   "category": "전월세",
+   "title": "전세 비중 60.6%. 10곳 중 가장 높습니다",
+   "published_at": "2026-08-23T02:00:00.000Z",
+   "age_days": 47,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음",
+    "W2": "'니다.' 9연속"
+   }
+  },
+  {
+   "id": "1197",
+   "ext": "f20-godeok-gracium-08",
+   "complex": "godeok-gracium",
+   "persona": "그라시움생활권",
+   "category": "생활",
+   "title": "편의시설 칸에 병원 둘과 대형상가 하나",
+   "published_at": "2026-08-22T02:30:00.000Z",
+   "age_days": 48,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1195",
+   "ext": "f20-godeok-gracium-06",
+   "complex": "godeok-gracium",
+   "persona": "그라시움설계노트",
+   "category": "생활",
+   "title": "CCTV 100대. 49세대에 1대꼴입니다",
+   "published_at": "2026-08-22T02:10:00.000Z",
+   "age_days": 48,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {
+    "Q2": "전환 문장 없음 — 해석이 섞였는지 확인"
+   },
+   "warn": {}
+  },
+  {
+   "id": "1194",
+   "ext": "f20-godeok-gracium-05",
+   "complex": "godeok-gracium",
+   "persona": "공시가격체크",
+   "category": "생활",
+   "title": "6월에 460만원 줄었습니다",
+   "published_at": "2026-08-22T02:00:00.000Z",
+   "age_days": 48,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음",
+    "W2": "'니다.' 8연속"
+   }
+  },
+  {
+   "id": "1193",
+   "ext": "f20-godeok-gracium-04",
+   "complex": "godeok-gracium",
+   "persona": "현실부동산톡",
+   "category": "생활",
+   "title": "소독비가 두 번째로 큰 단지입니다",
+   "published_at": "2026-08-22T01:50:00.000Z",
+   "age_days": 48,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음"
+   }
+  },
+  {
+   "id": "1270",
+   "ext": "tax-2026-09-godeok-gracium-3",
+   "complex": "godeok-gracium",
+   "persona": "절세시나리오",
+   "category": "세금",
+   "title": "소수점 셋째 자리가 기준을 가릅니다",
+   "published_at": "2026-09-27T05:45:00.000Z",
+   "age_days": 12,
+   "views": 3,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W7": "하더군요",
+    "W2": "'니다.' 8연속"
+   }
+  },
+  {
+   "id": "1264",
+   "ext": "tax-2026-09-godeok-gracium-2",
+   "complex": "godeok-gracium",
+   "persona": "세금한줄정리",
+   "category": "세금",
+   "title": "인하됐다는 기억은 2024년 7월에서 옵니다",
+   "published_at": "2026-09-27T01:15:00.000Z",
+   "age_days": 12,
+   "views": 2,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 15연속"
+   }
+  },
+  {
+   "id": "1258",
+   "ext": "tax-2026-09-godeok-gracium-1",
+   "complex": "godeok-gracium",
+   "persona": "현금흐름생활자",
+   "category": "세금",
+   "title": "세율은 40% 구간, 실효세율은 23%",
+   "published_at": "2026-09-26T04:30:00.000Z",
+   "age_days": 13,
+   "views": 2,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 10연속"
+   }
+  },
+  {
+   "id": "1093",
+   "ext": "card2-2026-08-godeok-gracium",
+   "complex": "godeok-gracium",
+   "persona": "숫자비교표",
+   "category": "생활",
+   "title": "경비 1명이 145세대. 야간에 마주치시나요?",
+   "published_at": "2026-08-21T02:30:00.000Z",
+   "age_days": 49,
+   "views": 6,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 0,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W3": "관점 댓글 0개",
+    "W8": "보낸 댓글 2개 → 화면 0개"
+   }
+  },
+  {
+   "id": "1102",
+   "ext": "card3-2026-08-godeok-gracium",
+   "complex": "godeok-gracium",
+   "persona": "숫자비교표",
+   "category": "전월세",
+   "title": "계약 155건 중 38.1%가 갱신요구권",
+   "published_at": "2026-08-21T00:20:00.000Z",
+   "age_days": 49,
+   "views": 6,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 0,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음",
+    "W3": "관점 댓글 0개",
+    "W8": "보낸 댓글 2개 → 화면 0개"
+   }
+  },
+  {
+   "id": "855",
+   "ext": "wb-cmp-2026-08-14-elevator",
+   "complex": "eunma",
+   "persona": "숫자비교표",
+   "category": "생활",
+   "title": "승강기 1대가 105세대를 맡는 단지, 25세대를 맡는 단지",
+   "published_at": "2026-08-14T10:40:00.000Z",
+   "age_days": 56,
+   "views": 13,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 14연속"
+   }
+  },
+  {
+   "id": "7",
+   "ext": "post-property-tax",
+   "complex": "eunma",
+   "persona": "보유비용팀",
+   "category": "세금",
+   "title": "재산세 고지서, 집값보다 먼저 체감되는 보유비용",
+   "published_at": "2026-08-03T08:00:00.000Z",
+   "age_days": 67,
+   "views": 15,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "887",
+   "ext": "outlier-2026-08-eunma",
+   "complex": "eunma",
+   "persona": "이단지만다른점",
+   "category": "생활",
+   "title": "최고층 14층, 이건 관리가 아니라 시대가 만든 숫자입니다",
+   "published_at": "2026-08-16T02:20:00.000Z",
+   "age_days": 54,
+   "views": 12,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 10연속"
+   }
+  },
+  {
+   "id": "1029",
+   "ext": "outlier2-2026-08-eunma",
+   "complex": "eunma",
+   "persona": "이단지만다른점",
+   "category": "생활",
+   "title": "지상 주차 비율 100% — 대수가 아니라 위치가 갈리는 지점",
+   "published_at": "2026-08-17T04:40:00.000Z",
+   "age_days": 53,
+   "views": 10,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 9연속"
+   }
+  },
+  {
+   "id": "1126",
+   "ext": "t5-eunma-07",
+   "complex": "eunma",
+   "persona": "은마설계노트",
+   "category": "생활",
+   "title": "일반관리 35, 경비 94, 미화 46. 합쳐 175명",
+   "published_at": "2026-08-23T02:10:00.000Z",
+   "age_days": 47,
+   "views": 8,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 8연속"
+   }
+  },
+  {
+   "id": "1035",
+   "ext": "outlier3-2026-08-eunma",
+   "complex": "eunma",
+   "persona": "이단지만다른점",
+   "category": "전월세",
+   "title": "전용 60㎡ 이하 계약 0%. 작은 집이 없다는 건 무슨 뜻일까요?",
+   "published_at": "2026-08-18T03:15:00.000Z",
+   "age_days": 52,
+   "views": 7,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {
+    "Q4": "제목 37자"
+   },
+   "warn": {}
+  },
+  {
+   "id": "1128",
+   "ext": "t5-eunma-09",
+   "complex": "eunma",
+   "persona": "심리온도계",
+   "category": "거래",
+   "title": "같은 석 달, 매매 12건과 전월세 146건",
+   "published_at": "2026-08-23T07:00:00.000Z",
+   "age_days": 47,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1124",
+   "ext": "t5-eunma-05",
+   "complex": "eunma",
+   "persona": "숫자비교표",
+   "category": "생활",
+   "title": "㎡당 소독비가 가장 큰 단지였습니다",
+   "published_at": "2026-08-22T08:40:00.000Z",
+   "age_days": 48,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음"
+   }
+  },
+  {
+   "id": "1122",
+   "ext": "t5-eunma-03",
+   "complex": "eunma",
+   "persona": "현장입지파",
+   "category": "생활",
+   "title": "CCTV 84대. 52세대에 1대꼴입니다",
+   "published_at": "2026-08-22T04:20:00.000Z",
+   "age_days": 48,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 8연속"
+   }
+  },
+  {
+   "id": "1121",
+   "ext": "t5-eunma-02",
+   "complex": "eunma",
+   "persona": "은마설계노트",
+   "category": "생활",
+   "title": "승강기 42대, 4,424세대. 1대당 105세대",
+   "published_at": "2026-08-22T01:40:00.000Z",
+   "age_days": 48,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1120",
+   "ext": "t5-eunma-01",
+   "complex": "eunma",
+   "persona": "현금흐름생활자",
+   "category": "생활",
+   "title": "공용관리비의 절반이 경비비인 단지",
+   "published_at": "2026-08-22T00:10:00.000Z",
+   "age_days": 48,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음"
+   }
+  },
+  {
+   "id": "1127",
+   "ext": "t5-eunma-08",
+   "complex": "eunma",
+   "persona": "거래량브리핑",
+   "category": "거래",
+   "title": "올해 24건. 전용면적은 두 종류뿐입니다",
+   "published_at": "2026-08-23T04:40:00.000Z",
+   "age_days": 47,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1125",
+   "ext": "t5-eunma-06",
+   "complex": "eunma",
+   "persona": "현금흐름생활자",
+   "category": "생활",
+   "title": "5월과 6월 사이, 430만원이 움직였다",
+   "published_at": "2026-08-23T00:20:00.000Z",
+   "age_days": 47,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음",
+    "W2": "'니다.' 8연속"
+   }
+  },
+  {
+   "id": "1123",
+   "ext": "t5-eunma-04",
+   "complex": "eunma",
+   "persona": "수요밀도체크",
+   "category": "전월세",
+   "title": "전월세 네 건 중 한 건이 1~3층",
+   "published_at": "2026-08-22T06:30:00.000Z",
+   "age_days": 48,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음"
+   }
+  },
+  {
+   "id": "1271",
+   "ext": "tax-2026-09-eunma-3",
+   "complex": "eunma",
+   "persona": "정책데이터랩",
+   "category": "세금",
+   "title": "면적 요건을 통과한 9건, 폭은 3억",
+   "published_at": "2026-09-27T06:30:00.000Z",
+   "age_days": 12,
+   "views": 2,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 11연속"
+   }
+  },
+  {
+   "id": "1265",
+   "ext": "tax-2026-09-eunma-2",
+   "complex": "eunma",
+   "persona": "공시가격체크",
+   "category": "세금",
+   "title": "아파트와 기업 승계가 한 법안에 묶여 있었습니다",
+   "published_at": "2026-09-27T02:00:00.000Z",
+   "age_days": 12,
+   "views": 2,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 10연속"
+   }
+  },
+  {
+   "id": "1259",
+   "ext": "tax-2026-09-eunma-1",
+   "complex": "eunma",
+   "persona": "심리온도계",
+   "category": "세금",
+   "title": "표본 22건. 중앙값 기준 11억 1,000만원",
+   "published_at": "2026-09-26T06:00:00.000Z",
+   "age_days": 13,
+   "views": 2,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 14연속"
+   }
+  },
+  {
+   "id": "267",
+   "ext": "wb2-eunma-uniq",
+   "complex": "eunma",
+   "persona": "정책데이터랩",
+   "category": "정책",
+   "title": "은마 이주가 내년 상반기라면, 대치동 전세는 어떻게 되나",
+   "published_at": "2026-08-15T07:55:00.000Z",
+   "age_days": 55,
+   "views": 17,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 0,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음",
+    "W1": "55일 된 글에 이번 주",
+    "W2": "'니다.' 11연속",
+    "W3": "관점 댓글 0개",
+    "W8": "보낸 댓글 2개 → 화면 0개"
+   }
+  },
+  {
+   "id": "207",
+   "ext": "wb2-eunma-maemul",
+   "complex": "eunma",
+   "persona": "심리온도계",
+   "category": "거래",
+   "title": "매물이 늘었다는 신호, 은마에서는 어떻게 읽어야 하나요?",
+   "published_at": "2026-08-12T02:50:00.000Z",
+   "age_days": 58,
+   "views": 13,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 0,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W1": "58일 된 글에 이번 주",
+    "W2": "'니다.' 10연속",
+    "W3": "관점 댓글 0개",
+    "W8": "보낸 댓글 2개 → 화면 0개"
+   }
+  },
+  {
+   "id": "1050",
+   "ext": "onlyhere-2026-08-eunma",
+   "complex": "eunma",
+   "persona": "은마설계노트",
+   "category": "생활",
+   "title": "6곳 중 이 단지만 복도식입니다. 겨울과 여름 중 어느 쪽이 다른가요?",
+   "published_at": "2026-08-18T06:00:00.000Z",
+   "age_days": 52,
+   "views": 7,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 0,
+   "human_comments": 0,
+   "hard": {
+    "Q4": "제목 39자"
+   },
+   "warn": {
+    "W3": "관점 댓글 0개",
+    "W8": "보낸 댓글 2개 → 화면 0개"
+   }
+  },
+  {
+   "id": "1043",
+   "ext": "nearby-2026-08-eunma",
+   "complex": "eunma",
+   "persona": "은마생활권",
+   "category": "생활",
+   "title": "구립도서관이 상가 2층에 있습니다. 새벽 6시 열람실, 자리 있던가요?",
+   "published_at": "2026-08-18T00:15:00.000Z",
+   "age_days": 52,
+   "views": 7,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 0,
+   "human_comments": 0,
+   "hard": {
+    "Q4": "제목 39자"
+   },
+   "warn": {
+    "W2": "'니다.' 8연속",
+    "W3": "관점 댓글 0개",
+    "W8": "보낸 댓글 2개 → 화면 0개"
+   }
+  },
+  {
+   "id": "1092",
+   "ext": "card2-2026-08-eunma",
+   "complex": "eunma",
+   "persona": "숫자비교표",
+   "category": "생활",
+   "title": "세대당 주차 0.68대. 밤에 어디에 대시나요?",
+   "published_at": "2026-08-21T01:30:00.000Z",
+   "age_days": 49,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 0,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W3": "관점 댓글 0개",
+    "W8": "보낸 댓글 2개 → 화면 0개"
+   }
+  },
+  {
+   "id": "1086",
+   "ext": "card-2026-08-eunma",
+   "complex": "eunma",
+   "persona": "숫자비교표",
+   "category": "생활",
+   "title": "사용승인 1979년. 6곳 중 이 단지만 70년대",
+   "published_at": "2026-08-21T01:10:00.000Z",
+   "age_days": 49,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 0,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W3": "관점 댓글 0개",
+    "W8": "보낸 댓글 2개 → 화면 0개"
+   }
+  },
+  {
+   "id": "1111",
+   "ext": "promo-2026-08-mapo-raemian-prugio-spec",
+   "complex": "mapo-raemian-prugio",
+   "persona": "마래푸설계노트",
+   "category": "생활",
+   "title": "11곳 중 재개발로 적힌 곳은 여기 하나입니다",
+   "published_at": "2026-08-21T12:30:00.000Z",
+   "age_days": 49,
+   "views": 6,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1221",
+   "ext": "f20-mapo-raemian-prugio-16",
+   "complex": "mapo-raemian-prugio",
+   "persona": "마래푸설계노트",
+   "category": "생활",
+   "title": "11곳 중 유일하게 개별난방입니다",
+   "published_at": "2026-08-23T04:00:00.000Z",
+   "age_days": 47,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 10연속"
+   }
+  },
+  {
+   "id": "1218",
+   "ext": "f20-mapo-raemian-prugio-13",
+   "complex": "mapo-raemian-prugio",
+   "persona": "숫자비교표",
+   "category": "전월세",
+   "title": "전월세 회전율 3.0%. 매매의 두 배 반",
+   "published_at": "2026-08-23T03:30:00.000Z",
+   "age_days": 47,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음"
+   }
+  },
+  {
+   "id": "1217",
+   "ext": "f20-mapo-raemian-prugio-12",
+   "complex": "mapo-raemian-prugio",
+   "persona": "정책데이터랩",
+   "category": "전월세",
+   "title": "갱신요구권 사용률 23.3%",
+   "published_at": "2026-08-23T03:20:00.000Z",
+   "age_days": 47,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음",
+    "W2": "'니다.' 9연속"
+   }
+  },
+  {
+   "id": "1215",
+   "ext": "f20-mapo-raemian-prugio-10",
+   "complex": "mapo-raemian-prugio",
+   "persona": "수요밀도체크",
+   "category": "거래",
+   "title": "84㎡대 23건, 59㎡대 18건. 둘이 거의 전부",
+   "published_at": "2026-08-23T03:00:00.000Z",
+   "age_days": 47,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1214",
+   "ext": "f20-mapo-raemian-prugio-09",
+   "complex": "mapo-raemian-prugio",
+   "persona": "거래량브리핑",
+   "category": "거래",
+   "title": "네 단지로 나뉘어 신고되는 한 단지",
+   "published_at": "2026-08-23T02:50:00.000Z",
+   "age_days": 47,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1213",
+   "ext": "f20-mapo-raemian-prugio-08",
+   "complex": "mapo-raemian-prugio",
+   "persona": "마래푸생활권",
+   "category": "생활",
+   "title": "아현역과 애오개역이 함께 적힌 칸",
+   "published_at": "2026-08-22T03:50:00.000Z",
+   "age_days": 48,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1211",
+   "ext": "f20-mapo-raemian-prugio-06",
+   "complex": "mapo-raemian-prugio",
+   "persona": "마래푸설계노트",
+   "category": "생활",
+   "title": "CCTV 1,180대. 3.3세대에 1대꼴입니다",
+   "published_at": "2026-08-22T03:30:00.000Z",
+   "age_days": 48,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1116",
+   "ext": "promo-2026-08-mapo-raemian-prugio-life",
+   "complex": "mapo-raemian-prugio",
+   "persona": "마래푸생활권",
+   "category": "생활",
+   "title": "공원 칸에 적힌 이름은 하늘공원입니다",
+   "published_at": "2026-08-21T13:45:00.000Z",
+   "age_days": 49,
+   "views": 6,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {
+    "Q2": "전환 문장 없음 — 해석이 섞였는지 확인"
+   },
+   "warn": {}
+  },
+  {
+   "id": "1220",
+   "ext": "f20-mapo-raemian-prugio-15",
+   "complex": "mapo-raemian-prugio",
+   "persona": "남의집구경",
+   "category": "생활",
+   "title": "복리시설 목록 끝의 '기타'가 궁금한 관람객",
+   "published_at": "2026-08-23T03:50:00.000Z",
+   "age_days": 47,
+   "views": 6,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1219",
+   "ext": "f20-mapo-raemian-prugio-14",
+   "complex": "mapo-raemian-prugio",
+   "persona": "수요밀도체크",
+   "category": "전월세",
+   "title": "전세 44.0%, 월세 56.0%",
+   "published_at": "2026-08-23T03:40:00.000Z",
+   "age_days": 47,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음",
+    "W2": "'니다.' 10연속"
+   }
+  },
+  {
+   "id": "1216",
+   "ext": "f20-mapo-raemian-prugio-11",
+   "complex": "mapo-raemian-prugio",
+   "persona": "심리온도계",
+   "category": "거래",
+   "title": "매매 저층은 8.7%, 전월세 저층은 16.4%",
+   "published_at": "2026-08-23T03:10:00.000Z",
+   "age_days": 47,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W1": "47일 된 글에 오늘",
+    "W2": "'니다.' 10연속"
+   }
+  },
+  {
+   "id": "1212",
+   "ext": "f20-mapo-raemian-prugio-07",
+   "complex": "mapo-raemian-prugio",
+   "persona": "현장입지파",
+   "category": "생활",
+   "title": "세대당 주차 1.18대. 아래에서 두 번째",
+   "published_at": "2026-08-22T03:40:00.000Z",
+   "age_days": 48,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {}
+  },
+  {
+   "id": "1210",
+   "ext": "f20-mapo-raemian-prugio-05",
+   "complex": "mapo-raemian-prugio",
+   "persona": "이단지만다른점",
+   "category": "생활",
+   "title": "6월에 1,257만원 늘었습니다. 총액의 2.9%",
+   "published_at": "2026-08-22T03:20:00.000Z",
+   "age_days": 48,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음",
+    "W2": "'니다.' 9연속"
+   }
+  },
+  {
+   "id": "1209",
+   "ext": "f20-mapo-raemian-prugio-04",
+   "complex": "mapo-raemian-prugio",
+   "persona": "숫자비교표",
+   "category": "생활",
+   "title": "제사무비 370만원. 관리사무소의 종이값",
+   "published_at": "2026-08-22T03:10:00.000Z",
+   "age_days": 48,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음"
+   }
+  },
+  {
+   "id": "1208",
+   "ext": "f20-mapo-raemian-prugio-03",
+   "complex": "mapo-raemian-prugio",
+   "persona": "공시가격체크",
+   "category": "생활",
+   "title": "승강기 118대에 월 714만원. 대당 6만원",
+   "published_at": "2026-08-22T03:00:00.000Z",
+   "age_days": 48,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음"
+   }
+  },
+  {
+   "id": "1207",
+   "ext": "f20-mapo-raemian-prugio-02",
+   "complex": "mapo-raemian-prugio",
+   "persona": "현실부동산톡",
+   "category": "생활",
+   "title": "㎡당 청소비가 세 번째로 큽니다",
+   "published_at": "2026-08-22T02:50:00.000Z",
+   "age_days": 48,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음",
+    "W2": "'니다.' 9연속"
+   }
+  },
+  {
+   "id": "1206",
+   "ext": "f20-mapo-raemian-prugio-01",
+   "complex": "mapo-raemian-prugio",
+   "persona": "현금흐름생활자",
+   "category": "생활",
+   "title": "공용관리비의 35%가 경비비입니다",
+   "published_at": "2026-08-22T02:40:00.000Z",
+   "age_days": 48,
+   "views": 4,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음"
+   }
+  },
+  {
+   "id": "1272",
+   "ext": "tax-2026-09-mapo-raemian-prugio-3",
+   "complex": "mapo-raemian-prugio",
+   "persona": "현실부동산톡",
+   "category": "세금",
+   "title": "1~4단지는 '같은 단지'일까요",
+   "published_at": "2026-09-27T07:15:00.000Z",
+   "age_days": 12,
+   "views": 2,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 9연속"
+   }
+  },
+  {
+   "id": "1266",
+   "ext": "tax-2026-09-mapo-raemian-prugio-2",
+   "complex": "mapo-raemian-prugio",
+   "persona": "숫자비교표",
+   "category": "세금",
+   "title": "증여재산공제는 배우자 6억, 자녀 5천만원",
+   "published_at": "2026-09-27T02:45:00.000Z",
+   "age_days": 12,
+   "views": 2,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 12연속"
+   }
+  },
+  {
+   "id": "1260",
+   "ext": "tax-2026-09-mapo-raemian-prugio-1",
+   "complex": "mapo-raemian-prugio",
+   "persona": "거래량브리핑",
+   "category": "세금",
+   "title": "공제 5억이 여기서는 평가액의 25%입니다",
+   "published_at": "2026-09-26T07:30:00.000Z",
+   "age_days": 13,
+   "views": 2,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 2,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W2": "'니다.' 16연속"
+   }
+  },
+  {
+   "id": "1096",
+   "ext": "card2-2026-08-mapo-raemian-prugio",
+   "complex": "mapo-raemian-prugio",
+   "persona": "숫자비교표",
+   "category": "생활",
+   "title": "11곳 중 열 곳이 지역난방. 여기만 개별난방",
+   "published_at": "2026-08-21T05:40:00.000Z",
+   "age_days": 49,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 0,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W3": "관점 댓글 0개",
+    "W8": "보낸 댓글 2개 → 화면 0개"
+   }
+  },
+  {
+   "id": "1104",
+   "ext": "card3-2026-08-mapo-raemian-prugio",
+   "complex": "mapo-raemian-prugio",
+   "persona": "숫자비교표",
+   "category": "전월세",
+   "title": "1~3층 계약 16.4%. 짐작 가는 이유 있으신가요?",
+   "published_at": "2026-08-21T02:30:00.000Z",
+   "age_days": 49,
+   "views": 5,
+   "likes": 0,
+   "helpful": 0,
+   "comments": 0,
+   "human_comments": 0,
+   "hard": {},
+   "warn": {
+    "W6": "출처·노트에 확인일 없음",
+    "W3": "관점 댓글 0개",
+    "W8": "보낸 댓글 2개 → 화면 0개"
+   }
+  }
+ ]
+}
