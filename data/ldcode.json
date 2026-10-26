@@ -1,6 +1,6 @@
 {
   "note": "법정동코드는 손으로 적지 않는다. 매매 실거래 응답의 sggCd + umdCd 로 확정한다. 손으로 적었을 때 파일럿 6곳 중 4곳이 틀렸고, 틀려도 조회는 성공해서 엉뚱한 동의 값이 저장됐다",
-  "fetched_at": "2026-08-18T05:03:16+0000",
+  "fetched_at": "2026-10-26T01:21:05+0000",
   "complexes": {
     "one-bailey": {
       "ld_code": "1165010700",
@@ -12,7 +12,7 @@
         "api": "국토교통부 아파트 매매 실거래가 상세 자료",
         "fields": "sggCd + umdCd",
         "months": [
-          "202607"
+          "202609"
         ]
       }
     },
@@ -26,21 +26,7 @@
         "api": "국토교통부 아파트 매매 실거래가 상세 자료",
         "fields": "sggCd + umdCd",
         "months": [
-          "202607"
-        ]
-      }
-    },
-    "olympic-park-foreon": {
-      "ld_code": "1174010600",
-      "complex_name": "올림픽파크 포레온",
-      "gu": "강동구",
-      "dong": "둔촌동",
-      "address": "서울특별시 강동구 둔촌동 633- 올림픽파크포레온",
-      "derived_from": {
-        "api": "국토교통부 아파트 매매 실거래가 상세 자료",
-        "fields": "sggCd + umdCd",
-        "months": [
-          "202607"
+          "202609"
         ]
       }
     },
@@ -54,21 +40,7 @@
         "api": "국토교통부 아파트 매매 실거래가 상세 자료",
         "fields": "sggCd + umdCd",
         "months": [
-          "202607"
-        ]
-      }
-    },
-    "parkrio": {
-      "ld_code": "1171010200",
-      "complex_name": "파크리오",
-      "gu": "송파구",
-      "dong": "신천동",
-      "address": "서울특별시 송파구 신천동 17 잠실파크리오",
-      "derived_from": {
-        "api": "국토교통부 아파트 매매 실거래가 상세 자료",
-        "fields": "sggCd + umdCd",
-        "months": [
-          "202607"
+          "202609"
         ]
       }
     },
@@ -82,7 +54,63 @@
         "api": "국토교통부 아파트 매매 실거래가 상세 자료",
         "fields": "sggCd + umdCd",
         "months": [
-          "202607"
+          "202609"
+        ]
+      }
+    },
+    "godeok-gracium": {
+      "ld_code": "1174010200",
+      "complex_name": "고덕그라시움",
+      "gu": "강동구",
+      "dong": "고덕동",
+      "address": "서울특별시 강동구 고덕동 212 고덕 그라시움 아파트",
+      "derived_from": {
+        "api": "국토교통부 아파트 매매 실거래가 상세 자료",
+        "fields": "sggCd + umdCd",
+        "months": [
+          "202609"
+        ]
+      }
+    },
+    "mapo-raemian-prugio": {
+      "ld_code": "1144010100",
+      "complex_name": "마포래미안푸르지오",
+      "gu": "마포구",
+      "dong": "아현동",
+      "address": "서울특별시 마포구 아현동 767 마포래미안푸르지오",
+      "derived_from": {
+        "api": "국토교통부 아파트 매매 실거래가 상세 자료",
+        "fields": "sggCd + umdCd",
+        "months": [
+          "202609"
+        ]
+      }
+    },
+    "olympic-park-foreon": {
+      "ld_code": "1174010600",
+      "complex_name": "올림픽파크 포레온",
+      "gu": "강동구",
+      "dong": "둔촌동",
+      "address": "서울특별시 강동구 둔촌동 633- 올림픽파크포레온",
+      "derived_from": {
+        "api": "국토교통부 아파트 매매 실거래가 상세 자료",
+        "fields": "sggCd + umdCd",
+        "months": [
+          "202609"
+        ]
+      }
+    },
+    "parkrio": {
+      "ld_code": "1171010200",
+      "complex_name": "파크리오",
+      "gu": "송파구",
+      "dong": "신천동",
+      "address": "서울특별시 송파구 신천동 17 잠실파크리오",
+      "derived_from": {
+        "api": "국토교통부 아파트 매매 실거래가 상세 자료",
+        "fields": "sggCd + umdCd",
+        "months": [
+          "202609"
         ]
       }
     }

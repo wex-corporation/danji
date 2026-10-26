@@ -50,7 +50,7 @@
   "parking_per_household": 1.27,
   "area_bands_available": true,
   "staff_total": 250,
-  "fetched_at": "2026-08-16T04:16:18+0000",
+  "fetched_at": "2026-10-26T01:18:59+0000",
   "source": {
     "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
     "url": "https://www.data.go.kr/data/15058453/openapi.do",

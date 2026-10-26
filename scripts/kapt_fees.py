@@ -7,10 +7,10 @@
 엔드포인트는 키 없이 실재 여부를 확인해 확정한 것들이다.
 없는 경로는 NO_OPENAPI_SERVICE, 있는 경로는 SERVICE_KEY_IS_NOT_REGISTERED가 돌아온다.
 
-  공용관리비 17항목  1613000/AptCmnuseManageCostServiceV2/getHsmp*InfoV2
-  단지 상세(면적)    1613000/AptBasisInfoServiceV4/getAphusDtlInfoV4
-  단지 기본          1613000/AptBasisInfoServiceV4/getAphusBassInfoV4
-  시군구 단지목록    1613000/AptListService3/getSigunguAptList3
+  공용관리비 17항목  1613000/AptCmnuseManageCostServiceV3/getHsmp*InfoV3
+  단지 상세(면적)    1613000/AptBasisInfoServiceV5/getAphusDtlInfoV5
+  단지 기본          1613000/AptBasisInfoServiceV5/getAphusBassInfoV5
+  시군구 단지목록    1613000/AptListService4/getSigunguAptList4
 
 사용법:
   export KAPT_SERVICE_KEY="발급받은_디코딩_키"
@@ -34,32 +34,32 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 BASE = "https://apis.data.go.kr/1613000"
-COST_SVC = f"{BASE}/AptCmnuseManageCostServiceV2"
-BASIS_SVC = f"{BASE}/AptBasisInfoServiceV4"
-LIST_SVC = f"{BASE}/AptListService3"
+COST_SVC = f"{BASE}/AptCmnuseManageCostServiceV3"
+BASIS_SVC = f"{BASE}/AptBasisInfoServiceV5"
+LIST_SVC = f"{BASE}/AptListService4"
 
 REPO = Path(__file__).resolve().parent.parent
 CACHE_DIR = REPO / "data" / "mgmt-fees"
 
 # 공용관리비 17개 항목. K-apt 공개 분류 그대로다.
 COMMON_FEE_OPS = [
-    ("getHsmpLaborCostInfoV2", "인건비"),
-    ("getHsmpOfcrkCostInfoV2", "제사무비"),
-    ("getHsmpTaxdueInfoV2", "제세공과금"),
-    ("getHsmpClothingCostInfoV2", "피복비"),
-    ("getHsmpEduTraingCostInfoV2", "교육훈련비"),
-    ("getHsmpVhcleMntncCostInfoV2", "차량유지비"),
-    ("getHsmpEtcCostInfoV2", "그 밖의 부대비용"),
-    ("getHsmpGuardCostInfoV2", "경비비"),
-    ("getHsmpCleaningCostInfoV2", "청소비"),
-    ("getHsmpDisinfectionCostInfoV2", "소독비"),
-    ("getHsmpElevatorMntncCostInfoV2", "승강기유지비"),
-    ("getHsmpHomeNetworkMntncCostInfoV2", "지능형 홈네트워크 설비 유지비"),
-    ("getHsmpRepairsCostInfoV2", "수선비"),
-    ("getHsmpFacilityMntncCostInfoV2", "시설유지비"),
-    ("getHsmpSafetyCheckUpCostInfoV2", "안전점검비"),
-    ("getHsmpDisasterPreventionCostInfoV2", "재해예방비"),
-    ("getHsmpConsignManageFeeInfoV2", "위탁관리수수료"),
+    ("getHsmpLaborCostInfoV3", "인건비"),
+    ("getHsmpOfcrkCostInfoV3", "제사무비"),
+    ("getHsmpTaxdueInfoV3", "제세공과금"),
+    ("getHsmpClothingCostInfoV3", "피복비"),
+    ("getHsmpEduTraingCostInfoV3", "교육훈련비"),
+    ("getHsmpVhcleMntncCostInfoV3", "차량유지비"),
+    ("getHsmpEtcCostInfoV3", "그 밖의 부대비용"),
+    ("getHsmpGuardCostInfoV3", "경비비"),
+    ("getHsmpCleaningCostInfoV3", "청소비"),
+    ("getHsmpDisinfectionCostInfoV3", "소독비"),
+    ("getHsmpElevatorMntncCostInfoV3", "승강기유지비"),
+    ("getHsmpHomeNetworkMntncCostInfoV3", "지능형 홈네트워크 설비 유지비"),
+    ("getHsmpRepairsCostInfoV3", "수선비"),
+    ("getHsmpFacilityMntncCostInfoV3", "시설유지비"),
+    ("getHsmpSafetyCheckUpCostInfoV3", "안전점검비"),
+    ("getHsmpDisasterPreventionCostInfoV3", "재해예방비"),
+    ("getHsmpConsignManageFeeInfoV3", "위탁관리수수료"),
 ]
 
 # 응답 item에서 금액이 아닌 식별 필드. 합계에서 제외한다.
@@ -221,7 +221,7 @@ def resolve_kapt_code(key, name, gu):
     code = SIGUNGU.get(gu)
     if not code:
         raise KaptError(f"시군구코드 미등록: {gu}")
-    url = f"{LIST_SVC}/getSigunguAptList3"
+    url = f"{LIST_SVC}/getSigunguAptList4"
     q = {"serviceKey": key, "sigunguCode": code, "pageNo": 1, "numOfRows": 1000, "_type": "json"}
     raw = _http_get(f"{url}?{urllib.parse.urlencode(q)}", timeout=25).strip()
     known = _classify(raw)
@@ -282,7 +282,7 @@ def fetch_area(key, kapt_code, yyyymm):
     면적을 못 구해도 공식 금액 자체는 유효하므로 조회를 통째로 버리지 않는다.
     """
     try:
-        item = _request(f"{BASIS_SVC}/getAphusBassInfoV4",
+        item = _request(f"{BASIS_SVC}/getAphusBassInfoV5",
                         {"serviceKey": key, "kaptCode": kapt_code})
     except KaptError as exc:
         try:
@@ -413,9 +413,9 @@ def build(slug, name, gu, yyyymm, key):
 def probe():
     """키 없이 엔드포인트 실재 여부만 점검한다."""
     paths = [f"{COST_SVC}/{op}" for op, _ in COMMON_FEE_OPS] + [
-        f"{BASIS_SVC}/getAphusDtlInfoV4",
-        f"{BASIS_SVC}/getAphusBassInfoV4",
-        f"{LIST_SVC}/getSigunguAptList3",
+        f"{BASIS_SVC}/getAphusDtlInfoV5",
+        f"{BASIS_SVC}/getAphusBassInfoV5",
+        f"{LIST_SVC}/getSigunguAptList4",
     ]
     ok = 0
     for path in paths:

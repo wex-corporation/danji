@@ -43,8 +43,10 @@ API = "https://apis.data.go.kr/1613000/RTMSDataSvcAptTradeDev/getRTMSDataSvcAptT
 UA = "danji-content-agent/1.0"
 DEFAULT_MONTHS = ["202607", "202606", "202605"]
 
-# build_outlier_pack.py 의 PILOT_R2 와 같아야 한다.
-PILOT = ["one-bailey", "eunma", "olympic-park-foreon", "helio-city", "parkrio", "ricents"]
+# 서버에 남은 6곳(2026-09-24 이후) + 서버에서 빠졌지만 복구 대비로 코드를 남겨 두는 2곳.
+# 처음엔 build_outlier_pack.py 의 PILOT_R2 와 같았다. 운영 단지가 바뀌면 여기도 바꾼다.
+PILOT = ["one-bailey", "eunma", "helio-city", "ricents", "godeok-gracium", "mapo-raemian-prugio",
+         "olympic-park-foreon", "parkrio"]
 
 # trade_volume.py 와 같은 표. 자치구 이름 → 법정동 시군구코드.
 SEOUL_GU = {

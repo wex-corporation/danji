@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 """K-apt 단지 기본·상세 정보 캐시 — 홍보글이 인용할 사실 표를 만든다.
 
-공동주택 기본 정보제공 서비스(AptBasisInfoServiceV4) 두 오퍼레이션을 합친다.
+공동주택 기본 정보제공 서비스(AptBasisInfoServiceV5) 두 오퍼레이션을 합친다.
 
-  getAphusBassInfoV4  세대수·동수·층수·사용승인일·관리비부과면적·전용면적별 세대현황·시공사
-  getAphusDtlInfoV4   주차·승강기·CCTV·인력·지하철·복리시설·편의시설·교육시설
+  getAphusBassInfoV5  세대수·동수·층수·사용승인일·관리비부과면적·전용면적별 세대현황·시공사
+  getAphusDtlInfoV5   주차·승강기·CCTV·인력·지하철·복리시설·편의시설·교육시설
 
 명세 7.2.1이 홍보 페르소나에게 허용한 것이 정확히 이 범위다.
 "세대수·동수·주차·시설·역·학교처럼 공개 자료로 확인되는 항목만 쓴다."
@@ -89,12 +89,12 @@ def _clean(raw, mapping):
 
 def build(slug, name, gu, key):
     kapt_code, kapt_name = K.resolve_kapt_code(key, name, gu)
-    bass = K._request(f"{K.BASIS_SVC}/getAphusBassInfoV4",
+    bass = K._request(f"{K.BASIS_SVC}/getAphusBassInfoV5",
                       {"serviceKey": key, "kaptCode": kapt_code})
     if K._is_no_data(bass):
         raise K.KaptError("기본정보 응답이 비어 있습니다")
     time.sleep(0.3)
-    dtl = K._request(f"{K.BASIS_SVC}/getAphusDtlInfoV4",
+    dtl = K._request(f"{K.BASIS_SVC}/getAphusDtlInfoV5",
                      {"serviceKey": key, "kaptCode": kapt_code})
 
     rec = {"slug": slug, "complex_name": name, "kapt_code": kapt_code,

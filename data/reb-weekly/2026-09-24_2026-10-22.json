@@ -1,0 +1,274 @@
+{
+ "source": {
+  "publisher": "한국부동산원",
+  "label": "전국주택가격동향조사 주간 아파트가격 동향 보도자료",
+  "board": "https://www.reb.or.kr/reb/na/ntt/selectNttList.do?mi=9565&bbsId=1154",
+  "checked_at": "2026-10-26"
+ },
+ "collected_by": "국내 회선 에이전트(라엘) 2026-10-26 원문 PDF 수집 → 콘텐츠 에이전트가 10/22 보도자료 붙임1(시도)·붙임2(수도권) 표의 9.21~10.19 열과 30행 전부 대조(일치)",
+ "unit": "전주 대비 %",
+ "complexes": {
+  "서초구": [
+   "one-bailey"
+  ],
+  "강남구": [
+   "eunma"
+  ],
+  "송파구": [
+   "helio-city",
+   "ricents"
+  ],
+  "강동구": [
+   "godeok-gracium"
+  ],
+  "마포구": [
+   "mapo-raemian-prugio"
+  ]
+ },
+ "notes": [
+  "보도자료의 '강남 11개구'는 한강 이남 11개 구 묶음이다. 참가격의 '서울(강남 3구)'와 다른 범위다",
+  "발표일 기준으로 쓴다. 소급 기록 시 글 날짜는 발표일(목) 14:00 보도 시각 이후여야 한다"
+ ],
+ "rows": [
+  {
+   "published": "2026-09-24",
+   "reference_date": "2026-09-21",
+   "region": "서울 전체",
+   "sale_pct": 0.13,
+   "jeonse_pct": 0.19,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117149"
+  },
+  {
+   "published": "2026-09-24",
+   "reference_date": "2026-09-21",
+   "region": "서초구",
+   "sale_pct": -0.37,
+   "jeonse_pct": -0.19,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117149"
+  },
+  {
+   "published": "2026-09-24",
+   "reference_date": "2026-09-21",
+   "region": "강남구",
+   "sale_pct": -0.42,
+   "jeonse_pct": -0.15,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117149"
+  },
+  {
+   "published": "2026-09-24",
+   "reference_date": "2026-09-21",
+   "region": "송파구",
+   "sale_pct": -0.14,
+   "jeonse_pct": 0.13,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117149"
+  },
+  {
+   "published": "2026-09-24",
+   "reference_date": "2026-09-21",
+   "region": "강동구",
+   "sale_pct": 0.15,
+   "jeonse_pct": 0.33,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117149"
+  },
+  {
+   "published": "2026-09-24",
+   "reference_date": "2026-09-21",
+   "region": "마포구",
+   "sale_pct": 0.06,
+   "jeonse_pct": 0.07,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117149"
+  },
+  {
+   "published": "2026-10-01",
+   "reference_date": "2026-09-28",
+   "region": "서울 전체",
+   "sale_pct": 0.09,
+   "jeonse_pct": 0.16,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117224"
+  },
+  {
+   "published": "2026-10-01",
+   "reference_date": "2026-09-28",
+   "region": "서초구",
+   "sale_pct": -0.33,
+   "jeonse_pct": -0.23,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117224"
+  },
+  {
+   "published": "2026-10-01",
+   "reference_date": "2026-09-28",
+   "region": "강남구",
+   "sale_pct": -0.56,
+   "jeonse_pct": 0.0,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117224"
+  },
+  {
+   "published": "2026-10-01",
+   "reference_date": "2026-09-28",
+   "region": "송파구",
+   "sale_pct": -0.19,
+   "jeonse_pct": 0.14,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117224"
+  },
+  {
+   "published": "2026-10-01",
+   "reference_date": "2026-09-28",
+   "region": "강동구",
+   "sale_pct": 0.11,
+   "jeonse_pct": 0.2,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117224"
+  },
+  {
+   "published": "2026-10-01",
+   "reference_date": "2026-09-28",
+   "region": "마포구",
+   "sale_pct": 0.08,
+   "jeonse_pct": 0.14,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117224"
+  },
+  {
+   "published": "2026-10-08",
+   "reference_date": "2026-10-05",
+   "region": "서울 전체",
+   "sale_pct": 0.12,
+   "jeonse_pct": 0.16,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117692"
+  },
+  {
+   "published": "2026-10-08",
+   "reference_date": "2026-10-05",
+   "region": "서초구",
+   "sale_pct": -0.27,
+   "jeonse_pct": -0.21,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117692"
+  },
+  {
+   "published": "2026-10-08",
+   "reference_date": "2026-10-05",
+   "region": "강남구",
+   "sale_pct": -0.34,
+   "jeonse_pct": -0.02,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117692"
+  },
+  {
+   "published": "2026-10-08",
+   "reference_date": "2026-10-05",
+   "region": "송파구",
+   "sale_pct": -0.19,
+   "jeonse_pct": 0.17,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117692"
+  },
+  {
+   "published": "2026-10-08",
+   "reference_date": "2026-10-05",
+   "region": "강동구",
+   "sale_pct": 0.13,
+   "jeonse_pct": 0.18,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117692"
+  },
+  {
+   "published": "2026-10-08",
+   "reference_date": "2026-10-05",
+   "region": "마포구",
+   "sale_pct": 0.22,
+   "jeonse_pct": 0.2,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117692"
+  },
+  {
+   "published": "2026-10-15",
+   "reference_date": "2026-10-12",
+   "region": "서울 전체",
+   "sale_pct": 0.16,
+   "jeonse_pct": 0.18,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117838"
+  },
+  {
+   "published": "2026-10-15",
+   "reference_date": "2026-10-12",
+   "region": "서초구",
+   "sale_pct": -0.27,
+   "jeonse_pct": -0.19,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117838"
+  },
+  {
+   "published": "2026-10-15",
+   "reference_date": "2026-10-12",
+   "region": "강남구",
+   "sale_pct": -0.35,
+   "jeonse_pct": -0.12,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117838"
+  },
+  {
+   "published": "2026-10-15",
+   "reference_date": "2026-10-12",
+   "region": "송파구",
+   "sale_pct": -0.21,
+   "jeonse_pct": 0.19,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117838"
+  },
+  {
+   "published": "2026-10-15",
+   "reference_date": "2026-10-12",
+   "region": "강동구",
+   "sale_pct": 0.14,
+   "jeonse_pct": 0.16,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117838"
+  },
+  {
+   "published": "2026-10-15",
+   "reference_date": "2026-10-12",
+   "region": "마포구",
+   "sale_pct": 0.26,
+   "jeonse_pct": 0.27,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117838"
+  },
+  {
+   "published": "2026-10-22",
+   "reference_date": "2026-10-19",
+   "region": "서울 전체",
+   "sale_pct": 0.13,
+   "jeonse_pct": 0.16,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117921"
+  },
+  {
+   "published": "2026-10-22",
+   "reference_date": "2026-10-19",
+   "region": "서초구",
+   "sale_pct": -0.32,
+   "jeonse_pct": -0.1,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117921"
+  },
+  {
+   "published": "2026-10-22",
+   "reference_date": "2026-10-19",
+   "region": "강남구",
+   "sale_pct": -0.31,
+   "jeonse_pct": 0.12,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117921"
+  },
+  {
+   "published": "2026-10-22",
+   "reference_date": "2026-10-19",
+   "region": "송파구",
+   "sale_pct": -0.13,
+   "jeonse_pct": 0.1,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117921"
+  },
+  {
+   "published": "2026-10-22",
+   "reference_date": "2026-10-19",
+   "region": "강동구",
+   "sale_pct": 0.09,
+   "jeonse_pct": 0.07,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117921"
+  },
+  {
+   "published": "2026-10-22",
+   "reference_date": "2026-10-19",
+   "region": "마포구",
+   "sale_pct": 0.25,
+   "jeonse_pct": 0.18,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117921"
+  }
+ ]
+}
