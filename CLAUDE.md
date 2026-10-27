@@ -78,6 +78,12 @@
 | `docs/agent-prompt-data-2026-10.md` | 국내 회선 에이전트에게 보낼 자료 수집·API 복구 프롬프트 |
 | `data/living-costs/` | 생활권 물가(참가격 결혼서비스 등). 단지 자료가 아니라 생활비 맥락으로만 쓴다 |
 | `data/reb-weekly/` | 한국부동산원 주간 아파트가격 동향(구별 매매·전세 변동률). 원문 대조를 마친 값만 넣는다 |
+| `scripts/reb_weekly.py` | 부동산원 주간 동향 수집. 게시판 → 첨부 PDF 키 → 문서 뷰어 텍스트 API. `data/reb-weekly/releases/<발표일>.json` |
+| `scripts/forecast_engine.py` | 예측 엔진(명세 5.1). 기준 확률·페르소나 편향·투표 자격·판정. 소급 기록과 서버 투표가 같은 규칙을 쓴다 |
+| `scripts/forecast_ledger.py` | 예측 장부. 발표 t 의 표로 예측하고 발표 t+1 로 판정 → `data/forecast/ledger.json` |
+| `scripts/build_forecast_backfill_pack.py` | AI 예측 장부 소급 기록(8/6~10/22, 12편) |
+| `scripts/market_vote.py` | 서버 예측 마켓 AI 투표(`/ingest/market-votes`). 기본은 출력만, `--send` 로 전송 |
+| `scripts/restore_comments.py` | 서버에서 사라진 관점 댓글을 `/ingest/comments` 로 되돌린다(35번) |
 | `scripts/build_backfill_reb_pack.py` | 소급 기록 생성기(41번). 글 날짜까지 공개된 발표만 꺼내 주는 `AsOf`로 인용 시점을 막는다 |
 | `scripts/build_outlier_pack.py` | 특이값 생성기. 단지별로 다른 지표·프레임을 강제한다 |
 | `scripts/build_nearby_pack.py` | 주변 공공시설 조사글 + 단지 단일 사실 글 생성기 |
@@ -684,3 +690,20 @@ curl -X POST "$BASE_URL/api/v1/ingest/personas" \
    6개 단지 × 주간 판(11/2 주 open, AI 0표·사람 0표). 서버 안내: "표에는 근거 한 줄이 반드시 붙어야 하고,
    근거 없는 표는 거부된다. `POST /api/v1/ingest/market-votes`를 쓴다". 이 엔드포인트는 `docs/ingest-api.md`에 없다.
    정산은 `baseline_unit_price`(실거래 평단가) 기준으로 보인다. 사람 쪽은 `community/market-vote`·`price-pulse`(오른다/보합/내린다)
+44. **AI 예측 장부 — 매주 오른다/내린다, 8/6부터 소급.** (2026-10-27 운영자 결정)
+   "매주 에이전트들이 그 주 아파트가격을 예측해 투표하고, 처음 만든 날부터 소급해서 그 주의 데이터만 쓰고,
+   과거는 실제 결과와 비교하자." 질문 두 개에 대한 답: **과거 주차는 각 주 날짜로 남긴다 · 앞으로는 서버 마켓, 과거는 부동산원**
+   - 엔진(`forecast_engine.py`, 명세 5.1): 그 주 발표 표의 마지막 4주 부호로 p = 0.5 + 0.1 × (오른 주 − 내린 주).
+     페르소나 편향 δ = (낙관 − 3) × 4%p. 낙관 점수는 명세에 적힌 것만 쓰고(정책데이터랩·현실부동산톡 2) 나머지는 중립 3.
+     **점수를 지어내지 않는다.** 판정은 다음 발표의 같은 구 값(0.00은 보합으로 판정 제외)
+   - 투표 자격은 명세가 원본이다. 거래량브리핑(확정 베팅 없음)·심리온도계(월 1회 이하)·질문배달부·세금 페르소나·
+     공시가격체크 계열은 표를 내지 않는다. 홍보 페르소나(`adv-*`)는 가격 전망 금지라 당연히 뺀다
+   - **소급 예측은 기계 규칙으로만 만든다.** 이 에이전트는 이미 결과를 본 상태라 '그 주 데이터만 보고 판단했다'를 보증할 수 없다.
+     규칙은 발표 t 의 표만 받는다. 그래도 **규칙 자체는 기간이 끝난 뒤에 정했다** — 본문 첫 문단에 계산일(10/27)과 함께 쓴다.
+     명세 5.4(예측은 실제 로그, 조작 금지) 때문에 이 기록은 서버 마켓의 페르소나 적중률과 섞지 않는다
+   - 부동산원 발표 8/6~9/24분은 이 환경에서 직접 받았다. 첨부 다운로드(RAONK)는 브라우저 전용이라 막히고,
+     **문서 뷰어(StreamDocs) `docview/v4/documents/{id}/texts/{쪽}`가 PDF 글자를 그대로 준다.** 10/1·10/22 두 건을
+     이 경로로 다시 받아 원문 PDF에서 옮긴 값과 표 전체가 같은지 확인했다(`reb_weekly.py --check`)
+   - `reb.or.kr`은 연결이 자주 끊긴다. 발표당 필요한 쪽(1~2쪽 보도 시각, 9~14쪽 표)만 받으면 몇 분 안에 끝난다
+   - 서버 마켓 투표 형식: `{votes: [{external_id, complex_external_id?, persona_external_id, side: up|down, rationale}]}`.
+     빈 요청으로 검증 오류만 받아 확인했다(콘텐츠 생성 없음). 보류(q = 0.5)인 표는 내지 않는다
