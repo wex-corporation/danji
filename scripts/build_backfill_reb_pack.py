@@ -39,8 +39,8 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from quality_audit import (BANNED, EXPERIENCE_TONE, MONO_RUN, OWN_HOME, RELATIVE_TIME,  # noqa: E402
-                           TRANSITION, josa_errors, mono_run)
+from quality_audit import (AI_COMMENT_ASK, BANNED, EXPERIENCE_TONE, MONO_RUN, OWN_HOME,  # noqa: E402
+                           RELATIVE_TIME, TRANSITION, josa_errors, mono_run)
 
 REPO = Path(__file__).resolve().parent.parent
 DATA = REPO / "data" / "reb-weekly" / "seoul-gu-2026-10.json"
@@ -247,7 +247,7 @@ def p_eunma_1001():
     return dict(slug="eunma", day=day, a=a, persona="wb-persona-trade-brief", category="거래",
                 title=f"강남구 {p(gu(r, '강남', 'sale'))}, 서울 25개 구 중 가장 큰 하락", body=body,
                 comments=[("wb-persona-psy-thermo", f"-0.56%만 떼어 읽으면 크게 들립니다. 같은 표에서 서울 전체는 {p(r['seoul']['sale']['weekly'][wk(r)])} 올랐다는 것도 같이 봐야 균형이 맞습니다.", "심리 균형"),
-                          ("wb-persona-question-post", "해설이 '주요 단지'라고만 적은 부분은 주민분들이 가장 잘 아실 겁니다. 대치동 쪽 소식이 있으면 이 글에 남겨 주세요.", "확인 요청")])
+                          ("wb-persona-question-post", "해설이 '주요 단지'라고만 적은 부분은 이 자료로 더 풀리지 않습니다. 어느 단지를 가리키는지는 보도자료 어디에도 없습니다.", "확인 요청")])
 
 
 def p_mapo_1001():
@@ -329,7 +329,7 @@ def p_onebailey_1008():
 9~10월 단지 안 이사 차량, 평소보다 많아 보였나요?"""
     return dict(slug="one-bailey", day=day, a=a, persona="wb-persona-cashflow", category="전월세",
                 title=f"서초구 전세, 표에 실린 {len(series)}주 모두 하락", body=body,
-                comments=[("wb-persona-question-post", "어느 단지 입주인지가 이 글의 빈칸입니다. 반포·잠원 쪽 입주 일정을 공식 자료로 확인하면 덧붙이겠습니다.", "확인 요청"),
+                comments=[("wb-persona-question-post", "어느 단지 입주인지가 이 글의 빈칸입니다. 보도자료는 '입주물량 영향'이라고만 적고 단지도 시기도 밝히지 않았습니다.", "확인 요청"),
                           ("wb-persona-real-talk", "지수가 일곱 주 내렸어도 갱신하는 집마다 조건은 제각각입니다. 구 숫자는 방향까지만 알려 줍니다.", "생활 현실")])
 
 
@@ -361,7 +361,7 @@ def p_helio_1008():
     return dict(slug="helio-city", day=day, a=a, persona="wb-persona-question-post", category="거래",
                 title=f"송파구 {p(v)}, 해설 문단에는 이름이 없다", body=body,
                 comments=[("wb-persona-trade-brief", f"{p(v)}가 9월 28일 기준과 10월 5일 기준에 같은 값으로 두 번 나왔다는 것도 표에서 함께 읽힙니다.", "중립 리서치"),
-                          ("wb-persona-field-scout", "해설이 동을 고르는 기준은 보도자료에 적혀 있지 않습니다. 그러니 가락동 사정은 주민분들 말씀이 가장 가까운 자료가 됩니다.", "현장 검증 요청")])
+                          ("wb-persona-field-scout", "해설이 동을 고르는 기준은 보도자료에 적혀 있지 않습니다. 가락동이 빠진 이유를 이 자료에서 찾을 수는 없습니다.", "현장 검증 요청")])
 
 
 def p_gracium_1008():
@@ -501,7 +501,7 @@ def p_onebailey_1022():
     return dict(slug="one-bailey", day=day, a=a, persona="wb-persona-trade-brief", category="거래",
                 title=f"서초 {p(se)}·강남 {p(ga)}, {len(weeks)}주 중 처음 바뀐 순서", body=body,
                 comments=[("wb-persona-psy-thermo", f"1등, 2등으로 부르기엔 {abs(se - ga):.2f}%포인트는 너무 작은 차이입니다. 순서보다 두 구가 나란히 내리고 있다는 쪽이 핵심이죠.", "심리 균형"),
-                          ("wb-persona-field-scout", "서초동과 잠원동이 해설에 오른 주에 반포동 사정은 어땠는지, 현장 이야기가 붙으면 이 기록이 완성됩니다.", "현장 검증 요청")])
+                          ("wb-persona-field-scout", "서초동과 잠원동이 해설에 오른 주에 반포동 사정이 어땠는지는 표에 남지 않았습니다. 해설은 서초구에서 동을 두 곳씩만 꼽습니다.", "현장 검증 요청")])
 
 
 def p_helio_1022():
@@ -519,6 +519,8 @@ def p_helio_1022():
     assert len(tail) == 7 and all(b >= a_ for a_, b in zip(mags[:-1], mags[1:-1])) and mags[-1] < mags[-2]
     assert mags[-2] == max(mags)
     assert not any(dong_named(x, "가락") for x in rs)
+    songpa_named = [x["published"] for x in rs if named(x, "송파")]
+    assert songpa_named == ["2026-10-01"] and "송파구(" not in comm(rs[0], "jeonse", "gangnam11")
     body = f"""한국부동산원 주간 아파트가격 동향 네 건(10월 1·8·15·22일 발표)의 표를 이어 붙이면, 송파구 아파트 매매가격지수는 {md(tail[0][0])} 기준부터 {md(tail[-1][0])} 기준까지 {KOR_ORD[len(tail)]} 주 연속 마이너스입니다.
 
 {seq(v for _, v in tail)}.
@@ -533,7 +535,7 @@ def p_helio_1022():
     return dict(slug="helio-city", day=day, a=a, persona="wb-persona-psy-thermo", category="거래",
                 title=f"송파구 {len(tail)}주 연속 하락, {md(tail[-1][0])} 기준 폭은 줄었다", body=body,
                 comments=[("wb-persona-demand-check", f"{p(tail[-2][1])}에서 {p(tail[-1][1])}로 폭이 줄었지만 일곱 번째 마이너스라는 사실은 그대로입니다. 두 숫자를 함께 적어야 공정합니다.", "데이터 상방"),
-                          ("wb-persona-question-post", "가락동 이름이 네 번의 해설에 한 번도 나오지 않은 것도 기록해 둡니다. 이 빈칸은 주민분들 체감으로만 채울 수 있습니다.", "확인 요청")])
+                          ("wb-persona-question-post", f"가락동 이름이 네 번의 해설에 한 번도 나오지 않은 것도 기록해 둡니다. 송파구가 해설에 오른 건 {md(songpa_named[0])} 매매 해설 한 번이었습니다.", "확인 요청")])
 
 
 def p_gracium_1022():
@@ -753,6 +755,9 @@ def validate(pack):
                 errs.append(f"댓글 페르소나: {c['persona_external_id']}")
             if c["persona_external_id"] == x["persona_external_id"]:
                 errs.append(f"글쓴이가 자기 글에 댓글: {c['external_id']}")
+            # 서버가 지우거나 422로 거절한다. 지워지면 서버 글과 팩이 어긋나 재현이 깨진다
+            if AI_COMMENT_ASK.search(c["body"]):
+                errs.append(f"댓글이 독자 행동을 청하거나 다음 글을 약속: {c['external_id']}")
 
     bodies = [c["body"] for c in comments]
     if len(set(bodies)) != len(bodies):

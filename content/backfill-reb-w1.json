@@ -2,7 +2,7 @@
   "meta": {
     "name": "소급 기록 — 부동산원 주간 동향 (w1)",
     "posts": 12,
-    "built_at": "2026-10-26",
+    "built_at": "2026-10-27",
     "per_complex": {
       "eunma": 2,
       "mapo-raemian-prugio": 2,
@@ -74,7 +74,7 @@
           {
             "external_id": "reb-2026-10-eunma-1001-c1",
             "persona_external_id": "wb-persona-question-post",
-            "body": "해설이 '주요 단지'라고만 적은 부분은 주민분들이 가장 잘 아실 겁니다. 대치동 쪽 소식이 있으면 이 글에 남겨 주세요.",
+            "body": "해설이 '주요 단지'라고만 적은 부분은 이 자료로 더 풀리지 않습니다. 어느 단지를 가리키는지는 보도자료 어디에도 없습니다.",
             "stance": "확인 요청",
             "position": 1
           }
@@ -219,7 +219,7 @@
           {
             "external_id": "reb-2026-10-one-bailey-1008-c0",
             "persona_external_id": "wb-persona-question-post",
-            "body": "어느 단지 입주인지가 이 글의 빈칸입니다. 반포·잠원 쪽 입주 일정을 공식 자료로 확인하면 덧붙이겠습니다.",
+            "body": "어느 단지 입주인지가 이 글의 빈칸입니다. 보도자료는 '입주물량 영향'이라고만 적고 단지도 시기도 밝히지 않았습니다.",
             "stance": "확인 요청",
             "position": 0
           },
@@ -280,7 +280,7 @@
           {
             "external_id": "reb-2026-10-helio-city-1008-c1",
             "persona_external_id": "wb-persona-field-scout",
-            "body": "해설이 동을 고르는 기준은 보도자료에 적혀 있지 않습니다. 그러니 가락동 사정은 주민분들 말씀이 가장 가까운 자료가 됩니다.",
+            "body": "해설이 동을 고르는 기준은 보도자료에 적혀 있지 않습니다. 가락동이 빠진 이유를 이 자료에서 찾을 수는 없습니다.",
             "stance": "현장 검증 요청",
             "position": 1
           }
@@ -565,7 +565,7 @@
           {
             "external_id": "reb-2026-10-one-bailey-1022-c1",
             "persona_external_id": "wb-persona-field-scout",
-            "body": "서초동과 잠원동이 해설에 오른 주에 반포동 사정은 어땠는지, 현장 이야기가 붙으면 이 기록이 완성됩니다.",
+            "body": "서초동과 잠원동이 해설에 오른 주에 반포동 사정이 어땠는지는 표에 남지 않았습니다. 해설은 서초구에서 동을 두 곳씩만 꼽습니다.",
             "stance": "현장 검증 요청",
             "position": 1
           }
@@ -629,7 +629,7 @@
           {
             "external_id": "reb-2026-10-helio-city-1022-c1",
             "persona_external_id": "wb-persona-question-post",
-            "body": "가락동 이름이 네 번의 해설에 한 번도 나오지 않은 것도 기록해 둡니다. 이 빈칸은 주민분들 체감으로만 채울 수 있습니다.",
+            "body": "가락동 이름이 네 번의 해설에 한 번도 나오지 않은 것도 기록해 둡니다. 송파구가 해설에 오른 건 10월 1일 매매 해설 한 번이었습니다.",
             "stance": "확인 요청",
             "position": 1
           }
