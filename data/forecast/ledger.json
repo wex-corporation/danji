@@ -13,7 +13,8 @@
   "2026-10-01",
   "2026-10-08",
   "2026-10-15",
-  "2026-10-22"
+  "2026-10-22",
+  "2026-10-29"
  ],
  "weeks": [
   {
@@ -5245,7 +5246,7 @@
    "published": "2026-10-22",
    "embargo_kst": "2026-10-22T14:00:00+09:00",
    "reference_date": "2026-10-19",
-   "target_week": null,
+   "target_week": "10.26",
    "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117921",
    "seoul_sale": 0.13,
    "forecasts": [
@@ -5267,6 +5268,481 @@
       [
        "10.19",
        -0.32
+      ]
+     ],
+     "u": 0,
+     "d": 4,
+     "p": 0.1,
+     "votes": [
+      {
+       "persona": "wb-persona-policy-lab",
+       "name": "정책데이터랩",
+       "optimism": 2,
+       "optimism_source": "명세 481줄(낙관 2)",
+       "q": 0.06,
+       "side": "down",
+       "hit": true
+      },
+      {
+       "persona": "wb-persona-real-talk",
+       "name": "현실부동산톡",
+       "optimism": 2,
+       "optimism_source": "명세 481줄(낙관 2)",
+       "q": 0.06,
+       "side": "down",
+       "hit": true
+      },
+      {
+       "persona": "wb-persona-demand-check",
+       "name": "수요밀도체크",
+       "optimism": 3,
+       "optimism_source": "명세에 점수 없음 → 중립",
+       "q": 0.1,
+       "side": "down",
+       "hit": true
+      },
+      {
+       "persona": "wb-persona-num-compare",
+       "name": "숫자비교표",
+       "optimism": 3,
+       "optimism_source": "명세에 없는 페르소나 → 중립",
+       "q": 0.1,
+       "side": "down",
+       "hit": true
+      },
+      {
+       "persona": "wb-persona-cashflow",
+       "name": "현금흐름생활자",
+       "optimism": 3,
+       "optimism_source": "명세에 없는 페르소나 → 중립",
+       "q": 0.1,
+       "side": "down",
+       "hit": true
+      },
+      {
+       "persona": "wb-persona-field-scout",
+       "name": "현장입지파",
+       "optimism": 3,
+       "optimism_source": "명세에 점수 없음 → 중립",
+       "q": 0.1,
+       "side": "down",
+       "hit": true
+      }
+     ],
+     "tally": {
+      "up": 0,
+      "down": 6,
+      "hold": 0
+     },
+     "consensus": "down",
+     "result": {
+      "week": "10.26",
+      "value": -0.35,
+      "side": "down",
+      "settled_by": "2026-10-29",
+      "consensus_hit": true
+     }
+    },
+    {
+     "gu": "강남",
+     "inputs": [
+      [
+       "9.28",
+       -0.56
+      ],
+      [
+       "10.5",
+       -0.34
+      ],
+      [
+       "10.12",
+       -0.35
+      ],
+      [
+       "10.19",
+       -0.31
+      ]
+     ],
+     "u": 0,
+     "d": 4,
+     "p": 0.1,
+     "votes": [
+      {
+       "persona": "wb-persona-policy-lab",
+       "name": "정책데이터랩",
+       "optimism": 2,
+       "optimism_source": "명세 481줄(낙관 2)",
+       "q": 0.06,
+       "side": "down",
+       "hit": true
+      },
+      {
+       "persona": "wb-persona-real-talk",
+       "name": "현실부동산톡",
+       "optimism": 2,
+       "optimism_source": "명세 481줄(낙관 2)",
+       "q": 0.06,
+       "side": "down",
+       "hit": true
+      },
+      {
+       "persona": "wb-persona-demand-check",
+       "name": "수요밀도체크",
+       "optimism": 3,
+       "optimism_source": "명세에 점수 없음 → 중립",
+       "q": 0.1,
+       "side": "down",
+       "hit": true
+      },
+      {
+       "persona": "wb-persona-num-compare",
+       "name": "숫자비교표",
+       "optimism": 3,
+       "optimism_source": "명세에 없는 페르소나 → 중립",
+       "q": 0.1,
+       "side": "down",
+       "hit": true
+      },
+      {
+       "persona": "wb-persona-cashflow",
+       "name": "현금흐름생활자",
+       "optimism": 3,
+       "optimism_source": "명세에 없는 페르소나 → 중립",
+       "q": 0.1,
+       "side": "down",
+       "hit": true
+      },
+      {
+       "persona": "wb-persona-field-scout",
+       "name": "현장입지파",
+       "optimism": 3,
+       "optimism_source": "명세에 점수 없음 → 중립",
+       "q": 0.1,
+       "side": "down",
+       "hit": true
+      }
+     ],
+     "tally": {
+      "up": 0,
+      "down": 6,
+      "hold": 0
+     },
+     "consensus": "down",
+     "result": {
+      "week": "10.26",
+      "value": -0.38,
+      "side": "down",
+      "settled_by": "2026-10-29",
+      "consensus_hit": true
+     }
+    },
+    {
+     "gu": "송파",
+     "inputs": [
+      [
+       "9.28",
+       -0.19
+      ],
+      [
+       "10.5",
+       -0.19
+      ],
+      [
+       "10.12",
+       -0.21
+      ],
+      [
+       "10.19",
+       -0.13
+      ]
+     ],
+     "u": 0,
+     "d": 4,
+     "p": 0.1,
+     "votes": [
+      {
+       "persona": "wb-persona-policy-lab",
+       "name": "정책데이터랩",
+       "optimism": 2,
+       "optimism_source": "명세 481줄(낙관 2)",
+       "q": 0.06,
+       "side": "down",
+       "hit": true
+      },
+      {
+       "persona": "wb-persona-real-talk",
+       "name": "현실부동산톡",
+       "optimism": 2,
+       "optimism_source": "명세 481줄(낙관 2)",
+       "q": 0.06,
+       "side": "down",
+       "hit": true
+      },
+      {
+       "persona": "wb-persona-demand-check",
+       "name": "수요밀도체크",
+       "optimism": 3,
+       "optimism_source": "명세에 점수 없음 → 중립",
+       "q": 0.1,
+       "side": "down",
+       "hit": true
+      },
+      {
+       "persona": "wb-persona-num-compare",
+       "name": "숫자비교표",
+       "optimism": 3,
+       "optimism_source": "명세에 없는 페르소나 → 중립",
+       "q": 0.1,
+       "side": "down",
+       "hit": true
+      },
+      {
+       "persona": "wb-persona-cashflow",
+       "name": "현금흐름생활자",
+       "optimism": 3,
+       "optimism_source": "명세에 없는 페르소나 → 중립",
+       "q": 0.1,
+       "side": "down",
+       "hit": true
+      },
+      {
+       "persona": "wb-persona-field-scout",
+       "name": "현장입지파",
+       "optimism": 3,
+       "optimism_source": "명세에 점수 없음 → 중립",
+       "q": 0.1,
+       "side": "down",
+       "hit": true
+      }
+     ],
+     "tally": {
+      "up": 0,
+      "down": 6,
+      "hold": 0
+     },
+     "consensus": "down",
+     "result": {
+      "week": "10.26",
+      "value": -0.22,
+      "side": "down",
+      "settled_by": "2026-10-29",
+      "consensus_hit": true
+     }
+    },
+    {
+     "gu": "강동",
+     "inputs": [
+      [
+       "9.28",
+       0.11
+      ],
+      [
+       "10.5",
+       0.13
+      ],
+      [
+       "10.12",
+       0.14
+      ],
+      [
+       "10.19",
+       0.09
+      ]
+     ],
+     "u": 4,
+     "d": 0,
+     "p": 0.9,
+     "votes": [
+      {
+       "persona": "wb-persona-policy-lab",
+       "name": "정책데이터랩",
+       "optimism": 2,
+       "optimism_source": "명세 481줄(낙관 2)",
+       "q": 0.86,
+       "side": "up",
+       "hit": true
+      },
+      {
+       "persona": "wb-persona-real-talk",
+       "name": "현실부동산톡",
+       "optimism": 2,
+       "optimism_source": "명세 481줄(낙관 2)",
+       "q": 0.86,
+       "side": "up",
+       "hit": true
+      },
+      {
+       "persona": "wb-persona-demand-check",
+       "name": "수요밀도체크",
+       "optimism": 3,
+       "optimism_source": "명세에 점수 없음 → 중립",
+       "q": 0.9,
+       "side": "up",
+       "hit": true
+      },
+      {
+       "persona": "wb-persona-num-compare",
+       "name": "숫자비교표",
+       "optimism": 3,
+       "optimism_source": "명세에 없는 페르소나 → 중립",
+       "q": 0.9,
+       "side": "up",
+       "hit": true
+      },
+      {
+       "persona": "wb-persona-cashflow",
+       "name": "현금흐름생활자",
+       "optimism": 3,
+       "optimism_source": "명세에 없는 페르소나 → 중립",
+       "q": 0.9,
+       "side": "up",
+       "hit": true
+      },
+      {
+       "persona": "wb-persona-field-scout",
+       "name": "현장입지파",
+       "optimism": 3,
+       "optimism_source": "명세에 점수 없음 → 중립",
+       "q": 0.9,
+       "side": "up",
+       "hit": true
+      }
+     ],
+     "tally": {
+      "up": 6,
+      "down": 0,
+      "hold": 0
+     },
+     "consensus": "up",
+     "result": {
+      "week": "10.26",
+      "value": 0.04,
+      "side": "up",
+      "settled_by": "2026-10-29",
+      "consensus_hit": true
+     }
+    },
+    {
+     "gu": "마포",
+     "inputs": [
+      [
+       "9.28",
+       0.08
+      ],
+      [
+       "10.5",
+       0.22
+      ],
+      [
+       "10.12",
+       0.26
+      ],
+      [
+       "10.19",
+       0.25
+      ]
+     ],
+     "u": 4,
+     "d": 0,
+     "p": 0.9,
+     "votes": [
+      {
+       "persona": "wb-persona-policy-lab",
+       "name": "정책데이터랩",
+       "optimism": 2,
+       "optimism_source": "명세 481줄(낙관 2)",
+       "q": 0.86,
+       "side": "up",
+       "hit": true
+      },
+      {
+       "persona": "wb-persona-real-talk",
+       "name": "현실부동산톡",
+       "optimism": 2,
+       "optimism_source": "명세 481줄(낙관 2)",
+       "q": 0.86,
+       "side": "up",
+       "hit": true
+      },
+      {
+       "persona": "wb-persona-demand-check",
+       "name": "수요밀도체크",
+       "optimism": 3,
+       "optimism_source": "명세에 점수 없음 → 중립",
+       "q": 0.9,
+       "side": "up",
+       "hit": true
+      },
+      {
+       "persona": "wb-persona-num-compare",
+       "name": "숫자비교표",
+       "optimism": 3,
+       "optimism_source": "명세에 없는 페르소나 → 중립",
+       "q": 0.9,
+       "side": "up",
+       "hit": true
+      },
+      {
+       "persona": "wb-persona-cashflow",
+       "name": "현금흐름생활자",
+       "optimism": 3,
+       "optimism_source": "명세에 없는 페르소나 → 중립",
+       "q": 0.9,
+       "side": "up",
+       "hit": true
+      },
+      {
+       "persona": "wb-persona-field-scout",
+       "name": "현장입지파",
+       "optimism": 3,
+       "optimism_source": "명세에 점수 없음 → 중립",
+       "q": 0.9,
+       "side": "up",
+       "hit": true
+      }
+     ],
+     "tally": {
+      "up": 6,
+      "down": 0,
+      "hold": 0
+     },
+     "consensus": "up",
+     "result": {
+      "week": "10.26",
+      "value": 0.27,
+      "side": "up",
+      "settled_by": "2026-10-29",
+      "consensus_hit": true
+     }
+    }
+   ]
+  },
+  {
+   "published": "2026-10-29",
+   "embargo_kst": "2026-10-29T14:00:00+09:00",
+   "reference_date": "2026-10-26",
+   "target_week": null,
+   "source_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=118012",
+   "seoul_sale": 0.09,
+   "forecasts": [
+    {
+     "gu": "서초",
+     "inputs": [
+      [
+       "10.5",
+       -0.27
+      ],
+      [
+       "10.12",
+       -0.27
+      ],
+      [
+       "10.19",
+       -0.32
+      ],
+      [
+       "10.26",
+       -0.35
       ]
      ],
      "u": 0,
@@ -5334,10 +5810,6 @@
      "gu": "강남",
      "inputs": [
       [
-       "9.28",
-       -0.56
-      ],
-      [
        "10.5",
        -0.34
       ],
@@ -5348,6 +5820,10 @@
       [
        "10.19",
        -0.31
+      ],
+      [
+       "10.26",
+       -0.38
       ]
      ],
      "u": 0,
@@ -5415,10 +5891,6 @@
      "gu": "송파",
      "inputs": [
       [
-       "9.28",
-       -0.19
-      ],
-      [
        "10.5",
        -0.19
       ],
@@ -5429,6 +5901,10 @@
       [
        "10.19",
        -0.13
+      ],
+      [
+       "10.26",
+       -0.22
       ]
      ],
      "u": 0,
@@ -5496,10 +5972,6 @@
      "gu": "강동",
      "inputs": [
       [
-       "9.28",
-       0.11
-      ],
-      [
        "10.5",
        0.13
       ],
@@ -5510,6 +5982,10 @@
       [
        "10.19",
        0.09
+      ],
+      [
+       "10.26",
+       0.04
       ]
      ],
      "u": 4,
@@ -5577,10 +6053,6 @@
      "gu": "마포",
      "inputs": [
       [
-       "9.28",
-       0.08
-      ],
-      [
        "10.5",
        0.22
       ],
@@ -5591,6 +6063,10 @@
       [
        "10.19",
        0.25
+      ],
+      [
+       "10.26",
+       0.27
       ]
      ],
      "u": 4,
