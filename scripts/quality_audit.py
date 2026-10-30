@@ -39,7 +39,10 @@ REPO = Path(__file__).resolve().parent.parent
 KST = timezone(timedelta(hours=9))
 
 # ── 하드 규칙: 하나라도 걸리면 결함 ─────────────────────────────
-TRANSITION = re.compile(r"여기서부터는\s*(해석|단서)|해석입니다")
+# 사실과 해석의 경계. 문장은 글마다 달라도 된다 — 같은 문장이 라이브 212편 중 108편에 박혀 있었다(10/31, W9)
+TRANSITION = re.compile(r"여기서부터는\s*(해석|단서)|해석입니다|해석(을|하면|하자면|이에요|인데요)"
+                        r"|제\s?(해석|생각|짐작|감상|읽기)(은|을|으로는|이에요|입니다|인데요)"
+                        r"|(숫자|사실|자료|표)(는|가|이)?\s*여기까지|감상입니다")
 DATED = re.compile(r"(확인|조회|기준|공개|발표)[^·]{0,20}20\d\d|20\d\d[.\-/]\s?\d{1,2}[.\-/]\s?\d{1,2}")
 BANNED = {
     "출처불명": ["알려져 있", "라고 한다", "다고 한다", "인터넷에서", "찾아보니", "카더라", "들리는 말"],
@@ -66,6 +69,37 @@ RELATIVE_TIME = re.compile(r"오늘|어제|이번 주|지난주|이번 달|최�
 # 서버 판정식은 모르므로 우리가 실제로 거절당한 표현에서 시작해 넓게 잡는다
 AI_COMMENT_ASK = re.compile(r"남겨\s?주|알려\s?주|적어\s?주|댓글로|제보|준비할게|덧붙이겠|이어서 적겠|다음 (주 )?글")
 MONO_RUN = 8          # '~니다.' 문말이 이만큼 연속되면 단조
+
+# ── 문체 경고 W9~W13 (docs/writing-style.md). 2026-10-31 라이브 212편을 재서 넣었다 ──
+# 결함은 아니다. 새 생성기는 validate()에서 style_issues()로 막고, 옛 글은 감사에서만 센다
+STOCK_TRANSITION = "여기서부터는 해석입니다"
+# 다짐·해명. 한계는 자료에 대한 사실로 한 번만 적는다("보도자료에 단지 이름이 없다"),
+# 우리의 결심("~하지 않겠습니다")으로 적지 않는다
+PLEDGE = re.compile(r"않겠습니다|적어 둡니다|적어 두겠|밝혀 둡|짐작으로")
+# 장부식 나열 '서초 내린다 6 / 강남 내린다 6 / …'. 본문은 문장으로 쓴다
+LEDGER = re.compile(r"(?:[^\n/.]|\.\d){1,30} / (?:[^\n/.]|\.\d){1,30} / ")
+# 댓글이 글을 품평한다('이 글의 핵심', '나눠 적은 이유'). 댓글은 자기 관점을 하나 보탠다
+COMMENT_REVIEW = re.compile(r"이 글|본문|핵심이겠|핵심입니다|나눠 적은|정리해 주")
+STYLE_MONO = 4        # 새 글 기준. '~니다.' 4연속이면 문말을 섞는다(W2는 옛 글 감시용 8)
+
+
+def style_issues(title, body, comments=()):
+    """새 글에 거는 문체 검사. (ID, 설명) 목록을 돌려준다. 감사(W9~W13)와 생성기가 같이 쓴다."""
+    out = []
+    if STOCK_TRANSITION in body:
+        out.append(("W9", f"판박이 전환문 '{STOCK_TRANSITION}'"))
+    if LEDGER.search(body):
+        out.append(("W10", f"장부식 나열 '{LEDGER.search(body).group()[:30]}'"))
+    pl = PLEDGE.findall(body)
+    if pl:
+        out.append(("W11", f"다짐·해명 {'/'.join(sorted(set(pl)))}"))
+    rv = [m.group() for c in comments for m in COMMENT_REVIEW.finditer(c)]
+    if rv:
+        out.append(("W12", f"댓글이 글을 품평 {'/'.join(sorted(set(rv)))}"))
+    first = re.split(r"[\s,]", body.strip(), 1)[0]
+    if any(first.startswith(w) for w in COMPLEX_WORDS) and first.endswith("의"):
+        out.append(("W13", f"보고서식 첫 문장 '{first} …'"))
+    return out
 SIM_WARN = 0.35       # 마스킹 후 어절 자카드. 출고 검사 임계값과 같다
 STALE_DAYS = 14       # 시점 의존 표현이 이 기간보다 오래된 글에 있으면 낡은 글
 
@@ -202,6 +236,10 @@ def audit_post(d, today):
     sent = d.get("_sent_comments")
     if sent is not None and d.get("comment_count", 0) < sent:
         warn["W8"] = f"보낸 댓글 {sent}개 → 화면 {d.get('comment_count', 0)}개"
+    # W9~W13 문체
+    for k, v in style_issues(title, body, [c.get("body", "") for c in comments
+                                           if (c.get("author_trust") or c.get("author_type") or "ai") == "ai"]):
+        warn[k] = v
 
     return {
         "id": d["id"], "ext": d.get("external_id"), "complex": d.get("complex_slug"),
@@ -218,7 +256,7 @@ def audit_post(d, today):
 def main():
     ap = argparse.ArgumentParser(description="라이브 글 품질 감사")
     ap.add_argument("--complex", dest="only")
-    ap.add_argument("--show", help="이 항목(Q1~Q7, W1~W8)에 걸린 글을 전부 출력")
+    ap.add_argument("--show", help="이 항목(Q1~Q7, W1~W13)에 걸린 글을 전부 출력")
     args = ap.parse_args()
 
     today = datetime.now(KST).date()
@@ -267,8 +305,10 @@ def main():
              "Q5": "마크다운", "Q6": "금지 표현", "Q7": "조사",
              "W1": "낡은 시점 표현", "W2": "문말 단조", "W3": "관점 댓글 부족",
              "W4": "다른 글과 유사", "W5": "댓글 돌려쓰기", "W6": "출처 확인일 없음",
-             "W7": "체험 어투(문맥 판정)", "W8": "댓글 유실"}
-    for k in sorted(names):
+             "W7": "체험 어투(문맥 판정)", "W8": "댓글 유실",
+             "W9": "판박이 전환문", "W10": "장부식 나열", "W11": "다짐·해명", "W12": "댓글이 글 품평",
+             "W13": "보고서식 첫 문장"}
+    for k in sorted(names, key=lambda k: (k[0], int(k[1:]))):
         print(f"  {k} {names[k]:12} {by_check.get(k, 0):>4}편")
     print("\n단지별 결함 글")
     for cx, (tot, bad) in sorted(by_cx.items()):

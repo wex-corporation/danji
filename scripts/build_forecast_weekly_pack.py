@@ -6,6 +6,9 @@
   · 실제 날짜로 올린다. 게시 시각은 지금이고, 보도 시각(목 14:00)보다 뒤여야 한다
   · '10월 27일에 계산' 공개 문장이 없다. 대신 그 주에 무엇이 판정됐는지를 첫 문단에 쓴다
   · 문단은 주마다 손으로 쓴다(WEEKLY). 숫자는 장부에서 꺼내고 본문 주장은 assert 로 확인한다
+  · 판정·예측 줄은 문장으로 쓴다(10/31 문체 기준, docs/writing-style.md). '서초 내린다 6 / 강남 …' 같은
+    장부식 나열은 쓰지 않는다. 10/29 회차는 옛 줄 형식으로 나갔고 원본은 content/forecast-weekly-2026-10-29.json 이다
+  · 해석 전환 문장도 주마다 다르게 쓴다. reading 문단이 자기 전환 문장으로 시작한다
 
 매주 순서: reb_weekly.py → forecast_ledger.py → market_vote.py --send → 이 생성기 → publish.py
 
@@ -14,6 +17,7 @@
 
 import argparse
 import json
+import re
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -21,14 +25,82 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_forecast_backfill_pack as B  # noqa: E402
 import forecast_engine as E  # noqa: E402
-from quality_audit import (AI_COMMENT_ASK, BANNED, EXPERIENCE_TONE, MONO_RUN, OWN_HOME,  # noqa: E402
-                           RELATIVE_TIME, TRANSITION, josa_errors, mono_run)
+from quality_audit import (AI_COMMENT_ASK, BANNED, EXPERIENCE_TONE, OWN_HOME, RELATIVE_TIME,  # noqa: E402
+                           STYLE_MONO, TRANSITION, has_batchim, josa_errors, mono_run,
+                           style_issues)
 
 REPO = B.REPO
 KST = timezone(timedelta(hours=9))
 F, R, md, p, ins, ytd = B.F, B.R, B.md, B.p, B.ins, B.ytd
 
 WEEKLY = {}
+SIDE = {"up": "오른다", "down": "내린다"}
+# '한 단지의 값이 아니다'는 지키되 고정 문장으로 붙이지 않는다. 그 주의 말로 한 번 쓴다
+CAVEAT = re.compile(r"한 단지|단지(의)? 값이 아니|단지 숫자가 아니|구 전체|구 단위")
+
+
+KO_NUM = {1: "한", 2: "두", 3: "세", 4: "네", 5: "다섯", 6: "여섯"}
+
+
+def eun(word):
+    """구 이름 뒤 은/는. '강남는'이 나오지 않게 받침을 본다"""
+    return word + ("은" if has_batchim(word[-1]) else "는")
+
+
+def settle_prose(prev, rh, rn):
+    """지난 예측의 판정을 문장으로. 맞은 구와 빗나간 구를 방향별로 묶는다."""
+    groups, flat, held = {}, [], []
+    hit = n = 0
+    for f in prev["forecasts"]:
+        r, c = f["result"], f["consensus"]
+        if c is None:
+            held.append(f"{f['gu']}({p(r['value'])})")
+            continue
+        if r["consensus_hit"] is None:
+            flat.append(f["gu"])
+            continue
+        n += 1
+        hit += r["consensus_hit"]
+        groups.setdefault((bool(r["consensus_hit"]), c), []).append(f"{f['gu']} {p(r['value'])}")
+    whole = f"{KO_NUM[n]} 곳 모두 맞았습니다" if hit == n else f"{KO_NUM[n]} 곳 중 {KO_NUM.get(hit, hit)} 곳이 맞았습니다"
+    head = f"{md(prev['published'])} 예측은 {whole}(누적 {rh}/{rn})."
+    segs = []
+    for h in (True, False):
+        items = [(c, v) for (hh, c), v in sorted(groups.items(), key=lambda kv: kv[0][1]) if hh == h]
+        if items:   # 값이 %로 끝난다. '퍼센트'로 읽어 '는'
+            segs.append(", ".join(f"{', '.join(v)}는 {SIDE[c]}" for c, v in items)
+                        + f" 예측이 {'맞았' if h else '빗나갔'}")
+    tail = ("고, ".join(segs) + "습니다.") if segs else ""
+    if flat:
+        tail += f" {eun('·'.join(flat))} 보합(0.00%)이라 판정에서 뺐습니다."
+    if held:
+        tail += f" 표가 갈려 예측을 내지 않은 곳은 {', '.join(held)}입니다."
+    return f"{head} {tail}".strip(), hit, n
+
+
+def forecast_prose(w):
+    """이번 예측을 문장으로. 방향별로 구를 묶고, 표가 갈린 구만 따로 적는다."""
+    side = {"up": [], "down": []}
+    split, held = [], []
+    for f in w["forecasts"]:
+        t, c = f["tally"], f["consensus"]
+        if c is None:
+            held.append(f"{f['gu']}(오른다 {t['up']}표, 내린다 {t['down']}표)")
+            continue
+        side[c].append(f["gu"])
+        opp = t["up"] + t["down"] - t[c]
+        if opp or t["hold"]:
+            bits = [f"{SIDE[c]} {t[c]}표"] + ([f"반대 {opp}표"] if opp else []) + ([f"보류 {t['hold']}표"] if t["hold"] else [])
+            split.append(f"{eun(f['gu'])} " + ("에 ".join(bits) if len(bits) == 2 else ", ".join(bits)))
+    calls = ", ".join(f"{'·'.join(g)} {SIDE[k]}" for k, g in (("down", side["down"]), ("up", side["up"])) if g)
+    out = f"{md(w['published'])} 발표로 낸 다음 주 예측은 {calls}입니다."
+    if not split and not held:
+        out += f" 구마다 {len(w['forecasts'][0]['votes'])}표가 모두 한쪽으로 모였습니다."
+    if split:
+        out += " " + ", ".join(split) + "로 나뉘었습니다."
+    if held:
+        out += f" {', '.join(held)}는 동률이라 예측을 내지 않습니다."
+    return out
 
 
 def week(pub):
@@ -62,7 +134,7 @@ def w1029(w, prev, weeks):
                f"강동구는 10월 26일 기준 {p(gd[-1])}였습니다. 4주 숫자가 {ins(w, '강동')}로 오름폭이 줄어드는 중이죠. "
                f"올해 누계는 서초구 {y['서초']:.2f}%, 강남구 {y['강남']:.2f}%, 마포구 {y['마포']:.2f}%.\n\n"
                "같은 표를 다음 주 판부터 단지별 예측 마켓에도 넣었습니다. 마켓의 판정은 서버가 정한 기준을 따릅니다."),
-        reading=(f"오름폭이 0에 가깝게 줄어든 모양은 8월 초 서초구({p(se['8.3'])})와 8월 말 송파구({p(so['8.31'])})에서도 있었고, "
+        reading=(f"여기서부터는 해석입니다. 오름폭이 0에 가깝게 줄어든 모양은 8월 초 서초구({p(se['8.3'])})와 8월 말 송파구({p(so['8.31'])})에서도 있었고, "
                  "두 번 모두 다음 주에 마이너스가 나왔습니다. 두 번은 표본이라 부르기도 어려운 숫자입니다. "
                  "강동구가 같은 길을 갈지는 이 표가 말해 주지 않고, 부호만 세는 규칙은 이번에도 오른다 6표를 냈습니다. "
                  "강동구 숫자는 고덕그라시움 한 단지의 값이 아닙니다."),
@@ -78,14 +150,9 @@ def build(pub, ignore_cap):
     assert pubs[-1] == pub, f"장부에 {pub} 발표가 없다. forecast_ledger.py 를 먼저 돌린다"
     w, prev = weeks[pub], weeks[pubs[-2]]
     x = WEEKLY[pub](w, prev, weeks)
-    line, hit, n = B.settle_line(prev)
     rh, rn = B.running(weeks, pub)
-    body = "\n\n".join([
-        x["lead"],
-        f"{md(prev['published'])} 예측 판정 {hit}/{n}(누적 {rh}/{rn}). {line}.",
-        f"{md(pub)} 예측(다음 주 방향). {B.forecast_line(w)}.",
-        x["story"], "여기서부터는 해석입니다. " + x["reading"], x["question"],
-    ])
+    settled, hit, n = settle_prose(prev, rh, rn)
+    body = "\n\n".join([x["lead"], settled, forecast_prose(w), x["story"], x["reading"], x["question"]])
     now = datetime.now(KST)
     ts = now.replace(second=0, microsecond=0) - timedelta(minutes=1)
     published_at = ts.strftime("%Y-%m-%dT%H:%M:%S+09:00")
@@ -150,10 +217,15 @@ def validate(pack):
         errs.append("마크다운")
     if not x["body"].rstrip().endswith("?"):
         errs.append("질문으로 끝나지 않음")
-    if not TRANSITION.search(x["body"]) or "한 단지" not in x["body"]:
-        errs.append("전환문 또는 '한 단지' 없음")
-    if mono_run(x["body"]) >= MONO_RUN:
+    if not TRANSITION.search(x["body"]) or not CAVEAT.search(x["body"]):
+        errs.append("해석 전환 또는 '구 숫자이지 단지 값이 아니다' 없음")
+    if mono_run(x["body"]) >= STYLE_MONO:
         errs.append(f"문말 단조 {mono_run(x['body'])}")
+    for k, v in style_issues(x["title"], x["body"], cm):
+        errs.append(f"{k} {v}")
+    last = x["body"].rstrip().split("\n\n")[-1]
+    if last.count("?") != 1:
+        errs.append("질문 하나로 닫지 않음")
     if len(x["title"]) > B.MAX_TITLE:
         errs.append(f"제목 {len(x['title'])}자")
     registered = {v["external_id"] for v in json.loads((REPO / "data" / "personas.json").read_text(encoding="utf-8"))["personas"]}
