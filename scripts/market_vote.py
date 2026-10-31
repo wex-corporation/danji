@@ -23,10 +23,21 @@
   첫 글이 8/1(토)이라 첫 주는 7/27 주다. 주 W의 표는 W 직전 목요일 발표 하나만 입력으로 쓴다(발표 → +4일 = 그 주 월요일).
   소급 표는 이미 지난 주에 대해 지금 계산한 것이다. 명세 5.4(예측은 실제 로그, 조작 금지) 때문에
   `backfill: true`와 근거 문장의 "소급 계산"으로 드러내고, 서버는 실시간 성적과 따로 집계해야 한다.
-  지금 투표 API에는 주차 필드가 없어 보내면 이번 주 판에 붙는다. 서버가 `week_start`를 받기 전에는 보내지 않는다
+  서버가 10/31(PR #4)부터 `week_start`·`backfill: true`를 받는다. 닫힌 주에 backfill 없이 보내면 409 week_closed,
+  같은 판에 같은 페르소나의 실시간 표가 있으면 action "skipped". 한 요청 100표까지, 하나라도 걸리면 요청 통째로 거절.
+  소급 성적은 서버가 실시간 성적과 따로 센다. 소급 판 정산은 서버 실거래 동기화가 따라잡은 뒤 차례로 난다
+
+  python3 scripts/market_vote.py --send-backfill --weeks 2026-07-27   # 한 주만 먼저 보내 본다
+  python3 scripts/market_vote.py --send-backfill                      # 파일의 전부(100표씩 나눠서)
+
+  **사고(2026-11-01 08:11 KST).** 서버가 "준비됨"이라고 답한 뒤 7/27 주 36표를 보냈더니 `week_start`를 무시하고
+  이번 주(11/2) 판의 같은 페르소나 표를 덮었다(응답 action "updated", 서버 표 id가 실시간 표와 같다). 실시간 36표를 새 멱등키로
+  다시 보내 몇 분 안에 되돌렸다. 그래서 보낼 때마다 이번 주 판에 '소급' 근거가 섞였는지 확인하고, 섞였으면 실시간 표를 되돌린 뒤 멈춘다.
+  `BACKFILL_SERVER_OK`는 서버가 고쳤다는 확인을 받고 나서만 True 로 바꾼다
 """
 
 import argparse
+from collections import Counter
 import hashlib
 import json
 import os
@@ -120,9 +131,31 @@ def build_votes(rel, rounds):
 
 
 BACKFILL_FIRST_WEEK = "2026-07-27"   # 첫 글 8/1(토)이 속한 주
+BACKFILL_SERVER_OK = False           # 11/1 사고 뒤 잠갔다. 서버가 week_start 를 실제로 받는다는 확인 후에만 True
 BACKFILL_OUT = REPO / "data" / "forecast" / "market-votes-backfill.json"
 SLUGS = [("godeok-gracium", "cx-godeok-gracium"), ("one-bailey", "cx-one-bailey"), ("ricents", "cx-ricents"),
          ("mapo-raemian-prugio", "cx-mapo-raemian-prugio"), ("eunma", "cx-eunma"), ("helio-city", "cx-helio-city")]
+
+
+def live_round_polluted():
+    """이번 주 open 판 근거에 '소급'이 보이면 서버가 week_start 를 무시하고 덮은 것이다"""
+    st, mk = call("GET", "/api/v1/markets?complex_id=1")
+    for rd in mk.get("rounds", []) if st == 200 else []:
+        st2, d = call("GET", f"/api/v1/markets/{rd['id']}")
+        if st2 == 200 and any("소급" in x.get("rationale", "") for x in d.get("rationales", [])):
+            return True
+    return st != 200
+
+
+def restore_live(week):
+    """market-votes.jsonl 에 남은 그 주 실시간 표를 새 멱등키로 다시 보낸다(같은 키는 캐시된 응답만 돌려준다)"""
+    live = [json.loads(x) for x in LOG.read_text(encoding="utf-8").splitlines() if x.strip()]
+    live = [v for v in live if v["external_id"].startswith(f"vote-{week}-")]
+    keep = ("external_id", "complex_external_id", "persona_external_id", "side", "rationale")
+    body = {"votes": [{k: v[k] for k in keep} for v in live]}
+    digest = hashlib.sha1(json.dumps(body, ensure_ascii=False, sort_keys=True).encode()).hexdigest()[:8]
+    st, res = call("POST", "/api/v1/ingest/market-votes", body, idem=f"wb-market-votes-{week}-restore-{digest}")
+    print(f"  실시간 표 {len(live)}개 되돌림: {st}", file=sys.stderr)
 
 
 def backfill(live_week):
@@ -150,7 +183,43 @@ def main():
     ap = argparse.ArgumentParser(description="서버 예측 마켓 AI 투표")
     ap.add_argument("--send", action="store_true")
     ap.add_argument("--backfill", action="store_true", help="지난 주차 소급 표를 파일로만 만든다")
+    ap.add_argument("--send-backfill", action="store_true", help="만들어 둔 소급 표 파일을 보낸다(100표씩)")
+    ap.add_argument("--weeks", nargs="*", help="--send-backfill 때 이 주차만")
     args = ap.parse_args()
+
+    if args.send_backfill:
+        if not BACKFILL_SERVER_OK:
+            raise SystemExit("소급 전송은 잠겨 있다(11/1 사고, CLAUDE.md 48번). 서버가 week_start 를 받는다는 확인 뒤 BACKFILL_SERVER_OK 를 연다")
+        data = json.loads(BACKFILL_OUT.read_text(encoding="utf-8"))
+        votes = [v for v in data["votes"] if not args.weeks or v["week_start"] in args.weeks]
+        keep = ("external_id", "complex_external_id", "persona_external_id", "side", "rationale", "week_start", "backfill")
+        for v in votes:
+            assert v["backfill"] is True and v["week_start"] < data["meta"]["live_week"] and not AI_COMMENT_ASK.search(v["rationale"])
+        actions, failed = Counter(), 0
+        sent_log = REPO / "data" / "forecast" / "market-votes-backfill-sent.jsonl"
+        for i in range(0, len(votes), 100):
+            chunk = [{k: v[k] for k in keep} for v in votes[i:i + 100]]
+            digest = hashlib.sha1(json.dumps(chunk, ensure_ascii=False, sort_keys=True).encode()).hexdigest()[:8]
+            st, res = call("POST", "/api/v1/ingest/market-votes", {"votes": chunk}, idem=f"wb-market-backfill-{digest}")
+            if st != 200:
+                failed += 1
+                print(f"  [실패] {i}~{i + len(chunk) - 1}: {st} {str(res)[:300]}")
+                continue
+            got = {r.get("external_id"): r for r in res.get("result", [])}
+            with sent_log.open("a", encoding="utf-8") as fh:
+                for v in chunk:
+                    r = got.get(v["external_id"], {})
+                    actions[r.get("action", "?")] += 1
+                    fh.write(json.dumps(dict(v, action=r.get("action"), server_id=r.get("id"),
+                                             sent_at=time.strftime("%Y-%m-%dT%H:%M:%S%z")), ensure_ascii=False) + "\n")
+            print(f"  {i}~{i + len(chunk) - 1}: {st} {dict(Counter(r.get('action') for r in res.get('result', [])))}")
+            if live_round_polluted():
+                print("  [중단] 이번 주 판에 소급 근거가 섞였다 — 실시간 표를 되돌린다", file=sys.stderr)
+                restore_live(data["meta"]["live_week"])
+                return 1
+            time.sleep(0.5)
+        print(f"\n소급 표 {len(votes)}개 · 결과 {dict(actions)} · 실패 요청 {failed}")
+        return 0 if not failed else 1
 
     if args.backfill:
         st, mk = call("GET", "/api/v1/markets?complex_id=1")
