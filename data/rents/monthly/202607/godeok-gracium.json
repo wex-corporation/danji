@@ -1,0 +1,90 @@
+{
+  "slug": "godeok-gracium",
+  "complex_name": "고덕그라시움",
+  "rtms_apt_names": [
+    "고덕그라시움"
+  ],
+  "months": [
+    "202607"
+  ],
+  "sample_size": 69,
+  "household_count": 4932,
+  "household_count_source": "kaptdaCnt",
+  "complete": true,
+  "min_sample": 30,
+  "metrics": {
+    "전세 비중": 44.9,
+    "갱신계약 비율": 31.9,
+    "갱신요구권 사용률": 27.5,
+    "전월세 회전율": 1.4,
+    "60㎡이하 계약 비중": 68.1,
+    "저층 계약 비중": 18.8
+  },
+  "raw_stats": {
+    "note": "가격 항목은 대조용이다. 콘텐츠에는 파생 지표만 쓴다",
+    "jeonse_count": 31,
+    "jeonse_median_deposit_manwon": 85000,
+    "area_mix_m2": [
+      {
+        "area_m2": 59.785,
+        "count": 37
+      },
+      {
+        "area_m2": 59.028,
+        "count": 9
+      },
+      {
+        "area_m2": 84.24,
+        "count": 6
+      },
+      {
+        "area_m2": 84.244,
+        "count": 6
+      },
+      {
+        "area_m2": 73.566,
+        "count": 4
+      },
+      {
+        "area_m2": 59.79,
+        "count": 1
+      },
+      {
+        "area_m2": 127.765,
+        "count": 1
+      },
+      {
+        "area_m2": 97.784,
+        "count": 1
+      },
+      {
+        "area_m2": 73.873,
+        "count": 1
+      },
+      {
+        "area_m2": 113.398,
+        "count": 1
+      },
+      {
+        "area_m2": 175.904,
+        "count": 1
+      },
+      {
+        "area_m2": 84.046,
+        "count": 1
+      }
+    ]
+  },
+  "contract_type_mix": {
+    "신규": 46,
+    "갱신": 22
+  },
+  "fetched_at": "2026-10-31T10:12:59+0000",
+  "note": "계약일 기준 집계. 계약일로부터 30일 이내 신고이므로 최근 달은 아직 덜 찼다. 지표는 전부 비가격이며 보증금·월세는 raw_stats 대조용이다",
+  "source": {
+    "label": "국토교통부 아파트 전월세 실거래가 자료",
+    "url": "https://www.data.go.kr/data/15058017/openapi.do",
+    "publisher": "국토교통부"
+  },
+  "failures": []
+}

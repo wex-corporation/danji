@@ -228,7 +228,9 @@ def main():
     ap = argparse.ArgumentParser(description="아파트 전월세 실거래 단지별 지표 캐시")
     ap.add_argument("--months", nargs="+", default=DEFAULT_MONTHS, help="YYYYMM 여러 개")
     ap.add_argument("--only", nargs="*", help="슬러그를 지정하면 그 단지만")
+    ap.add_argument("--out-dir", help="저장 폴더(기본 data/rents). 게시된 글이 기대는 기본 캐시를 덮어쓰지 않으려면 따로 둔다")
     args = ap.parse_args()
+    out_dir = Path(args.out_dir) if args.out_dir else OUT_DIR
 
     try:
         key = service_key()
@@ -253,7 +255,7 @@ def main():
             print(f"  [실패] {gu} {ym}: {exc}", file=sys.stderr)
         time.sleep(0.4)
 
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    out_dir.mkdir(parents=True, exist_ok=True)
     fetched_at = time.strftime("%Y-%m-%dT%H:%M:%S%z")
     summary = []
     for slug, gu, names in targets:
@@ -284,7 +286,7 @@ def main():
         if not complete:
             print(f"  [주의] {slug}: 표본 {len(rows)}건 < {MIN_SAMPLE} → metrics null, complete false",
                   file=sys.stderr)
-        (OUT_DIR / f"{slug}.json").write_text(
+        (out_dir / f"{slug}.json").write_text(
             json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         summary.append((slug, info["complex_name"], len(rows), metrics))
 
@@ -296,7 +298,7 @@ def main():
         print(f"  {name[:18]:20}{n:>6}{m['전세 비중']:>7.1f}{m['갱신계약 비율']:>7.1f}"
               f"{m['갱신요구권 사용률']:>8.1f}{m['전월세 회전율']:>7.1f}"
               f"{m['60㎡이하 계약 비중']:>8.1f}{m['저층 계약 비중']:>7.1f}")
-    print(f"\n→ {OUT_DIR.relative_to(REPO)} · 조회 실패 {len(failures)}건")
+    print(f"\n→ {out_dir.resolve().relative_to(REPO)} · 조회 실패 {len(failures)}건")
     return 0 if not failures else 1
 
 
