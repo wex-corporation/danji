@@ -17,6 +17,13 @@
 실행:
   python3 scripts/market_vote.py          # 낼 표만 출력
   python3 scripts/market_vote.py --send   # 전송. CIVIC_PULSE_API_KEY 필요
+  python3 scripts/market_vote.py --backfill   # 지난 주차 소급 표를 만든다(파일만, 전송하지 않는다)
+
+소급 표 (2026-10-31 운영자 결정 "단지 서비스를 처음 연 주부터, 에이전트들이 소급해서")
+  첫 글이 8/1(토)이라 첫 주는 7/27 주다. 주 W의 표는 W 직전 목요일 발표 하나만 입력으로 쓴다(발표 → +4일 = 그 주 월요일).
+  소급 표는 이미 지난 주에 대해 지금 계산한 것이다. 명세 5.4(예측은 실제 로그, 조작 금지) 때문에
+  `backfill: true`와 근거 문장의 "소급 계산"으로 드러내고, 서버는 실시간 성적과 따로 집계해야 한다.
+  지금 투표 API에는 주차 필드가 없어 보내면 이번 주 판에 붙는다. 서버가 `week_start`를 받기 전에는 보내지 않는다
 """
 
 import argparse
@@ -112,10 +119,54 @@ def build_votes(rel, rounds):
     return votes
 
 
+BACKFILL_FIRST_WEEK = "2026-07-27"   # 첫 글 8/1(토)이 속한 주
+BACKFILL_OUT = REPO / "data" / "forecast" / "market-votes-backfill.json"
+SLUGS = [("godeok-gracium", "cx-godeok-gracium"), ("one-bailey", "cx-one-bailey"), ("ricents", "cx-ricents"),
+         ("mapo-raemian-prugio", "cx-mapo-raemian-prugio"), ("eunma", "cx-eunma"), ("helio-city", "cx-helio-city")]
+
+
+def backfill(live_week):
+    """지난 주차 소급 표. 주 W = 발표일 + 4일(월). 이번 주(live_week)부터는 실시간 표가 맡는다."""
+    from datetime import date, timedelta
+    votes, weeks = [], []
+    for f in sorted(REL_DIR.glob("*.json")):
+        rel = json.loads(f.read_text(encoding="utf-8"))
+        week = (date.fromisoformat(rel["published"]) + timedelta(days=4)).isoformat()
+        if not (BACKFILL_FIRST_WEEK <= week < live_week):
+            continue
+        assert rel["embargo_kst"][:10] < week, (rel["published"], week)   # 입력 발표는 그 주가 시작되기 전에 나왔다
+        weeks.append((week, rel["published"]))
+        rounds = [{"status": "open", "complex_slug": s, "complex_external_id": cx, "week_start": week, "id": None}
+                  for s, cx in SLUGS]
+        for v in build_votes(rel, rounds):
+            v["rationale"] += " (10/31 소급 계산)"
+            v["week_start"], v["backfill"], v["input_release"] = week, True, rel["published"]
+            votes.append(v)
+    assert weeks and weeks[0][0] == BACKFILL_FIRST_WEEK, weeks[:1]
+    return weeks, votes
+
+
 def main():
     ap = argparse.ArgumentParser(description="서버 예측 마켓 AI 투표")
     ap.add_argument("--send", action="store_true")
+    ap.add_argument("--backfill", action="store_true", help="지난 주차 소급 표를 파일로만 만든다")
     args = ap.parse_args()
+
+    if args.backfill:
+        st, mk = call("GET", "/api/v1/markets?complex_id=1")
+        if st != 200:
+            raise SystemExit(f"마켓 조회 실패: {st} {mk}")
+        weeks, votes = backfill(mk["week_start"])
+        for w, pub in weeks:
+            vs = [v for v in votes if v["week_start"] == w]
+            sides = {s: sum(1 for v in vs if v["side"] == s) for s in ("up", "down")}
+            print(f"  주 {w} ← 발표 {pub}  표 {len(vs)} (오른다 {sides['up']} · 내린다 {sides['down']})")
+        body = {"meta": {"built_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"), "engine": E.ENGINE, "first_week": BACKFILL_FIRST_WEEK,
+                         "live_week": mk["week_start"], "note": "소급 표. 서버가 week_start·backfill 을 받기 전에는 보내지 않는다"},
+                "votes": [{k: v for k, v in x.items() if not k.startswith("_")} for x in votes]}
+        BACKFILL_OUT.write_text(json.dumps(body, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        print(f"\n소급 {len(weeks)}주 · 표 {len(votes)}개 → {BACKFILL_OUT.relative_to(REPO)} (보내지 않았다)")
+        return 0
 
     rel = latest_release()
     st, mk = call("GET", "/api/v1/markets?complex_id=1")

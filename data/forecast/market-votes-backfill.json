@@ -1,0 +1,4891 @@
+{
+  "meta": {
+    "built_at": "2026-10-31T15:00:11+0000",
+    "engine": "주간 흐름 엔진 v1",
+    "first_week": "2026-07-27",
+    "live_week": "2026-11-02",
+    "note": "소급 표. 서버가 week_start·backfill 을 받기 전에는 보내지 않는다"
+  },
+  "votes": [
+    {
+      "external_id": "vote-2026-07-27-godeok-gracium-wb-persona-policy-lab",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "강동구 최근 4주 오른 주 4·내린 주 0(부동산원 7/23 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-godeok-gracium-wb-persona-real-talk",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "7/23 발표 강동구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-godeok-gracium-wb-persona-demand-check",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "강동구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-godeok-gracium-wb-persona-num-compare",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 강동구 4주 부호 합 +4(부동산원 7/23). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-godeok-gracium-wb-persona-cashflow",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "강동구 매매지수 4주 중 4주 상승, 0주 하락(7/23 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-godeok-gracium-wb-persona-field-scout",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 강동구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-one-bailey-wb-persona-policy-lab",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "서초구 최근 4주 오른 주 4·내린 주 0(부동산원 7/23 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-one-bailey-wb-persona-real-talk",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "7/23 발표 서초구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-one-bailey-wb-persona-demand-check",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "서초구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-one-bailey-wb-persona-num-compare",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 서초구 4주 부호 합 +4(부동산원 7/23). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-one-bailey-wb-persona-cashflow",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "서초구 매매지수 4주 중 4주 상승, 0주 하락(7/23 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-one-bailey-wb-persona-field-scout",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 서초구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-ricents-wb-persona-policy-lab",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "송파구 최근 4주 오른 주 4·내린 주 0(부동산원 7/23 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-ricents-wb-persona-real-talk",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "7/23 발표 송파구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-ricents-wb-persona-demand-check",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "송파구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-ricents-wb-persona-num-compare",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 송파구 4주 부호 합 +4(부동산원 7/23). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-ricents-wb-persona-cashflow",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "송파구 매매지수 4주 중 4주 상승, 0주 하락(7/23 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-ricents-wb-persona-field-scout",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 송파구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-mapo-raemian-prugio-wb-persona-policy-lab",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "마포구 최근 4주 오른 주 4·내린 주 0(부동산원 7/23 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-mapo-raemian-prugio-wb-persona-real-talk",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "7/23 발표 마포구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-mapo-raemian-prugio-wb-persona-demand-check",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "마포구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-mapo-raemian-prugio-wb-persona-num-compare",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 마포구 4주 부호 합 +4(부동산원 7/23). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-mapo-raemian-prugio-wb-persona-cashflow",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "마포구 매매지수 4주 중 4주 상승, 0주 하락(7/23 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-mapo-raemian-prugio-wb-persona-field-scout",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 마포구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-eunma-wb-persona-policy-lab",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "강남구 최근 4주 오른 주 4·내린 주 0(부동산원 7/23 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-eunma-wb-persona-real-talk",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "7/23 발표 강남구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-eunma-wb-persona-demand-check",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "강남구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-eunma-wb-persona-num-compare",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 강남구 4주 부호 합 +4(부동산원 7/23). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-eunma-wb-persona-cashflow",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "강남구 매매지수 4주 중 4주 상승, 0주 하락(7/23 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-eunma-wb-persona-field-scout",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 강남구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-helio-city-wb-persona-policy-lab",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "송파구 최근 4주 오른 주 4·내린 주 0(부동산원 7/23 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-helio-city-wb-persona-real-talk",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "7/23 발표 송파구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-helio-city-wb-persona-demand-check",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "송파구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-helio-city-wb-persona-num-compare",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 송파구 4주 부호 합 +4(부동산원 7/23). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-helio-city-wb-persona-cashflow",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "송파구 매매지수 4주 중 4주 상승, 0주 하락(7/23 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-07-27-helio-city-wb-persona-field-scout",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 송파구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-07-27",
+      "backfill": true,
+      "input_release": "2026-07-23"
+    },
+    {
+      "external_id": "vote-2026-08-03-godeok-gracium-wb-persona-policy-lab",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "강동구 최근 4주 오른 주 4·내린 주 0(부동산원 7/30 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-godeok-gracium-wb-persona-real-talk",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "7/30 발표 강동구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-godeok-gracium-wb-persona-demand-check",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "강동구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-godeok-gracium-wb-persona-num-compare",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 강동구 4주 부호 합 +4(부동산원 7/30). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-godeok-gracium-wb-persona-cashflow",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "강동구 매매지수 4주 중 4주 상승, 0주 하락(7/30 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-godeok-gracium-wb-persona-field-scout",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 강동구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-one-bailey-wb-persona-policy-lab",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "서초구 최근 4주 오른 주 4·내린 주 0(부동산원 7/30 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-one-bailey-wb-persona-real-talk",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "7/30 발표 서초구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-one-bailey-wb-persona-demand-check",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "서초구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-one-bailey-wb-persona-num-compare",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 서초구 4주 부호 합 +4(부동산원 7/30). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-one-bailey-wb-persona-cashflow",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "서초구 매매지수 4주 중 4주 상승, 0주 하락(7/30 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-one-bailey-wb-persona-field-scout",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 서초구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-ricents-wb-persona-policy-lab",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "송파구 최근 4주 오른 주 4·내린 주 0(부동산원 7/30 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-ricents-wb-persona-real-talk",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "7/30 발표 송파구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-ricents-wb-persona-demand-check",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "송파구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-ricents-wb-persona-num-compare",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 송파구 4주 부호 합 +4(부동산원 7/30). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-ricents-wb-persona-cashflow",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "송파구 매매지수 4주 중 4주 상승, 0주 하락(7/30 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-ricents-wb-persona-field-scout",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 송파구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-mapo-raemian-prugio-wb-persona-policy-lab",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "마포구 최근 4주 오른 주 4·내린 주 0(부동산원 7/30 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-mapo-raemian-prugio-wb-persona-real-talk",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "7/30 발표 마포구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-mapo-raemian-prugio-wb-persona-demand-check",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "마포구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-mapo-raemian-prugio-wb-persona-num-compare",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 마포구 4주 부호 합 +4(부동산원 7/30). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-mapo-raemian-prugio-wb-persona-cashflow",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "마포구 매매지수 4주 중 4주 상승, 0주 하락(7/30 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-mapo-raemian-prugio-wb-persona-field-scout",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 마포구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-eunma-wb-persona-policy-lab",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "강남구 최근 4주 오른 주 4·내린 주 0(부동산원 7/30 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-eunma-wb-persona-real-talk",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "7/30 발표 강남구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-eunma-wb-persona-demand-check",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "강남구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-eunma-wb-persona-num-compare",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 강남구 4주 부호 합 +4(부동산원 7/30). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-eunma-wb-persona-cashflow",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "강남구 매매지수 4주 중 4주 상승, 0주 하락(7/30 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-eunma-wb-persona-field-scout",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 강남구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-helio-city-wb-persona-policy-lab",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "송파구 최근 4주 오른 주 4·내린 주 0(부동산원 7/30 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-helio-city-wb-persona-real-talk",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "7/30 발표 송파구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-helio-city-wb-persona-demand-check",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "송파구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-helio-city-wb-persona-num-compare",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 송파구 4주 부호 합 +4(부동산원 7/30). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-helio-city-wb-persona-cashflow",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "송파구 매매지수 4주 중 4주 상승, 0주 하락(7/30 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-03-helio-city-wb-persona-field-scout",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 송파구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-03",
+      "backfill": true,
+      "input_release": "2026-07-30"
+    },
+    {
+      "external_id": "vote-2026-08-10-godeok-gracium-wb-persona-policy-lab",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "강동구 최근 4주 오른 주 4·내린 주 0(부동산원 8/6 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-godeok-gracium-wb-persona-real-talk",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "8/6 발표 강동구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-godeok-gracium-wb-persona-demand-check",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "강동구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-godeok-gracium-wb-persona-num-compare",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 강동구 4주 부호 합 +4(부동산원 8/6). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-godeok-gracium-wb-persona-cashflow",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "강동구 매매지수 4주 중 4주 상승, 0주 하락(8/6 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-godeok-gracium-wb-persona-field-scout",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 강동구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-one-bailey-wb-persona-policy-lab",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "서초구 최근 4주 오른 주 4·내린 주 0(부동산원 8/6 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-one-bailey-wb-persona-real-talk",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "8/6 발표 서초구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-one-bailey-wb-persona-demand-check",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "서초구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-one-bailey-wb-persona-num-compare",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 서초구 4주 부호 합 +4(부동산원 8/6). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-one-bailey-wb-persona-cashflow",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "서초구 매매지수 4주 중 4주 상승, 0주 하락(8/6 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-one-bailey-wb-persona-field-scout",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 서초구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-ricents-wb-persona-policy-lab",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "송파구 최근 4주 오른 주 4·내린 주 0(부동산원 8/6 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-ricents-wb-persona-real-talk",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "8/6 발표 송파구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-ricents-wb-persona-demand-check",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "송파구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-ricents-wb-persona-num-compare",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 송파구 4주 부호 합 +4(부동산원 8/6). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-ricents-wb-persona-cashflow",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "송파구 매매지수 4주 중 4주 상승, 0주 하락(8/6 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-ricents-wb-persona-field-scout",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 송파구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-mapo-raemian-prugio-wb-persona-policy-lab",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "마포구 최근 4주 오른 주 4·내린 주 0(부동산원 8/6 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-mapo-raemian-prugio-wb-persona-real-talk",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "8/6 발표 마포구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-mapo-raemian-prugio-wb-persona-demand-check",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "마포구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-mapo-raemian-prugio-wb-persona-num-compare",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 마포구 4주 부호 합 +4(부동산원 8/6). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-mapo-raemian-prugio-wb-persona-cashflow",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "마포구 매매지수 4주 중 4주 상승, 0주 하락(8/6 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-mapo-raemian-prugio-wb-persona-field-scout",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 마포구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-eunma-wb-persona-policy-lab",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "강남구 최근 4주 오른 주 4·내린 주 0(부동산원 8/6 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-eunma-wb-persona-real-talk",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "8/6 발표 강남구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-eunma-wb-persona-demand-check",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "강남구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-eunma-wb-persona-num-compare",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 강남구 4주 부호 합 +4(부동산원 8/6). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-eunma-wb-persona-cashflow",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "강남구 매매지수 4주 중 4주 상승, 0주 하락(8/6 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-eunma-wb-persona-field-scout",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 강남구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-helio-city-wb-persona-policy-lab",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "송파구 최근 4주 오른 주 4·내린 주 0(부동산원 8/6 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-helio-city-wb-persona-real-talk",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "8/6 발표 송파구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-helio-city-wb-persona-demand-check",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "송파구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-helio-city-wb-persona-num-compare",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 송파구 4주 부호 합 +4(부동산원 8/6). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-helio-city-wb-persona-cashflow",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "송파구 매매지수 4주 중 4주 상승, 0주 하락(8/6 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-10-helio-city-wb-persona-field-scout",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 송파구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-10",
+      "backfill": true,
+      "input_release": "2026-08-06"
+    },
+    {
+      "external_id": "vote-2026-08-17-godeok-gracium-wb-persona-policy-lab",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "강동구 최근 4주 오른 주 4·내린 주 0(부동산원 8/13 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-godeok-gracium-wb-persona-real-talk",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "8/13 발표 강동구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-godeok-gracium-wb-persona-demand-check",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "강동구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-godeok-gracium-wb-persona-num-compare",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 강동구 4주 부호 합 +4(부동산원 8/13). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-godeok-gracium-wb-persona-cashflow",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "강동구 매매지수 4주 중 4주 상승, 0주 하락(8/13 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-godeok-gracium-wb-persona-field-scout",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 강동구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-one-bailey-wb-persona-policy-lab",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "서초구 최근 4주 오른 주 3·내린 주 1(부동산원 8/13 발표). 기준 확률 0.70에 하방 편향을 얹어 0.66, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-one-bailey-wb-persona-real-talk",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "8/13 발표 서초구 4주 흐름이 오른 주 3, 내린 주 1입니다. 체감보다 표를 따르면 오른다 쪽(0.66)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-one-bailey-wb-persona-demand-check",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "서초구 4주 중 상승 3주·하락 1주. 기준 확률 0.70 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-one-bailey-wb-persona-num-compare",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 서초구 4주 부호 합 +2(부동산원 8/13). 확률 0.70, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-one-bailey-wb-persona-cashflow",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "서초구 매매지수 4주 중 3주 상승, 1주 하락(8/13 발표). 확률 0.70. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-one-bailey-wb-persona-field-scout",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 서초구 4주 오른 주 3·내린 주 1, 확률 0.70. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-ricents-wb-persona-policy-lab",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "송파구 최근 4주 오른 주 4·내린 주 0(부동산원 8/13 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-ricents-wb-persona-real-talk",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "8/13 발표 송파구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-ricents-wb-persona-demand-check",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "송파구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-ricents-wb-persona-num-compare",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 송파구 4주 부호 합 +4(부동산원 8/13). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-ricents-wb-persona-cashflow",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "송파구 매매지수 4주 중 4주 상승, 0주 하락(8/13 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-ricents-wb-persona-field-scout",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 송파구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-mapo-raemian-prugio-wb-persona-policy-lab",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "마포구 최근 4주 오른 주 4·내린 주 0(부동산원 8/13 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-mapo-raemian-prugio-wb-persona-real-talk",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "8/13 발표 마포구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-mapo-raemian-prugio-wb-persona-demand-check",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "마포구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-mapo-raemian-prugio-wb-persona-num-compare",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 마포구 4주 부호 합 +4(부동산원 8/13). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-mapo-raemian-prugio-wb-persona-cashflow",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "마포구 매매지수 4주 중 4주 상승, 0주 하락(8/13 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-mapo-raemian-prugio-wb-persona-field-scout",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 마포구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-eunma-wb-persona-policy-lab",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "강남구 최근 4주 오른 주 3·내린 주 1(부동산원 8/13 발표). 기준 확률 0.70에 하방 편향을 얹어 0.66, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-eunma-wb-persona-real-talk",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "8/13 발표 강남구 4주 흐름이 오른 주 3, 내린 주 1입니다. 체감보다 표를 따르면 오른다 쪽(0.66)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-eunma-wb-persona-demand-check",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "강남구 4주 중 상승 3주·하락 1주. 기준 확률 0.70 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-eunma-wb-persona-num-compare",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 강남구 4주 부호 합 +2(부동산원 8/13). 확률 0.70, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-eunma-wb-persona-cashflow",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "강남구 매매지수 4주 중 3주 상승, 1주 하락(8/13 발표). 확률 0.70. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-eunma-wb-persona-field-scout",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 강남구 4주 오른 주 3·내린 주 1, 확률 0.70. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-helio-city-wb-persona-policy-lab",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "송파구 최근 4주 오른 주 4·내린 주 0(부동산원 8/13 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-helio-city-wb-persona-real-talk",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "8/13 발표 송파구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-helio-city-wb-persona-demand-check",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "송파구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-helio-city-wb-persona-num-compare",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 송파구 4주 부호 합 +4(부동산원 8/13). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-helio-city-wb-persona-cashflow",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "송파구 매매지수 4주 중 4주 상승, 0주 하락(8/13 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-17-helio-city-wb-persona-field-scout",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 송파구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-17",
+      "backfill": true,
+      "input_release": "2026-08-13"
+    },
+    {
+      "external_id": "vote-2026-08-24-godeok-gracium-wb-persona-policy-lab",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "강동구 최근 4주 오른 주 4·내린 주 0(부동산원 8/20 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-24-godeok-gracium-wb-persona-real-talk",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "8/20 발표 강동구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-24-godeok-gracium-wb-persona-demand-check",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "강동구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-24-godeok-gracium-wb-persona-num-compare",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 강동구 4주 부호 합 +4(부동산원 8/20). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-24-godeok-gracium-wb-persona-cashflow",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "강동구 매매지수 4주 중 4주 상승, 0주 하락(8/20 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-24-godeok-gracium-wb-persona-field-scout",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 강동구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-24-one-bailey-wb-persona-policy-lab",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "서초구 최근 4주 오른 주 2·내린 주 2(부동산원 8/20 발표). 기준 확률 0.50에 하방 편향을 얹어 0.46, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-24-one-bailey-wb-persona-real-talk",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "8/20 발표 서초구 4주 흐름이 오른 주 2, 내린 주 2입니다. 체감보다 표를 따르면 내린다 쪽(0.46)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-24-ricents-wb-persona-policy-lab",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "송파구 최근 4주 오른 주 4·내린 주 0(부동산원 8/20 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-24-ricents-wb-persona-real-talk",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "8/20 발표 송파구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-24-ricents-wb-persona-demand-check",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "송파구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-24-ricents-wb-persona-num-compare",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 송파구 4주 부호 합 +4(부동산원 8/20). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-24-ricents-wb-persona-cashflow",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "송파구 매매지수 4주 중 4주 상승, 0주 하락(8/20 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-24-ricents-wb-persona-field-scout",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 송파구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-24-mapo-raemian-prugio-wb-persona-policy-lab",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "마포구 최근 4주 오른 주 4·내린 주 0(부동산원 8/20 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-24-mapo-raemian-prugio-wb-persona-real-talk",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "8/20 발표 마포구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-24-mapo-raemian-prugio-wb-persona-demand-check",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "마포구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-24-mapo-raemian-prugio-wb-persona-num-compare",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 마포구 4주 부호 합 +4(부동산원 8/20). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-24-mapo-raemian-prugio-wb-persona-cashflow",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "마포구 매매지수 4주 중 4주 상승, 0주 하락(8/20 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-24-mapo-raemian-prugio-wb-persona-field-scout",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 마포구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-24-eunma-wb-persona-policy-lab",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "강남구 최근 4주 오른 주 2·내린 주 2(부동산원 8/20 발표). 기준 확률 0.50에 하방 편향을 얹어 0.46, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-24-eunma-wb-persona-real-talk",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "8/20 발표 강남구 4주 흐름이 오른 주 2, 내린 주 2입니다. 체감보다 표를 따르면 내린다 쪽(0.46)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-24-helio-city-wb-persona-policy-lab",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "송파구 최근 4주 오른 주 4·내린 주 0(부동산원 8/20 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-24-helio-city-wb-persona-real-talk",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "8/20 발표 송파구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-24-helio-city-wb-persona-demand-check",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "송파구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-24-helio-city-wb-persona-num-compare",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 송파구 4주 부호 합 +4(부동산원 8/20). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-24-helio-city-wb-persona-cashflow",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "송파구 매매지수 4주 중 4주 상승, 0주 하락(8/20 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-24-helio-city-wb-persona-field-scout",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 송파구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-24",
+      "backfill": true,
+      "input_release": "2026-08-20"
+    },
+    {
+      "external_id": "vote-2026-08-31-godeok-gracium-wb-persona-policy-lab",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "강동구 최근 4주 오른 주 4·내린 주 0(부동산원 8/27 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-godeok-gracium-wb-persona-real-talk",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "8/27 발표 강동구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-godeok-gracium-wb-persona-demand-check",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "강동구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-godeok-gracium-wb-persona-num-compare",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 강동구 4주 부호 합 +4(부동산원 8/27). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-godeok-gracium-wb-persona-cashflow",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "강동구 매매지수 4주 중 4주 상승, 0주 하락(8/27 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-godeok-gracium-wb-persona-field-scout",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 강동구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-one-bailey-wb-persona-policy-lab",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "서초구 최근 4주 오른 주 1·내린 주 3(부동산원 8/27 발표). 기준 확률 0.30에 하방 편향을 얹어 0.26, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-one-bailey-wb-persona-real-talk",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "8/27 발표 서초구 4주 흐름이 오른 주 1, 내린 주 3입니다. 체감보다 표를 따르면 내린다 쪽(0.26)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-one-bailey-wb-persona-demand-check",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "서초구 4주 중 상승 1주·하락 3주. 기준 확률 0.30 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-one-bailey-wb-persona-num-compare",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 서초구 4주 부호 합 -2(부동산원 8/27). 확률 0.30, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-one-bailey-wb-persona-cashflow",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "서초구 매매지수 4주 중 1주 상승, 3주 하락(8/27 발표). 확률 0.30. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-one-bailey-wb-persona-field-scout",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 서초구 4주 오른 주 1·내린 주 3, 확률 0.30. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-ricents-wb-persona-policy-lab",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "송파구 최근 4주 오른 주 4·내린 주 0(부동산원 8/27 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-ricents-wb-persona-real-talk",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "8/27 발표 송파구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-ricents-wb-persona-demand-check",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "송파구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-ricents-wb-persona-num-compare",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 송파구 4주 부호 합 +4(부동산원 8/27). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-ricents-wb-persona-cashflow",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "송파구 매매지수 4주 중 4주 상승, 0주 하락(8/27 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-ricents-wb-persona-field-scout",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 송파구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-mapo-raemian-prugio-wb-persona-policy-lab",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "마포구 최근 4주 오른 주 4·내린 주 0(부동산원 8/27 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-mapo-raemian-prugio-wb-persona-real-talk",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "8/27 발표 마포구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-mapo-raemian-prugio-wb-persona-demand-check",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "마포구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-mapo-raemian-prugio-wb-persona-num-compare",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 마포구 4주 부호 합 +4(부동산원 8/27). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-mapo-raemian-prugio-wb-persona-cashflow",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "마포구 매매지수 4주 중 4주 상승, 0주 하락(8/27 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-mapo-raemian-prugio-wb-persona-field-scout",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 마포구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-eunma-wb-persona-policy-lab",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "강남구 최근 4주 오른 주 1·내린 주 3(부동산원 8/27 발표). 기준 확률 0.30에 하방 편향을 얹어 0.26, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-eunma-wb-persona-real-talk",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "8/27 발표 강남구 4주 흐름이 오른 주 1, 내린 주 3입니다. 체감보다 표를 따르면 내린다 쪽(0.26)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-eunma-wb-persona-demand-check",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "강남구 4주 중 상승 1주·하락 3주. 기준 확률 0.30 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-eunma-wb-persona-num-compare",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 강남구 4주 부호 합 -2(부동산원 8/27). 확률 0.30, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-eunma-wb-persona-cashflow",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "강남구 매매지수 4주 중 1주 상승, 3주 하락(8/27 발표). 확률 0.30. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-eunma-wb-persona-field-scout",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 강남구 4주 오른 주 1·내린 주 3, 확률 0.30. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-helio-city-wb-persona-policy-lab",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "송파구 최근 4주 오른 주 4·내린 주 0(부동산원 8/27 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-helio-city-wb-persona-real-talk",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "8/27 발표 송파구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-helio-city-wb-persona-demand-check",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "송파구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-helio-city-wb-persona-num-compare",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 송파구 4주 부호 합 +4(부동산원 8/27). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-helio-city-wb-persona-cashflow",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "송파구 매매지수 4주 중 4주 상승, 0주 하락(8/27 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-08-31-helio-city-wb-persona-field-scout",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 송파구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-08-31",
+      "backfill": true,
+      "input_release": "2026-08-27"
+    },
+    {
+      "external_id": "vote-2026-09-07-godeok-gracium-wb-persona-policy-lab",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "강동구 최근 4주 오른 주 4·내린 주 0(부동산원 9/3 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-godeok-gracium-wb-persona-real-talk",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "9/3 발표 강동구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-godeok-gracium-wb-persona-demand-check",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "강동구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-godeok-gracium-wb-persona-num-compare",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 강동구 4주 부호 합 +4(부동산원 9/3). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-godeok-gracium-wb-persona-cashflow",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "강동구 매매지수 4주 중 4주 상승, 0주 하락(9/3 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-godeok-gracium-wb-persona-field-scout",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 강동구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-one-bailey-wb-persona-policy-lab",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "서초구 최근 4주 오른 주 0·내린 주 4(부동산원 9/3 발표). 기준 확률 0.10에 하방 편향을 얹어 0.06, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-one-bailey-wb-persona-real-talk",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "9/3 발표 서초구 4주 흐름이 오른 주 0, 내린 주 4입니다. 체감보다 표를 따르면 내린다 쪽(0.06)입니다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-one-bailey-wb-persona-demand-check",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "서초구 4주 중 상승 0주·하락 4주. 기준 확률 0.10 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-one-bailey-wb-persona-num-compare",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 서초구 4주 부호 합 -4(부동산원 9/3). 확률 0.10, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-one-bailey-wb-persona-cashflow",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "서초구 매매지수 4주 중 0주 상승, 4주 하락(9/3 발표). 확률 0.10. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-one-bailey-wb-persona-field-scout",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 서초구 4주 오른 주 0·내린 주 4, 확률 0.10. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-ricents-wb-persona-policy-lab",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "송파구 최근 4주 오른 주 4·내린 주 0(부동산원 9/3 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-ricents-wb-persona-real-talk",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "9/3 발표 송파구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-ricents-wb-persona-demand-check",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "송파구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-ricents-wb-persona-num-compare",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 송파구 4주 부호 합 +4(부동산원 9/3). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-ricents-wb-persona-cashflow",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "송파구 매매지수 4주 중 4주 상승, 0주 하락(9/3 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-ricents-wb-persona-field-scout",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 송파구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-mapo-raemian-prugio-wb-persona-policy-lab",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "마포구 최근 4주 오른 주 4·내린 주 0(부동산원 9/3 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-mapo-raemian-prugio-wb-persona-real-talk",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "9/3 발표 마포구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-mapo-raemian-prugio-wb-persona-demand-check",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "마포구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-mapo-raemian-prugio-wb-persona-num-compare",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 마포구 4주 부호 합 +4(부동산원 9/3). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-mapo-raemian-prugio-wb-persona-cashflow",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "마포구 매매지수 4주 중 4주 상승, 0주 하락(9/3 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-mapo-raemian-prugio-wb-persona-field-scout",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 마포구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-eunma-wb-persona-policy-lab",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "강남구 최근 4주 오른 주 0·내린 주 4(부동산원 9/3 발표). 기준 확률 0.10에 하방 편향을 얹어 0.06, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-eunma-wb-persona-real-talk",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "9/3 발표 강남구 4주 흐름이 오른 주 0, 내린 주 4입니다. 체감보다 표를 따르면 내린다 쪽(0.06)입니다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-eunma-wb-persona-demand-check",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "강남구 4주 중 상승 0주·하락 4주. 기준 확률 0.10 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-eunma-wb-persona-num-compare",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 강남구 4주 부호 합 -4(부동산원 9/3). 확률 0.10, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-eunma-wb-persona-cashflow",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "강남구 매매지수 4주 중 0주 상승, 4주 하락(9/3 발표). 확률 0.10. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-eunma-wb-persona-field-scout",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 강남구 4주 오른 주 0·내린 주 4, 확률 0.10. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-helio-city-wb-persona-policy-lab",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "송파구 최근 4주 오른 주 4·내린 주 0(부동산원 9/3 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-helio-city-wb-persona-real-talk",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "9/3 발표 송파구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-helio-city-wb-persona-demand-check",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "송파구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-helio-city-wb-persona-num-compare",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 송파구 4주 부호 합 +4(부동산원 9/3). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-helio-city-wb-persona-cashflow",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "송파구 매매지수 4주 중 4주 상승, 0주 하락(9/3 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-07-helio-city-wb-persona-field-scout",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 송파구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-09-07",
+      "backfill": true,
+      "input_release": "2026-09-03"
+    },
+    {
+      "external_id": "vote-2026-09-14-godeok-gracium-wb-persona-policy-lab",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "강동구 최근 4주 오른 주 4·내린 주 0(부동산원 9/10 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-godeok-gracium-wb-persona-real-talk",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "9/10 발표 강동구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-godeok-gracium-wb-persona-demand-check",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "강동구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-godeok-gracium-wb-persona-num-compare",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 강동구 4주 부호 합 +4(부동산원 9/10). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-godeok-gracium-wb-persona-cashflow",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "강동구 매매지수 4주 중 4주 상승, 0주 하락(9/10 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-godeok-gracium-wb-persona-field-scout",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 강동구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-one-bailey-wb-persona-policy-lab",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "서초구 최근 4주 오른 주 0·내린 주 4(부동산원 9/10 발표). 기준 확률 0.10에 하방 편향을 얹어 0.06, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-one-bailey-wb-persona-real-talk",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "9/10 발표 서초구 4주 흐름이 오른 주 0, 내린 주 4입니다. 체감보다 표를 따르면 내린다 쪽(0.06)입니다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-one-bailey-wb-persona-demand-check",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "서초구 4주 중 상승 0주·하락 4주. 기준 확률 0.10 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-one-bailey-wb-persona-num-compare",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 서초구 4주 부호 합 -4(부동산원 9/10). 확률 0.10, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-one-bailey-wb-persona-cashflow",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "서초구 매매지수 4주 중 0주 상승, 4주 하락(9/10 발표). 확률 0.10. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-one-bailey-wb-persona-field-scout",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 서초구 4주 오른 주 0·내린 주 4, 확률 0.10. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-ricents-wb-persona-policy-lab",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "송파구 최근 4주 오른 주 3·내린 주 1(부동산원 9/10 발표). 기준 확률 0.70에 하방 편향을 얹어 0.66, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-ricents-wb-persona-real-talk",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "9/10 발표 송파구 4주 흐름이 오른 주 3, 내린 주 1입니다. 체감보다 표를 따르면 오른다 쪽(0.66)입니다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-ricents-wb-persona-demand-check",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "송파구 4주 중 상승 3주·하락 1주. 기준 확률 0.70 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-ricents-wb-persona-num-compare",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 송파구 4주 부호 합 +2(부동산원 9/10). 확률 0.70, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-ricents-wb-persona-cashflow",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "송파구 매매지수 4주 중 3주 상승, 1주 하락(9/10 발표). 확률 0.70. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-ricents-wb-persona-field-scout",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 송파구 4주 오른 주 3·내린 주 1, 확률 0.70. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-mapo-raemian-prugio-wb-persona-policy-lab",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "마포구 최근 4주 오른 주 4·내린 주 0(부동산원 9/10 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-mapo-raemian-prugio-wb-persona-real-talk",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "9/10 발표 마포구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-mapo-raemian-prugio-wb-persona-demand-check",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "마포구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-mapo-raemian-prugio-wb-persona-num-compare",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 마포구 4주 부호 합 +4(부동산원 9/10). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-mapo-raemian-prugio-wb-persona-cashflow",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "마포구 매매지수 4주 중 4주 상승, 0주 하락(9/10 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-mapo-raemian-prugio-wb-persona-field-scout",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 마포구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-eunma-wb-persona-policy-lab",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "강남구 최근 4주 오른 주 0·내린 주 4(부동산원 9/10 발표). 기준 확률 0.10에 하방 편향을 얹어 0.06, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-eunma-wb-persona-real-talk",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "9/10 발표 강남구 4주 흐름이 오른 주 0, 내린 주 4입니다. 체감보다 표를 따르면 내린다 쪽(0.06)입니다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-eunma-wb-persona-demand-check",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "강남구 4주 중 상승 0주·하락 4주. 기준 확률 0.10 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-eunma-wb-persona-num-compare",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 강남구 4주 부호 합 -4(부동산원 9/10). 확률 0.10, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-eunma-wb-persona-cashflow",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "강남구 매매지수 4주 중 0주 상승, 4주 하락(9/10 발표). 확률 0.10. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-eunma-wb-persona-field-scout",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 강남구 4주 오른 주 0·내린 주 4, 확률 0.10. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-helio-city-wb-persona-policy-lab",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "송파구 최근 4주 오른 주 3·내린 주 1(부동산원 9/10 발표). 기준 확률 0.70에 하방 편향을 얹어 0.66, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-helio-city-wb-persona-real-talk",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "9/10 발표 송파구 4주 흐름이 오른 주 3, 내린 주 1입니다. 체감보다 표를 따르면 오른다 쪽(0.66)입니다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-helio-city-wb-persona-demand-check",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "송파구 4주 중 상승 3주·하락 1주. 기준 확률 0.70 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-helio-city-wb-persona-num-compare",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 송파구 4주 부호 합 +2(부동산원 9/10). 확률 0.70, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-helio-city-wb-persona-cashflow",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "송파구 매매지수 4주 중 3주 상승, 1주 하락(9/10 발표). 확률 0.70. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-14-helio-city-wb-persona-field-scout",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 송파구 4주 오른 주 3·내린 주 1, 확률 0.70. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-09-14",
+      "backfill": true,
+      "input_release": "2026-09-10"
+    },
+    {
+      "external_id": "vote-2026-09-21-godeok-gracium-wb-persona-policy-lab",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "강동구 최근 4주 오른 주 4·내린 주 0(부동산원 9/17 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-21-godeok-gracium-wb-persona-real-talk",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "9/17 발표 강동구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-21-godeok-gracium-wb-persona-demand-check",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "강동구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-21-godeok-gracium-wb-persona-num-compare",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 강동구 4주 부호 합 +4(부동산원 9/17). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-21-godeok-gracium-wb-persona-cashflow",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "강동구 매매지수 4주 중 4주 상승, 0주 하락(9/17 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-21-godeok-gracium-wb-persona-field-scout",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 강동구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-21-one-bailey-wb-persona-policy-lab",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "서초구 최근 4주 오른 주 0·내린 주 4(부동산원 9/17 발표). 기준 확률 0.10에 하방 편향을 얹어 0.06, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-21-one-bailey-wb-persona-real-talk",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "9/17 발표 서초구 4주 흐름이 오른 주 0, 내린 주 4입니다. 체감보다 표를 따르면 내린다 쪽(0.06)입니다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-21-one-bailey-wb-persona-demand-check",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "서초구 4주 중 상승 0주·하락 4주. 기준 확률 0.10 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-21-one-bailey-wb-persona-num-compare",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 서초구 4주 부호 합 -4(부동산원 9/17). 확률 0.10, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-21-one-bailey-wb-persona-cashflow",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "서초구 매매지수 4주 중 0주 상승, 4주 하락(9/17 발표). 확률 0.10. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-21-one-bailey-wb-persona-field-scout",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 서초구 4주 오른 주 0·내린 주 4, 확률 0.10. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-21-ricents-wb-persona-policy-lab",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "송파구 최근 4주 오른 주 2·내린 주 2(부동산원 9/17 발표). 기준 확률 0.50에 하방 편향을 얹어 0.46, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-21-ricents-wb-persona-real-talk",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "9/17 발표 송파구 4주 흐름이 오른 주 2, 내린 주 2입니다. 체감보다 표를 따르면 내린다 쪽(0.46)입니다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-21-mapo-raemian-prugio-wb-persona-policy-lab",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "마포구 최근 4주 오른 주 4·내린 주 0(부동산원 9/17 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-21-mapo-raemian-prugio-wb-persona-real-talk",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "9/17 발표 마포구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-21-mapo-raemian-prugio-wb-persona-demand-check",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "마포구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-21-mapo-raemian-prugio-wb-persona-num-compare",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 마포구 4주 부호 합 +4(부동산원 9/17). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-21-mapo-raemian-prugio-wb-persona-cashflow",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "마포구 매매지수 4주 중 4주 상승, 0주 하락(9/17 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-21-mapo-raemian-prugio-wb-persona-field-scout",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 마포구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-21-eunma-wb-persona-policy-lab",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "강남구 최근 4주 오른 주 0·내린 주 4(부동산원 9/17 발표). 기준 확률 0.10에 하방 편향을 얹어 0.06, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-21-eunma-wb-persona-real-talk",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "9/17 발표 강남구 4주 흐름이 오른 주 0, 내린 주 4입니다. 체감보다 표를 따르면 내린다 쪽(0.06)입니다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-21-eunma-wb-persona-demand-check",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "강남구 4주 중 상승 0주·하락 4주. 기준 확률 0.10 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-21-eunma-wb-persona-num-compare",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 강남구 4주 부호 합 -4(부동산원 9/17). 확률 0.10, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-21-eunma-wb-persona-cashflow",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "강남구 매매지수 4주 중 0주 상승, 4주 하락(9/17 발표). 확률 0.10. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-21-eunma-wb-persona-field-scout",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 강남구 4주 오른 주 0·내린 주 4, 확률 0.10. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-21-helio-city-wb-persona-policy-lab",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "송파구 최근 4주 오른 주 2·내린 주 2(부동산원 9/17 발표). 기준 확률 0.50에 하방 편향을 얹어 0.46, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-21-helio-city-wb-persona-real-talk",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "9/17 발표 송파구 4주 흐름이 오른 주 2, 내린 주 2입니다. 체감보다 표를 따르면 내린다 쪽(0.46)입니다. (10/31 소급 계산)",
+      "week_start": "2026-09-21",
+      "backfill": true,
+      "input_release": "2026-09-17"
+    },
+    {
+      "external_id": "vote-2026-09-28-godeok-gracium-wb-persona-policy-lab",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "강동구 최근 4주 오른 주 4·내린 주 0(부동산원 9/24 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-godeok-gracium-wb-persona-real-talk",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "9/24 발표 강동구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-godeok-gracium-wb-persona-demand-check",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "강동구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-godeok-gracium-wb-persona-num-compare",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 강동구 4주 부호 합 +4(부동산원 9/24). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-godeok-gracium-wb-persona-cashflow",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "강동구 매매지수 4주 중 4주 상승, 0주 하락(9/24 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-godeok-gracium-wb-persona-field-scout",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 강동구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-one-bailey-wb-persona-policy-lab",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "서초구 최근 4주 오른 주 0·내린 주 4(부동산원 9/24 발표). 기준 확률 0.10에 하방 편향을 얹어 0.06, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-one-bailey-wb-persona-real-talk",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "9/24 발표 서초구 4주 흐름이 오른 주 0, 내린 주 4입니다. 체감보다 표를 따르면 내린다 쪽(0.06)입니다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-one-bailey-wb-persona-demand-check",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "서초구 4주 중 상승 0주·하락 4주. 기준 확률 0.10 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-one-bailey-wb-persona-num-compare",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 서초구 4주 부호 합 -4(부동산원 9/24). 확률 0.10, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-one-bailey-wb-persona-cashflow",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "서초구 매매지수 4주 중 0주 상승, 4주 하락(9/24 발표). 확률 0.10. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-one-bailey-wb-persona-field-scout",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 서초구 4주 오른 주 0·내린 주 4, 확률 0.10. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-ricents-wb-persona-policy-lab",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "송파구 최근 4주 오른 주 1·내린 주 3(부동산원 9/24 발표). 기준 확률 0.30에 하방 편향을 얹어 0.26, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-ricents-wb-persona-real-talk",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "9/24 발표 송파구 4주 흐름이 오른 주 1, 내린 주 3입니다. 체감보다 표를 따르면 내린다 쪽(0.26)입니다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-ricents-wb-persona-demand-check",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "송파구 4주 중 상승 1주·하락 3주. 기준 확률 0.30 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-ricents-wb-persona-num-compare",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 송파구 4주 부호 합 -2(부동산원 9/24). 확률 0.30, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-ricents-wb-persona-cashflow",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "송파구 매매지수 4주 중 1주 상승, 3주 하락(9/24 발표). 확률 0.30. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-ricents-wb-persona-field-scout",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 송파구 4주 오른 주 1·내린 주 3, 확률 0.30. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-mapo-raemian-prugio-wb-persona-policy-lab",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "마포구 최근 4주 오른 주 4·내린 주 0(부동산원 9/24 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-mapo-raemian-prugio-wb-persona-real-talk",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "9/24 발표 마포구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-mapo-raemian-prugio-wb-persona-demand-check",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "마포구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-mapo-raemian-prugio-wb-persona-num-compare",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 마포구 4주 부호 합 +4(부동산원 9/24). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-mapo-raemian-prugio-wb-persona-cashflow",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "마포구 매매지수 4주 중 4주 상승, 0주 하락(9/24 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-mapo-raemian-prugio-wb-persona-field-scout",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 마포구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-eunma-wb-persona-policy-lab",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "강남구 최근 4주 오른 주 0·내린 주 4(부동산원 9/24 발표). 기준 확률 0.10에 하방 편향을 얹어 0.06, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-eunma-wb-persona-real-talk",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "9/24 발표 강남구 4주 흐름이 오른 주 0, 내린 주 4입니다. 체감보다 표를 따르면 내린다 쪽(0.06)입니다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-eunma-wb-persona-demand-check",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "강남구 4주 중 상승 0주·하락 4주. 기준 확률 0.10 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-eunma-wb-persona-num-compare",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 강남구 4주 부호 합 -4(부동산원 9/24). 확률 0.10, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-eunma-wb-persona-cashflow",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "강남구 매매지수 4주 중 0주 상승, 4주 하락(9/24 발표). 확률 0.10. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-eunma-wb-persona-field-scout",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 강남구 4주 오른 주 0·내린 주 4, 확률 0.10. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-helio-city-wb-persona-policy-lab",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "송파구 최근 4주 오른 주 1·내린 주 3(부동산원 9/24 발표). 기준 확률 0.30에 하방 편향을 얹어 0.26, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-helio-city-wb-persona-real-talk",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "9/24 발표 송파구 4주 흐름이 오른 주 1, 내린 주 3입니다. 체감보다 표를 따르면 내린다 쪽(0.26)입니다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-helio-city-wb-persona-demand-check",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "송파구 4주 중 상승 1주·하락 3주. 기준 확률 0.30 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-helio-city-wb-persona-num-compare",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 송파구 4주 부호 합 -2(부동산원 9/24). 확률 0.30, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-helio-city-wb-persona-cashflow",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "송파구 매매지수 4주 중 1주 상승, 3주 하락(9/24 발표). 확률 0.30. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-09-28-helio-city-wb-persona-field-scout",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 송파구 4주 오른 주 1·내린 주 3, 확률 0.30. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-09-28",
+      "backfill": true,
+      "input_release": "2026-09-24"
+    },
+    {
+      "external_id": "vote-2026-10-05-godeok-gracium-wb-persona-policy-lab",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "강동구 최근 4주 오른 주 4·내린 주 0(부동산원 10/1 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-godeok-gracium-wb-persona-real-talk",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "10/1 발표 강동구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-godeok-gracium-wb-persona-demand-check",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "강동구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-godeok-gracium-wb-persona-num-compare",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 강동구 4주 부호 합 +4(부동산원 10/1). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-godeok-gracium-wb-persona-cashflow",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "강동구 매매지수 4주 중 4주 상승, 0주 하락(10/1 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-godeok-gracium-wb-persona-field-scout",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 강동구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-one-bailey-wb-persona-policy-lab",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "서초구 최근 4주 오른 주 0·내린 주 4(부동산원 10/1 발표). 기준 확률 0.10에 하방 편향을 얹어 0.06, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-one-bailey-wb-persona-real-talk",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "10/1 발표 서초구 4주 흐름이 오른 주 0, 내린 주 4입니다. 체감보다 표를 따르면 내린다 쪽(0.06)입니다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-one-bailey-wb-persona-demand-check",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "서초구 4주 중 상승 0주·하락 4주. 기준 확률 0.10 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-one-bailey-wb-persona-num-compare",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 서초구 4주 부호 합 -4(부동산원 10/1). 확률 0.10, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-one-bailey-wb-persona-cashflow",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "서초구 매매지수 4주 중 0주 상승, 4주 하락(10/1 발표). 확률 0.10. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-one-bailey-wb-persona-field-scout",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 서초구 4주 오른 주 0·내린 주 4, 확률 0.10. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-ricents-wb-persona-policy-lab",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "송파구 최근 4주 오른 주 0·내린 주 4(부동산원 10/1 발표). 기준 확률 0.10에 하방 편향을 얹어 0.06, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-ricents-wb-persona-real-talk",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "10/1 발표 송파구 4주 흐름이 오른 주 0, 내린 주 4입니다. 체감보다 표를 따르면 내린다 쪽(0.06)입니다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-ricents-wb-persona-demand-check",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "송파구 4주 중 상승 0주·하락 4주. 기준 확률 0.10 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-ricents-wb-persona-num-compare",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 송파구 4주 부호 합 -4(부동산원 10/1). 확률 0.10, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-ricents-wb-persona-cashflow",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "송파구 매매지수 4주 중 0주 상승, 4주 하락(10/1 발표). 확률 0.10. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-ricents-wb-persona-field-scout",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 송파구 4주 오른 주 0·내린 주 4, 확률 0.10. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-mapo-raemian-prugio-wb-persona-policy-lab",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "마포구 최근 4주 오른 주 4·내린 주 0(부동산원 10/1 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-mapo-raemian-prugio-wb-persona-real-talk",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "10/1 발표 마포구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-mapo-raemian-prugio-wb-persona-demand-check",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "마포구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-mapo-raemian-prugio-wb-persona-num-compare",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 마포구 4주 부호 합 +4(부동산원 10/1). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-mapo-raemian-prugio-wb-persona-cashflow",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "마포구 매매지수 4주 중 4주 상승, 0주 하락(10/1 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-mapo-raemian-prugio-wb-persona-field-scout",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 마포구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-eunma-wb-persona-policy-lab",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "강남구 최근 4주 오른 주 0·내린 주 4(부동산원 10/1 발표). 기준 확률 0.10에 하방 편향을 얹어 0.06, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-eunma-wb-persona-real-talk",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "10/1 발표 강남구 4주 흐름이 오른 주 0, 내린 주 4입니다. 체감보다 표를 따르면 내린다 쪽(0.06)입니다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-eunma-wb-persona-demand-check",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "강남구 4주 중 상승 0주·하락 4주. 기준 확률 0.10 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-eunma-wb-persona-num-compare",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 강남구 4주 부호 합 -4(부동산원 10/1). 확률 0.10, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-eunma-wb-persona-cashflow",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "강남구 매매지수 4주 중 0주 상승, 4주 하락(10/1 발표). 확률 0.10. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-eunma-wb-persona-field-scout",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 강남구 4주 오른 주 0·내린 주 4, 확률 0.10. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-helio-city-wb-persona-policy-lab",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "송파구 최근 4주 오른 주 0·내린 주 4(부동산원 10/1 발표). 기준 확률 0.10에 하방 편향을 얹어 0.06, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-helio-city-wb-persona-real-talk",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "10/1 발표 송파구 4주 흐름이 오른 주 0, 내린 주 4입니다. 체감보다 표를 따르면 내린다 쪽(0.06)입니다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-helio-city-wb-persona-demand-check",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "송파구 4주 중 상승 0주·하락 4주. 기준 확률 0.10 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-helio-city-wb-persona-num-compare",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 송파구 4주 부호 합 -4(부동산원 10/1). 확률 0.10, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-helio-city-wb-persona-cashflow",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "송파구 매매지수 4주 중 0주 상승, 4주 하락(10/1 발표). 확률 0.10. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-05-helio-city-wb-persona-field-scout",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 송파구 4주 오른 주 0·내린 주 4, 확률 0.10. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-05",
+      "backfill": true,
+      "input_release": "2026-10-01"
+    },
+    {
+      "external_id": "vote-2026-10-12-godeok-gracium-wb-persona-policy-lab",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "강동구 최근 4주 오른 주 4·내린 주 0(부동산원 10/8 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-godeok-gracium-wb-persona-real-talk",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "10/8 발표 강동구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-godeok-gracium-wb-persona-demand-check",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "강동구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-godeok-gracium-wb-persona-num-compare",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 강동구 4주 부호 합 +4(부동산원 10/8). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-godeok-gracium-wb-persona-cashflow",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "강동구 매매지수 4주 중 4주 상승, 0주 하락(10/8 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-godeok-gracium-wb-persona-field-scout",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 강동구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-one-bailey-wb-persona-policy-lab",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "서초구 최근 4주 오른 주 0·내린 주 4(부동산원 10/8 발표). 기준 확률 0.10에 하방 편향을 얹어 0.06, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-one-bailey-wb-persona-real-talk",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "10/8 발표 서초구 4주 흐름이 오른 주 0, 내린 주 4입니다. 체감보다 표를 따르면 내린다 쪽(0.06)입니다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-one-bailey-wb-persona-demand-check",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "서초구 4주 중 상승 0주·하락 4주. 기준 확률 0.10 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-one-bailey-wb-persona-num-compare",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 서초구 4주 부호 합 -4(부동산원 10/8). 확률 0.10, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-one-bailey-wb-persona-cashflow",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "서초구 매매지수 4주 중 0주 상승, 4주 하락(10/8 발표). 확률 0.10. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-one-bailey-wb-persona-field-scout",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 서초구 4주 오른 주 0·내린 주 4, 확률 0.10. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-ricents-wb-persona-policy-lab",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "송파구 최근 4주 오른 주 0·내린 주 4(부동산원 10/8 발표). 기준 확률 0.10에 하방 편향을 얹어 0.06, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-ricents-wb-persona-real-talk",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "10/8 발표 송파구 4주 흐름이 오른 주 0, 내린 주 4입니다. 체감보다 표를 따르면 내린다 쪽(0.06)입니다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-ricents-wb-persona-demand-check",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "송파구 4주 중 상승 0주·하락 4주. 기준 확률 0.10 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-ricents-wb-persona-num-compare",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 송파구 4주 부호 합 -4(부동산원 10/8). 확률 0.10, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-ricents-wb-persona-cashflow",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "송파구 매매지수 4주 중 0주 상승, 4주 하락(10/8 발표). 확률 0.10. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-ricents-wb-persona-field-scout",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 송파구 4주 오른 주 0·내린 주 4, 확률 0.10. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-mapo-raemian-prugio-wb-persona-policy-lab",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "마포구 최근 4주 오른 주 4·내린 주 0(부동산원 10/8 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-mapo-raemian-prugio-wb-persona-real-talk",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "10/8 발표 마포구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-mapo-raemian-prugio-wb-persona-demand-check",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "마포구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-mapo-raemian-prugio-wb-persona-num-compare",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 마포구 4주 부호 합 +4(부동산원 10/8). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-mapo-raemian-prugio-wb-persona-cashflow",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "마포구 매매지수 4주 중 4주 상승, 0주 하락(10/8 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-mapo-raemian-prugio-wb-persona-field-scout",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 마포구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-eunma-wb-persona-policy-lab",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "강남구 최근 4주 오른 주 0·내린 주 4(부동산원 10/8 발표). 기준 확률 0.10에 하방 편향을 얹어 0.06, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-eunma-wb-persona-real-talk",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "10/8 발표 강남구 4주 흐름이 오른 주 0, 내린 주 4입니다. 체감보다 표를 따르면 내린다 쪽(0.06)입니다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-eunma-wb-persona-demand-check",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "강남구 4주 중 상승 0주·하락 4주. 기준 확률 0.10 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-eunma-wb-persona-num-compare",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 강남구 4주 부호 합 -4(부동산원 10/8). 확률 0.10, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-eunma-wb-persona-cashflow",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "강남구 매매지수 4주 중 0주 상승, 4주 하락(10/8 발표). 확률 0.10. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-eunma-wb-persona-field-scout",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 강남구 4주 오른 주 0·내린 주 4, 확률 0.10. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-helio-city-wb-persona-policy-lab",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "송파구 최근 4주 오른 주 0·내린 주 4(부동산원 10/8 발표). 기준 확률 0.10에 하방 편향을 얹어 0.06, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-helio-city-wb-persona-real-talk",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "10/8 발표 송파구 4주 흐름이 오른 주 0, 내린 주 4입니다. 체감보다 표를 따르면 내린다 쪽(0.06)입니다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-helio-city-wb-persona-demand-check",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "송파구 4주 중 상승 0주·하락 4주. 기준 확률 0.10 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-helio-city-wb-persona-num-compare",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 송파구 4주 부호 합 -4(부동산원 10/8). 확률 0.10, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-helio-city-wb-persona-cashflow",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "송파구 매매지수 4주 중 0주 상승, 4주 하락(10/8 발표). 확률 0.10. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-12-helio-city-wb-persona-field-scout",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 송파구 4주 오른 주 0·내린 주 4, 확률 0.10. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-12",
+      "backfill": true,
+      "input_release": "2026-10-08"
+    },
+    {
+      "external_id": "vote-2026-10-19-godeok-gracium-wb-persona-policy-lab",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "강동구 최근 4주 오른 주 4·내린 주 0(부동산원 10/15 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-godeok-gracium-wb-persona-real-talk",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "10/15 발표 강동구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-godeok-gracium-wb-persona-demand-check",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "강동구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-godeok-gracium-wb-persona-num-compare",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 강동구 4주 부호 합 +4(부동산원 10/15). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-godeok-gracium-wb-persona-cashflow",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "강동구 매매지수 4주 중 4주 상승, 0주 하락(10/15 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-godeok-gracium-wb-persona-field-scout",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 강동구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-one-bailey-wb-persona-policy-lab",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "서초구 최근 4주 오른 주 0·내린 주 4(부동산원 10/15 발표). 기준 확률 0.10에 하방 편향을 얹어 0.06, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-one-bailey-wb-persona-real-talk",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "10/15 발표 서초구 4주 흐름이 오른 주 0, 내린 주 4입니다. 체감보다 표를 따르면 내린다 쪽(0.06)입니다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-one-bailey-wb-persona-demand-check",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "서초구 4주 중 상승 0주·하락 4주. 기준 확률 0.10 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-one-bailey-wb-persona-num-compare",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 서초구 4주 부호 합 -4(부동산원 10/15). 확률 0.10, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-one-bailey-wb-persona-cashflow",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "서초구 매매지수 4주 중 0주 상승, 4주 하락(10/15 발표). 확률 0.10. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-one-bailey-wb-persona-field-scout",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 서초구 4주 오른 주 0·내린 주 4, 확률 0.10. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-ricents-wb-persona-policy-lab",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "송파구 최근 4주 오른 주 0·내린 주 4(부동산원 10/15 발표). 기준 확률 0.10에 하방 편향을 얹어 0.06, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-ricents-wb-persona-real-talk",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "10/15 발표 송파구 4주 흐름이 오른 주 0, 내린 주 4입니다. 체감보다 표를 따르면 내린다 쪽(0.06)입니다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-ricents-wb-persona-demand-check",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "송파구 4주 중 상승 0주·하락 4주. 기준 확률 0.10 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-ricents-wb-persona-num-compare",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 송파구 4주 부호 합 -4(부동산원 10/15). 확률 0.10, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-ricents-wb-persona-cashflow",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "송파구 매매지수 4주 중 0주 상승, 4주 하락(10/15 발표). 확률 0.10. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-ricents-wb-persona-field-scout",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 송파구 4주 오른 주 0·내린 주 4, 확률 0.10. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-mapo-raemian-prugio-wb-persona-policy-lab",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "마포구 최근 4주 오른 주 4·내린 주 0(부동산원 10/15 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-mapo-raemian-prugio-wb-persona-real-talk",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "10/15 발표 마포구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-mapo-raemian-prugio-wb-persona-demand-check",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "마포구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-mapo-raemian-prugio-wb-persona-num-compare",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 마포구 4주 부호 합 +4(부동산원 10/15). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-mapo-raemian-prugio-wb-persona-cashflow",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "마포구 매매지수 4주 중 4주 상승, 0주 하락(10/15 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-mapo-raemian-prugio-wb-persona-field-scout",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 마포구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-eunma-wb-persona-policy-lab",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "강남구 최근 4주 오른 주 0·내린 주 4(부동산원 10/15 발표). 기준 확률 0.10에 하방 편향을 얹어 0.06, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-eunma-wb-persona-real-talk",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "10/15 발표 강남구 4주 흐름이 오른 주 0, 내린 주 4입니다. 체감보다 표를 따르면 내린다 쪽(0.06)입니다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-eunma-wb-persona-demand-check",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "강남구 4주 중 상승 0주·하락 4주. 기준 확률 0.10 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-eunma-wb-persona-num-compare",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 강남구 4주 부호 합 -4(부동산원 10/15). 확률 0.10, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-eunma-wb-persona-cashflow",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "강남구 매매지수 4주 중 0주 상승, 4주 하락(10/15 발표). 확률 0.10. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-eunma-wb-persona-field-scout",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 강남구 4주 오른 주 0·내린 주 4, 확률 0.10. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-helio-city-wb-persona-policy-lab",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "송파구 최근 4주 오른 주 0·내린 주 4(부동산원 10/15 발표). 기준 확률 0.10에 하방 편향을 얹어 0.06, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-helio-city-wb-persona-real-talk",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "10/15 발표 송파구 4주 흐름이 오른 주 0, 내린 주 4입니다. 체감보다 표를 따르면 내린다 쪽(0.06)입니다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-helio-city-wb-persona-demand-check",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "송파구 4주 중 상승 0주·하락 4주. 기준 확률 0.10 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-helio-city-wb-persona-num-compare",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 송파구 4주 부호 합 -4(부동산원 10/15). 확률 0.10, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-helio-city-wb-persona-cashflow",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "송파구 매매지수 4주 중 0주 상승, 4주 하락(10/15 발표). 확률 0.10. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-19-helio-city-wb-persona-field-scout",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 송파구 4주 오른 주 0·내린 주 4, 확률 0.10. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-19",
+      "backfill": true,
+      "input_release": "2026-10-15"
+    },
+    {
+      "external_id": "vote-2026-10-26-godeok-gracium-wb-persona-policy-lab",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "강동구 최근 4주 오른 주 4·내린 주 0(부동산원 10/22 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-godeok-gracium-wb-persona-real-talk",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "10/22 발표 강동구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-godeok-gracium-wb-persona-demand-check",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "강동구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-godeok-gracium-wb-persona-num-compare",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 강동구 4주 부호 합 +4(부동산원 10/22). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-godeok-gracium-wb-persona-cashflow",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "강동구 매매지수 4주 중 4주 상승, 0주 하락(10/22 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-godeok-gracium-wb-persona-field-scout",
+      "complex_external_id": "cx-godeok-gracium",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 강동구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-one-bailey-wb-persona-policy-lab",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "서초구 최근 4주 오른 주 0·내린 주 4(부동산원 10/22 발표). 기준 확률 0.10에 하방 편향을 얹어 0.06, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-one-bailey-wb-persona-real-talk",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "10/22 발표 서초구 4주 흐름이 오른 주 0, 내린 주 4입니다. 체감보다 표를 따르면 내린다 쪽(0.06)입니다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-one-bailey-wb-persona-demand-check",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "서초구 4주 중 상승 0주·하락 4주. 기준 확률 0.10 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-one-bailey-wb-persona-num-compare",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 서초구 4주 부호 합 -4(부동산원 10/22). 확률 0.10, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-one-bailey-wb-persona-cashflow",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "서초구 매매지수 4주 중 0주 상승, 4주 하락(10/22 발표). 확률 0.10. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-one-bailey-wb-persona-field-scout",
+      "complex_external_id": "cx-one-bailey",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 서초구 4주 오른 주 0·내린 주 4, 확률 0.10. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-ricents-wb-persona-policy-lab",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "송파구 최근 4주 오른 주 0·내린 주 4(부동산원 10/22 발표). 기준 확률 0.10에 하방 편향을 얹어 0.06, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-ricents-wb-persona-real-talk",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "10/22 발표 송파구 4주 흐름이 오른 주 0, 내린 주 4입니다. 체감보다 표를 따르면 내린다 쪽(0.06)입니다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-ricents-wb-persona-demand-check",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "송파구 4주 중 상승 0주·하락 4주. 기준 확률 0.10 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-ricents-wb-persona-num-compare",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 송파구 4주 부호 합 -4(부동산원 10/22). 확률 0.10, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-ricents-wb-persona-cashflow",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "송파구 매매지수 4주 중 0주 상승, 4주 하락(10/22 발표). 확률 0.10. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-ricents-wb-persona-field-scout",
+      "complex_external_id": "cx-ricents",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 송파구 4주 오른 주 0·내린 주 4, 확률 0.10. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-mapo-raemian-prugio-wb-persona-policy-lab",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "up",
+      "rationale": "마포구 최근 4주 오른 주 4·내린 주 0(부동산원 10/22 발표). 기준 확률 0.90에 하방 편향을 얹어 0.86, 오른다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-mapo-raemian-prugio-wb-persona-real-talk",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "up",
+      "rationale": "10/22 발표 마포구 4주 흐름이 오른 주 4, 내린 주 0입니다. 체감보다 표를 따르면 오른다 쪽(0.86)입니다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-mapo-raemian-prugio-wb-persona-demand-check",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "up",
+      "rationale": "마포구 4주 중 상승 4주·하락 0주. 기준 확률 0.90 그대로, 오른다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-mapo-raemian-prugio-wb-persona-num-compare",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "up",
+      "rationale": "같은 잣대: 마포구 4주 부호 합 +4(부동산원 10/22). 확률 0.90, 오른다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-mapo-raemian-prugio-wb-persona-cashflow",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "up",
+      "rationale": "마포구 매매지수 4주 중 4주 상승, 0주 하락(10/22 발표). 확률 0.90. 오른다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-mapo-raemian-prugio-wb-persona-field-scout",
+      "complex_external_id": "cx-mapo-raemian-prugio",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "up",
+      "rationale": "현장 정보 없이 표만 봤습니다. 마포구 4주 오른 주 4·내린 주 0, 확률 0.90. 오른다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-eunma-wb-persona-policy-lab",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "강남구 최근 4주 오른 주 0·내린 주 4(부동산원 10/22 발표). 기준 확률 0.10에 하방 편향을 얹어 0.06, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-eunma-wb-persona-real-talk",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "10/22 발표 강남구 4주 흐름이 오른 주 0, 내린 주 4입니다. 체감보다 표를 따르면 내린다 쪽(0.06)입니다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-eunma-wb-persona-demand-check",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "강남구 4주 중 상승 0주·하락 4주. 기준 확률 0.10 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-eunma-wb-persona-num-compare",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 강남구 4주 부호 합 -4(부동산원 10/22). 확률 0.10, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-eunma-wb-persona-cashflow",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "강남구 매매지수 4주 중 0주 상승, 4주 하락(10/22 발표). 확률 0.10. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-eunma-wb-persona-field-scout",
+      "complex_external_id": "cx-eunma",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 강남구 4주 오른 주 0·내린 주 4, 확률 0.10. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-helio-city-wb-persona-policy-lab",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-policy-lab",
+      "side": "down",
+      "rationale": "송파구 최근 4주 오른 주 0·내린 주 4(부동산원 10/22 발표). 기준 확률 0.10에 하방 편향을 얹어 0.06, 내린다에 겁니다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-helio-city-wb-persona-real-talk",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-real-talk",
+      "side": "down",
+      "rationale": "10/22 발표 송파구 4주 흐름이 오른 주 0, 내린 주 4입니다. 체감보다 표를 따르면 내린다 쪽(0.06)입니다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-helio-city-wb-persona-demand-check",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-demand-check",
+      "side": "down",
+      "rationale": "송파구 4주 중 상승 0주·하락 4주. 기준 확률 0.10 그대로, 내린다고 봅니다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-helio-city-wb-persona-num-compare",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-num-compare",
+      "side": "down",
+      "rationale": "같은 잣대: 송파구 4주 부호 합 -4(부동산원 10/22). 확률 0.10, 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-helio-city-wb-persona-cashflow",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-cashflow",
+      "side": "down",
+      "rationale": "송파구 매매지수 4주 중 0주 상승, 4주 하락(10/22 발표). 확률 0.10. 내린다에 둡니다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    },
+    {
+      "external_id": "vote-2026-10-26-helio-city-wb-persona-field-scout",
+      "complex_external_id": "cx-helio-city",
+      "persona_external_id": "wb-persona-field-scout",
+      "side": "down",
+      "rationale": "현장 정보 없이 표만 봤습니다. 송파구 4주 오른 주 0·내린 주 4, 확률 0.10. 내린다. (10/31 소급 계산)",
+      "week_start": "2026-10-26",
+      "backfill": true,
+      "input_release": "2026-10-22"
+    }
+  ]
+}

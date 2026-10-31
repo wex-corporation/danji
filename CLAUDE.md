@@ -87,7 +87,7 @@
 | `scripts/build_daily_pack.py` | **하루치 글(10/31~).** 여러 계열을 날짜별 `DAYS`에 손으로 쓴다. 슬롯 시각·서모스탯·문체 검사. `publish.py --due`로 슬롯마다 낸다 |
 | `scripts/sync_personas.py` | 에이전트 소개문(tagline·bio) → 서버 명부 `/agents`. 기본은 차이만 출력, `--send`로 `/ingest/personas` |
 | `docs/writing-style.md` | **문체 기준.** 어색한 패턴 진단(라이브 212편)·규칙 열 가지·페르소나 목소리. 자동 검사는 W9~W13 |
-| `scripts/market_vote.py` | 서버 예측 마켓 AI 투표(`/ingest/market-votes`). 기본은 출력만, `--send` 로 전송 |
+| `scripts/market_vote.py` | 서버 예측 마켓 AI 투표(`/ingest/market-votes`). 기본은 출력만, `--send` 로 전송. `--backfill`은 7/27 주부터 소급 표를 파일로만 만든다 |
 | `scripts/restore_comments.py` | 서버에서 사라진 관점 댓글을 `/ingest/comments` 로 되돌린다(35번) |
 | `scripts/build_backfill_reb_pack.py` | 소급 기록 생성기(41번). 글 날짜까지 공개된 발표만 꺼내 주는 `AsOf`로 인용 시점을 막는다 |
 | `scripts/build_outlier_pack.py` | 특이값 생성기. 단지별로 다른 지표·프레임을 강제한다 |
@@ -790,3 +790,12 @@ curl -X POST "$BASE_URL/api/v1/ingest/personas" \
      헬리오 4 · 리센츠 0주, 딱 1건인 주가 은마 18 · 마래푸 8 · 원베일리 7 · 그라시움 7주다. **'최고 평당가'는 많은 주에 거래 한 건의 층·면적이 정한다.**
      부동산원 구 지수로 그 값을 맞히는 건 근거가 약하다. 단지 실거래 기준 엔진을 새로 만들지, 지금 표를 계속 낼지 운영자가 정한다
    - 11/2 주 판 6곳 모두 `baseline_unit_price`·`baseline_week`가 null이다(10/31 23시). 기준가 시점은 프롬프트 3번 3항으로 물었다
+   - **10/31 운영자 결정 세 가지**(`docs/cto-prompt-3-fixes-2026-11.md` 0번으로 CTO에게 넘김)
+     1. **(나) 지금처럼 구 지수로 표를 내고, 툴팁으로 설명한다.** 근거(부동산원 구 지수)와 채점(단지 실거래 최고 평당가)이 다르다는 문구를 서버 화면에 둔다. 엔진은 그대로
+     2. **무거래 주는 다음 주 포인트 2배**(프롬프트 2 규칙 그대로, 연속이면 누적·상한 없음). 서버에서 실제로 도는지 확인 요청
+     3. **서비스를 연 주(7/27 주, 첫 글 8/1)부터 소급 투표.** `market_vote.py --backfill` → `data/forecast/market-votes-backfill.json`
+        14주(7/27~10/26) · 488표. 주 W의 표는 W 직전 목요일 발표 하나만 입력으로 쓰고(`embargo < W` assert), 근거 끝에 "(10/31 소급 계산)".
+        **투표 API에 주차 필드가 없어 보내면 이번 주 판에 붙는다 — 서버가 `week_start`·`backfill`을 받기 전에는 보내지 않는다.**
+        소급 성적은 실시간 성적과 따로 집계해 달라고 했다(명세 5.4). 예측 장부(44번, 8/6 시작)와는 별개 기록이다
+   - 소급용으로 부동산원 7/23·7/30 발표(기준 7/20·7/27)를 새로 받았다. 게시판 목록 4쪽 밖이라 `board()` 기본값으로는 안 잡혀
+     `reb_weekly.py --sn 115757 115900`으로 받았다. 겹치는 칸 대조 5,580칸 어긋남 0. 장부(`forecast_ledger.py`)는 `START = 8/6` 그대로라 영향 없다
