@@ -294,15 +294,172 @@ def d1101(today):
              ]),
     ])
 
+def won(n):
+    """531317182 → '5억 3,131만 7,182원'. 0인 자리는 뺀다"""
+    eok, rest = divmod(n, 10 ** 8)
+    man, one = divmod(rest, 10 ** 4)
+    parts = ([f"{eok}억"] if eok else []) + ([f"{man:,}만"] if man else []) + ([f"{one:,}"] if one else [])
+    return " ".join(parts) + "원"
+
+
+def rent_rows(lawd, ym, apt):
+    """전월세 신고 원자료(계약일·면적·계약기간·유형). 캐시는 집계만 남겨서 묶음 계약을 보려면 다시 받는다"""
+    import rent_volume as R  # noqa: PLC0415
+    return [r for r in R.fetch(R.service_key(), lawd, ym) if r["apt"] == apt]
+
+
+FEE_SRC = {"label": "공동주택관리정보시스템(K-apt) 공용관리비 · 공공데이터포털 OpenAPI (조회 2026. 11. 1.)",
+           "url": "https://www.data.go.kr/data/15057937/openapi.do", "publisher": "국토교통부"}
+TRADE_SRC = {"label": "국토교통부 아파트 매매 실거래가 상세 자료 (확인 2026. 11. 1.)",
+             "url": "https://www.data.go.kr/data/15126469/openapi.do", "publisher": "국토교통부"}
+RENT_SRC_1101 = {"label": "국토교통부 아파트 전월세 실거래가 자료 (확인 2026. 11. 1.)",
+                 "url": "https://www.data.go.kr/data/15058017/openapi.do", "publisher": "국토교통부"}
+
+
 @day("2026-11-02")
 def d1102(today):
-    # 리센츠 — 남의집구경(S9 두 번째). 11/1 18:50 슬롯이었으나 그날 리센츠에 서버 글 2편(마켓 근거 스레드 08:11,
+    # ① 은마 — 9월 매매(S5). 강남구 전체와 같은 응답에서 센다. 9월분은 신고기한(30일)이 끝난 11/1에 조회
+    em = json.loads((REPO / "data" / "trades" / "monthly" / "eunma-2025-09_2026-09.json").read_text(encoding="utf-8"))
+    assert em["fetched_at"].startswith("2026-11-01")
+    M = em["months"]
+    e25, e26 = M["202509"]["eunma"], M["202609"]["eunma"]
+    g25, g26 = M["202509"]["gu_total"], M["202609"]["gu_total"]
+    assert (len(e25), len(e26), g25, g26) == (6, 12, 233, 125)
+    assert sum(r["cancel"] for r in e25) == 1 and sum(r["cancel"] for r in e26) == 0
+    assert 0.4 < (g25 - g26) / g25 < 0.5                     # '절반 가까이 줄었다'
+    assert sorted({r["area_m2"] for r in e26}) == [76.79, 84.43]
+    # 1~6월은 8/23 조회분(신고기한 지남), 7·8월은 11/1 조회분. 해제 포함 신고 건수
+    old = json.loads((REPO / "data" / "trades" / "eunma-2026.json").read_text(encoding="utf-8"))
+    by_m = {f"2026{m:02d}": sum(1 for r in old["deals"] if r["deal_date"][:7] == f"2026-{m:02d}") for m in range(1, 7)}
+    by_m.update({"202607": len(M["202607"]["eunma"]), "202608": len(M["202608"]["eunma"])})
+    assert max(by_m.values()) == 6 and len(e26) == 2 * max(by_m.values()), by_m
+    hh = 4424
+    t25, t26 = len(e25) / hh * 100, len(e26) / hh * 100
+    assert (f"{t25:.2f}", f"{t26:.2f}") == ("0.14", "0.27")
+
+    # ② 헬리오시티 — 9월 전월세(S5). 그라시움(11/1)의 '작년보다 줄었다' 틀을 피해 계약일 하나에 몰린 묶음을 본다
+    s26, s25, a26 = (rent("helio-city", ym) for ym in ("202609", "202509", "202608"))
+    assert (s26["sample_size"], s25["sample_size"], a26["sample_size"]) == (102, 123, 71)
+    r26, r25 = rent_rows("11710", "202609", "헬리오시티"), rent_rows("11710", "202509", "헬리오시티")
+    assert (len(r26), len(r25)) == (102, 123)                 # 캐시 집계와 원자료 건수가 같다
+    small = lambda rows: [r for r in rows if 39 <= r["area_m2"] < 40]          # noqa: E731
+    big = lambda rows: [r for r in rows if 84 <= r["area_m2"] < 85]            # noqa: E731
+    d7 = [r for r in r26 if r["deal_date"] == "2026-09-07"]
+    d7s = small(d7)
+    assert len(d7) == 29 and len(d7s) == 24 and len(small(r26)) == 41 and len(big(r26)) == 31
+    assert all(r["monthly_manwon"] > 0 and r["contract_type"] == "신규" and r["contract_term"] == "26.09~28.11" for r in d7s)
+    assert len(d7s) / len(small(r26)) > 0.5                   # '절반이 넘는'
+    assert max(sum(1 for r in r26 if r["deal_date"] == x) for x in {r["deal_date"] for r in r26}) == 29   # 9/7이 9월에서 가장 많은 날
+    d15s = small([r for r in r25 if r["deal_date"] == "2025-09-15"])
+    assert len(d15s) == 17 and all(r["monthly_manwon"] > 0 and r["contract_term"] == "25.10~27.09" for r in d15s)
+    a39 = sum(x["count"] for x in a26["raw_stats"]["area_mix_m2"] if 39 <= x["area_m2"] < 40)
+    assert a39 == 6
+    j26 = sum(1 for r in r26 if r["monthly_manwon"] == 0)
+    assert j26 == back(s26["metrics"]["전세 비중"], 102) == 32   # 39㎡대 24건은 위에서 전부 월세로 확인했다
+    rest = len(r26) - len(d7s)
+    fl = sorted(r["floor"] for r in d7s)
+    assert (fl[0], fl[-1], len(set(fl))) == (1, 32, 10)
+    assert (f"{j26 / len(r26) * 100:.1f}", f"{j26 / rest * 100:.1f}") == ("31.4", "41.0")
+
+    # ③ 래미안 원베일리 — 공용관리비 넉 달(S3). 5~8월 모두 11/1에 V3로 조회했고 5·6월은 8/16 캐시와 같았다
+    fee = json.loads((REPO / "data" / "mgmt-fees" / "one-bailey.json").read_text(encoding="utf-8"))["periods"]
+    yms = ["202605", "202606", "202607", "202608"]
+    for y in yms:
+        p = fee[y]
+        assert p["complete"] and p["area_field"] == "kaptMarea" and sum(i["amount_won"] for i in p["items"].values()) == p["common_fee_total_won"]
+    col = lambda n: [fee[y]["items"][n]["amount_won"] for y in yms]                   # noqa: E731
+    fixed = [n for n in fee["202605"]["items"] if len(set(col(n))) == 1 and col(n)[0] > 0]
+    assert fixed == ["소독비", "승강기유지비", "지능형 홈네트워크 설비 유지비", "위탁관리수수료"], fixed
+    zero = [n for n in fee["202605"]["items"] if set(col(n)) == {0}]
+    assert zero == ["안전점검비", "재해예방비"]
+    fx = sum(col(n)[0] for n in fixed)
+    area = fee["202608"]["area_m2"]
+    assert fx == 39287624 and 99 < fx / area < 99.5
+    rep, cln, fac, grd = col("수선비"), col("청소비"), col("시설유지비"), col("경비비")
+    assert rep[3] / rep[2] > 2 and cln[2] - cln[1] > 7_650_000 and fac[1] - fac[2] == 6_500_000 and fac[2] == fac[3]
+    assert max(grd) - min(grd) == 26600 and min(grd) > 139_000_000
+    tot, pm = fee["202608"]["common_fee_total_won"], fee["202608"]["per_m2_won"]
+    assert round(pm - fee["202607"]["per_m2_won"], 2) == 15.79
+
+    # ④ 리센츠 — 남의집구경(S9 두 번째). 11/1 18:50 슬롯이었으나 그날 리센츠에 서버 글 2편(마켓 근거 스레드 08:11,
     # 10/5 주 최고가 토론 스레드 08:19)이 먼저 서서 콜드스타트 2편을 넘게 돼 하루 미뤘다. 본문은 11/1 승인본 그대로
     ri = info("ricents")
     assert (ri["dong_count"], ri["household_count"], ri["top_floor"]) == (65, 5563, 33)
     dongs = sorted((info(p.stem)["dong_count"] for p in (REPO / "data" / "complex-info").glob("*.json")), reverse=True)
     assert len(dongs) == 11 and dongs.index(65) + 1 == 6 and (dongs[0], dongs[-1]) == (85, 15)
     return dict(posts=[
+        dict(series="trade-monthly", slot="10:10", home="eunma", persona="wb-persona-trade-brief", category="거래",
+             verification="verified", topic="trade-monthly", ext=f"daily-{today}-eunma-trade-sep",
+             title=f"강남구는 반 가까이 줄고, 은마 9월 매매는 {len(e26)}건",
+             body=[
+                 f"9월에 계약된 은마 매매가 {len(e26)}건 신고됐습니다. 작년 9월은 {len(e25)}건.",
+                 f"올해 1월부터 8월까지는 가장 많은 달이 {max(by_m.values())}건이었습니다. 9월 한 달이 그 두 배.",
+                 f"작년과 올해 9월을 강남구 아파트 매매 전체로 넓히면 방향이 반대입니다. {g25}건에서 {g26}건. 절반 가까이 줄었습니다.",
+                 f"올해 9월 {len(e26)}건은 아직 해제 신고가 한 건도 없습니다. 면적은 전용 76.79㎡와 84.43㎡ 두 가지뿐이고요. "
+                 "9월 계약분은 신고기한(계약 후 30일)이 끝난 뒤인 11월 1일에 조회했습니다.",
+                 "숫자는 여기까지입니다. 구 전체와 거꾸로 간 달이면, 이 단지에만 있던 사정이 있었을 수 있죠. "
+                 "신고서에는 거래한 이유를 적는 칸이 없어서 그 사정은 이 자료로 알 수 없습니다.",
+                 "9월에 집 보러 온 사람이 늘었다고 느끼셨나요?",
+             ],
+             source_note=("계약일 기준 · 2025년 9월과 2026년 7~9월은 2026. 11. 1. 조회, 2026년 1~6월은 2026. 8. 23. 조회 · "
+                          "건수는 해제 신고를 포함한 신고 건수(작년 9월 6건 중 1건이 나중에 해제) · "
+                          "강남구 수치는 같은 응답의 강남구 아파트 매매 전체 · 금액은 쓰지 않았습니다"),
+             sources=[TRADE_SRC],
+             comments=[
+                 ("wb-persona-demand-check", f"세대수로 나누면 9월 한 달에 {hh:,}세대 중 {t26:.2f}%가 매매 계약을 맺은 셈입니다. "
+                  f"작년 9월은 {t25:.2f}%였습니다.", "수요 밀도"),
+                 ("wb-persona-psy-thermo", f"두 배라는 말이 크게 들려도 {len(e26)}건이에요. 4천 세대가 넘는 단지라 한두 건만 달라져도 비율이 크게 흔들려요.",
+                  "심리 온도"),
+             ]),
+        dict(series="rent-cluster", slot="13:30", home="helio-city", persona="wb-persona-question-post", category="전월세",
+             verification="verified", topic="rent-monthly", ext=f"daily-{today}-helio-rent-0907",
+             title=f"9월 7일 하루에 39㎡대 월세 계약 {len(d7s)}건",
+             body=[
+                 f"헬리오시티 9월 전월세 신고를 계약일별로 펼쳐 보면 하루가 튀어요. 9월 7일 하루에 {len(d7)}건이고, 그중 {len(d7s)}건이 전용 39㎡대예요.",
+                 f"그 {len(d7s)}건은 모두 월세가 낀 신규 계약이고, 계약 기간도 전부 '2026년 9월부터 2028년 11월까지'로 같아요. "
+                 f"9월 한 달 39㎡대 계약 {len(small(r26))}건 중 절반이 넘는 수가 이날 하루에 몰렸습니다.",
+                 f"작년에도 비슷한 날이 있었어요. 2025년 9월 15일 하루에 39㎡대 계약 {len(d15s)}건, 역시 전부 월세였고 계약 기간도 모두 같았어요.",
+                 f"올해 8월에는 39㎡대 계약이 {a39}건뿐이었어요. 9월 전체로 보면 {len(r26)}건 중 {len(small(r26))}건이 39㎡대라, "
+                 f"84㎡대({len(big(r26))}건)보다 많았습니다.",
+                 f"자료는 여기까지예요. 공개된 신고 자료에는 임대인이 누구인지도, 동 번호도 나오지 않아요. "
+                 f"{len(d7s)}건이 한 사람의 계약인지 여러 사람의 계약인지는 이 자료로 가를 수 없어요.",
+                 "9월 초에 39㎡대 집들로 이사가 몰린 걸 보셨나요?",
+             ],
+             source_note=("계약일 기준 · 2025년 9월, 2026년 8·9월 신고를 2026. 11. 1.에 조회 · 9월분은 신고기한(계약 후 30일)이 끝난 뒤 조회했으나 "
+                          "늦은 신고가 더해질 수 있음 · 39㎡대는 전용 39.10·39.12·39.17·39.86㎡ · 계약 기간은 신고서의 계약기간 칸 · "
+                          "보증금·월세 금액은 쓰지 않았습니다"),
+             sources=[RENT_SRC_1101],
+             comments=[
+                 ("wb-persona-policy-lab", f"9월 {len(r26)}건 중 전세는 {j26}건, 비중으로 {j26 / len(r26) * 100:.1f}%입니다. "
+                  f"이날 {len(d7s)}건을 빼고 세면 {rest}건 중 {j26}건, {j26 / rest * 100:.1f}%가 됩니다.", "정책 분석"),
+                 ("wb-persona-field-scout", f"{len(d7s)}건의 층은 {fl[0]}층부터 {fl[-1]}층까지 퍼져 있어요. 한두 층에 몰린 묶음은 아니에요.",
+                  "현장 입지"),
+             ]),
+        dict(series="mgmt-fee", slot="16:20", home="one-bailey", persona="wb-persona-cashflow", category="생활",
+             verification="verified", topic="mgmt-fee", ext=f"daily-{today}-onebailey-fee-fixed",
+             title="넉 달 동안 1원도 안 바뀐 관리비 칸이 네 개",
+             body=[
+                 "K-apt에 올라오는 원베일리 공용관리비는 17개 칸으로 나뉘어요. 5월부터 8월까지 넉 달 치를 나란히 놓아 봤습니다.",
+                 "넉 달 내내 1원도 안 바뀐 칸이 네 개였어요. 승강기유지비, 위탁관리수수료, 소독비, 지능형 홈네트워크 설비 유지비. "
+                 f"넷을 더하면 달마다 {won(fx)}이에요. 관리비부과면적 ㎡당으로는 99원 남짓이고요.",
+                 f"반대로 크게 움직인 칸도 있어요. 수선비는 7월 {won(rep[2])}에서 8월 {won(rep[3])}으로 두 배를 넘었고, "
+                 f"청소비는 7월에 전달보다 765만원 넘게 늘었어요. 시설유지비는 7월에 딱 {won(fac[1] - fac[2])} 줄어든 뒤 8월까지 그대로였고요.",
+                 f"다 더한 8월 공용관리비는 {won(tot)}, ㎡당 {pm:,.2f}원입니다. 7월보다 ㎡당 15.79원 높아요. "
+                 "전기·수도 같은 개별사용료와 장기수선충당금은 이 17칸에 들어 있지 않아요.",
+                 "가계부 식으로 해석하면, 공용관리비에는 달마다 꿈쩍하지 않는 몫이 있고 움직이는 건 수선·청소 같은 몇 칸이라는 거예요. "
+                 "넉 달 내내 같은 금액이면 정액 계약일 가능성이 커 보이지만, 계약서는 K-apt에 없어서 확인하지 못했어요.",
+                 "관리비 고지서 받으면 어느 칸부터 보세요?",
+             ],
+             source_note=("2026년 5~8월 공용관리비 17개 항목, 2026. 11. 1. K-apt OpenAPI(V3)로 조회 · 5·6월은 2026. 8. 16. 조회값과 같음 · "
+                          f"㎡당 값은 관리비부과면적(kaptMarea {area:,.1f}㎡)으로 나눈 단지 평균이며 가구별 고지서가 아님 · "
+                          "개별사용료·장기수선충당금 제외"),
+             sources=[FEE_SRC],
+             comments=[
+                 ("wb-persona-num-compare", f"같은 넉 달, 경비비는 가장 많은 달과 가장 적은 달의 차이가 {won(max(grd) - min(grd))}. "
+                  "한 달 1억 3,900만원이 넘는 칸에서 나온 차이예요.", "기준 통일"),
+                 ("wb-persona-real-talk", "수선비가 한 달에 두 배가 됐다고 매달 그렇게 나가는 건 아니죠. 8월에 어디를 고쳤는지는 칸 이름만으로는 안 보여요.",
+                  "생활 현실"),
+             ]),
         dict(series="fan-duo-visit", slot="18:50", home="ricents", persona="wb-persona-house-envy", category="생활",
              verification="opinion", topic="visit-ricents", ext=f"daily-{today}-ricents-65dong",
              title=f"동이 {ri['dong_count']}개, 구경꾼은 분명 길을 잃었을 거예요",
@@ -339,6 +496,12 @@ TOPICS = {
     "rent-monthly": {"external_id": "wb-topic-2026-11-rent-monthly", "title": "달마다 보는 전월세 신고",
                      "summary": "국토부 전월세 실거래 신고를 계약일 기준으로 달마다 센다. 보증금·월세는 쓰지 않는다",
                      "category": "전월세", "heat": 3},
+    "trade-monthly": {"external_id": "wb-topic-2026-11-trade-monthly", "title": "달마다 보는 매매 신고",
+                      "summary": "국토부 매매 실거래 신고를 계약일 기준으로 달마다 센다. 건수·해제·면적만 쓴다",
+                      "category": "거래", "heat": 3},
+    "mgmt-fee": {"external_id": "wb-topic-2026-11-mgmt-fee", "title": "관리비 칸 읽기",
+                 "summary": "K-apt 공용관리비 17개 항목을 달마다 나란히 놓고 본다. 가구별 고지서가 아니라 단지 합계다",
+                 "category": "생활", "heat": 3},
 }
 
 
