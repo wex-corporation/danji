@@ -1,0 +1,367 @@
+{
+ "slug": "eunma",
+ "apt_names": [
+  "은마"
+ ],
+ "lawd_cd": "11680",
+ "fetched_at": "2026-11-01T09:52:57+0000",
+ "note": "계약일 기준 달별 조회. 9월분은 신고기한(30일) 경과 뒤 조회. 강남구 gu_total 은 같은 응답의 아파트 매매 전체(1,000건 상한 확인용)",
+ "months": {
+  "202509": {
+   "gu_total": 233,
+   "eunma": [
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 398000,
+     "area_m2": 84.43,
+     "per_pyeong_manwon": 15583.4,
+     "floor": "2",
+     "build_year": "1979",
+     "deal_date": "2025-09-08",
+     "cancel": false
+    },
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 353000,
+     "area_m2": 76.79,
+     "per_pyeong_manwon": 15196.6,
+     "floor": "6",
+     "build_year": "1979",
+     "deal_date": "2025-09-20",
+     "cancel": false
+    },
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 403000,
+     "area_m2": 84.43,
+     "per_pyeong_manwon": 15779.2,
+     "floor": "7",
+     "build_year": "1979",
+     "deal_date": "2025-09-30",
+     "cancel": true
+    },
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 417000,
+     "area_m2": 84.43,
+     "per_pyeong_manwon": 16327.4,
+     "floor": "2",
+     "build_year": "1979",
+     "deal_date": "2025-09-17",
+     "cancel": false
+    },
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 359000,
+     "area_m2": 76.79,
+     "per_pyeong_manwon": 15454.9,
+     "floor": "12",
+     "build_year": "1979",
+     "deal_date": "2025-09-30",
+     "cancel": false
+    },
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 338000,
+     "area_m2": 76.79,
+     "per_pyeong_manwon": 14550.9,
+     "floor": "9",
+     "build_year": "1979",
+     "deal_date": "2025-09-02",
+     "cancel": false
+    }
+   ]
+  },
+  "202607": {
+   "gu_total": 171,
+   "eunma": [
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 326000,
+     "area_m2": 76.79,
+     "per_pyeong_manwon": 14034.3,
+     "floor": "1",
+     "build_year": "1979",
+     "deal_date": "2026-07-15",
+     "cancel": false
+    },
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 346000,
+     "area_m2": 76.79,
+     "per_pyeong_manwon": 14895.3,
+     "floor": "9",
+     "build_year": "1979",
+     "deal_date": "2026-07-18",
+     "cancel": false
+    },
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 390000,
+     "area_m2": 84.43,
+     "per_pyeong_manwon": 15270.2,
+     "floor": "8",
+     "build_year": "1979",
+     "deal_date": "2026-07-07",
+     "cancel": false
+    },
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 369500,
+     "area_m2": 84.43,
+     "per_pyeong_manwon": 14467.5,
+     "floor": "1",
+     "build_year": "1979",
+     "deal_date": "2026-07-20",
+     "cancel": false
+    }
+   ]
+  },
+  "202608": {
+   "gu_total": 100,
+   "eunma": [
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 372000,
+     "area_m2": 84.43,
+     "per_pyeong_manwon": 14565.4,
+     "floor": "2",
+     "build_year": "1979",
+     "deal_date": "2026-08-20",
+     "cancel": false
+    },
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 333000,
+     "area_m2": 76.79,
+     "per_pyeong_manwon": 14335.6,
+     "floor": "9",
+     "build_year": "1979",
+     "deal_date": "2026-08-29",
+     "cancel": false
+    },
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 325000,
+     "area_m2": 76.79,
+     "per_pyeong_manwon": 13991.2,
+     "floor": "6",
+     "build_year": "1979",
+     "deal_date": "2026-08-28",
+     "cancel": false
+    },
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 345000,
+     "area_m2": 76.79,
+     "per_pyeong_manwon": 14852.2,
+     "floor": "8",
+     "build_year": "1979",
+     "deal_date": "2026-08-01",
+     "cancel": false
+    },
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 344000,
+     "area_m2": 76.79,
+     "per_pyeong_manwon": 14809.2,
+     "floor": "7",
+     "build_year": "1979",
+     "deal_date": "2026-08-03",
+     "cancel": false
+    },
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 334000,
+     "area_m2": 76.79,
+     "per_pyeong_manwon": 14378.7,
+     "floor": "3",
+     "build_year": "1979",
+     "deal_date": "2026-08-01",
+     "cancel": false
+    }
+   ]
+  },
+  "202609": {
+   "gu_total": 125,
+   "eunma": [
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 315000,
+     "area_m2": 76.79,
+     "per_pyeong_manwon": 13560.7,
+     "floor": "8",
+     "build_year": "1979",
+     "deal_date": "2026-09-29",
+     "cancel": false
+    },
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 312000,
+     "area_m2": 76.79,
+     "per_pyeong_manwon": 13431.6,
+     "floor": "14",
+     "build_year": "1979",
+     "deal_date": "2026-09-11",
+     "cancel": false
+    },
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 313000,
+     "area_m2": 76.79,
+     "per_pyeong_manwon": 13474.6,
+     "floor": "14",
+     "build_year": "1979",
+     "deal_date": "2026-09-29",
+     "cancel": false
+    },
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 317000,
+     "area_m2": 76.79,
+     "per_pyeong_manwon": 13646.8,
+     "floor": "11",
+     "build_year": "1979",
+     "deal_date": "2026-09-19",
+     "cancel": false
+    },
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 305000,
+     "area_m2": 76.79,
+     "per_pyeong_manwon": 13130.2,
+     "floor": "1",
+     "build_year": "1979",
+     "deal_date": "2026-09-28",
+     "cancel": false
+    },
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 316000,
+     "area_m2": 76.79,
+     "per_pyeong_manwon": 13603.8,
+     "floor": "13",
+     "build_year": "1979",
+     "deal_date": "2026-09-19",
+     "cancel": false
+    },
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 313000,
+     "area_m2": 76.79,
+     "per_pyeong_manwon": 13474.6,
+     "floor": "11",
+     "build_year": "1979",
+     "deal_date": "2026-09-14",
+     "cancel": false
+    },
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 360000,
+     "area_m2": 84.43,
+     "per_pyeong_manwon": 14095.6,
+     "floor": "9",
+     "build_year": "1979",
+     "deal_date": "2026-09-21",
+     "cancel": false
+    },
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 355000,
+     "area_m2": 84.43,
+     "per_pyeong_manwon": 13899.8,
+     "floor": "13",
+     "build_year": "1979",
+     "deal_date": "2026-09-14",
+     "cancel": false
+    },
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 338000,
+     "area_m2": 76.79,
+     "per_pyeong_manwon": 14550.9,
+     "floor": "5",
+     "build_year": "1979",
+     "deal_date": "2026-09-05",
+     "cancel": false
+    },
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 302000,
+     "area_m2": 76.79,
+     "per_pyeong_manwon": 13001.1,
+     "floor": "2",
+     "build_year": "1979",
+     "deal_date": "2026-09-11",
+     "cancel": false
+    },
+    {
+     "apt": "은마",
+     "dong": "대치동",
+     "gu": "강남구",
+     "amount_manwon": 390000,
+     "area_m2": 84.43,
+     "per_pyeong_manwon": 15270.2,
+     "floor": "12",
+     "build_year": "1979",
+     "deal_date": "2026-09-09",
+     "cancel": false
+    }
+   ]
+  }
+ }
+}
