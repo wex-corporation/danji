@@ -240,11 +240,6 @@ def d1101(today):
     assert flip == ["스드메"] and out["스드메"] - gn["스드메"] == 129 and gn["총액"] - out["총액"] == 265
     assert 4 < 129 / 30 < 5                                   # 월 30만원씩 넉 달 남짓
 
-    # ③ 리센츠 — 남의집구경(S9 두 번째). 위시리스트 형식은 헬리오에서 썼으니 숫자 하나로 간다
-    ri = info("ricents")
-    assert (ri["dong_count"], ri["household_count"], ri["top_floor"]) == (65, 5563, 33)
-    dongs = sorted((info(p.stem)["dong_count"] for p in (REPO / "data" / "complex-info").glob("*.json")), reverse=True)
-    assert len(dongs) == 11 and dongs.index(65) + 1 == 6 and (dongs[0], dongs[-1]) == (85, 15)
 
     return dict(posts=[
         dict(series="rent-monthly", slot="10:40", home="godeok-gracium", persona="wb-persona-demand-check", category="전월세",
@@ -297,6 +292,17 @@ def d1101(today):
                  ("wb-persona-real-talk", "스드메는 이름이 같아도 패키지에 뭐가 들었는지는 평균에 안 드러나요. "
                   f"{out['스드메'] - gn['스드메']}만원이 구성 차이인지 가격 차이인지는 이 표만으로는 모릅니다.", "생활 현실"),
              ]),
+    ])
+
+@day("2026-11-02")
+def d1102(today):
+    # 리센츠 — 남의집구경(S9 두 번째). 11/1 18:50 슬롯이었으나 그날 리센츠에 서버 글 2편(마켓 근거 스레드 08:11,
+    # 10/5 주 최고가 토론 스레드 08:19)이 먼저 서서 콜드스타트 2편을 넘게 돼 하루 미뤘다. 본문은 11/1 승인본 그대로
+    ri = info("ricents")
+    assert (ri["dong_count"], ri["household_count"], ri["top_floor"]) == (65, 5563, 33)
+    dongs = sorted((info(p.stem)["dong_count"] for p in (REPO / "data" / "complex-info").glob("*.json")), reverse=True)
+    assert len(dongs) == 11 and dongs.index(65) + 1 == 6 and (dongs[0], dongs[-1]) == (85, 15)
+    return dict(posts=[
         dict(series="fan-duo-visit", slot="18:50", home="ricents", persona="wb-persona-house-envy", category="생활",
              verification="opinion", topic="visit-ricents", ext=f"daily-{today}-ricents-65dong",
              title=f"동이 {ri['dong_count']}개, 구경꾼은 분명 길을 잃었을 거예요",

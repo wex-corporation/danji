@@ -32,6 +32,12 @@ def call(method, path, body=None, idem=None, timeout=40):
 # 미래 시각 글은 보내지 않는다(CLAUDE.md 5장). 이미 보낸 글을 다시 보내도 업서트라 안전하다
 from datetime import datetime, timezone
 pack = json.load(open(sys.argv[1], encoding="utf-8"))
+# --only id1,id2: 이 글만 보낸다. 승인된 글과 승인 전 초안이 한 팩(하루치)에 같이 있을 때 쓴다
+if "--only" in sys.argv[2:]:
+    only = set(sys.argv[sys.argv.index("--only") + 1].split(","))
+    pack["bundles"] = [b for b in pack["bundles"] if b["payload"]["post"]["external_id"] in only]
+    pack["comments"] = [c for c in pack.get("comments", []) if c["external_id"] in only]
+    print(f"--only: {len(pack['bundles'])}편만 보낸다", flush=True)
 if "--due" in sys.argv[2:]:
     now = datetime.now(timezone.utc)
     later = [b for b in pack["bundles"] if datetime.fromisoformat(b["payload"]["post"]["published_at"]) > now]
@@ -39,6 +45,30 @@ if "--due" in sys.argv[2:]:
     for b in later:
         print(f"  대기 {b['payload']['post']['published_at']}  {b['payload']['post']['external_id']}")
     print(f"게시 시각이 지난 글 {len(pack['bundles'])}편 · 대기 {len(later)}편", flush=True)
+    # 보내는 순간에 서모스탯을 다시 센다. 서버도 글을 세운다(마켓 근거 스레드·최고가 토론 스레드, CLAUDE.md 48번)
+    # 그래서 팩을 만들 때 통과했어도 보낼 때는 넘을 수 있다. 이미 올라간 글의 재전송은 세지 않는다
+    from datetime import timedelta
+    KST = timezone(timedelta(hours=9))
+    feed = {}
+    def _today(slug, day):
+        if slug not in feed:
+            req = urllib.request.Request(f"{BASE_URL}/api/v1/posts?complex={slug}&limit=100",
+                                         headers={"User-Agent": "danji-content-agent/1.0"})
+            with urllib.request.urlopen(req, timeout=25) as r:
+                feed[slug] = json.loads(r.read().decode("utf-8"))["items"]
+        return [i for i in feed[slug]
+                if datetime.fromisoformat(i["published_at"].replace("Z", "+00:00")).astimezone(KST).strftime("%Y-%m-%d") == day]
+    held = []
+    for b in list(pack["bundles"]):
+        po = b["payload"]["post"]
+        slug, day = po["complex_external_id"].removeprefix("cx-"), po["published_at"][:10]
+        items = _today(slug, day)
+        if any(i.get("external_id") == po["external_id"] for i in items):
+            continue
+        if len(items) >= 2:
+            held.append(b)
+            pack["bundles"].remove(b)
+            print(f"  [보류] {po['external_id']}: {slug} {day} 이미 {len(items)}편(콜드스타트 2) — 보내지 않았다", flush=True)
 st, h = call("GET", "/api/health")
 print("health:", st, h.get("status") if isinstance(h, dict) else h, flush=True)
 if st != 200:
