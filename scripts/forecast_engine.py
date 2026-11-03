@@ -54,7 +54,8 @@ for _pid in ("INF-001", "INF-003", "INF-004", "INF-005", "INF-007", "INF-009", "
              "INF-015", "INF-020", "INF-022", "INF-025", "INF-026", "wb-persona-supply-count", "wb-persona-host",
              "wb-persona-myth-check", "wb-persona-policy-twosides", "wb-persona-dry-note", "wb-persona-whatif",
              "wb-persona-senior-advice", "wb-persona-retire", "wb-persona-past-cycle", "wb-persona-paradox",
-             "wb-persona-abroad", "wb-persona-timeseries"):
+             "wb-persona-abroad", "wb-persona-timeseries", "wb-persona-live-chat", "wb-persona-sure-thing",
+             "wb-persona-cheer", "wb-persona-ding-dong"):
     NON_VOTERS.setdefault(_pid, "11/3 신규 — 투표 투입 전(대표님 결정 대기)")
 
 DISTRICTS = ["서초", "강남", "송파", "강동", "마포"]

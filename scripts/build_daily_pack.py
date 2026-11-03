@@ -41,6 +41,13 @@ DAYS = {}
 
 # 게시 시차(2026-11-03 대표님 "같은 시간에 올라가게 하지 말고 각각 시차를 두자, 10:30 말고 10:34 같은 식으로").
 # 11/4 글부터 건다. 분은 5의 배수가 아니게, 같은 날 우리 글끼리는 MIN_GAP 분 넘게 띄운다(피드에 이미 나간 우리 글 포함)
+# 11/3 완화 편입 4명의 가드. 말투의 재미는 두고, 원래 말투가 넘던 선을 글에서 다시 넘지 않게 막는다
+PERSONA_GUARDS = {
+    "wb-persona-live-chat": re.compile(r"좌파|우파|진보|보수|여당|야당|정권|폭등|폭락|멸망|망한다"),           # 정치 진영·선동 금지
+    "wb-persona-sure-thing": re.compile(r"\d\s?억|시세|호가|오를|내릴|오릅|내립|폭등|폭락|헛소리|뒷북"),       # 확신은 사실만, 남 깎기 금지
+    "wb-persona-cheer": re.compile(r"\d\s?억|사세요|사야|매수|투자하|급매|마지막 기회|바겐"),                  # 매수 응원·마케팅 금지
+    "wb-persona-ding-dong": re.compile(r"\d\s?억|사세요|사야|매수|매도|들어가야|갈아타야"),                    # 일정만, 행선지 처방 금지
+}
 STAGGER_FROM = "2026-11-04"
 MIN_GAP = 40
 
@@ -613,6 +620,9 @@ def validate(pack, d):
             errs.append(f"{tag}: '~니다.' {mr}연속")
         for k, v in style_issues(title, body, cm):
             errs.append(f"{tag}: {k} {v}")
+        g = PERSONA_GUARDS.get(x["persona_external_id"])
+        if g and g.search(text):
+            errs.append(f"{tag}: 페르소나 가드 '{g.search(text).group()}'")
         for v in school_issues(text, x["persona_external_id"], x["sources"]):
             errs.append(f"{tag}: 학교 지표 {v}")
         tr = [s for s in sentences(body) if TRANSITION.search(s)]
