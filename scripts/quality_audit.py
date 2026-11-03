@@ -50,7 +50,8 @@ BANNED = {
     "고정도입": ["바깥 커뮤니티", "반복해서 올라오는"],
     "투자지시": ["매수하세요", "매도하세요", "지금 사", "지금 파", "지금이 기회", "오를 겁니다", "내릴 겁니다",
              "이하로 내놓지", "호가를 지켜"],
-    "서열": ["명문", "상위권", "학군지"],
+    # 학교 평가 딱지. 2026-11-03 규칙 변경으로 학교 수치·숫자 순위는 허용됐지만(school_issues), 딱지는 계속 막는다
+    "서열": ["명문", "상위권", "최상위권", "학군지"],
     "우열비교": ["보다 낫", "보다 좋은 단지"],
     "말미고지": ["투자 권유가 아닙니다", "투자 판단은 본인"],
 }
@@ -101,6 +102,39 @@ def style_issues(title, body, comments=()):
     if any(first.startswith(w) for w in COMPLEX_WORDS) and first.endswith("의"):
         out.append(("W13", f"보고서식 첫 문장 '{first} …'"))
     return out
+# ── 학교 지표 규칙 v2 (2026-11-03 대표님 "학교 서열금지 규칙 바꾸자") ──────────────
+# 예전 규칙은 학교 이야기를 서열 어휘 금지 하나로 막았다. 이제 공식 출처의 학교 수치(진학 실적·학생 수 등)와
+# 숫자 순위는 쓴다. 대신 아래를 지킨다. 원문은 CLAUDE.md 4장 '학교 지표'
+SCHOOL_OUTCOME = re.compile(r"서울대|합격자|등록자|진학 실적|진학률|진학자|의대 (합격|진학)|SKY|학업성취")
+SCHOOL_RANK = re.compile(r"\d+(곳|개 학교|개교) 중 \d+(번째|위)|\d+위")
+SCHOOL_BASIS = re.compile(r"20\d\d학년도|20\d\d년 (입시|졸업|공시)")
+SCHOOL_SMALL = re.compile(r"(합격|등록|진학)[^.?!\n]{0,12}(?<!\d)[12]명")
+SCHOOL_PRICE = re.compile(r"\d\s?억|시세|집값|매매가|평당|호가|프리미엄")
+SCHOOL_SOURCES = ("학교알리미", "교육부", "교육청", "대학교", "국회", "의원실", "한국교육개발원", "교육통계")
+
+
+def school_issues(text, persona, sources):
+    """학교 수치가 나오는 글의 검사. 문제 목록을 돌려준다(빈 목록이면 통과)."""
+    if not SCHOOL_OUTCOME.search(text):
+        return []
+    out = []
+    if persona.startswith("adv-"):
+        out.append("홍보 페르소나는 진학 실적·학교 순위를 쓰지 않는다")
+    labels = " ".join(f"{x.get('label', '')} {x.get('publisher', '')}" for x in sources)
+    if not any(k in labels for k in SCHOOL_SOURCES) or "기사" in labels:
+        out.append("학교 수치의 출처가 공식 공시·국회 제출 자료 원문이 아니다")
+    if not SCHOOL_BASIS.search(text):
+        out.append("학년도·연도 기준이 없다")
+    if SCHOOL_RANK.search(text) and not re.search(r"\d+(곳|개 학교|개교) 중", text):
+        out.append("순위에 비교군(몇 곳 중)이 없다")
+    if SCHOOL_SMALL.search(text):
+        out.append(f"소수 셀 '{SCHOOL_SMALL.search(text).group()}' — 3명 미만은 '3명 미만'으로 쓴다")
+    for sent in re.split(r"(?<=[.?!])\s+", text):
+        if SCHOOL_OUTCOME.search(sent) and SCHOOL_PRICE.search(sent):
+            out.append(f"학교 수치와 가격을 한 문장에 엮었다: '{sent[:40]}'")
+    return out
+
+
 SIM_WARN = 0.35       # 마스킹 후 어절 자카드. 출고 검사 임계값과 같다
 STALE_DAYS = 14       # 시점 의존 표현이 이 기간보다 오래된 글에 있으면 낡은 글
 

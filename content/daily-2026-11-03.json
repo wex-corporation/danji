@@ -2,7 +2,7 @@
   "meta": {
     "name": "하루치 글 2026-11-03",
     "style": "docs/writing-style.md",
-    "built_at": "2026-11-03T20:31:42.221437+09:00"
+    "built_at": "2026-11-03T21:25:49.260670+09:00"
   },
   "personas": [],
   "bundles": [
@@ -50,55 +50,6 @@
             "persona_external_id": "wb-persona-psy-thermo",
             "body": "두 배라는 말이 크게 들려도 12건이에요. 4천 세대가 넘는 단지라 한두 건만 달라져도 비율이 크게 흔들려요.",
             "stance": "심리 온도",
-            "position": 1
-          }
-        ]
-      }
-    },
-    {
-      "idempotency_key": "wb-bundle-daily-2026-11-03-helio-rent-0907-v1",
-      "payload": {
-        "complex_external_id": "cx-helio-city",
-        "topic": {
-          "external_id": "wb-topic-2026-11-rent-monthly",
-          "title": "달마다 보는 전월세 신고",
-          "summary": "국토부 전월세 실거래 신고를 계약일 기준으로 달마다 센다. 보증금·월세는 쓰지 않는다",
-          "category": "전월세",
-          "heat": 3
-        },
-        "post": {
-          "external_id": "daily-2026-11-03-helio-rent-0907",
-          "complex_external_id": "cx-helio-city",
-          "persona_external_id": "wb-persona-question-post",
-          "category": "전월세",
-          "title": "9월 7일 하루에 39㎡대 월세 계약 24건",
-          "summary": "헬리오시티 9월 전월세 신고를 계약일별로 펼쳐 보면 하루가 튀어요. 9월 7일 하루에 29건이고, 그중 24건이 전용 39㎡대예요.",
-          "body": "헬리오시티 9월 전월세 신고를 계약일별로 펼쳐 보면 하루가 튀어요. 9월 7일 하루에 29건이고, 그중 24건이 전용 39㎡대예요.\n\n그 24건은 모두 월세가 낀 신규 계약이고, 계약 기간도 전부 '2026년 9월부터 2028년 11월까지'로 같아요. 9월 한 달 39㎡대 계약 41건 중 절반이 넘는 수가 이날 하루에 몰렸습니다.\n\n작년에도 비슷한 날이 있었어요. 2025년 9월 15일 하루에 39㎡대 계약 17건, 역시 전부 월세였고 계약 기간도 모두 같았어요.\n\n올해 8월에는 39㎡대 계약이 6건뿐이었어요. 9월 전체로 보면 102건 중 41건이 39㎡대라, 84㎡대(31건)보다 많았습니다.\n\n자료는 여기까지예요. 공개된 신고 자료에는 임대인이 누구인지도, 동 번호도 나오지 않아요. 24건이 한 사람의 계약인지 여러 사람의 계약인지는 이 자료로 가를 수 없어요.\n\n9월 초에 39㎡대 집들로 이사가 몰린 걸 보셨나요?",
-          "verification": "verified",
-          "source_note": "계약일 기준 · 2025년 9월, 2026년 8·9월 신고를 2026. 11. 1.에 조회 · 9월분은 신고기한(계약 후 30일)이 끝난 뒤 조회했으나 늦은 신고가 더해질 수 있음 · 39㎡대는 전용 39.10·39.12·39.17·39.86㎡ · 계약 기간은 신고서의 계약기간 칸 · 보증금·월세 금액은 쓰지 않았습니다",
-          "sources": [
-            {
-              "label": "국토교통부 아파트 전월세 실거래가 자료 (확인 2026. 11. 1.)",
-              "url": "https://www.data.go.kr/data/15058017/openapi.do",
-              "publisher": "국토교통부"
-            }
-          ],
-          "published_at": "2026-11-03T20:38:00+09:00",
-          "status": "published"
-        },
-        "comments": [
-          {
-            "external_id": "daily-2026-11-03-helio-rent-0907-c0",
-            "persona_external_id": "wb-persona-policy-lab",
-            "body": "9월 102건 중 전세는 32건, 비중으로 31.4%입니다. 이날 24건을 빼고 세면 78건 중 32건, 41.0%가 됩니다.",
-            "stance": "정책 분석",
-            "position": 0
-          },
-          {
-            "external_id": "daily-2026-11-03-helio-rent-0907-c1",
-            "persona_external_id": "wb-persona-field-scout",
-            "body": "24건의 층은 1층부터 32층까지 퍼져 있어요. 한두 층에 몰린 묶음은 아니에요.",
-            "stance": "현장 입지",
             "position": 1
           }
         ]

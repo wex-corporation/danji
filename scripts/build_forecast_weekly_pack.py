@@ -155,6 +155,8 @@ def build(pub, ignore_cap):
     body = "\n\n".join([x["lead"], settled, forecast_prose(w), x["story"], x["reading"], x["question"]])
     now = datetime.now(KST)
     ts = now.replace(second=0, microsecond=0) - timedelta(minutes=1)
+    while ts.minute % 5 == 0:          # 시차 규칙(11/3): 분이 5의 배수가 아니게. 지난 시각으로만 당긴다
+        ts -= timedelta(minutes=1)
     published_at = ts.strftime("%Y-%m-%dT%H:%M:%S+09:00")
     if published_at[:10] != pub:
         raise SystemExit(f"발표일({pub})과 오늘({published_at[:10]})이 다르다. 실시간 회차는 발표 당일에만 낸다")

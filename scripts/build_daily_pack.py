@@ -26,7 +26,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_forecast_backfill_pack as B  # noqa: E402
 from quality_audit import (AI_COMMENT_ASK, BANNED, EXPERIENCE_TONE, OWN_HOME, RELATIVE_TIME,  # noqa: E402
-                           STYLE_MONO, TRANSITION, josa_errors, mono_run, style_issues)
+                           STYLE_MONO, TRANSITION, josa_errors, mono_run, school_issues, style_issues)
 
 REPO = Path(__file__).resolve().parent.parent
 KST = timezone(timedelta(hours=9))
@@ -38,6 +38,11 @@ KAPT_INFO = {"label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI
 BAN_PRICE = re.compile(r"\d\s?억|(?<![가-힣])호가|시세|매수|매도|상승|하락|전망")
 
 DAYS = {}
+
+# 게시 시차(2026-11-03 대표님 "같은 시간에 올라가게 하지 말고 각각 시차를 두자, 10:30 말고 10:34 같은 식으로").
+# 11/4 글부터 건다. 분은 5의 배수가 아니게, 같은 날 우리 글끼리는 MIN_GAP 분 넘게 띄운다(피드에 이미 나간 우리 글 포함)
+STAGGER_FROM = "2026-11-04"
+MIN_GAP = 40
 
 
 def day(d):
@@ -348,8 +353,8 @@ def d1102(today):
     ])
 
 
-@day("2026-11-03")
-def d1103(today):
+def _nov2_drafts(today):
+    """11/2에 쓴 초안 세 편. 11/3에 은마·원베일리가 나갔고, 헬리오는 서버 스레드로 서모스탯이 차 11/4로 갔다"""
     # 11/2 초안 세 편(10:10·13:30·16:20 슬롯)은 그날 승인 전이라 보내지 않았다. 11/3 대표님 "11/3 슬롯으로 옮겨서 지금 올려"(20:30 KST).
     # 11/3의 같은 슬롯도 이미 지나 있어, 지난 시각을 찍지 않고 실제 보내는 시각(20:35·20:38·20:41)으로 잡았다. 본문은 11/2 초안 그대로
     # ① 은마 — 9월 매매(S5). 강남구 전체와 같은 응답에서 센다. 9월분은 신고기한(30일)이 끝난 11/1에 조회
@@ -490,6 +495,21 @@ def d1103(today):
     ])
 
 
+@day("2026-11-03")
+def d1103(today):
+    return dict(posts=[x for x in _nov2_drafts(today)["posts"] if x["home"] in ("eunma", "one-bailey")])
+
+
+@day("2026-11-04")
+def d1104(today):
+    # 11/3 20:38 헬리오 글은 보내기 직전 재검사에서 보류됐다(20:34 서버 최고가 토론 스레드 2편). 대표님 "헬리오 글 올려"(11/3) →
+    # 11/4 오전. 새 시차 규칙(분이 5의 배수가 아니게)으로 10:37. 본문은 11/2 초안 그대로
+    posts = [x for x in _nov2_drafts(today)["posts"] if x["home"] == "helio-city"]
+    assert len(posts) == 1
+    posts[0]["slot"] = "10:37"
+    return dict(posts=posts)
+
+
 TOPICS = {
     "ob-fan": {"external_id": "wb-topic-2026-08-ob-fan", "title": "원베일리 짝사랑 일지",
                "summary": "입주 못 하는 AI의 공개 애정 활동", "category": "생활", "heat": 4},
@@ -593,6 +613,8 @@ def validate(pack, d):
             errs.append(f"{tag}: '~니다.' {mr}연속")
         for k, v in style_issues(title, body, cm):
             errs.append(f"{tag}: {k} {v}")
+        for v in school_issues(text, x["persona_external_id"], x["sources"]):
+            errs.append(f"{tag}: 학교 지표 {v}")
         tr = [s for s in sentences(body) if TRANSITION.search(s)]
         transitions += tr[:1]
         dotted += bool(re.search(r"\.\s", title))
@@ -623,6 +645,26 @@ def validate(pack, d):
     # 서모스탯: 게시된 피드와 합친다. 이미 게시된 이 팩의 글은 빼고 센다(재생성)
     slug = {v: k for k, v in CX.items()}
     mine = {x["external_id"] for x in posts}
+    if d >= STAGGER_FROM:
+        def minute(ts):
+            t = datetime.fromisoformat(ts.replace("Z", "+00:00")).astimezone(KST)
+            return t.hour * 60 + t.minute
+        times = {x["external_id"]: minute(x["published_at"]) for x in posts}
+        for e, m in times.items():
+            if m % 5 == 0:
+                errs.append(f"{e}: 게시 분이 5의 배수({m // 60:02d}:{m % 60:02d}) — 10:34처럼 비껴 잡는다")
+        others = {}
+        for cxs in slug.values():      # 피드에 이미 나간 그날 우리 글(서버 스레드는 external_id 가 없다)
+            try:
+                for e, i in live(cxs).items():
+                    if e and e not in mine and B.kst_day(i.get("published_at")) == d:
+                        others[e] = minute(i["published_at"])
+            except Exception as exc:  # noqa: BLE001
+                errs.append(f"{cxs}: 시차 확인용 피드 조회 실패 {exc}")
+        allm = sorted(list(times.items()) + list(others.items()), key=lambda kv: kv[1])
+        for (e1, m1), (e2, m2) in zip(allm, allm[1:]):
+            if m2 - m1 <= MIN_GAP and (e1 in times or e2 in times):
+                errs.append(f"{e1} · {e2}: 시차 {m2 - m1}분 — {MIN_GAP}분 넘게 띄운다")
     for cx, n in per_cx.items():
         try:
             items = live(slug[cx])
