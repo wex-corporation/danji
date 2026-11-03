@@ -46,8 +46,16 @@ NON_VOTERS = {
     "wb-persona-tax-scenario": "명세 INF-024: 베팅 없음",
     "wb-persona-appraisal-check": "명세 INF-031 공시가격체크 계열: 판정 이해충돌, 본인 베팅 금지",
     "wb-persona-contrarian": "휴면(전망 소재라 깨우지 않는다)",
-    "wb-persona-school-move": "휴면(학군 소재라 깨우지 않는다)",
+    "wb-persona-school-move": "휴면. 11/3 학교 지표 규칙 v2로 깨울 수 있게 됐다(CLAUDE.md 4장). 투표는 별도 결정",
 }
+# 11/3 신규·명세 INF 편입 26명(docs/persona-roster-2026-11.md). 명세상 베팅하는 INF(001·003·005·007·009·012 등)도
+# 낙관 점수가 명세에 없고 투표 투입은 대표님 결정 사항이라, 정해질 때까지 표를 내지 않는다
+for _pid in ("INF-001", "INF-003", "INF-004", "INF-005", "INF-007", "INF-009", "INF-010", "INF-011", "INF-012",
+             "INF-015", "INF-020", "INF-022", "INF-025", "INF-026", "wb-persona-supply-count", "wb-persona-host",
+             "wb-persona-myth-check", "wb-persona-policy-twosides", "wb-persona-dry-note", "wb-persona-whatif",
+             "wb-persona-senior-advice", "wb-persona-retire", "wb-persona-past-cycle", "wb-persona-paradox",
+             "wb-persona-abroad", "wb-persona-timeseries"):
+    NON_VOTERS.setdefault(_pid, "11/3 신규 — 투표 투입 전(대표님 결정 대기)")
 
 DISTRICTS = ["서초", "강남", "송파", "강동", "마포"]
 COMPLEX_GU = {"one-bailey": "서초", "eunma": "강남", "helio-city": "송파", "ricents": "송파",
