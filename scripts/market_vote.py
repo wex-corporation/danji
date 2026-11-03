@@ -66,7 +66,35 @@ VOICE = {
     "wb-persona-cashflow": "{gu}구 매매지수 4주 중 {u}주 상승, {d}주 하락({pub} 발표). 확률 {q:.2f}. {side}에 둡니다.",
     "wb-persona-field-scout": "현장 정보 없이 표만 봤습니다. {gu}구 4주 오른 주 {u}·내린 주 {d}, 확률 {q:.2f}. {side}.",
 }
+# 마켓 패널 v2(11/9 주 판부터, forecast_engine.MARKET_VOTERS). 함수는 그 표의 값(c)을 받아 문장을 고른다.
+# 수요밀도체크는 낙관 3 → 4로 바뀌어 옛 문장("기준 확률 그대로")이 틀리므로 v2 문장을 따로 둔다. 소급 표(옛 패널)는 VOICE 그대로
+VOICE_V2 = {
+    "wb-persona-demand-check": lambda c: (
+        f"{c['gu']}구 4주 중 상승 {c['u']}주·하락 {c['d']}주(부동산원 {c['pub']}). 기준 확률 {c['p']:.2f}에 상방 쪽으로 조금 얹어 {c['q']:.2f}, {c['side']}고 봅니다."),
+    "INF-012": lambda c: (
+        f"하방 위험부터 보는 쪽인데도 {c['gu']}구 4주가 오른 주 {c['u']}·내린 주 {c['d']}입니다({c['pub']} 발표). 하방 편향을 빼고도 {c['q']:.2f}, 이번 판은 오른다 쪽에 섭니다."
+        if c["side_en"] == "up" else
+        f"{c['gu']}구 4주 오른 주 {c['u']}·내린 주 {c['d']}(부동산원 {c['pub']}). 하방 편향까지 더해 {c['q']:.2f}, 내린다 쪽입니다."),
+    "INF-007": lambda c: (
+        f"쏠림 {c['diff']:+d}({c['gu']}구 4주, {c['pub']} 발표). 반대편이 서려면 다른 입력이 있어야 하는데 이번 판 입력은 구 지수 하나라 {c['q']:.2f}, {c['side']}에 둡니다."
+        if abs(c["diff"]) >= 2 else
+        f"{c['gu']}구 4주가 오른 주 {c['u']}·내린 주 {c['d']}로 갈렸습니다({c['pub']} 발표). 갈린 판에선 아래를 조금 더 봐서 {c['q']:.2f}, {c['side']}."),
+    "INF-003": lambda c: (
+        f"기준: 부동산원 {c['pub']} 발표 {c['gu']}구 마지막 4주 부호. 판정: 오른 주 {c['u']}·내린 주 {c['d']}, 확률 {c['q']:.2f} → {c['side']}."),
+    "INF-001": lambda c: (
+        f"한 달에 한 번 내는 표입니다. {c['gu']}구 4주(부동산원 {c['pub']})는 오른 주 {c['u']}·내린 주 {c['d']}, 확률 {c['q']:.2f}이라 {c['side']} 쪽에 둡니다."),
+    "INF-005": lambda c: (
+        f"{c['gu']}구 4주 중 오른 주 {c['u']}, 내린 주 {c['d']}({c['pub']} 발표). 조금 밝게 봐서 {c['q']:.2f}, {c['side']}에 한 표."),
+    "INF-020": lambda c: (
+        f"숫자를 읽는 법부터: {c['gu']}구 4주는 오른 주 {c['u']}·내린 주 {c['d']}(부동산원 {c['pub']}). 확률 {c['q']:.2f}, {c['side']}로 읽습니다."),
+}
 SIDE_KO = {"up": "오른다", "down": "내린다"}
+
+
+def rationale(pid, week, c):
+    if week >= E.MARKET_V2_FROM and pid in VOICE_V2:
+        return VOICE_V2[pid](c)
+    return VOICE[pid].format(**c)
 
 
 def call(method, path, body=None, idem=None):
@@ -116,12 +144,13 @@ def build_votes(rel, rounds):
         gu = E.COMPLEX_GU.get(rd["complex_slug"])
         if not gu:
             continue
-        f = E.forecast(rel, gu)
+        f = E.forecast(rel, gu, voters=E.market_panel(rd["week_start"]))
         for v in f["votes"]:
             if v["side"] is None:
                 continue
-            text = VOICE[v["persona"]].format(gu=gu, u=f["u"], d=f["d"], p=f["p"], q=v["q"], diff=f["u"] - f["d"],
-                                              pub=md(rel["published"]), side=SIDE_KO[v["side"]])
+            c = dict(gu=gu, u=f["u"], d=f["d"], p=f["p"], q=v["q"], diff=f["u"] - f["d"],
+                     pub=md(rel["published"]), side=SIDE_KO[v["side"]], side_en=v["side"])
+            text = rationale(v["persona"], rd["week_start"], c)
             assert not AI_COMMENT_ASK.search(text), text
             votes.append({"external_id": f"vote-{rd['week_start']}-{rd['complex_slug']}-{v['persona']}",
                           "complex_external_id": rd["complex_external_id"],
@@ -130,7 +159,26 @@ def build_votes(rel, rounds):
     return votes
 
 
+def _voice_check():
+    pids = {v[0] for v in E.MARKET_VOTERS}
+    assert pids <= set(VOICE) | set(VOICE_V2), pids - set(VOICE) - set(VOICE_V2)
+    for f in ({"u": 4, "d": 0, "p": 0.9}, {"u": 0, "d": 4, "p": 0.1}, {"u": 2, "d": 2, "p": 0.5}, {"u": 1, "d": 1, "p": 0.5}):
+        texts = []
+        for pid, _, opt, _ in E.market_panel("2026-12-07"):
+            side, q = E.vote(f["p"], opt)
+            if side is None:
+                continue
+            c = dict(gu="송파", pub="12/3", q=q, diff=f["u"] - f["d"], side=SIDE_KO[side], side_en=side, **f)
+            t = rationale(pid, "2026-12-07", c)
+            assert "{" not in t and not AI_COMMENT_ASK.search(t), t
+            texts.append(t)
+        assert len(set(texts)) == len(texts)
+
+
+_voice_check()
+
 BACKFILL_FIRST_WEEK = "2026-07-27"   # 첫 글 8/1(토)이 속한 주
+BACKFILL_LIVE_WEEK = "2026-11-02"    # 실시간 표가 시작된 주. 서버의 이번 주가 넘어가도 소급 범위는 여기서 끝난다
 BACKFILL_SERVER_OK = False           # 11/1 사고 뒤 잠갔다. 서버가 week_start 를 실제로 받는다는 확인 후에만 True
 BACKFILL_OUT = REPO / "data" / "forecast" / "market-votes-backfill.json"
 SLUGS = [("godeok-gracium", "cx-godeok-gracium"), ("one-bailey", "cx-one-bailey"), ("ricents", "cx-ricents"),
@@ -225,13 +273,13 @@ def main():
         st, mk = call("GET", "/api/v1/markets?complex_id=1")
         if st != 200:
             raise SystemExit(f"마켓 조회 실패: {st} {mk}")
-        weeks, votes = backfill(mk["week_start"])
+        weeks, votes = backfill(min(mk["week_start"], BACKFILL_LIVE_WEEK))
         for w, pub in weeks:
             vs = [v for v in votes if v["week_start"] == w]
             sides = {s: sum(1 for v in vs if v["side"] == s) for s in ("up", "down")}
             print(f"  주 {w} ← 발표 {pub}  표 {len(vs)} (오른다 {sides['up']} · 내린다 {sides['down']})")
         body = {"meta": {"built_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"), "engine": E.ENGINE, "first_week": BACKFILL_FIRST_WEEK,
-                         "live_week": mk["week_start"], "note": "소급 표. 서버가 week_start·backfill 을 받기 전에는 보내지 않는다"},
+                         "live_week": min(mk["week_start"], BACKFILL_LIVE_WEEK), "note": "소급 표. 서버가 week_start·backfill 을 받기 전에는 보내지 않는다"},
                 "votes": [{k: v for k, v in x.items() if not k.startswith("_")} for x in votes]}
         BACKFILL_OUT.write_text(json.dumps(body, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         print(f"\n소급 {len(weeks)}주 · 표 {len(votes)}개 → {BACKFILL_OUT.relative_to(REPO)} (보내지 않았다)")
