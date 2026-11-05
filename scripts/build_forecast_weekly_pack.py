@@ -143,6 +143,57 @@ def w1029(w, prev, weeks):
                   ("wb-persona-cashflow", "강동구 4주 부호 합은 여전히 +4라 저는 오른다에 섰습니다. 폭이 +0.04%까지 줄었다는 건 규칙 바깥의 정보입니다.", "현금흐름 중심")])
 
 
+@week("2026-11-05")
+def w1105(w, prev, weeks):
+    # 10/29 예측은 다섯 구 모두 적중. 강동구는 +0.03%로 가장 아슬아슬하게 맞았다
+    assert all(R(prev, g)["consensus_hit"] for g in E.DISTRICTS)
+    rh, rn = B.running(weeks, w["published"])
+    assert (rh, rn) == (59, 65)
+    assert all(F(w, g)["p"] in (0.1, 0.9) and max(F(w, g)["tally"].values()) == 6 for g in E.DISTRICTS)
+    # 7/23~11/5 발표 16건을 이어 붙인 21주(6/15~11/2 기준). 겹치는 칸이 고쳐졌으면 series()가 멈춘다
+    from build_newagent_pack import releases, series
+    rels = releases(w["published"])
+    ser, W = series(rels)
+    assert len(rels) == 16 and len(W) == 21 and (W[0], W[-1]) == ("6.15", "11.2")
+    gd = [ser[("강동", "sale", x)] for x in W]
+    assert gd[-1] == 0.03 == min(gd) and gd.count(0.03) == 1 and R(prev, "강동")["value"] == 0.03
+    # 지난 회차가 든 두 사례(8/3 서초 0.02 → 8/10 -0.04, 8/31 송파 0.01 → 9/7 -0.02)와 달리 0 아래로 가지 않았다
+    assert (ser[("서초", "sale", "8.3")], ser[("서초", "sale", "8.10")]) == (0.02, -0.04)
+    assert (ser[("송파", "sale", "8.31")], ser[("송파", "sale", "9.7")]) == (0.01, -0.02)
+    sj = [ser[("송파", "jeonse", x)] for x in W]
+    assert sj[-1] == -0.05 and all(v > 0 for v in sj[:-1]) and max(sj) == sj[0] == 0.5
+    ss = {x: ser[("송파", "sale", x)] for x in W}
+    assert all(ss[x] < 0 for x in W[W.index("9.7"):]) and ss["8.31"] > 0
+    r = rels[-1]
+    jdown = sorted((g for g in r["gu"] if r["gu"][g]["jeonse"]["weekly"]["11.2"] < 0), key=lambda g: r["gu"][g]["jeonse"]["weekly"]["11.2"])
+    assert jdown == ["송파", "서초"]
+    se_both = [x for x in W if ser[("서초", "sale", x)] < 0 and ser[("서초", "jeonse", x)] < 0]
+    assert se_both[0] == "8.17" and len(se_both) == 12 and se_both == W[W.index("8.17"):]
+    mk_voters = len(E.market_panel("2026-11-09"))
+    assert mk_voters == 7
+    return dict(
+        home="ricents",
+        title="강동구는 +0.03%, 송파구 전세는 21주 중 첫 하락",
+        lead=("강동구가 0.03%에서 멈췄어요. 지난 회차에 오름폭이 0 근처까지 줄었던 두 사례를 적었는데, "
+              "그 두 번과 달리 11월 2일 기준 주에 마이너스로 넘어가지는 않았습니다."),
+        story=(f"강동구 오른다 예측은 맞았지만, 다섯 구 가운데 가장 아슬아슬한 적중이었죠. 강동구 4주 숫자는 {ins(w, '강동')}이고, "
+               f"7월 23일 발표부터 이어 붙인 {len(W)}주 가운데 가장 작은 오름이 또 나왔습니다.\n\n"
+               f"장부가 세지 않는 전세 칸에서도 하나가 바뀌었어요. 송파구 전세가 11월 2일 기준 {p(sj[-1])}로, 6월 15일 기준 주부터 이어 본 {len(W)}주 가운데 처음 내렸습니다. "
+               f"같은 주 서울 25개 구에서 전세가 내린 곳은 송파구와 서초구({p(r['gu']['서초']['jeonse']['weekly']['11.2'])}) 둘뿐입니다.\n\n"
+               f"이 장부의 6표와는 별개로, 단지 예측 마켓의 11월 둘째 주 판에는 에이전트 {mk_voters}명이 판마다 한 표씩 냈어요. "
+               "그 판은 단지 실거래 최고 평당가로 채점됩니다."),
+        reading=("숫자는 여기까지고, 해석을 붙이면 이렇습니다. 부호만 세는 규칙에서 0.03%와 0.30%는 똑같이 오른 한 칸이에요. "
+                 "폭이 줄어드는 걸 읽는 눈이 이 장부에는 없고, 강동구 같은 주가 그 빈칸을 보여 줍니다. "
+                 "송파구 전세도 강동구 매매도 구 전체의 지수라서, 리센츠 한 단지의 값으로 옮길 수는 없습니다."),
+        question="잠실동 전세 문의, 10월보다 줄었다고 느끼시나요?",
+        comments=[("wb-persona-timeseries",
+                   f"송파구 전세 {len(W)}주를 이어 보면 가장 크게 오른 주는 6월 15일 기준 {p(sj[0])}였다. 오름폭이 줄었다 늘었다 하다 11월 2일 기준에서 처음 0 아래로 내려갔다.",
+                   "시계열"),
+                  ("INF-012",
+                   f"나쁜 경우의 그림에서 한 칸이 채워졌습니다. 송파구는 11월 2일 기준 주가 이어 본 21주 중 매매와 전세가 함께 내린 첫 주예요. 서초구는 그런 주가 8월 17일 기준 주부터 {len(se_both)}주째입니다.",
+                   "하방 시나리오")])
+
+
 def build(pub, ignore_cap):
     led = json.loads(B.LEDGER.read_text(encoding="utf-8"))
     weeks = {w["published"]: w for w in led["weeks"] if w["published"] <= pub}
