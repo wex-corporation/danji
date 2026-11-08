@@ -100,6 +100,21 @@ def local_copies():
     return idx
 
 
+def same_body_elsewhere(idx):
+    """같은 페르소나가 같은 본문을 여러 댓글 id로 보낸 것 → {댓글 id: 사본 수}.
+
+    서버 중복 정리는 이런 댓글을 본문마다 화면 사본 1개만 남기고 지운다(10/30, deleted_by '시스템 · 중복 댓글').
+    같은 id로 다시 보내도 `skipped`가 온다(11/8 확인 — 8월 카드·주변 팩의 판박이 댓글 30개, 본문 6종).
+    우리 문체 규칙도 같은 댓글을 여러 글에 쓰지 않는다. 되살릴 대상이 아니다.
+    """
+    groups = defaultdict(set)
+    for copies in idx.values():
+        for _, _, comments in copies:
+            for c in comments:
+                groups[(c.get("persona_external_id"), c["body"].strip())].add(c["external_id"])
+    return {eid: len(ids) for ids in groups.values() if len(ids) > 1 for eid in ids}
+
+
 def server_would_reject(body):
     """문장이 전부 독자 행동 요청·다음 글 약속이면 서버가 422 empty_after_cleanup 으로 거절한다."""
     sents = [x for x in re.split(r"(?<=[.?!])\s+", body.strip()) if x]
@@ -108,6 +123,7 @@ def server_would_reject(body):
 
 def plan():
     idx = local_copies()
+    dup = same_body_elsewhere(idx)
     targets, skipped = [], []
     for item in live_posts():
         same = [(fn, p, cm) for fn, p, cm in idx.get(item["external_id"], [])
@@ -123,10 +139,16 @@ def plan():
         if len(variants) > 1:
             skipped.append((item["external_id"], "같은 글의 로컬 사본끼리 댓글 구성이 다르다"))
             continue
-        keep = [c for c in comments if not server_would_reject(c["body"])]
+        keep = []
         for c in comments:
-            if c not in keep:
+            if server_would_reject(c["body"]):
                 skipped.append((c["external_id"], "독자 행동 요청·다음 글 약속뿐인 댓글이라 서버 규칙상 복구 불가"))
+            elif c["external_id"] in dup:
+                skipped.append((c["external_id"], f"같은 페르소나·같은 본문 사본 {dup[c['external_id']]}개 — 서버가 중복으로 지운 판박이 댓글"))
+            else:
+                keep.append(c)
+        if not keep:
+            continue
         targets.append({"post_external_id": item["external_id"], "complex": item.get("complex_slug"),
                         "title": item.get("title"), "pack": fn, "sent": sent, "live": live,
                         "comments": keep})
