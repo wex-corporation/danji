@@ -1,0 +1,601 @@
+{
+ "slug": "ricents",
+ "apt_names": [
+  "리센츠",
+  "잠실리센츠"
+ ],
+ "lawd_cd": "11710",
+ "fetched_at": "2026-11-08T04:14:07+0000",
+ "note": "계약일 기준 달별 조회. 9월분은 신고기한(30일) 경과 뒤 조회. gu_total 은 같은 응답의 아파트 매매 전체(1,000건 상한 확인용)",
+ "months": {
+  "202409": {
+   "gu_total": 195,
+   "ricents": [
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 100000,
+     "area_m2": 27.68,
+     "per_pyeong_manwon": 11942.9,
+     "floor": "15",
+     "build_year": "2008",
+     "deal_date": "2024-09-28",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 266000,
+     "area_m2": 84.99,
+     "per_pyeong_manwon": 10346.4,
+     "floor": "8",
+     "build_year": "2008",
+     "deal_date": "2024-09-27",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 260000,
+     "area_m2": 84.99,
+     "per_pyeong_manwon": 10113.0,
+     "floor": "13",
+     "build_year": "2008",
+     "deal_date": "2024-09-14",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 269000,
+     "area_m2": 84.99,
+     "per_pyeong_manwon": 10463.1,
+     "floor": "26",
+     "build_year": "2008",
+     "deal_date": "2024-09-06",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 116000,
+     "area_m2": 27.68,
+     "per_pyeong_manwon": 13853.8,
+     "floor": "9",
+     "build_year": "2008",
+     "deal_date": "2024-09-07",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 271500,
+     "area_m2": 84.99,
+     "per_pyeong_manwon": 10560.4,
+     "floor": "17",
+     "build_year": "2008",
+     "deal_date": "2024-09-05",
+     "cancel": false
+    }
+   ]
+  },
+  "202509": {
+   "gu_total": 391,
+   "ricents": [
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 150000,
+     "area_m2": 27.68,
+     "per_pyeong_manwon": 17914.4,
+     "floor": "12",
+     "build_year": "2008",
+     "deal_date": "2025-09-27",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 122000,
+     "area_m2": 27.68,
+     "per_pyeong_manwon": 14570.4,
+     "floor": "30",
+     "build_year": "2008",
+     "deal_date": "2025-09-30",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 338000,
+     "area_m2": 84.99,
+     "per_pyeong_manwon": 13147.0,
+     "floor": "17",
+     "build_year": "2008",
+     "deal_date": "2025-09-30",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 334000,
+     "area_m2": 84.99,
+     "per_pyeong_manwon": 12991.4,
+     "floor": "19",
+     "build_year": "2008",
+     "deal_date": "2025-09-24",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 150000,
+     "area_m2": 27.68,
+     "per_pyeong_manwon": 17914.4,
+     "floor": "14",
+     "build_year": "2008",
+     "deal_date": "2025-09-24",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 123500,
+     "area_m2": 27.68,
+     "per_pyeong_manwon": 14749.5,
+     "floor": "28",
+     "build_year": "2008",
+     "deal_date": "2025-09-27",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 350000,
+     "area_m2": 84.99,
+     "per_pyeong_manwon": 13613.7,
+     "floor": "24",
+     "build_year": "2008",
+     "deal_date": "2025-09-18",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 343000,
+     "area_m2": 84.99,
+     "per_pyeong_manwon": 13341.4,
+     "floor": "22",
+     "build_year": "2008",
+     "deal_date": "2025-09-13",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 330000,
+     "area_m2": 84.99,
+     "per_pyeong_manwon": 12835.8,
+     "floor": "8",
+     "build_year": "2008",
+     "deal_date": "2025-09-12",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 160000,
+     "area_m2": 27.68,
+     "per_pyeong_manwon": 19108.7,
+     "floor": "9",
+     "build_year": "2008",
+     "deal_date": "2025-09-13",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 346000,
+     "area_m2": 84.99,
+     "per_pyeong_manwon": 13458.1,
+     "floor": "9",
+     "build_year": "2008",
+     "deal_date": "2025-09-02",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 333000,
+     "area_m2": 84.99,
+     "per_pyeong_manwon": 12952.5,
+     "floor": "19",
+     "build_year": "2008",
+     "deal_date": "2025-09-05",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 159500,
+     "area_m2": 27.68,
+     "per_pyeong_manwon": 19049.0,
+     "floor": "13",
+     "build_year": "2008",
+     "deal_date": "2025-09-08",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 123000,
+     "area_m2": 27.68,
+     "per_pyeong_manwon": 14689.8,
+     "floor": "5",
+     "build_year": "2008",
+     "deal_date": "2025-09-06",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 141000,
+     "area_m2": 27.68,
+     "per_pyeong_manwon": 16839.5,
+     "floor": "6",
+     "build_year": "2008",
+     "deal_date": "2025-09-04",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 150000,
+     "area_m2": 27.68,
+     "per_pyeong_manwon": 17914.4,
+     "floor": "25",
+     "build_year": "2008",
+     "deal_date": "2025-09-04",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 145000,
+     "area_m2": 27.68,
+     "per_pyeong_manwon": 17317.2,
+     "floor": "24",
+     "build_year": "2008",
+     "deal_date": "2025-09-03",
+     "cancel": false
+    }
+   ]
+  },
+  "202607": {
+   "gu_total": 319,
+   "ricents": [
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 292000,
+     "area_m2": 84.99,
+     "per_pyeong_manwon": 11357.7,
+     "floor": "15",
+     "build_year": "2008",
+     "deal_date": "2026-07-30",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 435000,
+     "area_m2": 124.22,
+     "per_pyeong_manwon": 11576.4,
+     "floor": "17",
+     "build_year": "2008",
+     "deal_date": "2026-07-14",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 344000,
+     "area_m2": 84.99,
+     "per_pyeong_manwon": 13380.3,
+     "floor": "3",
+     "build_year": "2008",
+     "deal_date": "2026-07-17",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 369500,
+     "area_m2": 84.99,
+     "per_pyeong_manwon": 14372.2,
+     "floor": "15",
+     "build_year": "2008",
+     "deal_date": "2026-07-24",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 352000,
+     "area_m2": 84.99,
+     "per_pyeong_manwon": 13691.5,
+     "floor": "22",
+     "build_year": "2008",
+     "deal_date": "2026-07-17",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 328000,
+     "area_m2": 84.99,
+     "per_pyeong_manwon": 12758.0,
+     "floor": "3",
+     "build_year": "2008",
+     "deal_date": "2026-07-28",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 357000,
+     "area_m2": 84.99,
+     "per_pyeong_manwon": 13886.0,
+     "floor": "20",
+     "build_year": "2008",
+     "deal_date": "2026-07-23",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 349000,
+     "area_m2": 84.99,
+     "per_pyeong_manwon": 13574.8,
+     "floor": "27",
+     "build_year": "2008",
+     "deal_date": "2026-07-03",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 160000,
+     "area_m2": 27.68,
+     "per_pyeong_manwon": 19108.7,
+     "floor": "18",
+     "build_year": "2008",
+     "deal_date": "2026-07-10",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 299900,
+     "area_m2": 59.99,
+     "per_pyeong_manwon": 16526.2,
+     "floor": "20",
+     "build_year": "2008",
+     "deal_date": "2026-07-07",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 350000,
+     "area_m2": 84.99,
+     "per_pyeong_manwon": 13613.7,
+     "floor": "26",
+     "build_year": "2008",
+     "deal_date": "2026-07-03",
+     "cancel": false
+    }
+   ]
+  },
+  "202608": {
+   "gu_total": 176,
+   "ricents": [
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 160800,
+     "area_m2": 27.68,
+     "per_pyeong_manwon": 19204.2,
+     "floor": "12",
+     "build_year": "2008",
+     "deal_date": "2026-08-26",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 430000,
+     "area_m2": 124.22,
+     "per_pyeong_manwon": 11443.4,
+     "floor": "19",
+     "build_year": "2008",
+     "deal_date": "2026-08-21",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 335000,
+     "area_m2": 84.99,
+     "per_pyeong_manwon": 13030.3,
+     "floor": "4",
+     "build_year": "2008",
+     "deal_date": "2026-08-12",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 365000,
+     "area_m2": 84.99,
+     "per_pyeong_manwon": 14197.2,
+     "floor": "24",
+     "build_year": "2008",
+     "deal_date": "2026-08-11",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 161500,
+     "area_m2": 27.68,
+     "per_pyeong_manwon": 19287.8,
+     "floor": "30",
+     "build_year": "2008",
+     "deal_date": "2026-08-11",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 346500,
+     "area_m2": 84.99,
+     "per_pyeong_manwon": 13477.6,
+     "floor": "21",
+     "build_year": "2008",
+     "deal_date": "2026-08-08",
+     "cancel": false
+    }
+   ]
+  },
+  "202609": {
+   "gu_total": 322,
+   "ricents": [
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 336000,
+     "area_m2": 84.99,
+     "per_pyeong_manwon": 13069.2,
+     "floor": "18",
+     "build_year": "2008",
+     "deal_date": "2026-09-29",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 158500,
+     "area_m2": 27.68,
+     "per_pyeong_manwon": 18929.5,
+     "floor": "28",
+     "build_year": "2008",
+     "deal_date": "2026-09-22",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 195000,
+     "area_m2": 27.68,
+     "per_pyeong_manwon": 23288.7,
+     "floor": "32",
+     "build_year": "2008",
+     "deal_date": "2026-09-28",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 173000,
+     "area_m2": 27.68,
+     "per_pyeong_manwon": 20661.2,
+     "floor": "12",
+     "build_year": "2008",
+     "deal_date": "2026-09-23",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 150000,
+     "area_m2": 27.68,
+     "per_pyeong_manwon": 17914.4,
+     "floor": "6",
+     "build_year": "2008",
+     "deal_date": "2026-09-18",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 158000,
+     "area_m2": 27.68,
+     "per_pyeong_manwon": 18869.8,
+     "floor": "26",
+     "build_year": "2008",
+     "deal_date": "2026-09-16",
+     "cancel": false
+    },
+    {
+     "apt": "리센츠",
+     "dong": "잠실동",
+     "gu": "송파구",
+     "amount_manwon": 360000,
+     "area_m2": 84.99,
+     "per_pyeong_manwon": 14002.7,
+     "floor": "27",
+     "build_year": "2008",
+     "deal_date": "2026-09-08",
+     "cancel": false
+    }
+   ]
+  }
+ }
+}
