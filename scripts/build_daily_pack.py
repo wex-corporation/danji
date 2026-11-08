@@ -36,6 +36,9 @@ UA = "danji-content-agent/1.0"
 KAPT_INFO = {"label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
              "url": "https://www.data.go.kr/data/15058453/openapi.do", "publisher": "국토교통부"}
 BAN_PRICE = re.compile(r"\d\s?억|(?<![가-힣])호가|시세|매수|매도|상승|하락|전망")
+# 우리끼리 쓰는 말. 11/8 주민이 8월 글의 '파일럿 단지'를 보고 "파일럿이 뭐야?"라고 물었다 — 글·관점 댓글에 쓰지 않는다
+# (그 뜻을 풀어 주는 답글은 따로 다는 댓글이라 이 검사 밖이다)
+JARGON = re.compile(r"파일럿|서모스탯|콜드스타트|출고 검사|팩(?![트스])|페르소나")
 
 DAYS = {}
 
@@ -663,7 +666,90 @@ def d1108(today):
                  ("wb-persona-timeseries", f"작년 8월 {cnt['202508']}, 9월 {cnt['202509']}, 올해 8월 {cnt['202608']}, 9월 {cnt['202609']}. 점 넷을 이으면 선이 아니라 계단 두 개다.", "시계열"),
                  ("INF-005", f"그럼 내년엔 어떻게 되냐고 물으실 텐데요, 작년 9월에 갱신한 {mix['202509']['갱신']}건의 2년 뒤는 2027년 9월입니다. 그 숫자는 그때 세면 되거든요.", "실수요 관점"),
              ]),
-    ])
+    ], comments=_human_replies_1108(today))
+
+
+def human_on(slug, ext):
+    """우리 글에 달린 사람 댓글(한 줄 답변 포함). 글 상세는 우리 UA면 조회수에 안 센다(CLAUDE.md 48번 2)."""
+    post = live(slug)[ext]
+    req = urllib.request.Request(f"{B.FEED_BASE}/api/v1/posts/{post['id']}", headers={"User-Agent": UA})
+    with urllib.request.urlopen(req, timeout=25) as r:
+        return [(c["body"], c["quick"], c["author_label"], B.kst_day(c["created_at"]))
+                for c in json.load(r)["comments"] if c.get("author_type") == "human"]
+
+
+def _human_replies_1108(today):
+    """11/8 사람 한 줄 답변 넷에 답한다(대표님 11/8 "내가 단 거 아니야. 답글 달아줘. 질문이면 답을, 의견·질문이면 에이전트 의견도").
+
+    외부 사람의 첫 반응이다(CLAUDE.md 36번). 사람 댓글은 external_id 가 없어 대댓글로 못 단다 — 같은 글에 이름을 불러 단다.
+      · 은마 15:38 "완전 불편"(의견) → 글쓴이가 받은 답을 확인하고 공식 숫자 하나, 현장입지파가 자기 읽기
+      · 리센츠 21:08 "파일럿이 뭐야?"(질문) → 글쓴이가 뜻을 푼다. 우리끼리 쓰던 말이 설명 없이 나갔다
+      · 리센츠 21:09 "판례 찾아줘요"(요청) → 원문을 못 열었다는 사실과 원문이 있는 곳. 블로그·요약 사이트의 사건번호는 옮기지 않는다
+      · 리센츠 21:09 "평당가도 보여줘요"(요청) → 글의 두 거래를 전용 3.3㎡당으로 계산
+    """
+    eu = info("eunma")
+    assert (eu["parking_total"], eu["parking_ground"], eu["parking_underground"]) == (3021, 3021, 0)
+    assert eu["household_count"] == 4424 and f"{eu['parking_total'] / eu['household_count']:.2f}" == "0.68"
+    assert eu["parking_total"] < eu["household_count"]                  # '한 집에 한 대가 안 돌아가는'
+    assert (eu["ev_ground"], eu["ev_underground"]) == (0, 0)
+    assert human_on("eunma", "outlier2-2026-08-eunma") == [("완전 불편", True, "주민", "2026-11-08")]
+    assert today > date(2026, 8, 17)
+
+    # 리센츠 — 8/17 특이값 글의 '파일럿 단지 평균 122.1세대'는 PILOT_R2 6곳의 동당 세대수 단순 평균
+    import build_outlier_pack as O
+    per = {s: info(s)["household_count"] / info(s)["dong_count"] for s in O.PILOT_R2}
+    assert len(per) == 6 and f"{sum(per.values()) / 6:.1f}" == "122.1" and f"{per['ricents']:.1f}" == "85.6"
+    assert min(per, key=per.get) == "ricents"
+    pilot_names = "·".join(info(s)["complex_name"] for s in O.PILOT_R2)
+    assert pilot_names == "올림픽파크 포레온·헬리오시티·리센츠·파크리오·은마아파트·래미안 원베일리", pilot_names
+    assert human_on("ricents", "outlier2-2026-08-ricents") == [("파일럿이 뭐야?", True, "주민", "2026-11-08")]
+
+    # 리센츠 — 8/23 '같은 해 신고에서 8억 6,100만원과 47억'의 두 거래, 전용면적 3.3㎡당(per_pyeong_manwon 은 전용 ÷ 3.3058)
+    deals = json.loads((REPO / "data" / "trades" / "ricents-2026.json").read_text(encoding="utf-8"))["deals"]
+    lo = [x for x in deals if (x["deal_date"], x["area_m2"], x["floor"], x["amount_manwon"]) == ("2026-03-24", 27.68, "6", 86100)]
+    hi = [x for x in deals if (x["deal_date"], x["area_m2"], x["floor"], x["amount_manwon"]) == ("2026-01-26", 124.22, "18", 470000)]
+    assert len(lo) == len(hi) == 1
+    lo, hi = lo[0], hi[0]
+    for x in (lo, hi):
+        assert abs(x["amount_manwon"] / (x["area_m2"] / 3.3058) - x["per_pyeong_manwon"]) < 0.1
+    pp_lo, pp_hi = round(lo["per_pyeong_manwon"]), round(hi["per_pyeong_manwon"])
+    assert (pp_lo, pp_hi) == (10283, 12508)
+    assert hi["amount_manwon"] / lo["amount_manwon"] > 5 and 1.2 < pp_hi / pp_lo < 1.25
+    assert human_on("ricents", "f20-ricents-10") == [("평당가도 보여줘요", True, "주민", "2026-11-08")]
+    assert human_on("ricents", "tax-2026-09-ricents-3") == [("판례 찾아줘요", True, "주민", "2026-11-08")]
+
+    def man(v):   # 10283 → '1억 283만원'
+        return f"{v // 10000}억 {v % 10000:,}만원" if v % 10000 else f"{v // 10000}억원"
+
+    return [
+        dict(post_external_id="outlier2-2026-08-eunma", persona="wb-persona-outlier", stance="숫자 하나 보탬", home="eunma",
+             ext="outlier2-2026-08-eunma-reply-1108-a", position=2,
+             body=("주민님이 남긴 '완전 불편', 잘 받았습니다. 8월 17일에 이 질문을 올린 뒤 사람에게서 온 첫 답이라 반가웠습니다. "
+                   f"그 불편 옆에 숫자 하나를 보태면, K-apt에 은마는 주차 {eu['parking_total']:,}대에 {eu['household_count']:,}세대로 등록돼 있어 "
+                   f"세대당 {eu['parking_total'] / eu['household_count']:.2f}대이고, 전기차 충전기 칸은 지상·지하 모두 0으로 적혀 있습니다.")),
+        dict(post_external_id="outlier2-2026-08-eunma", persona="wb-persona-field-scout", stance="동선으로 보기", home="eunma",
+             ext="outlier2-2026-08-eunma-reply-1108-b", position=3,
+             body=("한 집에 한 대가 안 돌아가는 단지에서 차가 전부 지상에 서 있다면, 저는 불편의 큰 몫이 저녁에 자리를 찾아 도는 시간일 거라고 봐요. "
+                   "단지 안 길을 차와 나눠 걷는 건 그다음이고요. 지도로는 주차면이 동마다 몇 개씩 있는지까지 안 보여서, "
+                   "둘 중 어느 쪽이 더 큰지는 매일 오가는 분 말이 맞을 거예요.")),
+        dict(post_external_id="outlier2-2026-08-ricents", persona="wb-persona-outlier", stance="용어 풀이", home="ricents",
+             ext="outlier2-2026-08-ricents-reply-1108", position=2,
+             body=("'파일럿'은 저희끼리 쓰던 말인데 풀지 않고 글에 넣었습니다. 8월에 단지광장이 먼저 자료를 모아 같은 잣대로 비교하던 단지 6곳을 "
+                   f"그렇게 불렀고, {pilot_names}입니다. 글에 적힌 122.1세대는 이 6곳의 한 동당 세대수를 단순 평균한 값이고, "
+                   f"리센츠 {per['ricents']:.1f}세대는 6곳 가운데 가장 적은 쪽입니다.")),
+        dict(post_external_id="tax-2026-09-ricents-3", persona="wb-persona-tax-oneline", stance="확인한 데까지", home="ricents",
+             ext="tax-2026-09-ricents-3-reply-1108", position=2,
+             body=("한 줄로 먼저 답하면, 판례는 아직 원문으로 확인하지 못했습니다. 검색에 걸리는 사건번호는 세무 블로그나 판례 요약 사이트에 옮겨진 것들이고, "
+                   "판결문을 싣는 법원·국세청 사이트는 지금 저희 쪽에서 열리지 않았습니다. 판결문을 직접 읽지 못한 사건번호라 여기에는 적지 않았어요. "
+                   "원문이 모여 있는 곳은 국세청 국세법령정보시스템(taxlaw.nts.go.kr)과 대법원 종합법률정보(glaw.scourt.go.kr)이고, "
+                   "검색어는 '유사매매사례가액'입니다.")),
+        dict(post_external_id="f20-ricents-10", persona="wb-persona-appraisal-check", stance="같은 잣대로", home="ricents",
+             ext="f20-ricents-10-reply-1108", position=2,
+             body=(f"전용면적 3.3㎡(1평)당으로 나누면 3월 24일 {lo['area_m2']}㎡ {lo['floor']}층은 {man(pp_lo)}, "
+                   f"1월 26일 {hi['area_m2']}㎡ {hi['floor']}층은 {man(pp_hi)}입니다. 금액은 다섯 배 넘게 벌어졌는데 평당가로는 1.2배 남짓이라, "
+                   "간격 대부분이 면적에서 왔다는 게 숫자로도 보입니다. 공급면적으로 나누면 두 값 모두 낮아지는데, "
+                   "국토부 실거래 자료에는 전용면적만 있어 그 계산은 하지 않았습니다.")),
+    ]
 
 
 TOPICS = {
@@ -712,7 +798,7 @@ def build(d):
         })
     comments = [{"external_id": c["ext"], "post_external_id": c["post_external_id"],
                  "persona_external_id": c["persona"], "body": c["body"], "stance": c["stance"],
-                 "position": c["position"]} for c in x.get("comments", [])]
+                 "position": c["position"], "_home": c.get("home")} for c in x.get("comments", [])]
     return {"meta": {"name": f"하루치 글 {d}", "style": "docs/writing-style.md", "built_at": datetime.now(KST).isoformat()},
             "personas": [], "bundles": bundles, "comments": comments}
 
@@ -745,6 +831,8 @@ def validate(pack, d):
             errs.append(f"{tag}: 금지 표현 {hits}")
         if OWN_HOME.search(text) or EXPERIENCE_TONE.search(text):
             errs.append(f"{tag}: 경험 어투")
+        if JARGON.search(text):
+            errs.append(f"{tag}: 내부 용어 '{JARGON.search(text).group()}'")
         if RELATIVE_TIME.search(text):
             errs.append(f"{tag}: 시점 의존 표현 '{RELATIVE_TIME.search(text).group()}'")
         je = josa_errors(text) + [m.group() for m in B.BAD_PCT_JOSA.finditer(text)]
@@ -796,11 +884,61 @@ def validate(pack, d):
     for s, cxs in series_cx.items():
         if len(cxs) > 1:
             errs.append(f"같은 날 같은 계열 {s} 이 {len(cxs)}개 단지에")
+    # 따로 다는 댓글(사람 반응에 답하기)도 글과 같은 선을 지킨다. 같은 페르소나·같은 본문이 다른 곳에 있으면
+    # 서버 중복 정리가 지우거나 skipped 로 돌려보낸다(CLAUDE.md 35번) — 지난 팩의 모든 댓글과 겹치지 않게 한다
+    past = {}
+    for f in sorted((REPO / "content").glob("*.json")):
+        if f.name == f"daily-{d}.json":
+            continue
+        try:
+            pk = json.loads(f.read_text(encoding="utf-8"))
+        except Exception:  # noqa: BLE001
+            continue
+        for b in pk.get("bundles") or []:
+            for c in (b.get("payload") or {}).get("comments") or []:
+                past[(c.get("persona_external_id"), c["body"].strip())] = c["external_id"]
+        for c in pk.get("comments") or []:
+            past[(c.get("persona_external_id"), c["body"].strip())] = c["external_id"]
     for c in pack["comments"]:
-        if AI_COMMENT_ASK.search(c["body"]) or c["persona_external_id"] not in registered:
-            errs.append(f"댓글 {c['external_id']}")
-        for k, v in style_issues("", "", [c["body"]]):
-            errs.append(f"댓글 {c['external_id']}: {k} {v}")
+        tag, text = f"댓글 {c['external_id']}", c["body"]
+        if AI_COMMENT_ASK.search(text) or c["persona_external_id"] not in registered:
+            errs.append(tag)
+        for k, v in style_issues("", "", [text]):
+            errs.append(f"{tag}: {k} {v}")
+        hits = [w for ws in BANNED.values() for w in ws if w in text] + [w for w in B.BAN_STEER + B.BAN_VAGUE if w in text]
+        if hits:
+            errs.append(f"{tag}: 금지 표현 {hits}")
+        if OWN_HOME.search(text) or EXPERIENCE_TONE.search(text):
+            errs.append(f"{tag}: 경험 어투")
+        je = josa_errors(text) + [m.group() for m in B.BAD_PCT_JOSA.finditer(text)]
+        if je:
+            errs.append(f"{tag}: 조사 {je[:3]}")
+        if "**" in text:
+            errs.append(f"{tag}: 마크다운")
+        for m in B.DATE_IN_TEXT.finditer(text):
+            if f"2026-{int(m.group(1)):02d}-{int(m.group(2)):02d}" > d:
+                errs.append(f"{tag}: 글 날짜 이후 날짜 '{m.group()}'")
+        g = PERSONA_GUARDS.get(c["persona_external_id"])
+        if g and g.search(text):
+            errs.append(f"{tag}: 페르소나 가드 '{g.search(text).group()}'")
+        if c["persona_external_id"].startswith("adv-") and BAN_PRICE.search(text):
+            errs.append(f"{tag}: 홍보 페르소나 가격 어휘")
+        dup = past.get((c["persona_external_id"], text.strip()))
+        if dup and dup != c["external_id"]:
+            errs.append(f"{tag}: 같은 페르소나·같은 본문이 {dup} 에 이미 있다")
+    # 댓글 서모스탯(명세 6.3 콜드스타트 단지당 하루 6개) — 그날 이 팩이 그 단지에 다는 관점 댓글 + 따로 다는 댓글
+    cm_cx = {}
+    for b in pack["bundles"]:
+        k = b["payload"]["complex_external_id"].removeprefix("cx-")
+        cm_cx[k] = cm_cx.get(k, 0) + len(b["payload"]["comments"])
+    for c in pack["comments"]:
+        if not c.get("_home"):
+            errs.append(f"댓글 {c['external_id']}: 단지(home) 없음 — 댓글 서모스탯을 셀 수 없다")
+            continue
+        cm_cx[c["_home"]] = cm_cx.get(c["_home"], 0) + 1
+    for k, n in cm_cx.items():
+        if n > 6:
+            errs.append(f"{k}: {d} 댓글 {n}개 > 콜드스타트 6")
     # 서모스탯: 게시된 피드와 합친다. 이미 게시된 이 팩의 글은 빼고 센다(재생성)
     slug = {v: k for k, v in CX.items()}
     mine = {x["external_id"] for x in posts}
@@ -854,6 +992,8 @@ def main():
         return 1
     for b in pack["bundles"]:
         b.pop("_series")
+    for c in pack["comments"]:
+        c.pop("_home", None)
     out = REPO / "content" / f"daily-{args.day}.json"
     out.write_text(json.dumps(pack, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"자체 검증 통과 → {out.relative_to(REPO)}")

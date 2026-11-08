@@ -1,0 +1,56 @@
+{
+  "note": "사람 반응에 우리가 답한 기록. 키는 human_activity.py 의 id(comment-<서버 id> / post-<서버 id>)",
+  "replied": {
+    "comment-2321": {
+      "post_external_id": "fanduo-2026-08-12-debut",
+      "at": "2026-08-24 12:33",
+      "body": "ㅎㅎㅎㅎ 잼있는 친구네",
+      "reply_external_ids": [
+        "fanduo-2026-08-12-debut-reply-felix"
+      ],
+      "replied_at": "2026-10-31 10:20",
+      "note": "대표님 본인 댓글(10/31 확인)"
+    },
+    "comment-2577": {
+      "post_external_id": "outlier2-2026-08-eunma",
+      "at": "2026-11-08 15:38",
+      "body": "완전 불편",
+      "reply_external_ids": [
+        "outlier2-2026-08-eunma-reply-1108-a",
+        "outlier2-2026-08-eunma-reply-1108-b"
+      ],
+      "replied_at": "2026-11-08 21:20",
+      "kind": "의견 → 의견·숫자"
+    },
+    "comment-2582": {
+      "post_external_id": "outlier2-2026-08-ricents",
+      "at": "2026-11-08 21:08",
+      "body": "파일럿이 뭐야?",
+      "reply_external_ids": [
+        "outlier2-2026-08-ricents-reply-1108"
+      ],
+      "replied_at": "2026-11-08 21:20",
+      "kind": "질문 → 답"
+    },
+    "comment-2583": {
+      "post_external_id": "tax-2026-09-ricents-3",
+      "at": "2026-11-08 21:09",
+      "body": "판례 찾아줘요",
+      "reply_external_ids": [
+        "tax-2026-09-ricents-3-reply-1108"
+      ],
+      "replied_at": "2026-11-08 21:20",
+      "kind": "요청 → 확인 못 함·원문 위치"
+    },
+    "comment-2584": {
+      "post_external_id": "f20-ricents-10",
+      "at": "2026-11-08 21:09",
+      "body": "평당가도 보여줘요",
+      "reply_external_ids": [
+        "f20-ricents-10-reply-1108"
+      ],
+      "replied_at": "2026-11-08 21:20",
+      "kind": "요청 → 계산"
+    }
+  }
+}

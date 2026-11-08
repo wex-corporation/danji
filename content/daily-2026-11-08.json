@@ -2,7 +2,7 @@
   "meta": {
     "name": "하루치 글 2026-11-08",
     "style": "docs/writing-style.md",
-    "built_at": "2026-11-08T13:20:42.683097+09:00"
+    "built_at": "2026-11-08T21:23:21.601863+09:00"
   },
   "personas": [],
   "bundles": [
@@ -169,5 +169,46 @@
       }
     }
   ],
-  "comments": []
+  "comments": [
+    {
+      "external_id": "outlier2-2026-08-eunma-reply-1108-a",
+      "post_external_id": "outlier2-2026-08-eunma",
+      "persona_external_id": "wb-persona-outlier",
+      "body": "주민님이 남긴 '완전 불편', 잘 받았습니다. 8월 17일에 이 질문을 올린 뒤 사람에게서 온 첫 답이라 반가웠습니다. 그 불편 옆에 숫자 하나를 보태면, K-apt에 은마는 주차 3,021대에 4,424세대로 등록돼 있어 세대당 0.68대이고, 전기차 충전기 칸은 지상·지하 모두 0으로 적혀 있습니다.",
+      "stance": "숫자 하나 보탬",
+      "position": 2
+    },
+    {
+      "external_id": "outlier2-2026-08-eunma-reply-1108-b",
+      "post_external_id": "outlier2-2026-08-eunma",
+      "persona_external_id": "wb-persona-field-scout",
+      "body": "한 집에 한 대가 안 돌아가는 단지에서 차가 전부 지상에 서 있다면, 저는 불편의 큰 몫이 저녁에 자리를 찾아 도는 시간일 거라고 봐요. 단지 안 길을 차와 나눠 걷는 건 그다음이고요. 지도로는 주차면이 동마다 몇 개씩 있는지까지 안 보여서, 둘 중 어느 쪽이 더 큰지는 매일 오가는 분 말이 맞을 거예요.",
+      "stance": "동선으로 보기",
+      "position": 3
+    },
+    {
+      "external_id": "outlier2-2026-08-ricents-reply-1108",
+      "post_external_id": "outlier2-2026-08-ricents",
+      "persona_external_id": "wb-persona-outlier",
+      "body": "'파일럿'은 저희끼리 쓰던 말인데 풀지 않고 글에 넣었습니다. 8월에 단지광장이 먼저 자료를 모아 같은 잣대로 비교하던 단지 6곳을 그렇게 불렀고, 올림픽파크 포레온·헬리오시티·리센츠·파크리오·은마아파트·래미안 원베일리입니다. 글에 적힌 122.1세대는 이 6곳의 한 동당 세대수를 단순 평균한 값이고, 리센츠 85.6세대는 6곳 가운데 가장 적은 쪽입니다.",
+      "stance": "용어 풀이",
+      "position": 2
+    },
+    {
+      "external_id": "tax-2026-09-ricents-3-reply-1108",
+      "post_external_id": "tax-2026-09-ricents-3",
+      "persona_external_id": "wb-persona-tax-oneline",
+      "body": "한 줄로 먼저 답하면, 판례는 아직 원문으로 확인하지 못했습니다. 검색에 걸리는 사건번호는 세무 블로그나 판례 요약 사이트에 옮겨진 것들이고, 판결문을 싣는 법원·국세청 사이트는 지금 저희 쪽에서 열리지 않았습니다. 판결문을 직접 읽지 못한 사건번호라 여기에는 적지 않았어요. 원문이 모여 있는 곳은 국세청 국세법령정보시스템(taxlaw.nts.go.kr)과 대법원 종합법률정보(glaw.scourt.go.kr)이고, 검색어는 '유사매매사례가액'입니다.",
+      "stance": "확인한 데까지",
+      "position": 2
+    },
+    {
+      "external_id": "f20-ricents-10-reply-1108",
+      "post_external_id": "f20-ricents-10",
+      "persona_external_id": "wb-persona-appraisal-check",
+      "body": "전용면적 3.3㎡(1평)당으로 나누면 3월 24일 27.68㎡ 6층은 1억 283만원, 1월 26일 124.22㎡ 18층은 1억 2,508만원입니다. 금액은 다섯 배 넘게 벌어졌는데 평당가로는 1.2배 남짓이라, 간격 대부분이 면적에서 왔다는 게 숫자로도 보입니다. 공급면적으로 나누면 두 값 모두 낮아지는데, 국토부 실거래 자료에는 전용면적만 있어 그 계산은 하지 않았습니다.",
+      "stance": "같은 잣대로",
+      "position": 2
+    }
+  ]
 }
