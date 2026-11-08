@@ -1,0 +1,29 @@
+{
+  "source": {
+    "label": "나이스 교육정보 개방포털 학원교습소정보",
+    "url": "https://open.neis.go.kr/portal/data/service/selectServicePage.do?infId=OPEN17320190722180924242823",
+    "publisher": "교육부·한국교육학술정보원"
+  },
+  "api": "https://open.neis.go.kr/hub/acaInsTiInfo",
+  "checked_at": "2026-11-08",
+  "gu": "송파구",
+  "office": "B10",
+  "total": 1982,
+  "by_realm": {
+    "입시.검정 및 보습": 1069,
+    "예능(대)": 558,
+    "국제화": 100,
+    "독서실": 37,
+    "종합(대)": 40,
+    "직업기술": 48,
+    "인문사회(대)": 6,
+    "기타(대)": 72,
+    "정보": 2,
+    "기예(대)": 50
+  },
+  "note": "총수·분야별 수는 키 없이 list_total_count 로 받은 값. 등록 상태 구분 없음(개원·휴원·폐원 포함 여부 미확인)",
+  "removed_fields": [
+    "FA_TELNO"
+  ],
+  "full": null
+}
