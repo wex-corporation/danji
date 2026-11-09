@@ -2,7 +2,7 @@
   "slug": "eunma",
   "complex_name": "은마아파트",
   "kapt_code": "A13583507",
-  "latest_period": "202606",
+  "latest_period": "202609",
   "periods": {
     "202606": {
       "slug": "eunma",
@@ -377,6 +377,504 @@
         "url": "https://www.data.go.kr/data/15057937/openapi.do",
         "publisher": "국토교통부",
         "endpoint": "https://apis.data.go.kr/1613000/AptCmnuseManageCostServiceV2/<항목별 오퍼레이션>"
+      },
+      "note": "공용관리비 17개 항목 합계를 관리비부과면적으로 나눈 값이다. 개별사용료(난방·급탕·전기·수도)와 장기수선충당금은 포함하지 않는다."
+    },
+    "202607": {
+      "slug": "eunma",
+      "complex_name": "은마아파트",
+      "kapt_code": "A13583507",
+      "kapt_name": "은마",
+      "period": "202607",
+      "area_m2": 470731.53,
+      "area_m2_derived": 470731.53,
+      "area_field": "kaptMarea",
+      "area_source": "official_api",
+      "area_note": null,
+      "breakdown": null,
+      "crosscheck": null,
+      "common_fee_total_won": 625170643,
+      "per_m2_won": 1328.08,
+      "per_m2_available": true,
+      "items": {
+        "인건비": {
+          "amount_won": 174249130,
+          "detail": {
+            "pay": 115964090.0,
+            "sundryCost": 13962580.0,
+            "bonus": 9706810.0,
+            "pension": 15306500.0,
+            "accidentPremium": 886240.0,
+            "employPremium": 1365430.0,
+            "nationalPension": 2685670.0,
+            "healthPremium": 4522910.0,
+            "welfareBenefit": 9848900.0
+          },
+          "op": "getHsmpLaborCostInfoV3"
+        },
+        "제사무비": {
+          "amount_won": 2410600,
+          "detail": {
+            "officeSupply": 878100.0,
+            "bookSupply": 1518000.0,
+            "transportCost": 14500.0
+          },
+          "op": "getHsmpOfcrkCostInfoV3"
+        },
+        "제세공과금": {
+          "amount_won": 2584570,
+          "detail": {
+            "electCost": 0.0,
+            "telCost": 317250.0,
+            "postageCost": 15560.0,
+            "taxrestCost": 2251760.0
+          },
+          "op": "getHsmpTaxdueInfoV3"
+        },
+        "피복비": {
+          "amount_won": 881660,
+          "detail": {
+            "clothesCost": 881660.0
+          },
+          "op": "getHsmpClothingCostInfoV3"
+        },
+        "교육훈련비": {
+          "amount_won": 614000,
+          "detail": {
+            "eduCost": 614000.0
+          },
+          "op": "getHsmpEduTraingCostInfoV3"
+        },
+        "차량유지비": {
+          "amount_won": 247060,
+          "detail": {
+            "fuelCost": 0.0,
+            "refairCost": 0.0,
+            "carInsurance": 0.0,
+            "carEtc": 247060.0
+          },
+          "op": "getHsmpVhcleMntncCostInfoV3"
+        },
+        "그 밖의 부대비용": {
+          "amount_won": 1091210,
+          "detail": {
+            "careItemCost": 755920.0,
+            "accountingCost": 0.0,
+            "hiddenCost": 335290.0
+          },
+          "op": "getHsmpEtcCostInfoV3"
+        },
+        "경비비": {
+          "amount_won": 289989610,
+          "detail": {
+            "guardCost": 289989610.0
+          },
+          "op": "getHsmpGuardCostInfoV3"
+        },
+        "청소비": {
+          "amount_won": 83311300,
+          "detail": {
+            "cleanCost": 83311300.0
+          },
+          "op": "getHsmpCleaningCostInfoV3"
+        },
+        "소독비": {
+          "amount_won": 5836300,
+          "detail": {
+            "disinfCost": 5836300.0
+          },
+          "op": "getHsmpDisinfectionCostInfoV3"
+        },
+        "승강기유지비": {
+          "amount_won": 4976780,
+          "detail": {
+            "elevCost": 4976780.0
+          },
+          "op": "getHsmpElevatorMntncCostInfoV3"
+        },
+        "지능형 홈네트워크 설비 유지비": {
+          "amount_won": 0,
+          "detail": {
+            "hnetwCost": 0.0
+          },
+          "op": "getHsmpHomeNetworkMntncCostInfoV3"
+        },
+        "수선비": {
+          "amount_won": 53874230,
+          "detail": {
+            "lrefCost1": 53874230.0
+          },
+          "op": "getHsmpRepairsCostInfoV3"
+        },
+        "시설유지비": {
+          "amount_won": 2515200,
+          "detail": {
+            "lrefCost2": 2515200.0
+          },
+          "op": "getHsmpFacilityMntncCostInfoV3"
+        },
+        "안전점검비": {
+          "amount_won": 0,
+          "detail": {
+            "lrefCost3": 0.0
+          },
+          "op": "getHsmpSafetyCheckUpCostInfoV3"
+        },
+        "재해예방비": {
+          "amount_won": 0,
+          "detail": {
+            "lrefCost4": 0.0
+          },
+          "op": "getHsmpDisasterPreventionCostInfoV3"
+        },
+        "위탁관리수수료": {
+          "amount_won": 2588993,
+          "detail": {
+            "manageCost": 2588993.0
+          },
+          "op": "getHsmpConsignManageFeeInfoV3"
+        }
+      },
+      "failures": {},
+      "complete": true,
+      "fetched_at": "2026-11-09T00:33:10+0000",
+      "source": {
+        "label": "공동주택관리정보시스템(K-apt) 공용관리비 · 공공데이터포털 OpenAPI",
+        "url": "https://www.data.go.kr/data/15057937/openapi.do",
+        "publisher": "국토교통부",
+        "endpoint": "https://apis.data.go.kr/1613000/AptCmnuseManageCostServiceV3/<항목별 오퍼레이션>"
+      },
+      "note": "공용관리비 17개 항목 합계를 관리비부과면적으로 나눈 값이다. 개별사용료(난방·급탕·전기·수도)와 장기수선충당금은 포함하지 않는다."
+    },
+    "202608": {
+      "slug": "eunma",
+      "complex_name": "은마아파트",
+      "kapt_code": "A13583507",
+      "kapt_name": "은마",
+      "period": "202608",
+      "area_m2": 470731.53,
+      "area_m2_derived": 470731.53,
+      "area_field": "kaptMarea",
+      "area_source": "official_api",
+      "area_note": null,
+      "breakdown": null,
+      "crosscheck": null,
+      "common_fee_total_won": 637322558,
+      "per_m2_won": 1353.9,
+      "per_m2_available": true,
+      "items": {
+        "인건비": {
+          "amount_won": 171667590,
+          "detail": {
+            "pay": 115964090.0,
+            "sundryCost": 14770470.0,
+            "bonus": 9706810.0,
+            "pension": 15306500.0,
+            "accidentPremium": 885170.0,
+            "employPremium": 1082460.0,
+            "nationalPension": 2685970.0,
+            "healthPremium": 4517420.0,
+            "welfareBenefit": 6748700.0
+          },
+          "op": "getHsmpLaborCostInfoV3"
+        },
+        "제사무비": {
+          "amount_won": 2253000,
+          "detail": {
+            "officeSupply": 547600.0,
+            "bookSupply": 1699500.0,
+            "transportCost": 5900.0
+          },
+          "op": "getHsmpOfcrkCostInfoV3"
+        },
+        "제세공과금": {
+          "amount_won": 2259950,
+          "detail": {
+            "electCost": 0.0,
+            "telCost": 387360.0,
+            "postageCost": 3830.0,
+            "taxrestCost": 1868760.0
+          },
+          "op": "getHsmpTaxdueInfoV3"
+        },
+        "피복비": {
+          "amount_won": 881660,
+          "detail": {
+            "clothesCost": 881660.0
+          },
+          "op": "getHsmpClothingCostInfoV3"
+        },
+        "교육훈련비": {
+          "amount_won": 90000,
+          "detail": {
+            "eduCost": 90000.0
+          },
+          "op": "getHsmpEduTraingCostInfoV3"
+        },
+        "차량유지비": {
+          "amount_won": 358060,
+          "detail": {
+            "fuelCost": 0.0,
+            "refairCost": 0.0,
+            "carInsurance": 0.0,
+            "carEtc": 358060.0
+          },
+          "op": "getHsmpVhcleMntncCostInfoV3"
+        },
+        "그 밖의 부대비용": {
+          "amount_won": 1865290,
+          "detail": {
+            "careItemCost": 757020.0,
+            "accountingCost": 569250.0,
+            "hiddenCost": 539020.0
+          },
+          "op": "getHsmpEtcCostInfoV3"
+        },
+        "경비비": {
+          "amount_won": 288995350,
+          "detail": {
+            "guardCost": 288995350.0
+          },
+          "op": "getHsmpGuardCostInfoV3"
+        },
+        "청소비": {
+          "amount_won": 83371390,
+          "detail": {
+            "cleanCost": 83371390.0
+          },
+          "op": "getHsmpCleaningCostInfoV3"
+        },
+        "소독비": {
+          "amount_won": 5836300,
+          "detail": {
+            "disinfCost": 5836300.0
+          },
+          "op": "getHsmpDisinfectionCostInfoV3"
+        },
+        "승강기유지비": {
+          "amount_won": 11620840,
+          "detail": {
+            "elevCost": 11620840.0
+          },
+          "op": "getHsmpElevatorMntncCostInfoV3"
+        },
+        "지능형 홈네트워크 설비 유지비": {
+          "amount_won": 0,
+          "detail": {
+            "hnetwCost": 0.0
+          },
+          "op": "getHsmpHomeNetworkMntncCostInfoV3"
+        },
+        "수선비": {
+          "amount_won": 60488935,
+          "detail": {
+            "lrefCost1": 60488935.0
+          },
+          "op": "getHsmpRepairsCostInfoV3"
+        },
+        "시설유지비": {
+          "amount_won": 5045200,
+          "detail": {
+            "lrefCost2": 5045200.0
+          },
+          "op": "getHsmpFacilityMntncCostInfoV3"
+        },
+        "안전점검비": {
+          "amount_won": 0,
+          "detail": {
+            "lrefCost3": 0.0
+          },
+          "op": "getHsmpSafetyCheckUpCostInfoV3"
+        },
+        "재해예방비": {
+          "amount_won": 0,
+          "detail": {
+            "lrefCost4": 0.0
+          },
+          "op": "getHsmpDisasterPreventionCostInfoV3"
+        },
+        "위탁관리수수료": {
+          "amount_won": 2588993,
+          "detail": {
+            "manageCost": 2588993.0
+          },
+          "op": "getHsmpConsignManageFeeInfoV3"
+        }
+      },
+      "failures": {},
+      "complete": true,
+      "fetched_at": "2026-11-09T00:34:01+0000",
+      "source": {
+        "label": "공동주택관리정보시스템(K-apt) 공용관리비 · 공공데이터포털 OpenAPI",
+        "url": "https://www.data.go.kr/data/15057937/openapi.do",
+        "publisher": "국토교통부",
+        "endpoint": "https://apis.data.go.kr/1613000/AptCmnuseManageCostServiceV3/<항목별 오퍼레이션>"
+      },
+      "note": "공용관리비 17개 항목 합계를 관리비부과면적으로 나눈 값이다. 개별사용료(난방·급탕·전기·수도)와 장기수선충당금은 포함하지 않는다."
+    },
+    "202609": {
+      "slug": "eunma",
+      "complex_name": "은마아파트",
+      "kapt_code": "A13583507",
+      "kapt_name": "은마",
+      "period": "202609",
+      "area_m2": 470731.53,
+      "area_m2_derived": 470731.53,
+      "area_field": "kaptMarea",
+      "area_source": "official_api",
+      "area_note": null,
+      "breakdown": null,
+      "crosscheck": null,
+      "common_fee_total_won": 710681993,
+      "per_m2_won": 1509.74,
+      "per_m2_available": true,
+      "items": {
+        "인건비": {
+          "amount_won": 176008960,
+          "detail": {
+            "pay": 117817420.0,
+            "sundryCost": 13844080.0,
+            "bonus": 9706810.0,
+            "pension": 15306500.0,
+            "accidentPremium": 885170.0,
+            "employPremium": 1082460.0,
+            "nationalPension": 2685970.0,
+            "healthPremium": 4517420.0,
+            "welfareBenefit": 10163130.0
+          },
+          "op": "getHsmpLaborCostInfoV3"
+        },
+        "제사무비": {
+          "amount_won": 2039400,
+          "detail": {
+            "officeSupply": 496200.0,
+            "bookSupply": 1523500.0,
+            "transportCost": 19700.0
+          },
+          "op": "getHsmpOfcrkCostInfoV3"
+        },
+        "제세공과금": {
+          "amount_won": 41093070,
+          "detail": {
+            "electCost": 0.0,
+            "telCost": 565510.0,
+            "postageCost": 18120.0,
+            "taxrestCost": 40509440.0
+          },
+          "op": "getHsmpTaxdueInfoV3"
+        },
+        "피복비": {
+          "amount_won": 881660,
+          "detail": {
+            "clothesCost": 881660.0
+          },
+          "op": "getHsmpClothingCostInfoV3"
+        },
+        "교육훈련비": {
+          "amount_won": 171000,
+          "detail": {
+            "eduCost": 171000.0
+          },
+          "op": "getHsmpEduTraingCostInfoV3"
+        },
+        "차량유지비": {
+          "amount_won": 347060,
+          "detail": {
+            "fuelCost": 0.0,
+            "refairCost": 0.0,
+            "carInsurance": 0.0,
+            "carEtc": 347060.0
+          },
+          "op": "getHsmpVhcleMntncCostInfoV3"
+        },
+        "그 밖의 부대비용": {
+          "amount_won": 1656100,
+          "detail": {
+            "careItemCost": 804420.0,
+            "accountingCost": 393800.0,
+            "hiddenCost": 457880.0
+          },
+          "op": "getHsmpEtcCostInfoV3"
+        },
+        "경비비": {
+          "amount_won": 290716460,
+          "detail": {
+            "guardCost": 290716460.0
+          },
+          "op": "getHsmpGuardCostInfoV3"
+        },
+        "청소비": {
+          "amount_won": 82809690,
+          "detail": {
+            "cleanCost": 82809690.0
+          },
+          "op": "getHsmpCleaningCostInfoV3"
+        },
+        "소독비": {
+          "amount_won": 5836300,
+          "detail": {
+            "disinfCost": 5836300.0
+          },
+          "op": "getHsmpDisinfectionCostInfoV3"
+        },
+        "승강기유지비": {
+          "amount_won": 6578330,
+          "detail": {
+            "elevCost": 6578330.0
+          },
+          "op": "getHsmpElevatorMntncCostInfoV3"
+        },
+        "지능형 홈네트워크 설비 유지비": {
+          "amount_won": 0,
+          "detail": {
+            "hnetwCost": 0.0
+          },
+          "op": "getHsmpHomeNetworkMntncCostInfoV3"
+        },
+        "수선비": {
+          "amount_won": 96962770,
+          "detail": {
+            "lrefCost1": 96962770.0
+          },
+          "op": "getHsmpRepairsCostInfoV3"
+        },
+        "시설유지비": {
+          "amount_won": 2992200,
+          "detail": {
+            "lrefCost2": 2992200.0
+          },
+          "op": "getHsmpFacilityMntncCostInfoV3"
+        },
+        "안전점검비": {
+          "amount_won": 0,
+          "detail": {
+            "lrefCost3": 0.0
+          },
+          "op": "getHsmpSafetyCheckUpCostInfoV3"
+        },
+        "재해예방비": {
+          "amount_won": 0,
+          "detail": {
+            "lrefCost4": 0.0
+          },
+          "op": "getHsmpDisasterPreventionCostInfoV3"
+        },
+        "위탁관리수수료": {
+          "amount_won": 2588993,
+          "detail": {
+            "manageCost": 2588993.0
+          },
+          "op": "getHsmpConsignManageFeeInfoV3"
+        }
+      },
+      "failures": {},
+      "complete": true,
+      "fetched_at": "2026-11-09T00:34:47+0000",
+      "source": {
+        "label": "공동주택관리정보시스템(K-apt) 공용관리비 · 공공데이터포털 OpenAPI",
+        "url": "https://www.data.go.kr/data/15057937/openapi.do",
+        "publisher": "국토교통부",
+        "endpoint": "https://apis.data.go.kr/1613000/AptCmnuseManageCostServiceV3/<항목별 오퍼레이션>"
       },
       "note": "공용관리비 17개 항목 합계를 관리비부과면적으로 나눈 값이다. 개별사용료(난방·급탕·전기·수도)와 장기수선충당금은 포함하지 않는다."
     }

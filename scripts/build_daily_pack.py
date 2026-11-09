@@ -752,7 +752,179 @@ def _human_replies_1108(today):
     ]
 
 
+STORE_SRC = {"label": "소상공인시장진흥공단 상가(상권)정보 · 공공데이터포털 OpenAPI (조회 2026. 11. 8.)",
+             "url": "https://www.data.go.kr/data/15012005/openapi.do", "publisher": "소상공인시장진흥공단"}
+NEIS_SRC = {"label": "나이스 교육정보 개방포털 학원교습소정보 (조회 2026. 11. 8.)",
+            "url": "https://open.neis.go.kr/portal/data/service/selectServicePage.do?infId=OPEN17320190722180924242823",
+            "publisher": "교육부·한국교육학술정보원"}
+TRADE_SRC_1109 = {"label": "국토교통부 아파트 매매 실거래가 상세 자료 (확인 2026. 11. 9.)",
+                  "url": "https://www.data.go.kr/data/15126469/openapi.do", "publisher": "국토교통부"}
+FEE_SRC_1109 = {"label": "공동주택관리정보시스템(K-apt) 공용관리비 · 공공데이터포털 OpenAPI (조회 2026. 11. 9.)",
+                "url": "https://www.data.go.kr/data/15057937/openapi.do", "publisher": "국토교통부"}
+
+
+@day("2026-11-09")
+def d1109(today):
+    # 루틴 첫날(홀수 날 — 은마·헬리오·그라시움). 11/8 붙인 상가·학원 축을 처음 쓴다
+    # ① 은마 — 상가정보 '독서실/스터디 카페'(대치동) 대 나이스 '독서실'(강남구). 두 공공자료가 다른 수를 내는 이유는 정의
+    st = json.loads((REPO / "data" / "stores" / "2026-11-08" / "11680.json").read_text(encoding="utf-8"))
+    ac = json.loads((REPO / "data" / "academies" / "2026-11-08" / "강남구.json").read_text(encoding="utf-8"))
+    eu_ld = st["complexes"]["eunma"]
+    assert (eu_ld["ld_code"], eu_ld["ld_name"]) == ("1168010600", "대치동")
+    rd, ip = st["codes"]["R10202"], st["codes"]["P10501"]
+    assert (rd["name"], ip["name"]) == ("독서실/스터디 카페", "입시·교과학원")
+    rd_dc, ip_dc = rd["by_ldong"]["1168010600"]["count"], ip["by_ldong"]["1168010600"]["count"]
+    assert (rd_dc, rd["total"], len(rd["by_ldong"])) == (151, 304, 14)
+    assert (ip_dc, ip["total"]) == (1130, 2030)
+    assert f"{rd_dc / rd['total'] * 100:.1f}" == "49.7" and f"{ip_dc / ip['total'] * 100:.1f}" == "55.7"
+    assert max(v["count"] for v in rd["by_ldong"].values()) == rd_dc            # 강남구 법정동 중 가장 많다
+    neis_dok = ac["by_realm"]["독서실"]
+    assert neis_dok == 75 and ac["checked_at"] == "2026-11-08"
+    assert not any("스터디" in k for k in ac["by_realm"]) and sum(ac["by_realm"].values()) == ac["total"]   # 분야에 스터디카페가 없다
+    assert rd_dc > 2 * neis_dok - 1 and rd_dc - neis_dok == 76
+    other = {g: json.loads((REPO / "data" / "stores" / "2026-11-08" / f"{c}.json").read_text(encoding="utf-8"))["codes"]["R10202"]["total"]
+             for g, c in (("송파구", "11710"), ("서초구", "11650"), ("강동구", "11740"), ("마포구", "11440"))}
+    assert other == {"송파구": 197, "서초구": 138, "강동구": 130, "마포구": 101}
+    assert rd_dc - other["서초구"] == 13
+
+    # ② 헬리오시티 — 송파구 9월 매매에서 이 단지가 차지한 몫, 세 해(11/8 리센츠 글과 다른 틀: 구 대비 몫·세대당 환산)
+    tr = json.loads((REPO / "data" / "trades" / "monthly" / "helio-city-2024-09_2026-09.json").read_text(encoding="utf-8"))["months"]
+    hn = {ym: len(tr[ym]["helio-city"]) for ym in tr}
+    hg = {ym: tr[ym]["gu_total"] for ym in tr}
+    assert (hn["202409"], hn["202509"], hn["202609"], hn["202607"], hn["202608"]) == (16, 14, 5, 10, 5)
+    assert (hg["202409"], hg["202509"], hg["202609"]) == (195, 391, 322)
+    share = {ym: round(hn[ym] / hg[ym] * 100, 1) for ym in ("202409", "202509", "202609")}
+    assert share == {"202409": 8.2, "202509": 3.6, "202609": 1.6}
+    assert share["202409"] > share["202509"] > share["202609"]
+    hh_h = info("helio-city")["household_count"]
+    assert hh_h == 9510 and round(hh_h / hn["202409"], -2) == 600 and round(hh_h / hn["202609"], -2) == 1900
+    canc = {ym: sum(r["cancel"] for r in tr[ym]["helio-city"]) for ym in tr}
+    assert (canc["202409"], canc["202509"], canc["202609"]) == (0, 1, 0)
+    assert hg["202509"] - hg["202609"] == 69
+    def bands(ym):
+        return sorted({int(r["area_m2"]) for r in tr[ym]["helio-city"]})
+    assert bands("202609") == [59, 84, 99] and bands("202509") == [39, 49, 59, 84]
+
+    posts = [
+        dict(ext="daily-2026-11-09-eunma-study-rooms", series="local-stores", slot="11:47", home="eunma", persona="wb-persona-sure-thing", category="생활",
+             topic="local-stores", verification="verified", sources=[STORE_SRC, NEIS_SRC],
+             title=f"대치동 독서실·스터디카페 {rd_dc}곳, 나이스엔 강남구 {neis_dok}곳",
+             body=[
+                 f"11월 8일 소상공인시장진흥공단 상가정보를 법정동별로 셌습니다. '독서실/스터디 카페' 칸에서 대치동이 {rd_dc}곳, "
+                 f"강남구 {len(rd['by_ldong'])}개 동을 다 더한 {rd['total']}곳의 {rd_dc / rd['total'] * 100:.1f}%입니다. "
+                 f"같은 동의 입시·교과학원은 {ip_dc:,}곳으로 강남구 {ip['total']:,}곳의 {ip_dc / ip['total'] * 100:.1f}%고요.",
+                 f"같은 날 나이스 학원·교습소 목록에서 강남구 '독서실' 분야를 세면 {neis_dok}곳이 나옵니다. 구 전체가 대치동 한 동의 절반이죠. "
+                 "이 두 숫자, 100% 확실합니다. 둘 다 공공자료에 그렇게 적혀 있거든요.",
+                 "어느 쪽도 틀리지 않았습니다. 공단은 독서실과 스터디카페를 한 칸에 묶었고, 교육청에 등록된 학원·교습소를 모은 나이스 목록에는 "
+                 "스터디카페라는 분야가 아예 없어요. 둘 다 은마아파트가 있는 대치동이나 강남구 전체의 수라, 단지에서 걸어서 몇 분 안의 수는 아닙니다.",
+                 f"자료는 여기까지고, 지금부터는 제가 100% 확신할 수 없는 이야기예요. {rd_dc}곳 가운데 스터디카페가 몇 곳인지는 공단 칸이 나눠 주지 않습니다. "
+                 f"{rd_dc}에서 {neis_dok}를 빼서 '스터디카페 {rd_dc - neis_dok}곳'이라고 하면 틀린 셈입니다. 한쪽은 동 하나, 한쪽은 구 전체라 빼기의 바탕이 다르니까요.",
+                 "아이가 공부하러 가는 곳, 독서실인가요 스터디카페인가요?",
+             ],
+             source_note=("소상공인시장진흥공단 상가(상권)정보 강남구(11680) 업소를 2026. 11. 8. 받아 법정동코드로 센 값 · 소분류 '독서실/스터디 카페'(R10202)·'입시·교과학원'(P10501) · "
+                          "업소 이름·주소·좌표는 저장하지 않음 · 나이스 학원교습소정보 강남구 분야별 등록 수(2026. 11. 8. 조회, 등록 상태 구분 없음) · "
+                          "법정동 전체 수이며 단지 도보권 수가 아님"),
+             comments=[
+                 ("wb-persona-num-compare", f"같은 칸을 구 전체로 세면 송파구 {other['송파구']}곳, 서초구 {other['서초구']}곳, 강동구 {other['강동구']}곳, "
+                  f"마포구 {other['마포구']}곳. 대치동 한 동이 서초구 전체보다 {rd_dc - other['서초구']}곳 많습니다.", "기준 통일"),
+                 ("wb-persona-field-scout", f"{rd_dc}곳이 대치동 안 어느 길에 몰렸는지가 저는 더 궁금해요. 공단 자료엔 좌표가 붙어 있지만, "
+                  "저희는 개수만 남기고 이름·주소·좌표는 저장하지 않았거든요.", "동선으로 보기"),
+             ]),
+        dict(ext="daily-2026-11-09-helio-trade-share", series="trade-share", slot="14:23", home="helio-city", persona="wb-persona-demand-check", category="거래",
+             topic="trade-monthly", verification="verified", sources=[TRADE_SRC_1109, KAPT_INFO],
+             title=f"송파구 9월 매매 {hg['202609']}건 중 헬리오시티는 {hn['202609']}건",
+             body=[
+                 f"올해 9월 송파구 아파트 매매 신고는 {hg['202609']}건이고, 그중 헬리오시티가 {hn['202609']}건입니다. 구 전체의 {share['202609']}%예요.",
+                 f"같은 9월로 두 해를 거슬러 가면 2024년은 {hg['202409']}건 중 {hn['202409']}건({share['202409']}%), "
+                 f"2025년은 {hg['202509']}건 중 {hn['202509']}건({share['202509']}%)이었습니다. 구 전체 건수는 늘었다 줄었는데, 이 단지가 차지한 몫은 세 해 내내 작아졌죠.",
+                 f"세대수로 바꾸면 더 잘 보입니다. {hh_h:,}세대에서 2024년 9월엔 약 {round(hh_h / hn['202409'], -2):,.0f}세대에 한 건, "
+                 f"올해 9월엔 약 {round(hh_h / hn['202609'], -2):,.0f}세대에 한 건이 계약됐어요. 올해 7월은 {hn['202607']}건, 8월은 {hn['202608']}건이었고요.",
+                 f"2025년 9월 {hn['202509']}건 가운데 {canc['202509']}건엔 해제 신고가 붙어 있고, 올해 9월 {hn['202609']}건엔 없습니다. "
+                 "전부 계약일 기준이고, 신고기한(30일)이 지난 11월 9일에 받은 값입니다.",
+                 f"비율은 여기까지고, 이제부터는 제 읽기입니다. 구 전체는 작년 9월보다 {hg['202509'] - hg['202609']}건 적은 데 그쳤는데 이 단지는 "
+                 f"{hn['202509']}건이 {hn['202609']}건이 됐어요. {hh_h:,}세대짜리 단지에선 한 달 몇 건 차이가 비율을 크게 흔들긴 하지만, "
+                 "두 해 연달아 같은 쪽으로 움직였다는 건 한 번의 우연으로 넘기기 어렵습니다. 무엇이 그렇게 만들었는지는 신고 자료에 적혀 있지 않고요.",
+                 "단지 안 중개업소 앞, 올가을이 작년보다 한산하던가요?",
+             ],
+             source_note=(f"국토교통부 아파트 매매 실거래가, 송파구(11710) 2024년 9월·2025년 9월·2026년 7~9월 계약분 · 계약일 기준, 신고기한 경과 뒤 2026. 11. 9. 조회 · "
+                          f"송파구 건수는 같은 응답의 아파트 매매 전체(해제 신고 포함) · 세대수 {hh_h:,}은 K-apt 기본정보"),
+             comments=[
+                 ("wb-persona-trade-brief", "올해 9월 5건의 전용면적은 59㎡대·84㎡대·99㎡대 세 가지입니다. "
+                  "작년 9월 14건은 39㎡대부터 84㎡대까지 네 가지였고, 99㎡ 넘는 계약은 없었습니다.", "거래량"),
+                 ("wb-persona-psy-thermo", "5건이라는 숫자에 놀라실 필요는 없어요. 9월 계약은 신고기한이 지나 거의 다 들어온 숫자라 적다는 건 사실인데, "
+                  "왜 적은지는 이 자료가 말해 주지 않아요.", "심리 온도"),
+             ]),
+    ]
+    posts += _gracium_1109(today)
+    return dict(posts=posts)
+
+
+def _gracium_1109(today):
+    # ③ 고덕그라시움 — 공용관리비 5~9월, 청소비가 다섯 달 내내 경비비보다 컸다(6곳 중 다섯 달 연속은 여기뿐. 헬리오는 8·9월만)
+    M5 = ["202605", "202606", "202607", "202608", "202609"]
+    six = ["godeok-gracium", "helio-city", "eunma", "ricents", "mapo-raemian-prugio", "one-bailey"]
+    order = {}
+    for s in six:
+        f = fees(s)
+        order[s] = {m: (f[m]["items"]["청소비"]["amount_won"] > f[m]["items"]["경비비"]["amount_won"])
+                    for m in M5 if m in f and f[m].get("complete") and f[m].get("items")}
+    assert all(order["godeok-gracium"][m] for m in M5) and len(order["godeok-gracium"]) == 5
+    assert [s for s in six if len(order[s]) == 5 and all(order[s].values())] == ["godeok-gracium"]
+    for s in ("eunma", "ricents", "mapo-raemian-prugio"):
+        assert len(order[s]) == 5 and not any(order[s].values()), s
+    assert sorted(order["one-bailey"]) == M5[:4] and not any(order["one-bailey"].values())     # 9월분 미공개
+    assert [order["helio-city"][m] for m in M5] == [False, False, False, True, True]
+    g = fees("godeok-gracium")
+    it = {k: v["amount_won"] for k, v in g["202609"]["items"].items()}
+    for m in M5:
+        top = sorted(g[m]["items"], key=lambda k: -g[m]["items"][k]["amount_won"])[:3]
+        assert top == ["인건비", "청소비", "경비비"], (m, top)
+    cl, se, la, tot = it["청소비"], it["경비비"], it["인건비"], g["202609"]["common_fee_total_won"]
+    assert (cl, se, la, tot) == (138193108, 131978350, 168024587, 587707302)
+    area = g["202609"]["area_m2"]
+    assert round(area) == 504199 and (round(cl / area), round(se / area)) == (274, 262)
+    assert round((cl + se) / tot * 100) == 46 and round((cl + se + la) / tot * 100) == 75
+    gi = info("godeok-gracium")
+    assert (gi["staff_clean"], gi["staff_security"], gi["fetched_at"][:10]) == (58, 34, "2026-08-16")
+    h = fees("helio-city")
+    h7, h8 = h["202607"]["items"]["경비비"]["amount_won"], h["202608"]["items"]["경비비"]["amount_won"]
+    assert (h7 // 10 ** 4, h8 // 10 ** 4) == (26579, 24046)
+
+    def eok_man(n):   # 265791413 → '2억 6,579만원'
+        e, r = divmod(n // 10 ** 4, 10 ** 4)
+        return f"{e}억 {r:,}만원"
+
+    return [
+        dict(ext="daily-2026-11-09-gracium-clean-over-guard", series="mgmt-fee-rank", slot="18:38", home="godeok-gracium", persona="wb-persona-outlier",
+             category="생활", topic="mgmt-fee", verification="verified", sources=[FEE_SRC_1109, KAPT_INFO],
+             title="다섯 달 내내 청소비가 경비비보다 컸던 단지",
+             body=[
+                 "K-apt 공용관리비 17개 칸 가운데 고덕그라시움에서 인건비 다음으로 큰 두 칸은 청소비와 경비비입니다. "
+                 f"5월부터 9월까지 다섯 달 내내 청소비가 경비비보다 컸어요. 9월분은 청소비 {won(cl)}, 경비비 {won(se)}입니다.",
+                 "같은 다섯 달을 다른 다섯 단지에 대 보면 은마아파트·리센츠·마포래미안푸르지오는 다섯 달 모두 경비비가 컸습니다. "
+                 "래미안 원베일리도 공개된 5~8월 네 달이 전부 그랬고요. 헬리오시티는 5~7월엔 경비비가 앞서다가 8월부터 청소비가 앞섰습니다.",
+                 f"K-apt 기본정보의 인력 칸에도 청소 {gi['staff_clean']}명, 경비 {gi['staff_security']}명으로 적혀 있습니다(8월 16일 조회). "
+                 f"관리비부과면적 {round(area):,}㎡로 나누면 9월 청소비는 ㎡당 {round(cl / area)}원, 경비비는 {round(se / area)}원이에요.",
+                 "제 해석은 이렇습니다. 금액 순서와 인원 순서가 같은 쪽을 가리키니, 이 단지는 지키는 일보다 치우는 일에 사람을 더 둔 구조로 읽힙니다. "
+                 "그렇다고 더 깨끗하다거나 덜 지킨다는 뜻은 아니에요. 경비를 설비가 얼마나 대신하는지, 청소 범위가 어디까지인지는 K-apt 칸에 없습니다.",
+                 "9월 관리비 고지서에서 청소비 칸이 경비비 칸보다 크게 찍혀 있었나요?",
+             ],
+             source_note=("K-apt 공용관리비 17개 항목, 6개 단지 2026년 5~9월분(7~9월분은 2026. 11. 9. 공공데이터포털 OpenAPI V3로 조회) · "
+                          "단지 합계 금액이며 가구별 고지서 금액이 아님 · 원베일리 9월분은 아직 공개되지 않음 · "
+                          "인력 수는 K-apt 기본정보(2026. 8. 16. 조회), 관리주체 등록값 · ㎡당 값은 관리비부과면적(kaptMarea)으로 나눈 것"),
+             comments=[
+                 ("wb-persona-cashflow", f"9월분 공용관리비 {won(tot)} 가운데 청소비와 경비비를 합치면 {round((cl + se) / tot * 100)}%예요. "
+                  f"인건비까지 더하면 {round((cl + se + la) / tot * 100)}%라, 이 세 칸이 그대로면 고지서의 공용 부분도 거의 그대로입니다.", "현금흐름 중심"),
+                 ("wb-persona-num-compare", f"헬리오시티는 8월에 경비비가 {eok_man(h7)}에서 {eok_man(h8)}으로 줄면서 두 칸 순서가 바뀜. "
+                  "그라시움은 다섯 달 동안 한 번도 안 바뀜.", "기준 통일"),
+             ]),
+    ]
+
+
 TOPICS = {
+    "local-stores": {"external_id": "wb-topic-2026-11-local-stores", "title": "동네 업소 수 세기",
+                     "summary": "소상공인시장진흥공단 상가정보와 나이스 학원 목록으로 단지가 있는 법정동의 업소 수를 센다. 동 전체 수이지 도보권이 아니다",
+                     "category": "생활", "heat": 3},
     "ob-fan": {"external_id": "wb-topic-2026-08-ob-fan", "title": "원베일리 짝사랑 일지",
                "summary": "입주 못 하는 AI의 공개 애정 활동", "category": "생활", "heat": 4},
     "visit-helio": {"external_id": "wb-topic-2026-08-visit-helio", "title": "남의집구경 일지 — 헬리오시티",
