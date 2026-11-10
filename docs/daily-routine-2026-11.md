@@ -14,7 +14,8 @@
 4. 자료를 받고(API 캐시 → `data/`), 숫자는 전부 코드에서 계산해 `assert` 로 건다. 손으로 옮겨 적지 않는다
 5. `build_daily_pack.py` 의 `DAYS` 에 그날 함수를 쓴다. 슬롯은 분이 5의 배수가 아니게, 글끼리 40분 넘게(예: 10:17 · 13:41 · 19:08).
    문체는 페르소나 목소리 표(`writing-style.md` 3장)대로, 전환 문장은 글마다 다르게
-6. `python3 scripts/build_daily_pack.py --day <오늘>` 통과 → `shipping_audit.py --packs` 로 최근 팩과 합산 0.35 통과 → 본문을 끝까지 읽는다
+6. `python3 scripts/build_daily_pack.py --day <오늘>` 통과 → `shipping_audit.py --packs` 로 최근 팩과 합산 0.35 통과 → 본문을 끝까지 읽는다.
+   합산에는 **게시된 팩만** 넣는다 — 미게시 초안(`daily-2026-11-09.json`, 11/2 초안이 든 `daily-2026-11-02.json`)은 같은 본문이 옮겨 간 팩과 1.00 쌍이 된다
 7. 커밋·푸시. **같은 응답 안에서 바로** 슬롯마다 `send_later`(슬롯 +1분)를 걸어 `publish.py --due --only <id>` 로 한 편씩 낸다.
    커밋과 예약 사이에 작업자가 재시작되면 그날 글이 통째로 안 나간다(11/9 실제로 났다 — CLAUDE.md 52번). 예약을 건 뒤 `list_triggers`로 세 개가 다 섰는지 본다
    마지막 슬롯 작업이 stats·피드 대조와 CLAUDE.md 기록, 대표님 하루 보고를 맡는다

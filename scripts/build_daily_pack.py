@@ -787,6 +787,7 @@ FEE_SRC_1109 = {"label": "공동주택관리정보시스템(K-apt) 공용관리�
 @day("2026-11-09")
 def d1109(today):
     # 루틴 첫날(홀수 날 — 은마·헬리오·그라시움). 11/8 붙인 상가·학원 축을 처음 쓴다
+    # ※ 이 날 글은 게시되지 않았다(슬롯 예약 누락). 11/11로 옮겼다 — d1111. content/daily-2026-11-09.json 은 미게시 초안이니 출고 검사 합산에 넣지 않는다
     # ① 은마 — 상가정보 '독서실/스터디 카페'(대치동) 대 나이스 '독서실'(강남구). 두 공공자료가 다른 수를 내는 이유는 정의
     st = json.loads((REPO / "data" / "stores" / "2026-11-08" / "11680.json").read_text(encoding="utf-8"))
     ac = json.loads((REPO / "data" / "academies" / "2026-11-08" / "강남구.json").read_text(encoding="utf-8"))
@@ -1107,6 +1108,77 @@ def d1110(today):
                  ("wb-persona-demand-check", f"9월 잠실동 전월세 {jr}건 중 리센츠 {jra['리센츠']}건, 잠실엘스 {jra['잠실엘스']}건입니다. 두 단지가 {two}%를 차지합니다.", "수요 밀도"),
              ]),
     ])
+
+
+@day("2026-11-11")
+def d1111(today):
+    # 홀수 날. 11/9 3편은 슬롯 예약이 빠져 나가지 않았다(CLAUDE.md 52번) — 과거 날짜로 올리지 않고 같은 배정의 다음 홀수 날로 옮긴다.
+    # 은마·그라시움은 11/9 초안 그대로(id만 11-11로). 헬리오는 송파구 9월 322건 중 170건 묶음을 분모에서 빼고 다시 썼다 —
+    # 초안의 '몫이 세 해 내내 작아졌다'(8.2 → 3.6 → 1.6%)는 묶음이 만든 숫자였다(묶음 제외 3.3%)
+    import copy
+    src = {p["ext"]: p for p in d1109(today)["posts"]}
+    posts = []
+    for old in ("daily-2026-11-09-eunma-study-rooms", "daily-2026-11-09-gracium-clean-over-guard"):
+        p = copy.deepcopy(src[old])
+        p["ext"] = old.replace("2026-11-09", "2026-11-11")
+        posts.append(p)
+
+    gs = json.loads((REPO / "data" / "trades" / "gu" / "11710-202407_202609.json").read_text(encoding="utf-8"))["months"]
+    hn = {ym: gs[ym]["by_dong_apt"]["가락동"]["헬리오시티"] for ym in ("202409", "202509", "202607", "202608", "202609")}
+    assert hn == {"202409": 16, "202509": 14, "202607": 10, "202608": 5, "202609": 5}
+    assert all("헬리오시티" not in v for dg, v in gs["202609"]["by_dong_apt"].items() if dg != "가락동")
+    tot = {ym: gs[ym]["total"] for ym in ("202409", "202509", "202609")}
+    assert tot == {"202409": 195, "202509": 391, "202609": 322}
+    assert not gs["202409"]["bulks"] and not gs["202509"]["bulks"] and len(gs["202609"]["bulks"]) == 1
+    bk = gs["202609"]["bulks"][0]
+    assert (bk["apt"], bk["dong"], bk["deal_date"], bk["n"]) == ("송파해링턴타워", "장지동", "2026-09-18", 170)
+    assert bk["dealing"] == {"직거래": 170} and bk["seller"] == {"법인": 170} and bk["buyer"] == {"공공기관": 170} and bk["area_m2_int"] == {"18": 170}
+    ex26 = gs["202609"]["total_minus_bulks"]
+    assert ex26 == 152
+    share = {"202409": round(hn["202409"] / tot["202409"] * 100, 1), "202509": round(hn["202509"] / tot["202509"] * 100, 1),
+             "202609": round(hn["202609"] / ex26 * 100, 1)}
+    assert share == {"202409": 8.2, "202509": 3.6, "202609": 3.3}
+    assert round(hn["202609"] / tot["202609"] * 100, 1) == 1.6           # 초안이 쓴 값(묶음 포함)
+    keep_h, keep_g = round(hn["202609"] / hn["202509"] * 100), round(ex26 / tot["202509"] * 100)
+    assert (keep_h, keep_g) == (36, 39)
+    hh_h = info("helio-city")["household_count"]
+    assert hh_h == 9510 and round(hh_h / hn["202409"], -2) == 600 and round(hh_h / hn["202609"], -2) == 1900
+    tr = json.loads((REPO / "data" / "trades" / "monthly" / "helio-city-2024-09_2026-09.json").read_text(encoding="utf-8"))["months"]
+    assert {ym: len(tr[ym]["helio-city"]) for ym in tr} == hn                          # 11/9 단지 캐시와 11/10 구 요약이 같은 수
+    canc = {ym: sum(r["cancel"] for r in tr[ym]["helio-city"]) for ym in ("202409", "202509", "202609")}
+    assert canc == {"202409": 0, "202509": 1, "202609": 0}
+    assert sorted({int(r["area_m2"]) for r in tr["202609"]["helio-city"]}) == [59, 84, 99]
+    assert sorted({int(r["area_m2"]) for r in tr["202509"]["helio-city"]}) == [39, 49, 59, 84]
+
+    posts.insert(1, dict(
+        ext="daily-2026-11-11-helio-trade-share", series="trade-share", slot="14:23", home="helio-city", persona="wb-persona-demand-check", category="거래",
+        topic="trade-monthly", verification="verified", sources=[TRADE_SRC_1110, KAPT_INFO],
+        title=f"헬리오시티 9월 매매 {hn['202509']}→{hn['202609']}건, 송파구는 {tot['202509']}→{ex26}건",
+        body=[
+            f"올해 9월 헬리오시티 매매 신고는 {hn['202609']}건입니다. 작년 9월은 {hn['202509']}건, 재작년 9월은 {hn['202409']}건이었고요.",
+            f"같은 9월 송파구 아파트 매매는 2024년 {tot['202409']}건, 2025년 {tot['202509']}건, 올해 {tot['202609']}건입니다. "
+            f"다만 올해 {tot['202609']}건 가운데 {bk['n']}건은 {bk['dong']} {bk['apt']} 한 단지에서 9월 18일 하루에 맺어진 계약이에요. "
+            f"전부 전용 18㎡대이고 법인이 팔고 공공기관이 산 직거래라, 이 묶음을 빼면 {ex26}건이 남습니다.",
+            f"그렇게 놓고 송파구 안에서 이 단지가 차지한 몫을 보면 2024년 9월 {share['202409']}%, 2025년 {share['202509']}%, 올해 {share['202609']}%(묶음을 뺀 {ex26}건 기준)입니다. "
+            "크게 줄어든 건 2024년에서 2025년 사이였고, 올해는 거의 그대로죠.",
+            f"세대수로 바꾸면 {hh_h:,}세대에서 2024년 9월엔 약 {round(hh_h / hn['202409'], -2):,.0f}세대에 한 건, "
+            f"올해 9월엔 약 {round(hh_h / hn['202609'], -2):,.0f}세대에 한 건이 계약됐습니다. 올해 7월은 {hn['202607']}건, 8월은 {hn['202608']}건이었어요. "
+            f"작년 9월 {hn['202509']}건 중 {canc['202509']}건엔 해제 신고가 붙어 있고, 올해 9월엔 없습니다.",
+            f"비율은 여기까지고, 이제부터는 제 읽기입니다. 작년 9월에서 올해 9월로 이 단지는 {hn['202509']}건이 {hn['202609']}건({keep_h}%)이 됐고, "
+            f"송파구도 묶음을 빼면 {tot['202509']}건이 {ex26}건({keep_g}%)이 됐어요. 이 단지만 따로 식었다기보다 구 전체와 비슷한 폭으로 줄었다고 읽힙니다. "
+            "구 전체 건수를 기준으로 쓸 때는 한 단지의 하루 묶음이 섞였는지부터 봐야 하는 이유이기도 하고요.",
+            "올가을 단지 안 중개업소 앞, 작년보다 한산하던가요?",
+        ],
+        source_note=(f"국토교통부 아파트 매매 실거래가 상세 자료, 송파구(11710) 2024년 9월·2025년 9월·2026년 7~9월 계약분 · 계약일 기준, 신고기한 경과 뒤 2026. 11. 10. 조회 · "
+                     f"송파구 건수는 같은 응답의 아파트 매매 전체(해제 신고 포함) · 2026년 9월 묶음 = 같은 단지·같은 계약일 {bk['n']}건(직거래·매도 법인·매수 공공기관) · "
+                     f"세대수 {hh_h:,}은 K-apt 기본정보"),
+        comments=[
+            ("wb-persona-trade-brief", f"올해 9월 {hn['202609']}건의 전용면적은 59㎡대·84㎡대·99㎡대 세 가지입니다. "
+             f"작년 9월 {hn['202509']}건은 39㎡대부터 84㎡대까지 네 가지였고, 99㎡ 넘는 계약은 없었습니다.", "거래량"),
+            ("wb-persona-psy-thermo", f"{hn['202609']}건이라는 숫자만 보고 놀라실 일은 아니에요. 구 전체가 같이 줄었으니까요. "
+             "왜 줄었는지는 신고 자료가 말해 주지 않아요.", "심리 온도"),
+        ]))
+    return dict(posts=posts)
 
 
 TOPICS = {
