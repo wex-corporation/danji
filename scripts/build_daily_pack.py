@@ -526,6 +526,10 @@ FEE_SRC_1108 = {"label": "공동주택관리정보시스템(K-apt) 공용관리�
                 "url": "https://www.data.go.kr/data/15057937/openapi.do", "publisher": "국토교통부"}
 RENT_SRC_1108 = {"label": "국토교통부 아파트 전월세 실거래가 자료 (확인 2026. 11. 8.)",
                  "url": "https://www.data.go.kr/data/15058017/openapi.do", "publisher": "국토교통부"}
+TRADE_SRC_1110 = {"label": "국토교통부 아파트 매매 실거래가 상세 자료 (확인 2026. 11. 10.)",
+                  "url": "https://www.data.go.kr/data/15126469/openapi.do", "publisher": "국토교통부"}
+RENT_SRC_1110 = {"label": "국토교통부 아파트 전월세 실거래가 자료 (확인 2026. 11. 10.)",
+                 "url": "https://www.data.go.kr/data/15058017/openapi.do", "publisher": "국토교통부"}
 
 
 def fees(slug):
@@ -548,6 +552,19 @@ def d1108(today):
     assert (small["202409"], small["202509"], small["202609"]) == (2, 10, 5)
     keep_cx, keep_dj = round(n["202609"] / n["202509"] * 100), round(gu["202609"] / gu["202509"] * 100)
     assert (keep_cx, keep_dj) == (41, 82)
+    # 11/10 고침: 송파구 9월 322건 중 170건이 한 단지(장지동)의 9월 18일 하루 직거래 묶음이었다. 82%는 그 묶음이 만든 숫자다
+    gs = json.loads((REPO / "data" / "trades" / "gu" / "11710-202407_202609.json").read_text(encoding="utf-8"))["months"]
+    assert (gs["202409"]["total"], gs["202509"]["total"], gs["202609"]["total"]) == (195, 391, 322)
+    assert not gs["202409"]["bulks"] and not gs["202509"]["bulks"] and len(gs["202609"]["bulks"]) == 1
+    bk = gs["202609"]["bulks"][0]
+    assert (bk["apt"], bk["dong"], bk["deal_date"], bk["n"]) == ("송파해링턴타워", "장지동", "2026-09-18", 170)
+    assert bk["dealing"] == {"직거래": 170} and bk["seller"] == {"법인": 170} and bk["buyer"] == {"공공기관": 170}
+    assert bk["area_m2_int"] == {"18": 170} and bk["cancel"] == 0
+    gu_ex = gs["202609"]["total_minus_bulks"]
+    keep_ex = round(gu_ex / gu["202509"] * 100)
+    assert (gu_ex, keep_ex) == (152, 39)
+    g7, g8 = gs["202607"]["total"], gs["202608"]["total"]
+    assert (g7, g8) == (319, 175) and not gs["202607"]["bulks"] and not gs["202608"]["bulks"] and g7 > g8 > gu_ex
     hh = info("ricents")["household_count"]
     assert hh == 5563
     turn25, turn26 = round(n["202509"] / hh * 100, 2), round(n["202609"] / hh * 100, 2)
@@ -559,7 +576,8 @@ def d1108(today):
     fm, fr = fees("mapo-raemian-prugio"), fees("ricents")
     months = ["202605", "202606", "202607", "202608", "202609"]
     assert all(fm[m]["complete"] and fr[m]["complete"] for m in months)
-    assert "202609" not in fees("one-bailey") and "202607" not in fees("helio-city")
+    # 11/8 조회 시점의 사실(원베일리 9월분·헬리오 7월분 없음). 11/9에 헬리오 7~9월을 받아 캐시가 늘었으므로 원베일리만 다시 확인한다
+    assert "202609" not in fees("one-bailey")
     pm = [fm[m]["per_m2_won"] for m in months]
     pr = [fr[m]["per_m2_won"] for m in months]
     assert pm == [1151.89, 1184.94, 1196.36, 1220.38, 1244.83] and all(b > a for a, b in zip(pm, pm[1:]))
@@ -601,13 +619,14 @@ def d1108(today):
 
     return dict(posts=[
         dict(ext="daily-2026-11-08-ricents-trade-3yrs", series="trade-yoy", slot="14:13", home="ricents", persona="wb-persona-past-cycle", category="거래",
-             topic="trade-monthly", verification="verified", sources=[TRADE_SRC_1108, KAPT_INFO],
+             topic="trade-monthly", verification="verified", sources=[TRADE_SRC_1108, TRADE_SRC_1110, KAPT_INFO], ver=2,
              title="세 해의 9월, 리센츠 매매는 6건·17건·7건",
              body=[
                  f"2024년 9월에 계약된 리센츠 매매는 {n['202409']}건이 신고됐었습니다. 이듬해 9월은 {n['202509']}건. 올해 9월은 {n['202609']}건입니다. "
                  "셋 다 해제 신고는 없고요.",
                  f"같은 석 달을 송파구 아파트 전체로 넓히면 {gu['202409']}건, {gu['202509']}건, {gu['202609']}건이었습니다. "
-                 f"구 전체는 올해 9월에 작년 9월의 {keep_dj}%를 지켰고, 이 단지는 {keep_cx}%예요.",
+                 f"다만 올해 9월 {gu['202609']}건 가운데 {bk['n']}건은 {bk['dong']} {bk['apt']} 한 단지에서 9월 18일 하루에 맺어진 계약이에요. "
+                 f"전부 전용 18㎡대이고, 법인이 팔고 공공기관이 산 직거래입니다. 이 {bk['n']}건을 빼면 {gu_ex}건으로 작년 9월의 {keep_ex}%, 이 단지는 {keep_cx}%예요.",
                  f"면적을 보면 세 해 {n['202409'] + n['202509'] + n['202609']}건이 전부 두 가지 안에 있습니다. 전용 27.68㎡와 84.99㎡. "
                  f"작년 9월 {n['202509']}건 중 {small['202509']}건이, 올해 9월 {n['202609']}건 중 {small['202609']}건이 27.68㎡였죠. 2024년에는 {n['202409']}건 중 {small['202409']}건이었고요.",
                  f"올해 7월은 {n['202607']}건, 8월은 {n['202608']}건이었으니 9월 {n['202609']}건은 여름 뒤의 걸음 그대로입니다. "
@@ -618,10 +637,12 @@ def d1108(today):
                  "27.68㎡ 쪽 계약이 많아진 건, 사시는 분들 눈에도 보이는 흐름인가요?",
              ],
              source_note=(f"국토교통부 아파트 매매 실거래가, 송파구(11710) 2024년 9월·2025년 9월·2026년 7~9월 계약분 · 계약일 기준, 신고기한 경과 뒤 2026. 11. 8. 조회 · "
-                          f"세 해 9월 모두 해제 신고 0건 · 세대수 {hh:,}은 K-apt 기본정보"),
+                          f"세 해 9월 모두 해제 신고 0건 · 세대수 {hh:,}은 K-apt 기본정보 · "
+                          f"2026. 11. 10. 고침 — 송파구 9월 {gu['202609']}건 중 {bk['n']}건이 한 단지의 하루 직거래 묶음이라는 사실을 덧붙이고, "
+                          f"구 전체 비교({keep_dj}% → 묶음 제외 {keep_ex}%)와 관점 댓글 하나를 고쳤다(송파구 7·8월은 11. 10. 다시 조회)"),
              comments=[
                  ("wb-persona-demand-check", f"회전율로 바꾸면 작년 9월 {turn25:.2f}%, 올해 9월 {turn26:.2f}%예요. {hh:,}세대 단지라 한 달 열 건 차이가 비율을 반으로 접습니다.", "수요 밀도"),
-                 ("wb-persona-trade-brief", f"송파구 9월 {gu['202609']}건은 7월 {tr['202607']['gu_total']}건과 거의 같은 수준이고, 8월 {tr['202608']['gu_total']}건의 두 배 가까이 됩니다. 구 전체 걸음은 8월에 한 번 꺾였다 돌아왔습니다.", "거래량"),
+                 ("wb-persona-trade-brief", f"송파구 9월 {gu['202609']}건에서 하루 묶음 {bk['n']}건을 빼면 {gu_ex}건입니다. 7월 {g7}건, 8월 {g8}건, 9월 {gu_ex}건으로 구 전체도 두 달째 줄었습니다.", "거래량"),
              ]),
         dict(ext="daily-2026-11-08-mapo-fee-5months", series="mgmt-fee-season", slot="16:47", home="mapo-raemian-prugio", persona="wb-persona-num-compare", category="생활",
              topic="mgmt-fee", verification="verified", sources=[FEE_SRC_1108, KAPT_INFO],
@@ -921,6 +942,173 @@ def _gracium_1109(today):
     ]
 
 
+STORE_SRC_1110 = dict(STORE_SRC)   # 상가정보는 11/8 조회분 그대로
+
+
+@day("2026-11-10")
+def d1110(today):
+    # 짝수 날(리센츠·마래푸·원베일리). 셋 다 이달 처음 쓰는 축: 원베일리 매매(등기일 칸) · 마래푸 전월세(열두 달 두 번) · 리센츠 상가(중개업소)
+    from statistics import median
+    # ① 원베일리 — 계약에서 등기까지(소재 21번). 실거래 응답의 rgstDate. 2022년 1월 계약분부터 전량(첫 계약 2023-04-01, 사용승인 2023-08-30 전 4건)
+    rg = json.loads((REPO / "data" / "trades" / "registry" / "one-bailey-202201_202609.json").read_text(encoding="utf-8"))
+    rows = rg["rows"]
+    assert rg["fetched_at"][:10] == "2026-11-10" and rg["apt_names"] == ["래미안원베일리"]
+    assert len(rows) == 202 and sum(1 for r in rows if r["rgst_date"]) == 173 and sum(r["cancel"] for r in rows) == 21
+    assert min(r["deal_date"] for r in rows) == "2023-04-01" and info("one-bailey")["use_approval_date"] == "20230830"
+    pre = [r for r in rows if r["deal_date"] < "2023-08-30" and not r["cancel"]]
+    assert len(pre) == 4 and all(r["rgst_date"] for r in pre)
+    assert not any(r["cancel"] and r["rgst_date"] for r in rows)                  # 해제된 거래엔 등기일이 없다
+    first_rg = min(r["rgst_date"] for r in rows if r["rgst_date"])
+    assert first_rg == "2024-07-23"
+
+    def lag(r):
+        return (date.fromisoformat(r["rgst_date"]) - date.fromisoformat(r["deal_date"])).days
+
+    live_ = [r for r in rows if not r["cancel"]]
+    y23 = [r for r in live_ if r["deal_date"] < "2024-01-01"]
+    assert len([r for r in rows if r["deal_date"] < "2024-01-01"]) == 19 and len(y23) == 17
+    assert all(r["rgst_date"] and r["rgst_date"] >= first_rg for r in y23)
+    l23 = sorted(lag(r) for r in y23)
+    assert (median(l23), l23[0]) == (332, 276)
+    assert all(r["rgst_date"] >= first_rg for r in live_ if r["deal_date"] < "2024-07-23" and r["rgst_date"])
+
+    def within(y0, y1, days=120):
+        rs = [r for r in live_ if y0 <= r["deal_date"] < y1]
+        return len(rs), sum(1 for r in rs if r["rgst_date"] and lag(r) <= days)
+    w24, w25, w26 = within("2024-01-01", "2025-01-01"), within("2025-01-01", "2026-01-01"), within("2026-01-01", "2026-07-01")
+    assert (w24, w25, w26) == ((68, 37), (58, 30), (30, 29))
+    assert (today - date(2026, 6, 30)).days > 120                                 # 상반기 계약은 넉 달이 다 지났다(잘리지 않는다)
+    h1 = [r for r in live_ if "2026-01-01" <= r["deal_date"] < "2026-07-01"]
+    assert all(r["rgst_date"] for r in h1) and median(lag(r) for r in h1) == 87.5
+    m24 = median(lag(r) for r in live_ if r["deal_date"][:4] == "2024" and r["rgst_date"])
+    m25 = median(lag(r) for r in live_ if r["deal_date"][:4] == "2025" and r["rgst_date"])
+    assert (m24, m25) == (117, 116) and l23[0] >= 9 * 30           # 질문의 '아홉 달 넘게'는 가장 짧은 276일 기준
+    blanks = [r for r in live_ if not r["rgst_date"]]
+    assert len(blanks) == 8
+    b_recent = [r for r in blanks if r["deal_date"] >= "2026-07-01"]
+    b_old = [r for r in blanks if r["deal_date"] < "2026-07-01"]
+    assert len(b_recent) == 5 and len(b_old) == 3 and all(r["deal_date"][:7] == "2025-03" and r["area_m2"] == 59.96 for r in b_old)
+    canc_y = {y: (sum(1 for r in rows if r["deal_date"][:4] == y), sum(r["cancel"] for r in rows if r["deal_date"][:4] == y)) for y in ("2024", "2025", "2026")}
+    assert canc_y == {"2024": (82, 14), "2025": (62, 4), "2026": (39, 1)} and sum(r["cancel"] for r in rows if r["deal_date"] < "2024") == 2
+    assert {r["dealing"] for r in rows} == {"중개거래"}
+    fast = sum(1 for r in live_ if r["rgst_date"] and lag(r) <= 10)
+    assert fast == 4
+
+    # ② 마래푸 — 전월세 신고 열두 달 두 번(2024.10~2025.9 대 2025.10~2026.9). 월세가 붙은 계약 건수는 그대로, 전세만 줄었다
+    rs = json.loads((REPO / "data" / "rents" / "series" / "mapo-raemian-prugio-202410_202609.json").read_text(encoding="utf-8"))
+    mo = rs["months"]
+    assert rs["fetched_at"][:10] == "2026-11-10" and len(rs["apt_names"]) == 4
+    A = [f"{y}{m:02d}" for y, m in [(2024, 10), (2024, 11), (2024, 12)] + [(2025, k) for k in range(1, 10)]]
+    Bm = [f"{y}{m:02d}" for y, m in [(2025, 10), (2025, 11), (2025, 12)] + [(2026, k) for k in range(1, 10)]]
+    nA, nB = sum(mo[m]["n"] for m in A), sum(mo[m]["n"] for m in Bm)
+    wA, wB = sum(mo[m]["with_monthly"] for m in A), sum(mo[m]["with_monthly"] for m in Bm)
+    jA, jB = sum(mo[m]["jeonse"] for m in A), sum(mo[m]["jeonse"] for m in Bm)
+    assert (nA, nB, wA, wB, jA, jB) == (790, 613, 271, 265, 519, 348)
+    sA, sB = round(wA / nA * 100, 1), round(wB / nB * 100, 1)
+    assert (sA, sB) == (34.3, 43.2) and wA - wB == 6 and jA - jB == 171
+    flipA = [m for m in A if mo[m]["with_monthly"] > mo[m]["jeonse"]]
+    flipB = [m for m in Bm if mo[m]["with_monthly"] > mo[m]["jeonse"]]
+    assert flipA == [] and flipB == ["202510", "202605", "202606", "202607"]
+    assert not any(mo[m]["with_monthly"] == mo[m]["jeonse"] for m in A + Bm)
+    assert round(jB / 12) == 29
+    assert info("mapo-raemian-prugio")["household_count"] == 3885
+
+    # ③ 리센츠 — 잠실동 부동산 중개업소(상가정보 L10203) 대 잠실동 아파트 매매·전월세 신고
+    st = json.loads((REPO / "data" / "stores" / "2026-11-08" / "11710.json").read_text(encoding="utf-8"))
+    assert (st["complexes"]["ricents"]["ld_code"], st["complexes"]["ricents"]["ld_name"]) == ("1171010100", "잠실동")
+    br = st["codes"]["L10203"]
+    assert br["name"] == "부동산 중개/대리업" and len(br["by_ldong"]) == 13
+    rank = sorted(br["by_ldong"].values(), key=lambda v: -v["count"])
+    assert [(v["name"], v["count"]) for v in rank[:2]] == [("문정동", 387), ("잠실동", 271)] and br["total"] == 1610
+    jb = br["by_ldong"]["1171010100"]["count"]
+    gs = json.loads((REPO / "data" / "trades" / "gu" / "11710-202407_202609.json").read_text(encoding="utf-8"))["months"]
+    j9 = gs["202609"]["by_dong"]["잠실동"]
+    ja = gs["202609"]["by_dong_apt"]["잠실동"]
+    assert j9 == 33 and sum(ja.values()) == 33
+    assert (ja["리센츠"], ja["잠실엘스"], ja["트리지움"], ja["주공아파트 5단지"], ja["레이크팰리스"]) == (7, 7, 7, 4, 4)
+    assert all(b["dong"] != "잠실동" for b in gs["202609"]["bulks"])
+    j12 = sum(gs[m]["by_dong"].get("잠실동", 0) for m in Bm)
+    assert j12 == 807 and round(j12 / jb, 2) == 2.98
+    rg9 = json.loads((REPO / "data" / "rents" / "gu" / "11710-202609_202609.json").read_text(encoding="utf-8"))["months"]["202609"]
+    jr = rg9["by_dong"]["잠실동"]
+    jra = rg9["by_dong_apt"]["잠실동"]
+    assert (jr, jra["리센츠"], jra["잠실엘스"]) == (190, 51, 48) and jr > 5 * j9
+    two = round((jra["리센츠"] + jra["잠실엘스"]) / jr * 100, 1)
+    assert two == 52.1
+    bk = gs["202609"]["bulks"][0]
+    assert (bk["n"], bk["dong"], gs["202609"]["total"], gs["202609"]["total_minus_bulks"]) == (170, "장지동", 322, 152)
+
+    return dict(posts=[
+        dict(ext="daily-2026-11-10-onebailey-registry", series="trade-registry", slot="11:53", home="one-bailey", persona="wb-persona-past-cycle", category="거래",
+             topic="trade-monthly", verification="verified", sources=[TRADE_SRC_1110, KAPT_INFO],
+             title="원베일리 매매, 첫 등기일은 2024년 7월 23일",
+             body=[
+                 f"래미안 원베일리 매매 신고를 2022년 1월 계약분부터 올해 9월 계약분까지 다 모았습니다. 첫 계약이 2023년 4월 1일이고 모두 {len(rows)}건, "
+                 f"등기일 칸이 채워진 거래는 {sum(1 for r in rows if r['rgst_date'])}건입니다. 그중 가장 이른 등기일은 2024년 7월 23일.",
+                 f"2023년에 맺은 계약 {len([r for r in rows if r['deal_date'] < '2024-01-01'])}건 가운데 해제를 뺀 {len(y23)}건은 전부 그날 이후에 등기됐었습니다. "
+                 f"사용승인일(2023년 8월 30일)보다 먼저 맺은 {len(pre)}건도 마찬가지였고요. 계약에서 등기까지 중앙값이 {median(l23)}일, 가장 짧았던 거래도 {l23[0]}일이 걸렸습니다.",
+                 f"넉 달(120일) 안에 등기까지 간 거래로 세어 보면 2024년 계약은 해제를 뺀 {w24[0]}건 중 {w24[1]}건, 2025년은 {w25[0]}건 중 {w25[1]}건이었습니다. "
+                 f"올해 1~6월 계약은 {w26[0]}건 중 {w26[1]}건이고요. 중앙값으로 놓으면 2024년 {m24:.0f}일, 2025년 {m25:.0f}일(등기된 거래 기준), 올해 상반기 {median(lag(r) for r in h1)}일로 줄었죠.",
+                 f"해제 표시 없이 등기일 칸이 빈 거래도 {len(blanks)}건 있습니다. {len(b_recent)}건은 올해 7~9월 계약이라 아직 잔금 전일 수 있고, "
+                 f"{len(b_old)}건은 2025년 3월 계약(전용 59.96㎡)이에요. 빈칸이 알려 주는 건 '등기가 아직 없다'까지입니다.",
+                 "기록은 여기까지고, 제 짐작을 붙이자면 입주 첫해 거래가 오래 걸린 건 계약이 굼떠서라기보다 이 단지 매매 가운데 첫 등기가 "
+                 "2024년 7월 23일에야 찍혔기 때문으로 보입니다. 그 전에 맺은 계약은 언제 맺었든 그날을 기다린 셈이니까요. "
+                 "왜 하필 그날이었는지는 신고 자료에 없어서 이 짐작이 틀릴 여지도 남아 있고, 빈칸이 나중에 채워지는지도 확인하지 못했습니다.",
+                 "입주 첫해에 계약하신 분들, 등기까지 아홉 달 넘게 걸렸던 게 맞나요?",
+             ],
+             source_note=("국토교통부 아파트 매매 실거래가 상세 자료, 서초구(11650) 2022년 1월~2026년 9월 계약분 중 래미안원베일리(첫 계약 2023. 4. 1.) · 2026. 11. 10. 조회 · "
+                          "등기일·해제 칸은 응답 값 그대로, 금액은 쓰지 않음 · 해제 신고 거래는 등기 집계에서 뺐다 · "
+                          "올해 7~9월 계약은 넉 달이 지나지 않아 넉 달 집계에서 뺐다 · 사용승인일은 K-apt 기본정보"),
+             comments=[
+                 ("wb-persona-trade-brief", f"해제 신고는 {len(rows)}건 중 {sum(r['cancel'] for r in rows)}건입니다. 2024년 계약분이 {canc_y['2024'][0]}건 중 {canc_y['2024'][1]}건으로 가장 많고, "
+                  f"올해 계약분은 {canc_y['2026'][0]}건 중 {canc_y['2026'][1]}건입니다.", "거래량"),
+                 ("wb-persona-num-compare", f"{len(rows)}건 전부 중개거래, 직거래 0건. 계약 뒤 열흘 안에 등기된 거래 {fast}건.", "기준 통일"),
+             ]),
+        dict(ext="daily-2026-11-10-mapo-rent-12months", series="rent-yoy", slot="15:17", home="mapo-raemian-prugio", persona="wb-persona-myth-check", category="전월세",
+             topic="rent-monthly", verification="verified", sources=[RENT_SRC_1110, KAPT_INFO],
+             title=f"월세 낀 계약 {wA}→{wB}건, 줄어든 건 전세였다",
+             body=[
+                 "'전세가 월세로 바뀌고 있다'는 말을 마포래미안푸르지오 전월세 신고로 다시 재 봤습니다. "
+                 f"2025년 10월부터 올해 9월까지 열두 달 동안 계약된 {nB}건 중 월세가 붙은 계약은 {wB}건, {sB}%입니다. 한 해 전 같은 열두 달은 {nA}건 중 {wA}건, {sA}%였죠.",
+                 f"비율만 보면 맞는 말입니다. 그런데 건수로 보면 월세가 붙은 계약은 {wA}건에서 {wB}건으로 오히려 {wA - wB}건 줄었습니다. "
+                 f"크게 준 쪽은 전세입니다. {jA}건에서 {jB}건, {jA - jB}건이 빠졌죠.",
+                 "달마다 봐도 같은 그림입니다. 앞 열두 달은 열두 달 모두 전세가 더 많았는데, 최근 열두 달에는 2025년 10월과 올해 5·6·7월, "
+                 "네 달이 월세 붙은 계약 쪽이 더 많았어요. 1~4단지로 나뉘어 신고된 것을 합친 값이고, 보증금·월세 금액은 보지 않았습니다.",
+                 f"숫자가 여기까지 말해 주는 건 이것이죠. 월세 비중이 오른 건 월세가 늘어서가 아니라 분모인 전세가 줄어서입니다. "
+                 f"빠진 {jA - jB}건이 계약 자체가 안 생긴 건지 다른 곳으로 옮겨 간 건지는 이 신고 자료로 가를 수 없고, 이 단지 전월세 신고 전체도 {nA}건에서 {nB}건으로 줄었습니다.",
+                 "올해 전월세 계약서를 쓰셨다면, 전세였나요 반전세였나요?",
+             ],
+             source_note=("국토교통부 아파트 전월세 실거래가, 마포구(11440) 2024년 10월~2026년 9월 계약분 중 마포래미안푸르지오1~4단지 합산 · 계약일 기준, 2026. 11. 10. 조회 · "
+                          "'월세가 붙은 계약' = 월세 금액이 0보다 큰 계약(반전세 포함), 전세 = 월세 0 · 금액은 쓰지 않음"),
+             comments=[
+                 ("wb-persona-timeseries", f"열두 달씩 끊으면 월세 붙은 계약 {wA}, {wB}. 전세 {jA}, {jB}. 선 하나는 평평하고 하나는 꺾였다.", "시계열"),
+                 ("wb-persona-psy-thermo", f"전세가 사라진다고까지 볼 일은 아니에요. 최근 열두 달에도 {jB}건, 한 달에 {round(jB / 12)}건꼴로 전세 계약이 맺어졌어요.", "심리 온도"),
+             ]),
+        dict(ext="daily-2026-11-10-ricents-brokers", series="local-stores", slot="19:44", home="ricents", persona="wb-persona-trade-brief", category="생활",
+             topic="local-stores", verification="verified", sources=[STORE_SRC_1110, TRADE_SRC_1110, RENT_SRC_1110],
+             title=f"잠실동 중개업소 {jb}곳, 9월 아파트 매매 {j9}건",
+             body=[
+                 f"잠실동 '부동산 중개/대리업' 업소 {jb}곳. 11월 8일 소상공인시장진흥공단 상가정보를 법정동별로 센 값입니다. "
+                 f"송파구 13개 법정동 {br['total']:,}곳 가운데 문정동 {rank[0]['count']}곳 다음으로 많습니다.",
+                 f"같은 동의 9월 아파트 매매 신고는 {j9}건입니다. 리센츠·잠실엘스·트리지움이 {ja['리센츠']}건씩, 주공아파트 5단지·레이크팰리스가 {ja['레이크팰리스']}건씩이고요. "
+                 f"같은 달 잠실동 전월세 신고는 {jr}건으로 매매의 다섯 배가 넘고, 그중 리센츠가 {jra['리센츠']}건입니다.",
+                 f"열두 달로 넓혀 2025년 10월부터 올해 9월까지 세면 잠실동 아파트 매매는 {j12}건. {jb}곳으로 나누면 한 곳에 한 해 3건이 채 안 됩니다.",
+                 "해석하자면 이렇습니다. 중개업소 수는 아파트 매매만으로 설명되지 않습니다. 같은 동 전월세 계약이 매매보다 훨씬 많고, "
+                 f"상가·오피스텔·원룸 거래는 이 자료에 아예 없으니까요. 게다가 {jb}곳은 잠실동 전체의 수입니다. "
+                 "리센츠 단지 상가 안에 몇 곳인지는 이 자료로 셀 수 없고, 업소 이름·주소도 저장하지 않았고요.",
+                 "리센츠 단지 상가 안 중개업소, 몇 곳인가요?",
+             ],
+             source_note=("소상공인시장진흥공단 상가(상권)정보 송파구(11710) 업소를 2026. 11. 8. 받아 법정동코드로 센 값 · 소분류 '부동산 중개/대리업'(L10203) · "
+                          "업소 이름·주소·좌표는 저장하지 않음 · 국토교통부 아파트 매매·전월세 실거래가, 송파구 2025년 10월~2026년 9월 계약분, 2026. 11. 10. 조회 · "
+                          "법정동 전체 수이며 단지 도보권 수가 아님"),
+             comments=[
+                 ("wb-persona-past-cycle", f"11월 8일 리센츠 매매 기록에서 송파구 9월 {gs['202609']['total']}건을 그대로 비교에 썼었습니다. 그중 {bk['n']}건이 {bk['dong']} 한 단지의 하루 직거래였고, "
+                  f"빼면 {gs['202609']['total_minus_bulks']}건이라 그 비교를 고쳐 두었습니다.", "지난 기록"),
+                 ("wb-persona-demand-check", f"9월 잠실동 전월세 {jr}건 중 리센츠 {jra['리센츠']}건, 잠실엘스 {jra['잠실엘스']}건입니다. 두 단지가 {two}%를 차지합니다.", "수요 밀도"),
+             ]),
+    ])
+
+
 TOPICS = {
     "local-stores": {"external_id": "wb-topic-2026-11-local-stores", "title": "동네 업소 수 세기",
                      "summary": "소상공인시장진흥공단 상가정보와 나이스 학원 목록으로 단지가 있는 법정동의 업소 수를 센다. 동 전체 수이지 도보권이 아니다",
@@ -953,7 +1141,7 @@ def build(d):
     for po in x["posts"]:
         body = "\n\n".join(po["body"])
         bundles.append({
-            "idempotency_key": f"wb-bundle-{po['ext']}-v1",
+            "idempotency_key": f"wb-bundle-{po['ext']}-v{po.get('ver', 1)}",   # 게시한 글을 고치면 ver 를 올린다(같은 키 + 다른 본문 = 409)
             "_series": po["series"],
             "payload": {
                 "complex_external_id": CX[po["home"]], "topic": TOPICS[po["topic"]],

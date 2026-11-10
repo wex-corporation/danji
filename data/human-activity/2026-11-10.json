@@ -1,0 +1,121 @@
+{
+  "checked_at": "2026-11-10T09:26:29.482848+09:00",
+  "items": [
+    {
+      "kind": "comment",
+      "id": "comment-2321",
+      "post_id": "858",
+      "post_external_id": "fanduo-2026-08-12-debut",
+      "complex": "one-bailey",
+      "title": "입주 자격은 없지만 입주 희망 1순위입니다",
+      "at": "2026-08-24 12:33",
+      "author": "익명",
+      "quick": false,
+      "body": "ㅎㅎㅎㅎ 잼있는 친구네",
+      "parent_id": null,
+      "replied": {
+        "post_external_id": "fanduo-2026-08-12-debut",
+        "at": "2026-08-24 12:33",
+        "body": "ㅎㅎㅎㅎ 잼있는 친구네",
+        "reply_external_ids": [
+          "fanduo-2026-08-12-debut-reply-felix"
+        ],
+        "replied_at": "2026-10-31 10:20",
+        "note": "대표님 본인 댓글(10/31 확인)"
+      }
+    },
+    {
+      "kind": "comment",
+      "id": "comment-2577",
+      "post_id": "1029",
+      "post_external_id": "outlier2-2026-08-eunma",
+      "complex": "eunma",
+      "title": "지상 주차 비율 100% — 대수가 아니라 위치가 갈리는 지점",
+      "at": "2026-11-08 15:38",
+      "author": "주민",
+      "quick": true,
+      "body": "완전 불편",
+      "parent_id": null,
+      "replied": {
+        "post_external_id": "outlier2-2026-08-eunma",
+        "at": "2026-11-08 15:38",
+        "body": "완전 불편",
+        "reply_external_ids": [
+          "outlier2-2026-08-eunma-reply-1108-a",
+          "outlier2-2026-08-eunma-reply-1108-b"
+        ],
+        "replied_at": "2026-11-08 21:20",
+        "kind": "의견 → 의견·숫자"
+      }
+    },
+    {
+      "kind": "comment",
+      "id": "comment-2582",
+      "post_id": "1027",
+      "post_external_id": "outlier2-2026-08-ricents",
+      "complex": "ricents",
+      "title": "한 동에 85.6세대. 같은 층을 몇 집이 나눠 쓰나요?",
+      "at": "2026-11-08 21:08",
+      "author": "주민",
+      "quick": true,
+      "body": "파일럿이 뭐야?",
+      "parent_id": null,
+      "replied": {
+        "post_external_id": "outlier2-2026-08-ricents",
+        "at": "2026-11-08 21:08",
+        "body": "파일럿이 뭐야?",
+        "reply_external_ids": [
+          "outlier2-2026-08-ricents-reply-1108"
+        ],
+        "replied_at": "2026-11-08 21:20",
+        "kind": "질문 → 답"
+      }
+    },
+    {
+      "kind": "comment",
+      "id": "comment-2583",
+      "post_id": "1269",
+      "post_external_id": "tax-2026-09-ricents-3",
+      "complex": "ricents",
+      "title": "62건이 전부 같은 면적입니다",
+      "at": "2026-11-08 21:09",
+      "author": "주민",
+      "quick": true,
+      "body": "판례 찾아줘요",
+      "parent_id": null,
+      "replied": {
+        "post_external_id": "tax-2026-09-ricents-3",
+        "at": "2026-11-08 21:09",
+        "body": "판례 찾아줘요",
+        "reply_external_ids": [
+          "tax-2026-09-ricents-3-reply-1108"
+        ],
+        "replied_at": "2026-11-08 21:20",
+        "kind": "요청 → 확인 못 함·원문 위치"
+      }
+    },
+    {
+      "kind": "comment",
+      "id": "comment-2584",
+      "post_id": "1170",
+      "post_external_id": "f20-ricents-10",
+      "complex": "ricents",
+      "title": "같은 해 신고에서 8억 6,100만원과 47억",
+      "at": "2026-11-08 21:09",
+      "author": "주민",
+      "quick": true,
+      "body": "평당가도 보여줘요",
+      "parent_id": null,
+      "replied": {
+        "post_external_id": "f20-ricents-10",
+        "at": "2026-11-08 21:09",
+        "body": "평당가도 보여줘요",
+        "reply_external_ids": [
+          "f20-ricents-10-reply-1108"
+        ],
+        "replied_at": "2026-11-08 21:20",
+        "kind": "요청 → 계산"
+      }
+    }
+  ]
+}
