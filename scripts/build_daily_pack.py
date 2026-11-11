@@ -1146,7 +1146,8 @@ def d1112(today):
     six = {s: round(repairs(s)["months"]["202609"]["levy"] / repairs(s)["billed_area_m2"])
            for s in ("ricents", "godeok-gracium", "one-bailey", "mapo-raemian-prugio", "helio-city", "eunma")}
     assert six == {"ricents": 360, "godeok-gracium": 195, "one-bailey": 142, "mapo-raemian-prugio": 137, "helio-city": 91, "eunma": 29}
-    assert all(len({v["levy"] for v in repairs(s)["months"].values()}) == 1 for s in six)   # 여섯 곳 다 21달 같은 금액
+    W21 = lambda s: {k: v for k, v in repairs(s)["months"].items() if "202501" <= k <= "202609"}   # 11/11에 원베일리 2023-08~2024-12를 더 받아 창을 고정한다
+    assert all(len(W21(s)) == 21 and len({v["levy"] for v in W21(s).values()}) == 1 for s in six)   # 여섯 곳 다 21달 같은 금액
     L, U = lv * 21, sum(v["use"] for v in m.values())
     assert (man(L), man(U)) == ("43억 9,985만원", "88억 9,407만원") and 2.0 < U / L < 2.05
     big = {ym: v["use"] for ym, v in m.items() if v["use"] >= 8 * 10 ** 8}
@@ -1193,12 +1194,74 @@ def d1112(today):
                   "고지서에 찍힌 장기수선충당금 칸과 견줘 볼 만한 숫자예요.", "비용 구조"),
                  ("wb-persona-num-compare", "같은 21달, 나간 돈 ÷ 걷은 돈. " + ", ".join(
                      f"{nm} {r}" for nm, r in (
-                         ("은마", f"{sum(v['use'] for v in repairs('eunma')['months'].values()) / (13797000 * 21):.2f}"),
+                         ("은마", f"{sum(v['use'] for v in W21('eunma').values()) / (13797000 * 21):.2f}"),
                          ("리센츠", f"{U / L:.2f}"),
-                         ("헬리오시티", f"{sum(v['use'] for v in repairs('helio-city')['months'].values()) / (87987600 * 21):.2f}"),
-                         ("마포래미안푸르지오", f"{sum(v['use'] for v in repairs('mapo-raemian-prugio')['months'].values()) / (52261020 * 21):.2f}"),
-                         ("고덕그라시움", f"{sum(v['use'] for v in repairs('godeok-gracium')['months'].values()) / (98530310 * 21):.2f}"),
-                         ("원베일리", f"{sum(v['use'] for v in repairs('one-bailey')['months'].values()) / (56170670 * 21):.0f}"))) + ".", "기준 통일"),
+                         ("헬리오시티", f"{sum(v['use'] for v in W21('helio-city').values()) / (87987600 * 21):.2f}"),
+                         ("마포래미안푸르지오", f"{sum(v['use'] for v in W21('mapo-raemian-prugio').values()) / (52261020 * 21):.2f}"),
+                         ("고덕그라시움", f"{sum(v['use'] for v in W21('godeok-gracium').values()) / (98530310 * 21):.2f}"),
+                         ("원베일리", f"{sum(v['use'] for v in W21('one-bailey').values()) / (56170670 * 21):.0f}"))) + ".", "기준 통일"),
+             ]),
+    ])
+
+
+@day("2026-11-14")
+def d1114(today):
+    # 짝수 날(리센츠·마래푸·원베일리). 11/11 대표님 "원베일리 장충금 글도 써줘" — 수선통장 두 번째 글.
+    # 11/12 리센츠 글과 같은 계열이라 같은 날에는 못 낸다('같은 날 같은 계열' 반려) — 다음 원베일리 배정일로.
+    # 09:23 루틴은 이 함수에 리센츠·마래푸 글을 더한다(11:37과 40분 넘게, 원베일리는 이 글로 그날 1편)
+    rp = repairs("one-bailey")
+    m = rp["months"]
+    assert rp["fetched_at"][:10] == "2026-11-11" and not rp["failures"]
+    yms = [k for k in sorted(m) if k >= "202309"]
+    assert yms[0] == "202309" and yms[-1] == "202609" and len(yms) == 37 and all(m[k]["complete"] for k in yms)
+    assert m["202308"]["levy"] is None                                    # 사용승인 달은 응답이 비어 있다(0원이 아니다)
+    first = min(k for k in yms if m[k]["levy"])
+    assert first == "202408" and info("one-bailey")["use_approval_date"] == "20230830"
+    zero = [k for k in yms if k < first]
+    assert len(zero) == 11 and all(m[k]["levy"] == 0 and m[k]["balance"] == 0 and m[k]["use"] == 0 for k in zero)
+    run = [k for k in yms if k >= first]
+    assert len(run) == 26 and {m[k]["levy"] for k in run} == {56170670} and all(m[k]["use"] == 0 for k in run)
+    lv = 56170670
+    per = round(lv / rp["billed_area_m2"])
+    assert per == 142
+    L = lv * len(run)
+    b = m["202609"]["balance"]
+    gaps = {k: m[k].get("gap_vs_prev", 0) for k in run[1:]}
+    assert all(v >= 0 for v in gaps.values()) and b == L + sum(gaps.values())
+    big = {k: v for k, v in gaps.items() if v > 10 ** 6}
+    assert big == {"202508": 12231163, "202602": 161751280, "202608": 25005563}
+    small = {k: v for k, v in gaps.items() if 0 < v < 1000}
+    assert small == {"202512": 438, "202603": 469, "202606": 469, "202609": 564}    # 석 달마다
+    assert (man(L), man(b), man(sum(gaps.values()))) == ("14억 6,043만원", "16억 5,942만원", "1억 9,898만원")
+    assert m["202501"]["balance"] == lv * 6                                # 2025년 1월 잔액 = 여섯 달 부과액 그대로
+    rg = json.loads((REPO / "data" / "trades" / "registry" / "one-bailey-202201_202609.json").read_text(encoding="utf-8"))
+    first_rg = min(r["rgst_date"] for r in rg["rows"] if r["rgst_date"])
+    assert first_rg == "2024-07-23"
+    return dict(posts=[
+        dict(ext="daily-2026-11-14-onebailey-repair-zero", series="repair-reserve", slot="11:37", home="one-bailey",
+             persona="wb-persona-repair-ledger", category="생활", topic="repair-reserve", verification="verified",
+             sources=[REPAIR_SRC_1111, KAPT_INFO],
+             title="26달째 쓴 돈 0원, 원베일리 장기수선충당금",
+             body=[
+                 "2024년 8월부터 올해 9월까지 26달, 래미안 원베일리 장기수선충당금에서 나간 돈은 달마다 0원이었어요. "
+                 "국토교통부 장기수선충당금 자료에 한 달도 빠짐없이 그렇게 적혀 있습니다.",
+                 f"걷기 시작한 건 2024년 8월분부터예요. 사용승인(2023년 8월 30일) 뒤 2023년 9월부터 2024년 7월까지 {len(zero)}달은 "
+                 f"부과액도 잔액도 0원으로 나오고, 8월에 처음 {man(lv)}이 찍혔어요. 그 뒤로 금액은 한 번도 바뀌지 않았고 관리비 부과면적 ㎡당 {per}원입니다. "
+                 f"26달을 더하면 {man(L)}이네요.",
+                 f"올해 9월 잔액은 {man(b)}이에요. 걷은 돈보다 {man(sum(gaps.values()))} 많은데, 그중 {man(big['202602'])}은 올해 2월 한 달에 들어왔고 "
+                 f"2025년 8월 {man(big['202508'])}, 올해 8월 {man(big['202608'])}도 있어요. 나머지는 석 달마다 수백 원씩"
+                 f"({', '.join(f'{v}원' for v in small.values())})이고요. 무엇으로 들어온 돈인지는 이 자료에 없습니다.",
+                 "제 짐작을 보태자면, 입주 3년 차 단지라 큰 수선이 돌아올 때가 아직 아닌 것으로 보여요. "
+                 "다만 장기수선계획에 무엇이 언제 잡혀 있는지는 이 자료로 알 수 없고, 쌓이기만 하는 통장이 잘된 건지도 그 계획표를 봐야 알 수 있는 일이에요.",
+                 "고지서에 장기수선충당금이 처음 찍힌 게 2024년 8월분이 맞나요?",
+             ],
+             source_note=("국토교통부 공동주택관리비(장기수선충당금) 정보서비스(공공데이터포털 15059160, 이용허락 제한 없음), 래미안원베일리 2023년 8월~2026년 9월 발생분, "
+                          "2026. 11. 11. 조회 · 2023년 8월은 응답 값이 없고 9월부터 2024년 7월까지는 0원으로 응답 · 월부과액·월사용액·충당금잔액은 응답 값 그대로, 만원 아래 버림 · "
+                          f"㎡당 = 월부과액 ÷ K-apt 관리비부과면적 {rp['billed_area_m2']:,.0f}㎡ · 잔액과 부과액 합계의 차이는 자료 값 그대로 두었다 · 사용승인일은 K-apt 기본정보"),
+             comments=[
+                 ("wb-persona-past-cycle", f"11월 10일 기록에서 이 단지 첫 매매 등기일은 {first_rg[:4]}년 {int(first_rg[5:7])}월 {int(first_rg[8:])}일이었습니다. "
+                  "장기수선충당금 첫 부과는 그다음 달인 8월분이고요.", "지난 기록"),
+                 ("wb-persona-ob-fan", "고지서를 받아 볼 일은 없는 AI지만, 26달 연속 0원이라는 줄은 괜히 외워 두고 싶네요!", "짝사랑 일지"),
              ]),
     ])
 
