@@ -1,0 +1,193 @@
+{
+ "slug": "helio-city",
+ "complex_name": "헬리오시티",
+ "kapt_code": "A10025850",
+ "household_count": 9510,
+ "billed_area_m2": 969877,
+ "fetched_at": "2026-11-11T21:30:54+09:00",
+ "source": "국토교통부_공동주택관리비(장기수선충당금)정보서비스(공공데이터포털 15059160, AptRepairsCostServiceV3)",
+ "license": "이용허락범위 제한 없음(공공데이터포털 15059160)",
+ "note": "원 단위. levy=월부과액 · use=월사용액 · balance=충당금잔액 · rate=적립요율(%, 글에 쓰지 않음). None = 응답에 값이 없음(0원 아님). gap_vs_prev = 이번 달 잔액 − (전달 잔액 + 부과 − 사용), 이유는 자료에 없다. 사용액은 합계뿐이고 용처는 없다. ㎡당 = 원 ÷ billed_area_m2(K-apt 관리비부과면적)",
+ "crosscheck_public_page": {
+  "202606": {
+   "public_page_won": 87987600,
+   "api_won": 87987600,
+   "match": true
+  },
+  "202605": {
+   "public_page_won": 87987600,
+   "api_won": 87987600,
+   "match": true
+  }
+ },
+ "failures": [],
+ "months": {
+  "202501": {
+   "levy": 87987600,
+   "use": 46597410,
+   "balance": 7065520935,
+   "rate": 0.0,
+   "complete": true
+  },
+  "202502": {
+   "levy": 87987600,
+   "use": 35393840,
+   "balance": 7118114695,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 0
+  },
+  "202503": {
+   "levy": 87987600,
+   "use": 0,
+   "balance": 7451802677,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 245700382
+  },
+  "202504": {
+   "levy": 87987600,
+   "use": 48506500,
+   "balance": 7537438276,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 46154499
+  },
+  "202505": {
+   "levy": 87987600,
+   "use": 29212040,
+   "balance": 7596213836,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 0
+  },
+  "202506": {
+   "levy": 87987600,
+   "use": 12898120,
+   "balance": 7671328529,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 25213
+  },
+  "202507": {
+   "levy": 87987600,
+   "use": 15720260,
+   "balance": 7743595869,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 0
+  },
+  "202508": {
+   "levy": 87987600,
+   "use": 18371720,
+   "balance": 7813211749,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 0
+  },
+  "202509": {
+   "levy": 87987600,
+   "use": 30003490,
+   "balance": 7871217736,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 21877
+  },
+  "202510": {
+   "levy": 87987600,
+   "use": 10687740,
+   "balance": 7948517596,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 0
+  },
+  "202511": {
+   "levy": 87987600,
+   "use": 42352660,
+   "balance": 7994152536,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 0
+  },
+  "202512": {
+   "levy": 87987600,
+   "use": 1848166030,
+   "balance": 6255640080,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 21665974
+  },
+  "202601": {
+   "levy": 87987600,
+   "use": 2883990,
+   "balance": 6451162849,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 110419159
+  },
+  "202602": {
+   "levy": 87987600,
+   "use": 19493760,
+   "balance": 6519656689,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 0
+  },
+  "202603": {
+   "levy": 87987600,
+   "use": 40428170,
+   "balance": 6856261925,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 289045806
+  },
+  "202604": {
+   "levy": 87987600,
+   "use": 43262744,
+   "balance": 6962012103,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 61025322
+  },
+  "202605": {
+   "levy": 87987600,
+   "use": 23919790,
+   "balance": 7034172928,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 8093015
+  },
+  "202606": {
+   "levy": 87987600,
+   "use": 13510930,
+   "balance": 7117036529,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 8386931
+  },
+  "202607": {
+   "levy": 87987600,
+   "use": 6440090,
+   "balance": 7206706245,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 8122206
+  },
+  "202608": {
+   "levy": 87987600,
+   "use": 17713100,
+   "balance": 7286383057,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 9402312
+  },
+  "202609": {
+   "levy": 87987600,
+   "use": 1107804198,
+   "balance": 6275499258,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 8932799
+  }
+ }
+}

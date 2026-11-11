@@ -1,0 +1,188 @@
+{
+ "slug": "mapo-raemian-prugio",
+ "complex_name": "마포래미안푸르지오",
+ "kapt_code": "A12175203",
+ "household_count": 3885,
+ "billed_area_m2": 380436.56,
+ "fetched_at": "2026-11-11T21:34:39+09:00",
+ "source": "국토교통부_공동주택관리비(장기수선충당금)정보서비스(공공데이터포털 15059160, AptRepairsCostServiceV3)",
+ "license": "이용허락범위 제한 없음(공공데이터포털 15059160)",
+ "note": "원 단위. levy=월부과액 · use=월사용액 · balance=충당금잔액 · rate=적립요율(%, 글에 쓰지 않음). None = 응답에 값이 없음(0원 아님). gap_vs_prev = 이번 달 잔액 − (전달 잔액 + 부과 − 사용), 이유는 자료에 없다. 사용액은 합계뿐이고 용처는 없다. ㎡당 = 원 ÷ billed_area_m2(K-apt 관리비부과면적)",
+ "crosscheck_public_page": {
+  "202605": {
+   "public_page_won": 52261020,
+   "api_won": 52261020,
+   "match": true
+  }
+ },
+ "failures": [],
+ "months": {
+  "202501": {
+   "levy": 52261020,
+   "use": 5388020,
+   "balance": 1126208453,
+   "rate": 0.0,
+   "complete": true
+  },
+  "202502": {
+   "levy": 52261020,
+   "use": 184561811,
+   "balance": 1304209204,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 310301542
+  },
+  "202503": {
+   "levy": 52261020,
+   "use": 16104420,
+   "balance": 1341518575,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 1152771
+  },
+  "202504": {
+   "levy": 52261020,
+   "use": 0,
+   "balance": 1395290217,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 1510622
+  },
+  "202505": {
+   "levy": 52261020,
+   "use": 258465850,
+   "balance": 1190347927,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 1262540
+  },
+  "202506": {
+   "levy": 52261020,
+   "use": 0,
+   "balance": 1243994008,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 1385061
+  },
+  "202507": {
+   "levy": 52261020,
+   "use": 293756390,
+   "balance": 1003602812,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 1104174
+  },
+  "202508": {
+   "levy": 52261020,
+   "use": 14603330,
+   "balance": 1042120562,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 860060
+  },
+  "202509": {
+   "levy": 52261020,
+   "use": 17058750,
+   "balance": 1078557031,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 1234199
+  },
+  "202510": {
+   "levy": 52261020,
+   "use": 0,
+   "balance": 1132630548,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 1812497
+  },
+  "202511": {
+   "levy": 52261020,
+   "use": 1252570,
+   "balance": 1185501612,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 1862614
+  },
+  "202512": {
+   "levy": 52261020,
+   "use": 19631120,
+   "balance": 1220612168,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 2480656
+  },
+  "202601": {
+   "levy": 52261020,
+   "use": 42505880,
+   "balance": 1230975092,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 607784
+  },
+  "202602": {
+   "levy": 52261020,
+   "use": 31353900,
+   "balance": 1251882212,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 0
+  },
+  "202603": {
+   "levy": 52261020,
+   "use": 0,
+   "balance": 1304707583,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 564351
+  },
+  "202604": {
+   "levy": 52261020,
+   "use": 184254330,
+   "balance": 185577399,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": -987136874
+  },
+  "202605": {
+   "levy": 52261020,
+   "use": 6461650,
+   "balance": 1352047394,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 1120670625
+  },
+  "202606": {
+   "levy": 52261020,
+   "use": 0,
+   "balance": 1404557317,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 248903
+  },
+  "202607": {
+   "levy": 52261020,
+   "use": 103962920,
+   "balance": 1353050702,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 195285
+  },
+  "202608": {
+   "levy": 52261020,
+   "use": 38508620,
+   "balance": 1366953431,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 150329
+  },
+  "202609": {
+   "levy": 52261020,
+   "use": 8090970,
+   "balance": 1411280784,
+   "rate": 0.0,
+   "complete": true,
+   "gap_vs_prev": 157303
+  }
+ }
+}

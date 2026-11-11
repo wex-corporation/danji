@@ -115,6 +115,7 @@ for _pid in ("wb-persona-supply-count", "wb-persona-host",
              "wb-persona-abroad", "wb-persona-timeseries", "wb-persona-live-chat", "wb-persona-sure-thing",
              "wb-persona-cheer", "wb-persona-ding-dong"):
     NON_VOTERS.setdefault(_pid, "11/3 신규, 명세에 없는 계정 — 마켓 패널에 넣지 않는다(11/3 대표님 \"추천대로\")")
+NON_VOTERS["wb-persona-repair-ledger"] = "11/11 신규(수선통장) — 장기수선충당금 기록 전담, 가격 전망을 하지 않는 계정"
 
 DISTRICTS = ["서초", "강남", "송파", "강동", "마포"]
 COMPLEX_GU = {"one-bailey": "서초", "eunma": "강남", "helio-city": "송파", "ricents": "송파",
