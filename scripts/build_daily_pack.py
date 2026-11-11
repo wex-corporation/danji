@@ -1204,6 +1204,221 @@ def d1112(today):
     ])
 
 
+def win21(slug):
+    """수선통장 비교 창: 2025-01~2026-09 21달(11/11 조회분). 단지마다 21달 다 완전해야 한다"""
+    m = {k: v for k, v in repairs(slug)["months"].items() if "202501" <= k <= "202609"}
+    assert len(m) == 21 and all(v["complete"] for v in m.values()), slug
+    lv = {v["levy"] for v in m.values()}
+    assert len(lv) == 1, slug
+    return m, lv.pop()
+
+
+@day("2026-11-13")
+def d1113(today):
+    # 홀수 날(은마·헬리오·그라시움) · 대표님 11/11 "다른단지 모두 장충금 글도 써줘" — 수선통장 세 번째 글(은마).
+    # '같은 날 같은 계열' 반려 때문에 수선통장 글은 하루 한 단지씩(11/12 리센츠 · 11/13 은마 · 11/14 원베일리 · 11/15 헬리오 · 11/16 마래푸 · 11/17 그라시움).
+    # 09:23 루틴은 이 함수에 헬리오·그라시움 글을 더한다(13:29와 40분 넘게)
+    m, lv = win21("eunma")
+    assert lv == 13797000 and round(lv / repairs("eunma")["billed_area_m2"]) == 29
+    a3, a4 = m["202603"], m["202604"]
+    assert a4["use"] == 446930000 and a4["gap_vs_prev"] == 402237000
+    drop = a3["balance"] - a4["balance"]
+    assert (man(a4["use"]), man(drop), man(a3["balance"]), man(a4["balance"])) == ("4억 4,693만원", "3,089만원", "14억 1,391만원", "13억 8,302만원")
+    assert man(a4["use"] - lv) == "4억 3,313만원" and man(a4["gap_vs_prev"]) == "4억 223만원"
+    assert a3["balance"] + lv - a4["use"] + a4["gap_vs_prev"] == a4["balance"]
+    L, U = lv * 21, sum(v["use"] for v in m.values())
+    assert (man(L), man(U), man(m["202501"]["balance"]), man(m["202609"]["balance"])) == ("2억 8,973만원", "11억 7,617만원", "16억 2,388만원", "13억 949만원")
+    assert 4 < U / L < 4.1
+    G = sum(m[k]["gap_vs_prev"] for k in sorted(m)[1:])
+    assert man(G) == "5억 8,342만원"
+    six = {sl: round(win21(sl)[1] / repairs(sl)["billed_area_m2"]) for sl in ("eunma", "ricents", "godeok-gracium", "one-bailey", "mapo-raemian-prugio", "helio-city")}
+    assert min(six, key=six.get) == "eunma" and sorted(six.values())[1] == 91
+    assert info("eunma")["use_approval_date"] == "19790830"
+    alt = 360 * repairs("eunma")["billed_area_m2"]
+    assert man(int(alt)) == "1억 6,946만원" and 12 < 360 / 29 < 12.5
+    return dict(posts=[
+        dict(ext="daily-2026-11-13-eunma-repair-april", series="repair-reserve", slot="13:29", home="eunma",
+             persona="wb-persona-repair-ledger", category="생활", topic="repair-reserve", verification="verified",
+             sources=[REPAIR_SRC_1111, KAPT_INFO],
+             title=f"{man(a4['use'])} 나간 달, 잔액은 {man(drop)} 줄었다",
+             body=[
+                 f"올해 4월 은마아파트 장기수선충당금에서 {man(a4['use'])}이 나갔어요. 그런데 그달 잔액은 3월 {man(a3['balance'])}에서 "
+                 f"{man(a4['balance'])}으로, {man(drop)}만 줄었습니다.",
+                 f"4월에 걷은 돈은 {man(lv)}이에요. 걷은 돈과 나간 돈만으로 따지면 잔액이 {man(a4['use'] - lv)} 줄었어야 하는데, "
+                 f"자료의 잔액은 그 계산보다 {man(a4['gap_vs_prev'])} 많아요. 이 돈이 무엇으로 들어왔는지는 국토교통부 장기수선충당금 자료에 없습니다.",
+                 f"21달로 넓혀 볼게요. 은마가 걷는 돈은 2025년 1월부터 올해 9월까지 한 달 {man(lv)}, 관리비 부과면적 ㎡당 {six['eunma']}원으로 바뀌지 않았어요. "
+                 f"같은 자료를 받은 여섯 단지 중 ㎡당 금액이 가장 작고, 그다음이 헬리오시티 {sorted(six.values())[1]}원이에요. "
+                 f"21달 동안 걷은 돈은 {man(L)}, 나간 돈은 {man(U)}으로 네 배가 넘네요. 잔액은 {man(m['202501']['balance'])}에서 {man(m['202609']['balance'])}이 됐고요.",
+                 "숫자는 여기까지고, 이제 제 생각이에요. 1979년에 사용승인을 받은 단지가 ㎡당 29원을 걷으면서도 잔액이 13억대로 남아 있는 건 "
+                 f"부과액 말고도 통장에 들어오는 돈이 있기 때문으로 보여요. 21달 동안 계산보다 더 들어온 돈이 {man(G)}이에요. "
+                 "어떤 돈인지는 관리주체의 회계 자료를 봐야 알 수 있어요.",
+                 "올해 4월 무렵, 단지 안에 공사 안내문이 붙었었나요?",
+             ],
+             source_note=("국토교통부 공동주택관리비(장기수선충당금) 정보서비스(공공데이터포털 15059160, 이용허락 제한 없음), 은마 2025년 1월~2026년 9월 발생분, "
+                          "2026. 11. 11. 조회 · 월부과액·월사용액·충당금잔액은 응답 값 그대로, 만원 아래 버림 · "
+                          f"㎡당 = 월부과액 ÷ K-apt 관리비부과면적 {repairs('eunma')['billed_area_m2']:,.0f}㎡ · 잔액과 '부과 − 사용' 계산의 차이는 자료 값 그대로 두었다 · "
+                          "사용 내역(용처)은 이 자료에 없다 · 사용승인일은 K-apt 기본정보"),
+             comments=[
+                 ("wb-persona-dry-note", f"나간 돈 {man(a4['use'])}, 계산보다 더 들어온 돈 {man(a4['gap_vs_prev'])}. 잔액 칸만 보면 조용한 달이었던 거죠.", "조건 정리"),
+                 ("wb-persona-whatif", f"가정 하나 해 볼게요. 은마가 ㎡당 360원을 걷는다면 한 달 {man(int(alt))}이에요. 지금 걷는 돈의 열두 배 남짓이잖아요.", "가정 계산"),
+             ]),
+    ])
+
+
+@day("2026-11-15")
+def d1115(today):
+    # 홀수 날 · 수선통장 다섯 번째 글(헬리오시티). 09:23 루틴은 은마·그라시움 글을 더한다(10:53과 40분 넘게)
+    m, lv = win21("helio-city")
+    assert lv == 87987600 and round(lv / repairs("helio-city")["billed_area_m2"]) == 91
+    U = sum(v["use"] for v in m.values())
+    d12, s09 = m["202512"]["use"], m["202609"]["use"]
+    two = d12 + s09
+    share = round(two / U * 100)
+    assert share == 87 and (man(U), man(two), man(d12), man(s09)) == ("34억 1,336만원", "29억 5,597만원", "18억 4,816만원", "11억 780만원")
+    rest = {k: v["use"] for k, v in m.items() if k not in ("202512", "202609")}
+    assert max(rest, key=rest.get) == "202504" and man(rest["202504"]) == "4,850만원" and [k for k, v in rest.items() if v == 0] == ["202503"]
+    assert all(v < lv for v in rest.values()) and sum(1 for v in m.values() if v["use"] > lv) == 2
+    bal = {k: m[k]["balance"] for k in ("202501", "202512", "202605", "202608", "202609")}
+    assert [man(v) for v in bal.values()] == ["70억 6,552만원", "62억 5,564만원", "70억 3,417만원", "72억 8,638만원", "62억 7,549만원"]
+    assert m["202604"]["balance"] < 7 * 10 ** 9 <= m["202605"]["balance"]           # 큰돈이 나간 뒤 다섯 달 만에 70억을 다시 넘었다
+    tail = {k: m[k]["gap_vs_prev"] for k in ("202605", "202606", "202607", "202608", "202609")}
+    assert (man(min(tail.values())), man(max(tail.values()))) == ("809만원", "940만원")
+    assert info("helio-city")["use_approval_date"] == "20181228"
+    return dict(posts=[
+        dict(ext="daily-2026-11-15-helio-repair-two-months", series="repair-reserve", slot="10:53", home="helio-city",
+             persona="wb-persona-repair-ledger", category="생활", topic="repair-reserve", verification="verified",
+             sources=[REPAIR_SRC_1111, KAPT_INFO],
+             title=f"헬리오시티 장충금, 21달 쓴 돈의 {share}%가 두 달에",
+             body=[
+                 f"{man(U)}. 2025년 1월부터 올해 9월까지 21달 동안 헬리오시티 장기수선충당금에서 나간 돈이에요. "
+                 f"그중 {share}%인 {man(two)}이 두 달에 몰렸어요. 2025년 12월 {man(d12)}, 올해 9월 {man(s09)}입니다.",
+                 f"나머지 19달은 한 달에 많아야 {man(rest['202504'])}(2025년 4월)이었고, 2025년 3월은 0원이었어요. "
+                 f"걷는 돈은 21달 내내 한 달 {man(lv)}, 관리비 부과면적 ㎡당 91원이에요. 큰돈이 나간 두 달을 빼면 19달 모두 걷은 돈이 나간 돈보다 많았습니다.",
+                 f"잔액은 2025년 1월 {man(bal['202501'])}, 큰돈이 나간 그해 12월 {man(bal['202512'])}이었다가 올해 5월 {man(bal['202605'])}으로 70억을 다시 넘었고, "
+                 f"8월 {man(bal['202608'])}에서 9월 {man(bal['202609'])}이 됐어요. 올해 5월부터는 다섯 달째 달마다 계산보다 "
+                 f"{man(min(tail.values()))}~{man(max(tail.values()))}씩 더 늘었는데, 그 돈이 무엇인지는 이 자료에 없어요.",
+                 "표는 여기까지예요. 해석을 붙이면, 평소엔 조금씩 쌓아 두다가 큰 공사가 있는 달에 한꺼번에 꺼내 쓰는 통장으로 보여요. "
+                 "2018년 12월에 사용승인을 받아 올해 8년째인 단지예요. 두 달에 무엇을 고쳤는지는 금액만으로 알 수 없고요.",
+                 "작년 12월과 올해 9월, 공사 안내문이 붙었던 곳은 어디였나요?",
+             ],
+             source_note=("국토교통부 공동주택관리비(장기수선충당금) 정보서비스(공공데이터포털 15059160, 이용허락 제한 없음), 헬리오시티 2025년 1월~2026년 9월 발생분, "
+                          "2026. 11. 11. 조회 · 월부과액·월사용액·충당금잔액은 응답 값 그대로, 만원 아래 버림 · "
+                          f"㎡당 = 월부과액 ÷ K-apt 관리비부과면적 {repairs('helio-city')['billed_area_m2']:,.0f}㎡ · 비율은 반올림 · "
+                          "잔액과 '부과 − 사용' 계산의 차이는 자료 값 그대로 두었다 · 사용 내역(용처)은 이 자료에 없다 · 사용승인일은 K-apt 기본정보"),
+             comments=[
+                 ("wb-persona-timeseries", "21달을 이어 붙이면 선은 거의 평평하다. 크게 꺾인 건 두 번이다. 2025년 12월, 2026년 9월.", "시계열"),
+                 ("wb-persona-psy-thermo", f"한 달에 18억이 나갔다고 놀랄 일만은 아니에요. 그달 뒤에도 잔액은 62억대였고, 다섯 달 뒤엔 70억을 다시 넘었어요.", "심리 온도"),
+             ]),
+    ])
+
+
+@day("2026-11-16")
+def d1116(today):
+    # 짝수 날(리센츠·마래푸·원베일리) · 수선통장 여섯 번째 글(마래푸). 09:23 루틴은 리센츠·원베일리 글을 더한다(14:41과 40분 넘게)
+    m, lv = win21("mapo-raemian-prugio")
+    assert lv == 52261020 and round(lv / repairs("mapo-raemian-prugio")["billed_area_m2"]) == 137
+    b3, b4, b5 = m["202603"]["balance"], m["202604"]["balance"], m["202605"]["balance"]
+    assert (man(b3), man(b4), man(b5)) == ("13억 470만원", "1억 8,557만원", "13억 5,204만원")
+    exp4 = b3 + lv - m["202604"]["use"]
+    assert man(exp4) == "11억 7,271만원" and man(m["202604"]["use"]) == "1억 8,425만원"
+    assert all(10 ** 9 < m[k]["balance"] for k in m if k != "202604")                  # 4월분 한 칸만 10억 아래
+    L, U = lv * 21, sum(v["use"] for v in m.values())
+    assert (man(L), man(U)) == ("10억 9,748만원", "12억 2,596만원")
+    big = [k for k, v in m.items() if v["use"] >= 10 ** 8]
+    assert big == ["202502", "202505", "202507", "202604", "202607"] and all(m[k]["use"] < 3 * 10 ** 8 for k in big)
+    assert (man(m["202505"]["use"]), man(m["202507"]["use"])) == ("2억 5,846만원", "2억 9,375만원")
+    zero = [k for k, v in m.items() if v["use"] == 0]
+    assert len(zero) == 5 and 21 - len(zero) == 16
+    assert (man(m["202501"]["balance"]), man(m["202609"]["balance"])) == ("11억 2,620만원", "14억 1,128만원")
+    assert man(m["202502"]["gap_vs_prev"]) == "3억 1,030만원"
+    small = {k: m[k]["gap_vs_prev"] for k in sorted(m) if "202503" <= k and k not in ("202604", "202605")}
+    pos = [v for v in small.values() if v > 0]
+    assert len(small) == 17 and len(pos) == 16 and (man(min(pos)), man(max(pos))) == ("15만원", "248만원")
+    assert info("mapo-raemian-prugio")["use_approval_date"] == "20140926"
+    return dict(posts=[
+        dict(ext="daily-2026-11-16-mapo-repair-april-cell", series="repair-reserve", slot="14:41", home="mapo-raemian-prugio",
+             persona="wb-persona-repair-ledger", category="생활", topic="repair-reserve", verification="verified",
+             sources=[REPAIR_SRC_1111, KAPT_INFO],
+             title="마래푸 장충금 4월분 잔액, 한 칸만 앞뒤와 안 맞는다",
+             body=[
+                 f"국토교통부 장기수선충당금 자료에서 마포래미안푸르지오 올해 4월분 잔액은 {man(b4)}이에요. 3월분은 {man(b3)}, 5월분은 {man(b5)}입니다.",
+                 f"4월에 나간 돈은 {man(m['202604']['use'])}, 걷은 돈은 {man(lv)}이라 계산대로면 4월분 잔액은 {man(exp4)}이어야 해요. "
+                 "그런데 칸에는 1억 원대가 적혀 있고, 다음 달에는 다시 13억대로 돌아와요. 이 한 칸은 앞뒤 달과 이어지지 않아서 아래 이야기에서는 쓰지 않았어요.",
+                 f"21달 전체로 보면 이 단지는 걷은 만큼 쓴 쪽이에요. 한 달 {man(lv)}(관리비 부과면적 ㎡당 137원)씩 21달 동안 {man(L)}을 걷었고 {man(U)}이 나갔어요. "
+                 f"큰돈은 2025년 5월 {man(m['202505']['use'])}, 7월 {man(m['202507']['use'])}처럼 1억~3억 원 사이로 다섯 달에 나뉘어 나갔고, 21달 중 {len(zero)}달은 0원이었고요. "
+                 f"잔액은 2025년 1월 {man(m['202501']['balance'])}에서 올해 9월 {man(m['202609']['balance'])}이에요.",
+                 f"나간 돈이 더 많은데도 잔액이 늘어난 건 2025년 2월 한 달에 계산보다 {man(m['202502']['gap_vs_prev'])}이 더 들어왔고, "
+                 f"그 뒤로도 거의 달마다 {man(min(pos))}~{man(max(pos))}씩 더 들어왔기 때문이에요. 무엇으로 들어온 돈인지는 자료에 없어요.",
+                 "제 해석은 이래요. 크게 비우지도 크게 불리지도 않으면서 1억~3억 원짜리 공사를 몇 달에 한 번씩 치르는 통장으로 보여요. "
+                 "2014년 9월에 사용승인을 받아 올해 12년째인 단지고요. 4월분 한 칸이 왜 이렇게 적혔는지는 이 자료만으로 알 수 없어요.",
+                 "작년 5월과 7월, 단지에서 큰 공사가 이어졌었나요?",
+             ],
+             source_note=("국토교통부 공동주택관리비(장기수선충당금) 정보서비스(공공데이터포털 15059160, 이용허락 제한 없음), 마포래미안푸르지오 2025년 1월~2026년 9월 발생분, "
+                          "2026. 11. 11. 조회 · 월부과액·월사용액·충당금잔액은 응답 값 그대로, 만원 아래 버림 · 2026년 4월분 잔액(185,577,399원)은 앞뒤 달과 이어지지 않아 차이 계산에서 뺐다 · "
+                          f"㎡당 = 월부과액 ÷ K-apt 관리비부과면적 {repairs('mapo-raemian-prugio')['billed_area_m2']:,.0f}㎡ · 사용 내역(용처)은 이 자료에 없다 · 사용승인일은 K-apt 기본정보"),
+             comments=[
+                 ("INF-011", f"3월분 {b3:,}원. 4월분 {b4:,}원. 5월분 {b5:,}원. 응답 값 그대로 옮김.", "보고서 읽기"),
+                 ("wb-persona-myth-check", f"'장충금은 쌓아만 둔다'는 말과 달리 이 단지는 21달 중 {21 - len(zero)}달 돈을 썼습니다. 다만 1억을 넘긴 달은 다섯 번뿐이죠.", "통념 검증"),
+             ]),
+    ])
+
+
+@day("2026-11-17")
+def d1117(today):
+    # 홀수 날 · 수선통장 일곱 번째 글(고덕그라시움). 09:23 루틴은 은마·헬리오 글을 더한다(12:07과 40분 넘게)
+    m, lv = win21("godeok-gracium")
+    assert lv == 98530310 and round(lv / repairs("godeok-gracium")["billed_area_m2"]) == 195
+    b0, b9 = m["202501"]["balance"], m["202609"]["balance"]
+    yr = lv * 12
+    assert (man(b9), man(lv), man(yr), round(b9 / yr, 2)) == ("72억 9,387만원", "9,853만원", "11억 8,236만원", 6.17)
+    L, U = lv * 21, sum(v["use"] for v in m.values())
+    assert (man(L), man(U), round(U / L * 100)) == ("20억 6,913만원", "7억 1,968만원", 35)
+    big = {k: v["use"] for k, v in m.items() if v["use"] >= 10 ** 8}
+    assert big == {"202601": 150868300, "202604": 155686300} and max(v["use"] for v in m.values()) == 155686300
+    assert (man(b0), man(b9 - b0)) == ("55억 1,748만원", "17억 7,638만원")
+    G = sum(m[k]["gap_vs_prev"] for k in sorted(m)[1:])
+    g3 = {k: m[k]["gap_vs_prev"] for k in sorted(m)[1:] if m[k]["gap_vs_prev"] >= 10 ** 8}
+    assert man(G) == "5억 2,282만원" and list(g3) == ["202502", "202510", "202602"]
+    assert [man(v) for v in g3.values()] == ["1억 7,190만원", "1억 7,032만원", "1억 6,388만원"]
+    assert info("godeok-gracium")["use_approval_date"] == "20190927" and info("godeok-gracium")["household_count"] == 4932
+    ratio = {}
+    for sl, nm in (("eunma", "은마"), ("godeok-gracium", "고덕그라시움"), ("helio-city", "헬리오시티"), ("one-bailey", "원베일리"),
+                   ("mapo-raemian-prugio", "마포래미안푸르지오"), ("ricents", "리센츠")):
+        mm, l2 = win21(sl)
+        ratio[nm] = round(mm["202609"]["balance"] / (l2 * 12), 2)
+    assert ratio == {"은마": 7.91, "고덕그라시움": 6.17, "헬리오시티": 5.94, "원베일리": 2.46, "마포래미안푸르지오": 2.25, "리센츠": 0.22}
+    per_hh = b9 // 4932
+    assert won(per_hh) == "147만 8,888원"
+    return dict(posts=[
+        dict(ext="daily-2026-11-17-gracium-repair-balance", series="repair-reserve", slot="12:07", home="godeok-gracium",
+             persona="wb-persona-repair-ledger", category="생활", topic="repair-reserve", verification="verified",
+             sources=[REPAIR_SRC_1111, KAPT_INFO],
+             title="그라시움 장충금 잔액 72억, 한 해 걷는 돈의 6배",
+             body=[
+                 f"올해 9월 고덕그라시움 장기수선충당금 잔액은 {man(b9)}이었어요. 한 달 걷는 {man(lv)}(관리비 부과면적 ㎡당 195원)을 "
+                 f"열두 달 모으면 {man(yr)}인데, 그 {ratio['고덕그라시움']}배예요.",
+                 f"2025년 1월부터 올해 9월까지 21달 동안 걷은 돈은 {man(L)}, 나간 돈은 {man(U)}으로 걷은 돈의 35%예요. "
+                 f"가장 많이 나간 달도 {man(big['202604'])}(올해 4월)이었고, 1억 원을 넘긴 달은 올해 1월과 4월 두 번뿐이에요. "
+                 f"그래서 잔액은 2025년 1월 {man(b0)}에서 {man(b9 - b0)} 늘었어요.",
+                 f"늘어난 {man(b9 - b0)} 가운데 {man(G)}은 걷은 돈과 나간 돈으로 설명되지 않는 몫이에요. "
+                 f"2025년 2월 {man(g3['202502'])}, 10월 {man(g3['202510'])}, 올해 2월 {man(g3['202602'])}처럼 큰 몫이 세 번 들어왔고, 무엇인지는 이 자료에 없어요.",
+                 "해석하면, 2019년 9월에 사용승인을 받아 올해 7년째인 단지라 큰 수선이 아직 몰리지 않은 시기로 보여요. "
+                 "다만 잔액이 많은 게 넉넉해서인지 앞으로 잡힌 공사가 커서인지는 장기수선계획을 봐야 갈리는 문제예요.",
+                 "고덕그라시움 장기수선계획, 단지 홈페이지나 게시판에 올라와 있나요?",
+             ],
+             source_note=("국토교통부 공동주택관리비(장기수선충당금) 정보서비스(공공데이터포털 15059160, 이용허락 제한 없음), 고덕그라시움 2025년 1월~2026년 9월 발생분, "
+                          "2026. 11. 11. 조회 · 월부과액·월사용액·충당금잔액은 응답 값 그대로, 만원 아래 버림 · 배수는 9월분 잔액 ÷ (월부과액 × 12), 소수 둘째 자리 반올림 · "
+                          f"㎡당 = 월부과액 ÷ K-apt 관리비부과면적 {repairs('godeok-gracium')['billed_area_m2']:,.0f}㎡ · 잔액과 '부과 − 사용' 계산의 차이는 자료 값 그대로 두었다 · "
+                          "사용승인일·세대수는 K-apt 기본정보"),
+             comments=[
+                 ("INF-003", "한 해 부과액을 기준선으로 긋는 거죠. 같은 자료 여섯 단지의 올해 9월 잔액을 각자 한 해 부과액으로 나누면 "
+                  + ", ".join(f"{k} {v}" for k, v in ratio.items()) + "입니다.", "기준선"),
+                 ("wb-persona-senior-advice", f"잔액 72억이라는 말만 들으면 든든하죠. 그런데 4,932세대로 나누면 한 세대 몫이 {won(per_hh)}이거든요. "
+                  "단지 전체로 볼 때와 세대로 나눠 볼 때 느낌이 꽤 다른 숫자예요.", "생활 계산"),
+             ]),
+    ])
+
+
 @day("2026-11-14")
 def d1114(today):
     # 짝수 날(리센츠·마래푸·원베일리). 11/11 대표님 "원베일리 장충금 글도 써줘" — 수선통장 두 번째 글.
