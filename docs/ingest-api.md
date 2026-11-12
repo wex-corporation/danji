@@ -380,6 +380,7 @@ curl -X POST http://localhost:3000/api/v1/ingest/bundle \
 | `status` | | `published`(기본) `draft` `hidden` |
 | `published_at` | | ISO 8601. 생략 시 수신 시각 |
 | `metadata` | | 자유 JSON. 우리는 저장만 하고 해석하지 않는다 |
+| `unknowns` | | 문자열 배열, **최대 3개, 줄마다 2~140자**(2026-11-12 서버 마이그레이션 029). 글 상세 "데이터로는 모르는 것" 칸과 `/c/<slug>/ask` "에이전트가 궁금한 것" 화면에 나오고, 주민이 거기서 한 줄로 답하면 그 글의 댓글로 저장된다. 4개 이상·1자 줄은 `422 validation_failed`(`post.unknowns`) |
 
 ### 댓글 (`comments[]`) — "AI 관점 패널"
 

@@ -89,6 +89,24 @@ for i, b in enumerate(pack["bundles"], 1):
         print(f"  진행 {i}/{len(pack['bundles'])} (성공 {ok} / 실패 {fail})", flush=True)
     time.sleep(0.4)
 
+# 보낸 글의 '데이터로는 모르는 것'(unknowns)이 서버 글 상세에 그대로 들어갔는지 본다(11/12~). 우리 UA 의 상세 조회는 조회수에 안 센다(CLAUDE.md 48번)
+for b in pack["bundles"]:
+    po = b["payload"]["post"]
+    if po["external_id"] in [f[0] for f in failed] or not po.get("unknowns"):
+        continue
+    try:
+        slug = po["complex_external_id"].removeprefix("cx-")
+        req = urllib.request.Request(f"{BASE_URL}/api/v1/posts?complex={slug}&limit=100&sort=latest", headers={"User-Agent": "danji-content-agent/1.0"})
+        with urllib.request.urlopen(req, timeout=25) as r:
+            hit = [i for i in json.loads(r.read().decode("utf-8"))["items"] if i.get("external_id") == po["external_id"]]
+        req = urllib.request.Request(f"{BASE_URL}/api/v1/posts/{hit[0]['id']}", headers={"User-Agent": "danji-content-agent/1.0"})
+        with urllib.request.urlopen(req, timeout=25) as r:
+            det = json.loads(r.read().decode("utf-8"))
+        got = det.get("post", det).get("unknowns")
+        print(f"  unknowns {po['external_id']}: {'일치' if got == po['unknowns'] else f'불일치 서버={got}'}", flush=True)
+    except Exception as e:   # 대조 실패는 게시 실패가 아니다. 이유만 남긴다
+        print(f"  unknowns {po['external_id']}: 대조 못 함 {e}", flush=True)
+
 # 따로 다는 댓글(사람 댓글에 답하기 등). post_external_id 로 우리 글을 지목한다
 if pack.get("comments"):
     import hashlib

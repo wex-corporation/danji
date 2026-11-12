@@ -39,6 +39,11 @@ BAN_PRICE = re.compile(r"\d\s?억|(?<![가-힣])호가|시세|매수|매도|상�
 # 우리끼리 쓰는 말. 11/8 주민이 8월 글의 '파일럿 단지'를 보고 "파일럿이 뭐야?"라고 물었다 — 글·관점 댓글에 쓰지 않는다
 # (그 뜻을 풀어 주는 답글은 따로 다는 댓글이라 이 검사 밖이다)
 JARGON = re.compile(r"파일럿|서모스탯|콜드스타트|출고 검사|팩(?![트스])|페르소나")
+# 글의 '데이터로는 모르는 것'(unknowns) — 11/12 대표님 "하루치 글 루틴에서 모르는 것도 같이 보내게 바꿔"(플랫폼 세션 전달, 서버 마이그레이션 029).
+# 글 상세 '데이터로는 모르는 것' 칸과 /c/<slug>/ask '에이전트가 궁금한 것' 화면에 나오고, 주민 답은 그 글의 댓글로 저장된다.
+# 그 글의 자료로 확인하지 못했고 사는 사람은 아는 것만, 부탁이 아니라 한계를 밝히는 사실로 쓴다. 서버 검사: 배열 3개 이하, 줄마다 2자 이상(11/12 422 응답으로 확인)
+UNKNOWNS_FROM = "2026-11-13"
+UNK_ASK = re.compile(r"주세요|주시면|주실|바랍니다|부탁|알려|남겨|궁금하")
 
 DAYS = {}
 
@@ -1164,6 +1169,7 @@ def _mapo_clinics_1112():
                 source_note=("소상공인시장진흥공단 상가(상권)정보 마포구(11440) 업소를 2026. 11. 8. 받아 법정동코드로 센 값 · 아현동 1144010100 · "
                              "소분류 치과의원·한의원·내과/소아과 의원·이비인후과 의원·일반병원·안과 의원·약국 · 업소 이름·주소·좌표는 저장하지 않음 · "
                              "법정동 전체 수이며 단지 도보권 수가 아님 · 공단 수집본이라 인허가 원부와 다를 수 있음"),
+                unknowns=['업소 이름·주소를 저장하지 않아 단지에서 걸어갈 수 있는 의원이 몇 곳인지는 이 자료로 셀 수 없습니다', '안과 0곳이 아현동에 안과가 없다는 뜻인지 공단 수집에서 빠진 것인지는 확인하지 못했습니다', "소아과만 따로 몇 곳인지는 '내과/소아과 의원' 한 분류로 묶여 있어 나눌 수 없습니다"],
                 comments=[
                     ("wb-persona-num-compare", f"같은 잣대, 공단 상가정보·법정동. 아현동 치과 {got['Q10210']}, 한의원 {got['Q10211']}, 내과/소아과 {got['Q10201']}, 약국 {got['G21501']}. "
                      f"마포구 전체는 치과 {c['Q10210']['total']}, 한의원 {c['Q10211']['total']}, 내과/소아과 {c['Q10201']['total']}, 약국 {c['G21501']['total']}.", "기준 통일"),
@@ -1213,6 +1219,7 @@ def _ob_floors_1112():
                 ],
                 source_note=("국토교통부 아파트 매매 실거래가 상세 자료, 서초구(11650) 래미안원베일리 2023년 4월~2026년 9월 계약분, 2026. 11. 10. 조회 · "
                              "해제 신고 21건 제외 · 층은 신고서의 층 값 그대로, 금액은 쓰지 않음 · 비율은 소수 둘째 자리 반올림 · 최고층·동 수는 K-apt 기본정보"),
+                unknowns=['동마다 꼭대기 층이 몇 층인지, 층마다 몇 세대가 있는지는 이 신고 자료에 없습니다', '층별로 매물이 얼마나 나왔는지는 공개 자료가 없어 거래 건수만으로는 알 수 없습니다'],
                 comments=[
                     ("wb-persona-sure-thing", "신고 181건 중 1층 0건, 이건 백 퍼센트 확실합니다! 1층 세대가 있는지는 신고 자료 밖이라 그건 장담 못 하고요.", "공공자료 사실"),
                     ("wb-persona-real-talk", f"'높은 층만 팔린다'는 느낌이 있잖아요? 표로 보면 2~5층 {low}건, 30층 이상 {high}건이라 거의 같아요.", "표와 체감"),
@@ -1353,6 +1360,7 @@ def d1113(today):
                           "2026. 11. 11. 조회 · 월부과액·월사용액·충당금잔액은 응답 값 그대로, 만원 아래 버림 · "
                           f"㎡당 = 월부과액 ÷ K-apt 관리비부과면적 {repairs('eunma')['billed_area_m2']:,.0f}㎡ · 잔액과 '부과 − 사용' 계산의 차이는 자료 값 그대로 두었다 · "
                           "사용 내역(용처)은 이 자료에 없다 · 사용승인일은 K-apt 기본정보"),
+             unknowns=['올해 4월 4억 4,693만원이 어떤 공사에 쓰였는지는 국토교통부 장기수선충당금 자료에 없습니다', '4월 잔액에 계산보다 더해진 4억 223만원이 어떤 항목인지는 이 자료에 나오지 않습니다', '장기수선계획에 다음 큰 공사가 언제 잡혀 있는지는 공개 자료에서 찾지 못했습니다'],
              comments=[
                  ("wb-persona-dry-note", f"나간 돈 {man(a4['use'])}, 계산보다 더 들어온 돈 {man(a4['gap_vs_prev'])}. 잔액 칸만 보면 조용한 달이었던 거죠.", "조건 정리"),
                  ("wb-persona-whatif", f"가정 하나 해 볼게요. 은마가 ㎡당 360원을 걷는다면 한 달 {man(int(alt))}이에요. 지금 걷는 돈의 열두 배 남짓이잖아요.", "가정 계산"),
@@ -1400,6 +1408,7 @@ def d1115(today):
                           "2026. 11. 11. 조회 · 월부과액·월사용액·충당금잔액은 응답 값 그대로, 만원 아래 버림 · "
                           f"㎡당 = 월부과액 ÷ K-apt 관리비부과면적 {repairs('helio-city')['billed_area_m2']:,.0f}㎡ · 비율은 반올림 · "
                           "잔액과 '부과 − 사용' 계산의 차이는 자료 값 그대로 두었다 · 사용 내역(용처)은 이 자료에 없다 · 사용승인일은 K-apt 기본정보"),
+             unknowns=['작년 12월 18억 4,816만원과 올해 9월 11억 780만원이 어떤 공사에 쓰였는지는 이 자료에 없습니다', '올해 5월부터 달마다 계산보다 더 늘어난 809만~940만원이 어떤 항목인지는 이 자료에 나오지 않습니다'],
              comments=[
                  ("wb-persona-timeseries", "21달을 이어 붙이면 선은 거의 평평하다. 크게 꺾인 건 두 번이다. 2025년 12월, 2026년 9월.", "시계열"),
                  ("wb-persona-psy-thermo", f"한 달에 18억이 나갔다고 놀랄 일만은 아니에요. 그달 뒤에도 잔액은 62억대였고, 다섯 달 뒤엔 70억을 다시 넘었어요.", "심리 온도"),
@@ -1451,6 +1460,7 @@ def d1116(today):
              source_note=("국토교통부 공동주택관리비(장기수선충당금) 정보서비스(공공데이터포털 15059160, 이용허락 제한 없음), 마포래미안푸르지오 2025년 1월~2026년 9월 발생분, "
                           "2026. 11. 11. 조회 · 월부과액·월사용액·충당금잔액은 응답 값 그대로, 만원 아래 버림 · 2026년 4월분 잔액(185,577,399원)은 앞뒤 달과 이어지지 않아 차이 계산에서 뺐다 · "
                           f"㎡당 = 월부과액 ÷ K-apt 관리비부과면적 {repairs('mapo-raemian-prugio')['billed_area_m2']:,.0f}㎡ · 사용 내역(용처)은 이 자료에 없다 · 사용승인일은 K-apt 기본정보"),
+             unknowns=['4월분 잔액 칸이 왜 앞뒤 달과 이어지지 않는지는 이 자료만으로 알 수 없습니다', '2025년 2월 계산보다 더 들어온 3억 1,030만원이 어떤 항목인지는 이 자료에 나오지 않습니다'],
              comments=[
                  ("INF-011", f"3월분 {b3:,}원. 4월분 {b4:,}원. 5월분 {b5:,}원. 응답 값 그대로 옮김.", "보고서 읽기"),
                  ("wb-persona-myth-check", f"'장충금은 쌓아만 둔다'는 말과 달리 이 단지는 21달 중 {21 - len(zero)}달 돈을 썼습니다. 다만 1억을 넘긴 달은 다섯 번뿐이죠.", "통념 검증"),
@@ -1505,6 +1515,7 @@ def d1117(today):
                           "2026. 11. 11. 조회 · 월부과액·월사용액·충당금잔액은 응답 값 그대로, 만원 아래 버림 · 배수는 9월분 잔액 ÷ (월부과액 × 12), 소수 둘째 자리 반올림 · "
                           f"㎡당 = 월부과액 ÷ K-apt 관리비부과면적 {repairs('godeok-gracium')['billed_area_m2']:,.0f}㎡ · 잔액과 '부과 − 사용' 계산의 차이는 자료 값 그대로 두었다 · "
                           "사용승인일·세대수는 K-apt 기본정보"),
+             unknowns=['21달 동안 계산보다 더 들어온 5억 2,282만원이 어떤 항목인지는 이 자료에 나오지 않습니다', '적립요율 칸이 1.0으로 나오지만 무엇을 기준으로 한 비율인지는 확인하지 못했습니다'],
              comments=[
                  ("INF-003", "한 해 부과액을 기준선으로 긋는 거죠. 같은 자료 여섯 단지의 올해 9월 잔액을 각자 한 해 부과액으로 나누면 "
                   + ", ".join(f"{k} {v}" for k, v in ratio.items()) + "입니다.", "기준선"),
@@ -1568,6 +1579,7 @@ def d1114(today):
              source_note=("국토교통부 공동주택관리비(장기수선충당금) 정보서비스(공공데이터포털 15059160, 이용허락 제한 없음), 래미안원베일리 2023년 8월~2026년 9월 발생분, "
                           "2026. 11. 11. 조회 · 2023년 8월은 응답 값이 없고 9월부터 2024년 7월까지는 0원으로 응답 · 월부과액·월사용액·충당금잔액은 응답 값 그대로, 만원 아래 버림 · "
                           f"㎡당 = 월부과액 ÷ K-apt 관리비부과면적 {rp['billed_area_m2']:,.0f}㎡ · 잔액과 부과액 합계의 차이는 자료 값 그대로 두었다 · 사용승인일은 K-apt 기본정보"),
+             unknowns=['장기수선계획에 첫 큰 수선이 언제 잡혀 있는지는 이 자료에 없습니다', '올해 2월 잔액에 계산보다 더해진 1억 6,175만원이 어떤 항목인지는 이 자료에 나오지 않습니다'],
              comments=[
                  ("wb-persona-past-cycle", f"11월 10일 기록에서 이 단지 첫 매매 등기일은 {first_rg[:4]}년 {int(first_rg[5:7])}월 {int(first_rg[8:])}일이었습니다. "
                   "장기수선충당금 첫 부과는 그다음 달인 8월분이고요.", "지난 기록"),
@@ -1692,6 +1704,7 @@ def build(d):
                     "title": po["title"], "summary": po.get("summary", po["body"][0])[:220], "body": body,
                     "verification": po["verification"], "source_note": po["source_note"], "sources": po["sources"],
                     "published_at": f"{d}T{po['slot']}:00+09:00", "status": "published",
+                    "unknowns": po.get("unknowns", []),
                 },
                 "comments": [{"external_id": f"{po['ext']}-c{i}", "persona_external_id": pid, "body": b,
                               "stance": st, "position": i} for i, (pid, b, st) in enumerate(po["comments"])],
@@ -1734,6 +1747,33 @@ def validate(pack, d):
             errs.append(f"{tag}: 경험 어투")
         if JARGON.search(text):
             errs.append(f"{tag}: 내부 용어 '{JARGON.search(text).group()}'")
+        un = x.get("unknowns", [])
+        if d >= UNKNOWNS_FROM and not un:
+            errs.append(f"{tag}: unknowns 비어 있음({UNKNOWNS_FROM}부터 글마다 1~3줄)")
+        if len(un) > 3 or len(set(un)) != len(un):
+            errs.append(f"{tag}: unknowns {len(un)}줄·중복 확인")
+        closing = body.split("\n\n")[-1].strip()
+        for ln in un:
+            if not 2 <= len(ln) <= 140:
+                errs.append(f"{tag}: unknowns 길이 {len(ln)} '{ln[:20]}'")
+            if ln.rstrip().endswith((".", "?", "!")) or "?" in ln:
+                errs.append(f"{tag}: unknowns 끝 부호·질문형 '{ln[:20]}'")
+            if AI_COMMENT_ASK.search(ln) or UNK_ASK.search(ln):
+                errs.append(f"{tag}: unknowns 부탁하는 말 '{ln[:20]}'")
+            if JARGON.search(ln):
+                errs.append(f"{tag}: unknowns 내부 용어 '{JARGON.search(ln).group()}'")
+            g = PERSONA_GUARDS.get(x["persona_external_id"])
+            if g and g.search(ln):
+                errs.append(f"{tag}: unknowns 가드 '{g.search(ln).group()}'")
+            if x["persona_external_id"].startswith("adv-") and BAN_PRICE.search(ln):
+                errs.append(f"{tag}: unknowns 홍보 가격 어휘 '{BAN_PRICE.search(ln).group()}'")
+            if [w for ws in BANNED.values() for w in ws if w in ln]:
+                errs.append(f"{tag}: unknowns 금지 표현")
+            for m in re.finditer(r"\d[\d,]*억(?: [\d,]+만원)?|\d[\d,]*만원", ln):     # 금액은 본문에 있는 숫자만
+                if m.group() not in body:
+                    errs.append(f"{tag}: unknowns 금액 '{m.group()}'이 본문에 없음")
+            if closing and (ln.rstrip("다니습") in closing or closing.rstrip("?") in ln):
+                errs.append(f"{tag}: unknowns 가 끝 질문을 되풀이 '{ln[:20]}'")
         if RELATIVE_TIME.search(text):
             errs.append(f"{tag}: 시점 의존 표현 '{RELATIVE_TIME.search(text).group()}'")
         je = josa_errors(text) + [m.group() for m in B.BAD_PCT_JOSA.finditer(text)]
