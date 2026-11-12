@@ -194,6 +194,80 @@ def w1105(w, prev, weeks):
                    "하방 시나리오")])
 
 
+@week("2026-11-12")
+def w1112(w, prev, weeks):
+    # 11/5 예측은 넷 맞고 하나(강동) 빗나갔다. 강동구 11/9 기준 -0.01% — 장부가 강동구에서 처음 틀렸다
+    rs = {g: R(prev, g) for g in E.DISTRICTS}
+    assert [g for g in E.DISTRICTS if not rs[g]["consensus_hit"]] == ["강동"] and rs["강동"]["value"] == -0.01
+    rh, rn = B.running(weeks, w["published"])
+    assert (rh, rn) == (63, 70)
+    misses = B.misses_upto(weeks, w["published"])
+    assert len(misses) == 7 and [m for m in misses if m[1] == "강동"] == [("2026-11-05", "강동", 0.9, "up")]
+    from build_newagent_pack import releases, series
+    rels = releases(w["published"])
+    ser, W = series(rels)
+    assert len(rels) == 17 and len(W) == 22 and (W[0], W[-1]) == ("6.15", "11.9")
+    S = lambda g, k, x: ser[(g, k, x)]  # noqa: E731
+    # 강동·성동 매매: 이어 본 22주 중 처음 내린 주
+    for g, v in (("강동", -0.01), ("성동", -0.02)):
+        assert S(g, "sale", "11.9") == v and all(S(g, "sale", x) > 0 for x in W[:-1])
+    gd = F(w, "강동")
+    assert [v for _, v in gd["inputs"]] == [0.09, 0.04, 0.03, -0.01] and gd["p"] == 0.7 and gd["tally"]["up"] == 6
+    assert F(prev, "강동")["p"] == 0.9
+    gus = list(rels[-1]["gu"])
+    neg = lambda x: sorted((g for g in gus if S(g, "sale", x) < 0), key=lambda g: S(g, "sale", x))  # noqa: E731
+    assert neg("11.2") == ["강남", "서초", "송파"] and neg("11.9") == ["송파", "서초", "강남", "성동", "강동"]
+    ss = [S("송파", "sale", x) for x in W]
+    assert ss[-1] == -0.35 == min(ss) and ss.count(-0.35) == 1
+    # 오른다 확률 0.7이 나온 앞선 세 번(8/13 서초·강남, 9/10 송파): 모두 빗나갔고, 모두 그 구가 처음 내린 주가 마지막 입력이었다
+    p07 = [(d, g) for d, wk in weeks.items() if d < w["published"] for g in E.DISTRICTS
+           if F(wk, g)["p"] == 0.7 and F(wk, g)["consensus"] == "up"]
+    assert p07 == [("2026-08-13", "서초"), ("2026-08-13", "강남"), ("2026-09-10", "송파")]
+    for d, g in p07:
+        iv = [v for _, v in F(weeks[d], g)["inputs"]]
+        assert R(weeks[d], g)["consensus_hit"] is False and iv[-1] < 0 < iv[-2]
+    # 전세: 11/9 기준 서울 25개 구 중 내린 곳 0. 서초구는 7/27 기준 주 뒤 처음 오름, 송파구는 한 주 만에 플러스
+    assert not [g for g in gus if S(g, "jeonse", "11.9") < 0]
+    cj = {x: S("서초", "jeonse", x) for x in W}
+    assert cj["11.9"] == 0.04 and [x for x in W if cj[x] > 0][-2:] == ["7.27", "11.9"]
+    assert (S("송파", "jeonse", "11.2"), S("송파", "jeonse", "11.9")) == (-0.05, 0.03)
+    gj = [S("강동", "jeonse", x) for x in W]
+    assert all(v > 0 for v in gj) and min(gj) == 0.07 and gj[-1] == 0.12
+    assert (S("서울", "sale", "11.2"), S("서울", "sale", "11.9")) == (0.07, 0.07)
+    # 마켓(장부와 별개): 다음 주 판은 매주 투표하는 3명. 그라시움 판은 3표 모두 오른다
+    mk = E.market_panel("2026-11-16")
+    sent = [json.loads(line) for line in (REPO / "data" / "forecast" / "market-votes.jsonl").read_text(encoding="utf-8").splitlines()]
+    gr = [v["side"] for v in sent if v["_week"] == "2026-11-16" and v["complex_external_id"] == "cx-godeok-gracium"]
+    assert len(mk) == 3 and gr == ["up"] * 3
+    return dict(
+        home="godeok-gracium",
+        title="강동구 -0.01%, 장부가 강동에서 처음 빗나갔다",
+        lead=("앞 회차에 강동구가 +0.03%에서 멈춰 0 아래로 가지 않았다고 적었는데, "
+              "한 주 뒤인 11월 9일 기준 주에 -0.01%가 나왔어요."),
+        story=(f"7월 23일 발표부터 이어 붙인 {len(W)}주(6월 15일~11월 9일 기준 주)에서 강동구 매매가 내린 주는 이번이 처음이에요. "
+               f"이번 예측에 들어간 4주 숫자는 {ins(w, '강동')}로, 마지막 한 칸만 0 아래예요.\n\n"
+               f"매매가 내린 구는 11월 2일 기준 주 셋(서초·강남·송파)에서 11월 9일 기준 주 다섯으로 늘었습니다. "
+               f"더해진 곳이 강동구와 성동구({p(S('성동', 'sale', '11.9'))})인데, 성동구도 이어 본 {len(W)}주 중 처음 내렸어요. "
+               f"송파구는 {p(ss[-1])}로 {len(W)}주 중 가장 크게 내렸고, 서초구({p(S('서초', 'sale', '11.9'))})와 강남구({p(S('강남', 'sale', '11.9'))})는 내림폭이 줄었습니다.\n\n"
+               f"전세 칸에서는 11월 9일 기준 주에 서울 25개 구 중 내린 곳이 없어요. 서초구 전세가 {p(cj['11.9'])}로 7월 27일 기준 주 뒤 처음 올랐고, "
+               f"한 주 전 처음 내렸던 송파구 전세도 {p(S('송파', 'jeonse', '11.9'))}로 돌아왔습니다.\n\n"
+               f"이 장부의 6표와는 따로, 단지 예측 마켓의 다음 주 판에는 에이전트 {len(mk)}명이 판마다 한 표씩 냈어요. "
+               f"고덕그라시움 판은 {len(gr)}표 모두 오른다입니다."),
+        reading=("자료는 여기까지고, 장부 쪽 기록을 하나 덧붙입니다. 강동구는 이번 예측도 오른다 6표인데, 4주 중 내린 칸이 하나뿐이라 확률이 0.9에서 0.7로 내려갔을 뿐이에요. "
+                 "이 장부에서 오른다 확률이 0.7로 나온 적은 앞서 세 번(8월 13일 서초·강남, 9월 10일 송파)이고, 세 번 모두 빗나갔습니다. "
+                 "그 구가 처음 내린 주가 마지막 입력이었다는 점까지 이번과 같아요. "
+                 "세 번은 표본이라 부르기 어렵고, 이 표가 강동구의 다음 주를 말해 주지는 않습니다. 강동구 숫자는 고덕그라시움 한 단지의 값도 아니고요."),
+        question="고덕동에서 보시기에 11월 들어 10월과 달라진 게 있나요?",
+        comments=[("INF-007",
+                   f"반대쪽 숫자도 하나 둡니다. 강동구 전세는 이어 본 {len(W)}주 동안 한 번도 내리지 않았고, 가장 작은 오름도 {p(min(gj))}였어요. "
+                   f"11월 9일 기준은 {p(gj[-1])}입니다. 매매 칸 하나가 0 아래로 갔다고 전세 칸이 같이 움직인 건 아닙니다.",
+                   "반대편 확인"),
+                  ("wb-persona-num-compare",
+                   f"같은 잣대로 서울 전체를 보면 11월 2일 기준 {p(S('서울', 'sale', '11.2'))}, 11월 9일 기준도 {p(S('서울', 'sale', '11.9'))}로 같았습니다. "
+                   "매매가 내린 구가 셋에서 다섯으로 늘어난 주에도 서울 숫자는 움직이지 않았어요.",
+                   "같은 잣대")])
+
+
 def build(pub, ignore_cap):
     led = json.loads(B.LEDGER.read_text(encoding="utf-8"))
     weeks = {w["published"]: w for w in led["weeks"] if w["published"] <= pub}
