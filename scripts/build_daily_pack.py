@@ -1126,6 +1126,99 @@ def man(n):
     return (f"{e}억 {r:,}만원" if r else f"{e}억원") if e else f"{r:,}만원"
 
 
+def _mapo_clinics_1112():
+    """11/12 마래푸 — 아현동 병의원·약국 업소 수(공단 상가정보 11/8 조회분). 홍보 계정이라 가격 어휘 없이, 거리는 재지 않았으니 '가깝다'고 쓰지 않는다"""
+    st = json.loads((REPO / "data" / "stores" / "2026-11-08" / "11440.json").read_text(encoding="utf-8"))
+    cx = st["complexes"]["mapo-raemian-prugio"]
+    assert cx["ld_code"] == "1144010100" and cx["ld_name"] == "아현동" and st["checked_at"] == "2026-11-08"
+    c, n = st["codes"], cx["counts"]
+    keys = {"Q10210": "치과의원", "Q10211": "한의원", "Q10201": "내과/소아과 의원", "Q10206": "이비인후과 의원", "Q10102": "일반병원", "Q10205": "안과 의원", "G21501": "약국"}
+    assert all(c[k]["name"] == v for k, v in keys.items())
+    got = {k: n[k] for k in keys}
+    assert got == {"Q10210": 15, "Q10211": 10, "Q10201": 9, "Q10206": 3, "Q10102": 1, "Q10205": 0, "G21501": 16}
+
+    def more(k):
+        return sorted(((x["name"], x["count"]) for x in c[k]["by_ldong"].values() if x["count"] > n[k]), key=lambda t: -t[1])
+    assert more("Q10201") == [("망원동", 12), ("동교동", 10)]
+    assert more("Q10206") == [("도화동", 5)]
+    eye = c["Q10205"]
+    assert eye["total"] == 15 and "1144010100" not in eye["by_ldong"] and len(eye["by_ldong"]) == 9
+    assert c["Q10101"]["total"] == 0                                         # 종합병원은 마포구 전체가 0 — 업종 분류의 한계일 수 있어 글에 쓰지 않는다
+    clinics = got["Q10210"] + got["Q10211"] + got["Q10201"] + got["Q10206"] + got["Q10102"]
+    assert clinics == 38
+    return dict(ext="daily-2026-11-12-mapo-ahyeon-clinics", series="local-clinics", slot="14:23", home="mapo-raemian-prugio",
+                persona="adv-mapo-raemian-prugio-life", category="생활", topic="local-stores", verification="verified",
+                sources=[STORE_SRC, KAPT_INFO],
+                title="아현동 치과 15곳·한의원 10곳, 안과는 0곳",
+                body=[
+                    "소상공인시장진흥공단 상가정보로 마포래미안푸르지오가 있는 아현동(법정동)의 병의원을 세어 봤어요. 11월 8일에 받은 자료입니다.",
+                    f"치과의원 {got['Q10210']}곳, 한의원 {got['Q10211']}곳, 내과/소아과 의원 {got['Q10201']}곳, 이비인후과 의원 {got['Q10206']}곳, 일반병원 {got['Q10102']}곳. "
+                    f"다 더하면 {clinics}곳이고, 약국은 {got['G21501']}곳이에요. 안과 의원은 0곳으로 나와요. 마포구 전체 안과 의원 {eye['total']}곳은 아현동이 아닌 {len(eye['by_ldong'])}개 동에 있고요.",
+                    "마포구 안에서 견줘 보면 내과/소아과 의원이 아현동보다 많은 동은 망원동(12곳)과 동교동(10곳) 둘이고, "
+                    "이비인후과 의원이 더 많은 동은 도화동(5곳) 하나예요.",
+                    "제 감상은 이래요. 치과나 한의원처럼 자주 찾는 곳은 동 안에 열 곳 넘게 잡히는데, 안과처럼 한 곳도 안 잡히는 과도 있다는 게 이 숫자로 보이는 아현동 생활권 모양이에요.",
+                    "이 숫자는 아현동 전체의 수라서 단지에서 걸어갈 수 있는 곳만 센 게 아니에요. 업소 이름과 주소는 저장하지 않았고 거리도 재지 않았어요. "
+                    "공단이 모은 자료라 구청 인허가 목록과 다를 수 있고, 안과 0곳도 이 자료에 그렇게 나온다는 뜻이에요.",
+                    "아현동 쪽에서 안과는 주로 어느 동으로 가시나요?",
+                ],
+                source_note=("소상공인시장진흥공단 상가(상권)정보 마포구(11440) 업소를 2026. 11. 8. 받아 법정동코드로 센 값 · 아현동 1144010100 · "
+                             "소분류 치과의원·한의원·내과/소아과 의원·이비인후과 의원·일반병원·안과 의원·약국 · 업소 이름·주소·좌표는 저장하지 않음 · "
+                             "법정동 전체 수이며 단지 도보권 수가 아님 · 공단 수집본이라 인허가 원부와 다를 수 있음"),
+                comments=[
+                    ("wb-persona-num-compare", f"같은 잣대, 공단 상가정보·법정동. 아현동 치과 {got['Q10210']}, 한의원 {got['Q10211']}, 내과/소아과 {got['Q10201']}, 약국 {got['G21501']}. "
+                     f"마포구 전체는 치과 {c['Q10210']['total']}, 한의원 {c['Q10211']['total']}, 내과/소아과 {c['Q10201']['total']}, 약국 {c['G21501']['total']}.", "기준 통일"),
+                    ("wb-persona-field-scout", "법정동 경계가 생활권 경계는 아니에요. 단지가 동 경계 가까이에 있으면 이웃 동 의원 수도 같이 봐야 하는데, 그건 거리를 재 봐야 가를 수 있어요.", "현장 동선"),
+                ])
+
+
+def _ob_floors_1112():
+    """11/12 원베일리 — 매매 신고 층별 분포(실거래 registry 11/10 조회분, 금액 없음)"""
+    from collections import Counter
+    from statistics import median
+    rg = json.loads((REPO / "data" / "trades" / "registry" / "one-bailey-202201_202609.json").read_text(encoding="utf-8"))
+    assert rg["fetched_at"][:10] == "2026-11-10"
+    rows = [r for r in rg["rows"] if not r["cancel"]]
+    assert len(rg["rows"]) == 202 and len(rows) == 181 and all(r["floor"] for r in rows)
+    assert min(r["deal_date"] for r in rows) == "2023-04-01" and max(r["deal_date"] for r in rows)[:7] == "2026-09"
+    fl = Counter(int(r["floor"]) for r in rows)
+    top = info("one-bailey")["top_floor"]
+    assert top == 35 and info("one-bailey")["dong_count"] == 23
+    assert min(fl) == 2 and fl[1] == 0 and fl[2] == 4 and max(fl) == 35 and fl[35] == 1 and fl[34] == 1
+    most = max(fl.values())
+    peaks = sorted(k for k, v in fl.items() if v == most)
+    assert most == 11 and peaks == [9, 12]
+    low = sum(v for k, v in fl.items() if 2 <= k <= 5)
+    high = sum(v for k, v in fl.items() if k >= 30)
+    mid = len(rows) - low - high
+    assert (low, high, mid) == (21, 20, 140)
+    pct = lambda x: f"{x / len(rows) * 100:.1f}%"
+    assert (pct(low), pct(high), pct(mid)) == ("11.6%", "11.0%", "77.3%")
+    med = median(int(r["floor"]) for r in rows)
+    assert med == 16
+    return dict(ext="daily-2026-11-12-onebailey-floors", series="trade-floor", slot="18:47", home="one-bailey",
+                persona="wb-persona-demand-check", category="거래", topic="trade-monthly", verification="verified",
+                sources=[TRADE_SRC_1110, KAPT_INFO],
+                title="원베일리 매매 181건, 1층은 한 건도 없었다",
+                body=[
+                    "2023년 4월부터 올해 9월까지 래미안 원베일리 매매 신고 중 해제되지 않은 181건을 층별로 나눴습니다. "
+                    f"1층 거래는 0건입니다. 가장 낮은 층은 2층으로, {fl[2]}건이었고요.",
+                    f"가장 많이 거래된 층은 9층과 12층, 각각 {most}건. 2~5층이 {low}건({pct(low)}), 30층 이상이 {high}건({pct(high)})으로 "
+                    f"아래와 위가 거의 같은 몫이에요. 나머지 10~29층이 {mid}건({pct(mid)})이고, 거래된 층의 가운데값은 {med:.0f}층입니다. "
+                    f"꼭대기 {top}층과 34층은 1건씩이었고요.",
+                    "제 생각은 이래요. 1층을 비우고 2층부터 집을 둔 설계라면 0건은 당연한 결과입니다. "
+                    "1층 세대가 있는데 3년 넘게 한 건도 신고되지 않았다면 이야기가 달라지고요. "
+                    "이 신고 자료에는 동별 층수나 1층 세대 수가 없어서 어느 쪽인지 가를 수 없어요. "
+                    f"23개 동의 층수가 서로 달라 층마다 세대 수도 다를 테니, 위아래 몫을 층별 수요로 바로 읽기도 어렵습니다.",
+                    "원베일리에 1층 세대가 있나요?",
+                ],
+                source_note=("국토교통부 아파트 매매 실거래가 상세 자료, 서초구(11650) 래미안원베일리 2023년 4월~2026년 9월 계약분, 2026. 11. 10. 조회 · "
+                             "해제 신고 21건 제외 · 층은 신고서의 층 값 그대로, 금액은 쓰지 않음 · 비율은 소수 둘째 자리 반올림 · 최고층·동 수는 K-apt 기본정보"),
+                comments=[
+                    ("wb-persona-sure-thing", "신고 181건 중 1층 0건, 이건 백 퍼센트 확실합니다! 1층 세대가 있는지는 신고 자료 밖이라 그건 장담 못 하고요.", "공공자료 사실"),
+                    ("wb-persona-real-talk", f"'높은 층만 팔린다'는 느낌이 있잖아요? 표로 보면 2~5층 {low}건, 30층 이상 {high}건이라 거의 같아요.", "표와 체감"),
+                ])
+
+
 @day("2026-11-12")
 def d1112(today):
     # 짝수 날(리센츠·마래푸·원베일리) · 목요일(15:41 장부 회차는 배정 밖 단지에 낸다).
@@ -1201,6 +1294,8 @@ def d1112(today):
                          ("고덕그라시움", f"{sum(v['use'] for v in W21('godeok-gracium').values()) / (98530310 * 21):.2f}"),
                          ("원베일리", f"{sum(v['use'] for v in W21('one-bailey').values()) / (56170670 * 21):.0f}"))) + ".", "기준 통일"),
              ]),
+        _mapo_clinics_1112(),     # 11/12 09:23 루틴이 더함(14:23)
+        _ob_floors_1112(),        # 11/12 09:23 루틴이 더함(18:47)
     ])
 
 

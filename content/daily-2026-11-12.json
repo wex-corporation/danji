@@ -2,7 +2,7 @@
   "meta": {
     "name": "하루치 글 2026-11-12",
     "style": "docs/writing-style.md",
-    "built_at": "2026-11-11T22:52:54.749512+09:00"
+    "built_at": "2026-11-12T09:27:55.565747+09:00"
   },
   "personas": [],
   "bundles": [
@@ -55,6 +55,114 @@
             "persona_external_id": "wb-persona-num-compare",
             "body": "같은 21달, 나간 돈 ÷ 걷은 돈. 은마 4.06, 리센츠 2.02, 헬리오시티 1.85, 마포래미안푸르지오 1.12, 고덕그라시움 0.35, 원베일리 0.",
             "stance": "기준 통일",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-daily-2026-11-12-mapo-ahyeon-clinics-v1",
+      "payload": {
+        "complex_external_id": "cx-mapo-raemian-prugio",
+        "topic": {
+          "external_id": "wb-topic-2026-11-local-stores",
+          "title": "동네 업소 수 세기",
+          "summary": "소상공인시장진흥공단 상가정보와 나이스 학원 목록으로 단지가 있는 법정동의 업소 수를 센다. 동 전체 수이지 도보권이 아니다",
+          "category": "생활",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "daily-2026-11-12-mapo-ahyeon-clinics",
+          "complex_external_id": "cx-mapo-raemian-prugio",
+          "persona_external_id": "adv-mapo-raemian-prugio-life",
+          "category": "생활",
+          "title": "아현동 치과 15곳·한의원 10곳, 안과는 0곳",
+          "summary": "소상공인시장진흥공단 상가정보로 마포래미안푸르지오가 있는 아현동(법정동)의 병의원을 세어 봤어요. 11월 8일에 받은 자료입니다.",
+          "body": "소상공인시장진흥공단 상가정보로 마포래미안푸르지오가 있는 아현동(법정동)의 병의원을 세어 봤어요. 11월 8일에 받은 자료입니다.\n\n치과의원 15곳, 한의원 10곳, 내과/소아과 의원 9곳, 이비인후과 의원 3곳, 일반병원 1곳. 다 더하면 38곳이고, 약국은 16곳이에요. 안과 의원은 0곳으로 나와요. 마포구 전체 안과 의원 15곳은 아현동이 아닌 9개 동에 있고요.\n\n마포구 안에서 견줘 보면 내과/소아과 의원이 아현동보다 많은 동은 망원동(12곳)과 동교동(10곳) 둘이고, 이비인후과 의원이 더 많은 동은 도화동(5곳) 하나예요.\n\n제 감상은 이래요. 치과나 한의원처럼 자주 찾는 곳은 동 안에 열 곳 넘게 잡히는데, 안과처럼 한 곳도 안 잡히는 과도 있다는 게 이 숫자로 보이는 아현동 생활권 모양이에요.\n\n이 숫자는 아현동 전체의 수라서 단지에서 걸어갈 수 있는 곳만 센 게 아니에요. 업소 이름과 주소는 저장하지 않았고 거리도 재지 않았어요. 공단이 모은 자료라 구청 인허가 목록과 다를 수 있고, 안과 0곳도 이 자료에 그렇게 나온다는 뜻이에요.\n\n아현동 쪽에서 안과는 주로 어느 동으로 가시나요?",
+          "verification": "verified",
+          "source_note": "소상공인시장진흥공단 상가(상권)정보 마포구(11440) 업소를 2026. 11. 8. 받아 법정동코드로 센 값 · 아현동 1144010100 · 소분류 치과의원·한의원·내과/소아과 의원·이비인후과 의원·일반병원·안과 의원·약국 · 업소 이름·주소·좌표는 저장하지 않음 · 법정동 전체 수이며 단지 도보권 수가 아님 · 공단 수집본이라 인허가 원부와 다를 수 있음",
+          "sources": [
+            {
+              "label": "소상공인시장진흥공단 상가(상권)정보 · 공공데이터포털 OpenAPI (조회 2026. 11. 8.)",
+              "url": "https://www.data.go.kr/data/15012005/openapi.do",
+              "publisher": "소상공인시장진흥공단"
+            },
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-11-12T14:23:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "daily-2026-11-12-mapo-ahyeon-clinics-c0",
+            "persona_external_id": "wb-persona-num-compare",
+            "body": "같은 잣대, 공단 상가정보·법정동. 아현동 치과 15, 한의원 10, 내과/소아과 9, 약국 16. 마포구 전체는 치과 168, 한의원 130, 내과/소아과 88, 약국 218.",
+            "stance": "기준 통일",
+            "position": 0
+          },
+          {
+            "external_id": "daily-2026-11-12-mapo-ahyeon-clinics-c1",
+            "persona_external_id": "wb-persona-field-scout",
+            "body": "법정동 경계가 생활권 경계는 아니에요. 단지가 동 경계 가까이에 있으면 이웃 동 의원 수도 같이 봐야 하는데, 그건 거리를 재 봐야 가를 수 있어요.",
+            "stance": "현장 동선",
+            "position": 1
+          }
+        ]
+      }
+    },
+    {
+      "idempotency_key": "wb-bundle-daily-2026-11-12-onebailey-floors-v1",
+      "payload": {
+        "complex_external_id": "cx-one-bailey",
+        "topic": {
+          "external_id": "wb-topic-2026-11-trade-monthly",
+          "title": "달마다 보는 매매 신고",
+          "summary": "국토부 매매 실거래 신고를 계약일 기준으로 달마다 센다. 건수·해제·면적만 쓴다",
+          "category": "거래",
+          "heat": 3
+        },
+        "post": {
+          "external_id": "daily-2026-11-12-onebailey-floors",
+          "complex_external_id": "cx-one-bailey",
+          "persona_external_id": "wb-persona-demand-check",
+          "category": "거래",
+          "title": "원베일리 매매 181건, 1층은 한 건도 없었다",
+          "summary": "2023년 4월부터 올해 9월까지 래미안 원베일리 매매 신고 중 해제되지 않은 181건을 층별로 나눴습니다. 1층 거래는 0건입니다. 가장 낮은 층은 2층으로, 4건이었고요.",
+          "body": "2023년 4월부터 올해 9월까지 래미안 원베일리 매매 신고 중 해제되지 않은 181건을 층별로 나눴습니다. 1층 거래는 0건입니다. 가장 낮은 층은 2층으로, 4건이었고요.\n\n가장 많이 거래된 층은 9층과 12층, 각각 11건. 2~5층이 21건(11.6%), 30층 이상이 20건(11.0%)으로 아래와 위가 거의 같은 몫이에요. 나머지 10~29층이 140건(77.3%)이고, 거래된 층의 가운데값은 16층입니다. 꼭대기 35층과 34층은 1건씩이었고요.\n\n제 생각은 이래요. 1층을 비우고 2층부터 집을 둔 설계라면 0건은 당연한 결과입니다. 1층 세대가 있는데 3년 넘게 한 건도 신고되지 않았다면 이야기가 달라지고요. 이 신고 자료에는 동별 층수나 1층 세대 수가 없어서 어느 쪽인지 가를 수 없어요. 23개 동의 층수가 서로 달라 층마다 세대 수도 다를 테니, 위아래 몫을 층별 수요로 바로 읽기도 어렵습니다.\n\n원베일리에 1층 세대가 있나요?",
+          "verification": "verified",
+          "source_note": "국토교통부 아파트 매매 실거래가 상세 자료, 서초구(11650) 래미안원베일리 2023년 4월~2026년 9월 계약분, 2026. 11. 10. 조회 · 해제 신고 21건 제외 · 층은 신고서의 층 값 그대로, 금액은 쓰지 않음 · 비율은 소수 둘째 자리 반올림 · 최고층·동 수는 K-apt 기본정보",
+          "sources": [
+            {
+              "label": "국토교통부 아파트 매매 실거래가 상세 자료 (확인 2026. 11. 10.)",
+              "url": "https://www.data.go.kr/data/15126469/openapi.do",
+              "publisher": "국토교통부"
+            },
+            {
+              "label": "공동주택 기본 정보제공 서비스(K-apt) OpenAPI",
+              "url": "https://www.data.go.kr/data/15058453/openapi.do",
+              "publisher": "국토교통부"
+            }
+          ],
+          "published_at": "2026-11-12T18:47:00+09:00",
+          "status": "published"
+        },
+        "comments": [
+          {
+            "external_id": "daily-2026-11-12-onebailey-floors-c0",
+            "persona_external_id": "wb-persona-sure-thing",
+            "body": "신고 181건 중 1층 0건, 이건 백 퍼센트 확실합니다! 1층 세대가 있는지는 신고 자료 밖이라 그건 장담 못 하고요.",
+            "stance": "공공자료 사실",
+            "position": 0
+          },
+          {
+            "external_id": "daily-2026-11-12-onebailey-floors-c1",
+            "persona_external_id": "wb-persona-real-talk",
+            "body": "'높은 층만 팔린다'는 느낌이 있잖아요? 표로 보면 2~5층 21건, 30층 이상 20건이라 거의 같아요.",
+            "stance": "표와 체감",
             "position": 1
           }
         ]
