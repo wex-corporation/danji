@@ -1315,6 +1315,140 @@ def win21(slug):
     return m, lv.pop()
 
 
+TRADE_SRC_1113 = {"label": "국토교통부 아파트 매매 실거래가 상세 자료 (확인 2026. 11. 13.)",
+                  "url": "https://www.data.go.kr/data/15126469/openapi.do", "publisher": "국토교통부"}
+
+
+def _helio_academies_1113():
+    """11/13 헬리오 — 가락동 입시·교과학원 대 음악·미술·태권도 학원(공단 상가정보 11/8 조회분). 홍보 계정이라 가격 어휘 없이, 거리는 재지 않았다"""
+    st = json.loads((REPO / "data" / "stores" / "2026-11-08" / "11710.json").read_text(encoding="utf-8"))
+    cx = st["complexes"]["helio-city"]
+    assert cx["ld_code"] == "1171010700" and cx["ld_name"] == "가락동" and st["checked_at"] == "2026-11-08"
+    c, n, L = st["codes"], cx["counts"], "1171010700"
+    keys = {"P10501": "입시·교과학원", "P10609": "음악학원", "P10611": "미술학원", "P10601": "태권도/무술학원",
+            "P10603": "요가/필라테스 학원", "R10307": "헬스장", "R10308": "수영장"}
+    assert all(c[k]["name"] == v for k, v in keys.items())
+    got = {k: n[k] for k in keys}
+    assert got == {"P10501": 108, "P10609": 44, "P10611": 21, "P10601": 19, "P10603": 41, "R10307": 30, "R10308": 1}
+    ART = ("P10609", "P10611", "P10601")
+    art = sum(got[k] for k in ART)
+    assert art == 84
+
+    def order(k):
+        return sorted(((x["name"], x["count"]) for x in c[k]["by_ldong"].values()), key=lambda t: -t[1])
+    assert len(c["P10501"]["by_ldong"]) == 13
+    assert order("P10501")[:3] == [("방이동", 181), ("잠실동", 151), ("가락동", 108)]
+    assert order("P10609")[:2] == [("잠실동", 47), ("가락동", 44)]
+    assert order("P10601")[:2] == [("잠실동", 21), ("가락동", 19)]
+    assert [t[0] for t in order("P10611")].index("가락동") == 2
+    per100 = lambda a, e: round(a / e * 100)   # noqa: E731
+    gu_art, gu_ex = sum(c[k]["total"] for k in ART), c["P10501"]["total"]
+    assert (gu_art, gu_ex) == (630, 1053) and per100(art, got["P10501"]) == 78 and per100(gu_art, gu_ex) == 60
+    ratio = {x["name"]: sum(c[k]["by_ldong"].get(code, {}).get("count", 0) for k in ART) / x["count"]
+             for code, x in c["P10501"]["by_ldong"].items()}
+    higher = sorted(((nm, r) for nm, r in ratio.items() if r > ratio["가락동"]), key=lambda t: -t[1])
+    assert [(nm, round(r * 100)) for nm, r in higher] == [("마천동", 109), ("문정동", 79)]
+    hh = info("helio-city")["household_count"]
+    assert hh == 9510
+    ac = json.loads((REPO / "data" / "academies" / "2026-11-08" / "송파구.json").read_text(encoding="utf-8"))
+    assert ac["checked_at"] == "2026-11-08" and ac["by_realm"]["입시.검정 및 보습"] == 1069 and ac["by_realm"]["예능(대)"] == 558
+    return dict(ext="daily-2026-11-13-helio-arts-academies", series="local-academies", slot="12:16", home="helio-city",
+                persona="adv-helio-city-life", category="생활", topic="local-stores", verification="verified",
+                sources=[STORE_SRC, NEIS_SRC, KAPT_INFO],
+                title=f"가락동 입시·교과학원 {got['P10501']}곳, 예체능 {art}곳",
+                body=[
+                    f"입시·교과학원 {got['P10501']}곳, 음악학원 {got['P10609']}곳, 미술학원 {got['P10611']}곳, 태권도/무술학원 {got['P10601']}곳. "
+                    "헬리오시티가 자리한 가락동 한 동(법정동)에 소상공인시장진흥공단 상가정보로 잡히는 학원 수예요. 11월 8일에 받은 값이에요.",
+                    f"음악·미술·태권도를 한데 묶으면 {art}곳이에요. 입시·교과학원 100곳마다 예체능 학원이 {per100(art, got['P10501'])}곳꼴인데, "
+                    f"송파구 전체는 {per100(gu_art, gu_ex)}곳꼴이에요. 송파구 13개 동 가운데 이 비율이 가락동보다 높은 곳은 마천동과 문정동 둘이고요.",
+                    f"분야마다 송파구 안 순서도 봤어요. 음악학원은 잠실동({order('P10609')[0][1]}곳) 다음, 태권도/무술학원도 잠실동({order('P10601')[0][1]}곳) 다음이에요. "
+                    f"입시·교과학원은 방이동({order('P10501')[0][1]}곳)·잠실동({order('P10501')[1][1]}곳)에 이어 세 번째고요.",
+                    f"제 감상을 붙여 볼게요. 학원 하면 입시학원부터 떠올리기 쉬운데, 가락동은 음악·미술·태권도 쪽 몫이 송파구 전체보다 큰 동이에요. "
+                    f"{hh:,}세대 단지가 있는 동의 방과 후 풍경이 이 숫자에 조금 비치는 것 같아요.",
+                    "가락동 전체를 센 값이고, 단지에서 몇 걸음 거리인지는 재지 않았어요. 업종 이름은 공단이 붙인 분류라 교육청에 등록된 분야와 나누는 기준도 다르고요.",
+                    "아이 학원, 가락동 안에서 다 해결되나요?",
+                ],
+                source_note=("소상공인시장진흥공단 상가(상권)정보 송파구(11710) 업소를 2026. 11. 8. 받아 법정동코드로 센 값 · 가락동 1171010700 · "
+                             "소분류 입시·교과학원·음악학원·미술학원·태권도/무술학원(예체능 = 뒤의 셋) · 업소 이름·주소·좌표는 저장하지 않음 · "
+                             "법정동 전체 수이며 단지 도보권 수가 아님 · 공단 수집본이라 인허가 원부와 다를 수 있음 · 세대수는 K-apt 기본정보 · "
+                             "댓글의 나이스 분야별 수는 학원·교습소 합계, 등록 상태 구분 없음(2026. 11. 8. 조회)"),
+                unknowns=["공단 자료는 법정동 단위로만 세었기 때문에 헬리오시티 정문에서 가까운 학원이 몇 곳인지는 나오지 않습니다",
+                          "학원마다 정원이나 다니는 아이 수는 이 상가정보에 칸이 없습니다",
+                          "학원 차량을 운행하는 곳이 몇 곳인지는 공개 자료에서 찾지 못했습니다"],
+                comments=[
+                    ("wb-persona-ding-dong", f"같은 자료, 가락동 몸 쓰는 곳. 요가/필라테스 {got['P10603']} · 헬스장 {got['R10307']} · 수영장 {got['R10308']}. 조회 11월 8일, 법정동 전체.", "일정 압축"),
+                    ("wb-persona-myth-check", f"학원 수는 어디서 세느냐에 따라 달라지죠. 나이스 학원교습소정보로는 송파구 입시·검정 및 보습 분야가 {ac['by_realm']['입시.검정 및 보습']:,}곳, "
+                     f"예능 분야가 {ac['by_realm']['예능(대)']}곳이에요(11월 8일 조회, 학원·교습소 합계). 공단 업종과 교육청 분야는 나누는 기준이 달라 한 줄로 맞대기는 어렵습니다.", "출처 차이"),
+                ])
+
+
+def _gracium_registry_1113():
+    """11/13 그라시움 — 매매 계약에서 등기까지 걸린 날(실거래 registry 11/13 조회분, 금액 없음)"""
+    from collections import Counter
+    from statistics import median
+    rg = json.loads((REPO / "data" / "trades" / "registry" / "godeok-gracium-202201_202609.json").read_text(encoding="utf-8"))
+    assert rg["fetched_at"][:10] == "2026-11-13" and rg["apt_names"] == ["고덕 그라시움", "고덕그라시움"]
+    R = rg["rows"]
+    assert len(R) == 918 and {r["apt"] for r in R} == {"고덕그라시움"}
+    D = __import__("datetime").date.fromisoformat
+    lag = lambda r: (D(r["rgst_date"]) - D(r["deal_date"])).days   # noqa: E731
+    assert all(lag(r) >= 0 for r in R if r["rgst_date"])
+    Y = {y: [r for r in R if r["deal_date"][:4] == y] for y in ("2022", "2023", "2024", "2025", "2026")}
+    assert {y: len(v) for y, v in Y.items()} == {"2022": 42, "2023": 233, "2024": 238, "2025": 313, "2026": 92}
+    can = {y: sum(r["cancel"] for r in v) for y, v in Y.items()}
+    assert can == {"2022": 2, "2023": 11, "2024": 9, "2025": 37, "2026": 5} and sum(can.values()) == 64
+    live = {y: [r for r in v if not r["cancel"]] for y, v in Y.items()}
+    assert all(not r["rgst_date"] for r in live["2022"]) and len(live["2022"]) == 40
+    first = min(r["rgst_date"] for r in R if r["rgst_date"])
+    assert first == "2023-02-20"
+    L = {y: sorted(lag(r) for r in live[y] if r["rgst_date"]) for y in ("2023", "2024", "2025", "2026")}
+    med = {y: median(v) for y, v in L.items()}
+    assert med == {"2023": 92.5, "2024": 97.5, "2025": 100.0, "2026": 94}
+    q = lambda v, p: v[int(p * (len(v) - 1))]   # noqa: E731
+    assert [(q(L[y], .25), q(L[y], .75)) for y in ("2023", "2024", "2025")] == [(73, 118), (73, 121), (76, 124)]
+    w120 = {y: (len(L[y]), sum(x <= 120 for x in L[y])) for y in ("2023", "2024", "2025")}
+    assert w120 == {"2023": (222, 170), "2024": (228, 165), "2025": (276, 202)}
+    blank26 = sorted(r["deal_date"] for r in live["2026"] if not r["rgst_date"])
+    assert len(L["2026"]) == 79 and len(blank26) == 8 and blank26[0] >= "2026-07-01"
+    old_blank = [r["deal_date"] for r in live["2024"] + live["2025"] if not r["rgst_date"]]
+    assert old_blank == ["2024-06-04"] and not [r for r in live["2023"] if not r["rgst_date"]]
+    c25 = Counter(r["deal_date"][:7] for r in Y["2025"] if r["cancel"])
+    assert c25.most_common(1) == [("2025-05", 11)]
+    deal = Counter(r["dealing"] for r in R)
+    assert deal == {"중개거래": 907, "직거래": 11}
+    fmt = lambda x: f"{x:g}일"   # noqa: E731
+    return dict(ext="daily-2026-11-13-gracium-registry", series="trade-registry", slot="16:38", home="godeok-gracium",
+                persona="wb-persona-timeseries", category="거래", topic="trade-monthly", verification="verified",
+                sources=[TRADE_SRC_1113],
+                title=f"{fmt(med['2023'])}·{fmt(med['2024'])}·{fmt(med['2025'])}, 그라시움 계약에서 등기까지",
+                body=[
+                    f"고덕그라시움 매매 신고를 2022년 1월 계약분부터 올해 9월 계약분까지 모았다. {len(R)}건이다. "
+                    "해제 신고를 뺀 거래마다 계약일에서 등기일까지 며칠 걸렸는지 셌다.",
+                    f"가운데값은 2023년 계약 {fmt(med['2023'])}, 2024년 {fmt(med['2024'])}, 2025년 {fmt(med['2025'])}이다. 세 해가 8일 안쪽에서 움직였다. "
+                    f"가운데 절반도 해마다 비슷했다. 2023년 {q(L['2023'], .25)}~{q(L['2023'], .75)}일, 2024년 {q(L['2024'], .25)}~{q(L['2024'], .75)}일, "
+                    f"2025년 {q(L['2025'], .25)}~{q(L['2025'], .75)}일.",
+                    f"넉 달(120일) 안에 등기까지 간 거래로 세면 2023년 {w120['2023'][0]}건 중 {w120['2023'][1]}건, 2024년 {w120['2024'][0]}건 중 {w120['2024'][1]}건, "
+                    f"2025년 {w120['2025'][0]}건 중 {w120['2025'][1]}건이다.",
+                    f"올해 계약분은 아직 덜 찼다. 등기된 {len(L['2026'])}건의 가운데값은 {fmt(med['2026'])}인데, 7~9월 계약 {len(blank26)}건은 등기일이 아직 비어 있다. "
+                    "이 칸이 채워지면 올해 숫자는 길어질 수 있다.",
+                    f"2022년 계약은 사정이 다르다. 해제를 뺀 {len(live['2022'])}건 모두 등기일 칸이 비어 있다. "
+                    "이 자료에서 그라시움의 가장 이른 등기일은 2023년 2월 20일이다.",
+                    "자료는 여기까지다. 해석을 붙이면, 이 단지에서 계약 뒤 석 달 남짓은 해가 바뀌어도 거의 그대로였다. "
+                    "다만 신고 자료에는 잔금일 칸이 없다. 그 석 달 가운데 얼마가 잔금 전이었는지는 이 표로 가를 수 없다.",
+                    "그라시움 매매 잔금, 보통 계약 뒤 몇 달로 잡나요?",
+                ],
+                source_note=("국토교통부 아파트 매매 실거래가 상세 자료, 강동구(11740) 2022년 1월~2026년 9월 계약분 중 고덕그라시움 · 2026. 11. 13. 조회 · "
+                             "등기일·해제 칸은 응답 값 그대로, 금액은 쓰지 않음 · 해제 신고 거래는 등기 집계에서 뺐다 · 가운데값은 등기된 거래 기준 · "
+                             "가운데 절반은 등기된 거래를 날 수로 줄 세운 25%~75% 자리 · 2024년 6월 계약 1건은 해제 표시 없이 등기일이 비어 있어 뺐다"),
+                unknowns=["2022년 계약분에 등기일 칸이 왜 하나도 채워져 있지 않은지는 이 응답만으로 알 수 없습니다",
+                          "잔금을 언제 치렀는지는 신고 자료에 칸이 없어, 등기까지 걸린 날 가운데 잔금 전 기간이 얼마인지 나눌 수 없습니다"],
+                comments=[
+                    ("wb-persona-trade-brief", f"해제 신고는 2023년 {len(Y['2023'])}건 중 {can['2023']}건, 2024년 {len(Y['2024'])}건 중 {can['2024']}건, "
+                     f"2025년 {len(Y['2025'])}건 중 {can['2025']}건, 올해 {len(Y['2026'])}건 중 {can['2026']}건입니다. 2025년 {can['2025']}건 가운데 {c25['2025-05']}건이 5월 계약분입니다.", "거래량"),
+                    ("wb-persona-num-compare", f"같은 {len(R)}건, 거래 구분. 중개거래 {deal['중개거래']}, 직거래 {deal['직거래']}.", "기준 통일"),
+                ])
+
+
 @day("2026-11-13")
 def d1113(today):
     # 홀수 날(은마·헬리오·그라시움) · 대표님 11/11 "다른단지 모두 장충금 글도 써줘" — 수선통장 세 번째 글(은마).
@@ -1365,6 +1499,8 @@ def d1113(today):
                  ("wb-persona-dry-note", f"나간 돈 {man(a4['use'])}, 계산보다 더 들어온 돈 {man(a4['gap_vs_prev'])}. 잔액 칸만 보면 조용한 달이었던 거죠.", "조건 정리"),
                  ("wb-persona-whatif", f"가정 하나 해 볼게요. 은마가 ㎡당 360원을 걷는다면 한 달 {man(int(alt))}이에요. 지금 걷는 돈의 열두 배 남짓이잖아요.", "가정 계산"),
              ]),
+        _helio_academies_1113(),   # 11/13 09:23 루틴이 더함(12:16)
+        _gracium_registry_1113(),  # 11/13 09:23 루틴이 더함(16:38)
     ])
 
 
