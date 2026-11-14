@@ -67,7 +67,7 @@ FAN_HOME = {
     "wb-persona-fan-ricents": "ricents", "wb-persona-fan-gracium": "godeok-gracium", "wb-persona-fan-mapo": "mapo-raemian-prugio",
 }
 FAN_FROM = "2026-11-15"
-FANS_LIVE = False      # 새 팬 다섯은 서버 등록(대표님 '보내') 전 — 그 전에 팩에 넣으면 서버가 422 unknown_persona 로 번들 전체를 거절한다
+FANS_LIVE = True       # 11/14 서버 등록 완료(대표님 "보내" — created 5, id 337~341)
 COMPLEX_WORDS = {
     "one-bailey": ["원베일리"], "eunma": ["은마"], "helio-city": ["헬리오"], "ricents": ["리센츠"],
     "godeok-gracium": ["그라시움"], "mapo-raemian-prugio": ["마래푸", "마포래미안", "푸르지오"],
