@@ -58,6 +58,41 @@ PERSONA_GUARDS = {
     # 수선통장(11/11): 용처를 모르는 큰 사용액을 비리로 읽히게 쓰지 않는다(명예훼손 소지). 잔액을 집값과 엮지 않는다
     "wb-persona-repair-ledger": re.compile(r"비리|횡령|착복|유용|빼돌|의혹|수상|이상한 돈|새는 돈|구멍|집값|시세|호가|매수|매도|오를|내릴"),
 }
+# 11/14 대표님 "무조건 그 단지를 찬양하는 에이전트를 하나씩 만들어서 그 관점에서 댓글을 — 약간은 오버스러운 느낌으로".
+# 단지 팬은 댓글 전용이고 자기 단지 글에만 단다. 과장은 애정 표현에서만 한다 — 칭찬하는 대상은 공개 자료에 적힌 사실 하나.
+# 가격·전망·사고팔기(시세 부양 소지), 서열·비교(최고·1등·~보다 낫다), 다른 단지 이름, 거주 경험(창작)은 막는다.
+# 원베일리바라기(8월)도 같은 줄에 세운다 — 옛 글은 건드리지 않게 FAN_FROM 글부터 건다
+FAN_HOME = {
+    "wb-persona-ob-fan": "one-bailey", "wb-persona-fan-eunma": "eunma", "wb-persona-fan-helio": "helio-city",
+    "wb-persona-fan-ricents": "ricents", "wb-persona-fan-gracium": "godeok-gracium", "wb-persona-fan-mapo": "mapo-raemian-prugio",
+}
+FAN_FROM = "2026-11-15"
+FANS_LIVE = False      # 새 팬 다섯은 서버 등록(대표님 '보내') 전 — 그 전에 팩에 넣으면 서버가 422 unknown_persona 로 번들 전체를 거절한다
+COMPLEX_WORDS = {
+    "one-bailey": ["원베일리"], "eunma": ["은마"], "helio-city": ["헬리오"], "ricents": ["리센츠"],
+    "godeok-gracium": ["그라시움"], "mapo-raemian-prugio": ["마래푸", "마포래미안", "푸르지오"],
+    None: ["파크리오", "잠실엘스", "트리지움", "레이크팰리스", "포레온", "올림픽파크", "아크로", "아리팍", "디에이치", "퍼스티어", "디퍼아"],
+}
+FAN_GUARD = re.compile(r"\d\s?억|억원|(?<![가-힣])호가|시세|집값|가격|오를|오른다|내릴|내린다|매수|매도|사세요|사야|투자|프리미엄|웃돈|급등|상승|하락|전망"
+                       r"|최고|1등|1위|넘버원|최강|대장|으뜸|보다 낫|보다 좋|부럽지 않|비교 불가|넘사벽|압도"
+                       r"|살아 보|살아보|살면서|제가 사는|우리 집|이사 와|입주해 보")
+
+
+def fan_issues(pid, body, home):
+    """단지 팬 댓글 검사. home 은 댓글이 달리는 글의 단지 slug"""
+    mine = FAN_HOME[pid]
+    out = [] if home == mine else [f"단지 팬이 다른 단지({home}) 글에 댓글"]
+    if pid != "wb-persona-ob-fan" and not FANS_LIVE:
+        out.append("서버 등록 전인 단지 팬")
+    m = FAN_GUARD.search(body)
+    if m:
+        out.append(f"팬 가드 '{m.group()}'")
+    others = [w for k, ws in COMPLEX_WORDS.items() if k != mine for w in ws if w in body]
+    if others:
+        out.append(f"팬 댓글에 다른 단지 이름 {others}")
+    return out
+
+
 STAGGER_FROM = "2026-11-04"
 MIN_GAP = 40
 
@@ -2083,6 +2118,12 @@ def validate(pack, d):
                 errs.append(f"{tag}: 댓글 페르소나 {c['external_id']}")
             if AI_COMMENT_ASK.search(c["body"]):
                 errs.append(f"{tag}: 댓글 행동 요청 {c['external_id']}")
+            if d >= FAN_FROM:      # 댓글 단 페르소나의 가드도 본다(전에는 글쓴이 가드만 봤다)
+                gc = PERSONA_GUARDS.get(c["persona_external_id"])
+                if gc and gc.search(c["body"]):
+                    errs.append(f"{tag}: 댓글 {c['external_id']} 페르소나 가드 '{gc.search(c['body']).group()}'")
+                if c["persona_external_id"] in FAN_HOME:
+                    errs += [f"{tag}: 댓글 {c['external_id']} {v}" for v in fan_issues(c["persona_external_id"], c["body"], x["complex_external_id"].removeprefix("cx-"))]
         s = b["_series"]
         series_cx.setdefault(s, set()).add(x["complex_external_id"])
         per_cx[x["complex_external_id"]] = per_cx.get(x["complex_external_id"], 0) + 1
@@ -2132,6 +2173,8 @@ def validate(pack, d):
             errs.append(f"{tag}: 페르소나 가드 '{g.search(text).group()}'")
         if c["persona_external_id"].startswith("adv-") and BAN_PRICE.search(text):
             errs.append(f"{tag}: 홍보 페르소나 가격 어휘")
+        if d >= FAN_FROM and c["persona_external_id"] in FAN_HOME:
+            errs += [f"{tag}: {v}" for v in fan_issues(c["persona_external_id"], text, c.get("_home"))]
         dup = past.get((c["persona_external_id"], text.strip()))
         if dup and dup != c["external_id"]:
             errs.append(f"{tag}: 같은 페르소나·같은 본문이 {dup} 에 이미 있다")
