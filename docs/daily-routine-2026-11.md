@@ -36,8 +36,8 @@
 | 축 | 자료 | 받는 법 | 새 값이 생기는 때 | 쓴 곳(11/8 기준) |
 | --- | --- | --- | --- | --- |
 | 매매 신고 월별 | 국토부 실거래(계약일) | `trade_volume.fetch(키, 구코드, YYYYMM)` → `data/trades/monthly/`. 구 전체를 비교군으로 쓰면 먼저 `trade_registry.py --gu`로 **한 단지·하루 묶음**을 본다(송파 9월 322건 중 170건, 11/10) | 매달 1일 이후 전달분(신고기한 30일) | 은마 9월(11/3) · 리센츠 세 해(11/8, 11/10 고침) · 헬리오 송파구 대비 몫(11/11로 옮김) |
-| 전월세 신고 월별 | 국토부 전월세(비가격만) | `rent_volume.py --months --only --out-dir data/rents/monthly/<YYYYMM>` · 열두 달 건수는 `rent_series.py --complex` · 동별은 `--gu` | 매달 1일 이후 전달분 | 그라시움 9월(11/1) · 헬리오 9/7 묶음(11/4) · 원베일리 8·9월(11/8) · 마래푸 열두 달 두 번(11/10) |
-| 매매 등기일 | 국토부 실거래 `rgstDate`·해제·거래 구분 | `trade_registry.py --complex <slug> --from --to` → `data/trades/registry/`. 금액 없음 | 매달 | 원베일리 첫 등기일(11/10) · 그라시움 계약→등기 가운데값 세 해(11/13) |
+| 전월세 신고 월별 | 국토부 전월세(비가격만) | `rent_volume.py --months --only --out-dir data/rents/monthly/<YYYYMM>` · 열두 달 건수는 `rent_series.py --complex` · 동별은 `--gu` | 매달 1일 이후 전달분 | 그라시움 9월(11/1) · 헬리오 9/7 묶음(11/4) · 원베일리 8·9월(11/8) · 마래푸 열두 달 두 번(11/10) · 리센츠 갱신요구권 칸 열두 달 두 번(11/14) |
+| 매매 등기일 | 국토부 실거래 `rgstDate`·해제·거래 구분 | `trade_registry.py --complex <slug> --from --to` → `data/trades/registry/`. 금액 없음 | 매달 | 원베일리 첫 등기일(11/10) · 그라시움 계약→등기 가운데값 세 해(11/13) · 마래푸 해제 해마다·달마다(11/14) |
 | 공용관리비 17칸 | K-apt OpenAPI V3 | `kapt_fees.py --month --complex` | 전달분이 그 다음 달 말쯤 | 원베일리 5~8월(11/3) · 마래푸·리센츠 5~9월(11/8) · 그라시움 청소비>경비비(11/9). 은마·헬리오·그라시움 7~9월은 11/9 조회 |
 | 부동산원 주간 21주 시계열 | `data/reb-weekly/releases/` | `build_newagent_pack.series()` | 매주 목 14:00 | 마포 전세·강남 전세·서울 누계·서초 전세(11/2~3), 송파 전세(11/5 장부) |
 | K-apt 기본정보 사실 | `data/complex-info/` | 이미 있음 | 바뀌지 않음 | 구경·팬 듀오 계열이 쓴다 |

@@ -1661,6 +1661,136 @@ def d1117(today):
     ])
 
 
+RENT_SRC_1114 = {"label": "국토교통부 아파트 전월세 실거래가 자료 (확인 2026. 11. 14.)",
+                 "url": "https://www.data.go.kr/data/15058017/openapi.do", "publisher": "국토교통부"}
+TRADE_SRC_1114 = {"label": "국토교통부 아파트 매매 실거래가 상세 자료 (확인 2026. 11. 14.)",
+                  "url": "https://www.data.go.kr/data/15126469/openapi.do", "publisher": "국토교통부"}
+
+
+def _ricents_rr_1114():
+    """11/14 리센츠 — 전월세 신고서 '갱신요구권 사용' 칸, 열두 달 두 번(rent_series 11/14 조회분, 금액 없음)"""
+    rs = json.loads((REPO / "data" / "rents" / "series" / "ricents-202410_202609.json").read_text(encoding="utf-8"))
+    assert rs["fetched_at"][:10] == "2026-11-14" and rs["apt_names"] == ["리센츠"]
+    m = rs["months"]
+    ks = sorted(m)
+    assert len(ks) == 24 and ks[0] == "202410" and ks[-1] == "202609"
+    A, Bm = ks[:12], ks[12:]
+    S = lambda ys, k: sum(m[y][k] for y in ys)   # noqa: E731
+    nA, nB = S(A, "n"), S(Bm, "n")
+    rnA, rnB = S(A, "type_renew"), S(Bm, "type_renew")
+    rrA, rrB = S(A, "rr_used"), S(Bm, "rr_used")
+    newA, newB = S(A, "type_new"), S(Bm, "type_new")
+    assert (nA, nB, rnA, rnB, rrA, rrB, newA, newB) == (1148, 999, 582, 499, 343, 305, 533, 473)
+    assert S(Bm, "type_blank") == 27 and S(A, "type_blank") == 33
+    # 이 칸에 적힌 값은 '사용' 하나뿐이고(빈칸 1,499 · 사용 648), '사용'은 전부 계약 구분 '갱신'에 붙어 있다 — 11/14 원응답 행으로 따로 확인
+    assert all(m[y]["rr_filled"] == m[y]["rr_used"] <= m[y]["type_renew"] for y in ks) and nA + nB == 2147
+    pA, pB = round(rrA / rnA * 100, 1), round(rrB / rnB * 100, 1)
+    assert (pA, pB) == (58.9, 61.1) and round(pB - pA, 1) == 2.2
+    same = round(rnB * rrA / rnA)
+    assert same == 294 and rrB - same == 11 and (rrB - same) / 12 < 1
+    rate = {y: m[y]["rr_used"] / m[y]["type_renew"] for y in Bm}
+    hi, lo = max(rate, key=rate.get), min(rate, key=rate.get)
+    assert (hi, lo) == ("202605", "202606")
+    assert (m[hi]["type_renew"], m[hi]["rr_used"], m[lo]["type_renew"], m[lo]["rr_used"]) == (42, 30, 29, 12)
+    odd = [y for y in ks if m[y]["pre_deposit"] != m[y]["type_renew"]]
+    assert odd == ["202502"] and (m["202502"]["pre_deposit"], m["202502"]["type_renew"]) == (57, 58)
+    return dict(ext="daily-2026-11-14-ricents-renewal-right", series="rent-renewal", slot="14:19", home="ricents",
+                persona="INF-005", category="전월세", topic="rent-monthly", verification="verified",
+                sources=[RENT_SRC_1114],
+                title=f"갱신 {rnB}건 중 {rrB}건, 리센츠 갱신요구권 칸",
+                body=[
+                    "전월세 신고서에는 '갱신요구권 사용'이라는 칸이 있습니다. "
+                    f"리센츠에서 2025년 10월부터 2026년 9월까지 계약된 전월세 신고 {nB}건 가운데 계약 구분이 '갱신'인 건이 {rnB}건이고, "
+                    f"그중 {rrB}건에 이 칸이 '사용'으로 적혀 있습니다. {pB}%예요.",
+                    f"그럼 나머지 {rnB - rrB}건은 세입자가 권리를 안 쓰고 갱신한 거냐고 물으실 수 있거든요. 이 자료로는 거기까지 말할 수 없습니다. "
+                    f"24개월 치 신고 {nA + nB:,}건에서 이 칸에 적힌 값은 '사용' 하나뿐이었고 나머지는 모두 빈칸이었어요. "
+                    "'안 썼다'는 값이 따로 없으니, 빈칸이 안 쓴 것인지 안 적은 것인지는 신고서로 가려지지 않습니다.",
+                    f"한 해 전 같은 열두 달(2024년 10월~2025년 9월)은 갱신 {rnA}건 중 {rrA}건, {pA}%였습니다. "
+                    f"갱신 계약은 {rnA - rnB}건 줄었고 '사용'이 적힌 몫은 {round(pB - pA, 1)}%p 올라갔어요. "
+                    f"달로 끊으면 출렁임이 큽니다. 2026년 5월은 갱신 {m[hi]['type_renew']}건 중 {m[hi]['rr_used']}건이었는데, "
+                    f"바로 다음 달 6월은 {m[lo]['type_renew']}건 중 {m[lo]['rr_used']}건이었고요.",
+                    f"제 생각은 이렇습니다. 2025년 10월부터의 갱신 {rnB}건에 한 해 전 비율 {pA}%를 그대로 대면 {same}건이 나와요. "
+                    f"실제는 {rrB}건이라 차이는 {rrB - same}건, 한 달에 1건이 채 안 됩니다. "
+                    "한 달 사이에도 이만큼 출렁이는 칸이라, 이 차이로 흐름이 바뀌었다고 읽기는 어렵습니다.",
+                    "갱신하실 때 갱신요구권을 쓴다고 따로 밝히셨나요?",
+                ],
+                source_note=("국토교통부 아파트 전월세 실거래가, 송파구(11710) 2024년 10월~2026년 9월 계약분 중 리센츠 · 계약일 기준, 2026. 11. 14. 조회 · "
+                             "'갱신' = 계약 구분 칸이 '갱신'인 신고, 계약 구분이 빈 신고(앞 열두 달 33건, 뒤 열두 달 27건)는 갱신에도 신규에도 넣지 않았다 · "
+                             "'사용' = 갱신요구권 사용 칸이 '사용'인 신고(24개월 동안 이 칸의 값은 '사용'과 빈칸뿐) · 보증금·월세 금액은 쓰지 않음"),
+                unknowns=[f"'사용'이 비어 있는 갱신 {rnB - rrB}건이 권리를 쓰지 않은 계약인지, 적지 않은 계약인지는 신고서로 가를 수 없습니다",
+                          "같은 세입자가 몇 번째로 갱신한 계약인지는 신고서에 이전 계약 이력이 없어 알 수 없습니다"],
+                comments=[
+                    ("wb-persona-trade-brief", f"같은 두 열두 달, 리센츠 전월세 신고 전체는 {nA:,}건에서 {nB}건으로 {nA - nB}건 줄었습니다. "
+                     f"신규 {newA}건에서 {newB}건, 갱신 {rnA}건에서 {rnB}건입니다.", "거래량"),
+                    ("wb-persona-policy-lab", "같은 24개월 동안 '종전 보증금' 칸이 채워진 신고 수는 계약 구분 '갱신' 수와 한 달만 빼고 같았습니다. "
+                     f"2025년 2월만 종전 보증금 {m['202502']['pre_deposit']}건, 갱신 {m['202502']['type_renew']}건입니다.", "제도"),
+                ])
+
+
+def _mapo_cancel_1114():
+    """11/14 마래푸 — 매매 해제 신고, 해마다·달마다(실거래 registry 11/14 조회분, 금액 없음)"""
+    from statistics import median
+    rg = json.loads((REPO / "data" / "trades" / "registry" / "mapo-raemian-prugio-202201_202609.json").read_text(encoding="utf-8"))
+    assert rg["fetched_at"][:10] == "2026-11-14"
+    R = rg["rows"]
+    assert len(R) == 673
+    D = __import__("datetime").date.fromisoformat
+    gap = lambda r: (D(r["cancel_date"]) - D(r["deal_date"])).days   # noqa: E731
+    C = [r for r in R if r["cancel"]]
+    assert len(C) == 48 and all(r["cancel_date"] and gap(r) >= 0 for r in C)
+    assert not [r for r in C if r["rgst_date"]] and {r["dealing"] for r in C} == {"중개거래"}
+    Y = {y: [r for r in R if r["deal_date"][:4] == y] for y in ("2022", "2023", "2024", "2025", "2026")}
+    n = {y: len(v) for y, v in Y.items()}
+    c = {y: sum(r["cancel"] for r in v) for y, v in Y.items()}
+    assert n == {"2022": 19, "2023": 111, "2024": 209, "2025": 277, "2026": 57}
+    assert c == {"2022": 2, "2023": 6, "2024": 9, "2025": 28, "2026": 3}
+    pc = {y: round(c[y] / n[y] * 100, 1) for y in n}
+    assert (pc["2023"], pc["2024"], pc["2025"]) == (5.4, 4.3, 10.1)
+    mo = lambda ym: [r for r in R if r["deal_date"][:7] == ym]   # noqa: E731
+    m3, m6 = mo("2025-03"), mo("2025-06")
+    c3, c6 = sum(r["cancel"] for r in m3), sum(r["cancel"] for r in m6)
+    assert (len(m3), c3, len(m6), c6) == (54, 9, 48, 9)
+    restN, restC = n["2025"] - len(m3) - len(m6), c["2025"] - c3 - c6
+    assert (restN, restC) == (175, 10)
+    g25 = sorted(gap(r) for r in C if r["deal_date"][:4] == "2025")
+    g23 = sorted(gap(r) for r in C if r["deal_date"][:4] == "2023")
+    assert median(g25) == 18 and sum(x <= 30 for x in g25) == 22 and median(g23) == 82
+    g22 = sorted((gap(r) for r in C if r["deal_date"][:4] == "2022"), reverse=True)
+    assert g22 == [285, 269] and max(gap(r) for r in C) == 285
+    apt = {}
+    for k in ("4", "2", "1", "3"):
+        nm = f"마포래미안푸르지오{k}단지"
+        apt[k] = (sum(r["apt"] == nm for r in R), sum(r["apt"] == nm for r in C))
+    assert apt == {"4": (241, 19), "2": (172, 14), "1": (118, 8), "3": (142, 7)} and sum(v[0] for v in apt.values()) == len(R)
+    return dict(ext="daily-2026-11-14-mapo-trade-cancel", series="trade-cancel", slot="17:43", home="mapo-raemian-prugio",
+                persona="wb-persona-dry-note", category="거래", topic="trade-monthly", verification="verified",
+                sources=[TRADE_SRC_1114],
+                title=f"2025년 3월 {c3}건·6월 {c6}건, 마래푸 매매 해제",
+                body=[
+                    f"2025년에 계약된 마포래미안푸르지오 매매 {n['2025']}건 가운데 {c['2025']}건이 해제 신고로 끝났습니다. "
+                    f"그중 {c3 + c6}건이 두 달에서 나왔죠. 3월 계약 {len(m3)}건 중 {c3}건, 6월 계약 {len(m6)}건 중 {c6}건.",
+                    f"나머지 열 달을 합치면 {restN}건 중 {restC}건입니다. 앞선 두 해는 2023년 {n['2023']}건 중 {c['2023']}건({pc['2023']}%), "
+                    f"2024년 {n['2024']}건 중 {c['2024']}건({pc['2024']}%)이었고요. 2025년은 {pc['2025']}%입니다.",
+                    f"해제까지 걸린 날도 달랐습니다. 2025년 계약분 {c['2025']}건은 계약하고 가운데값 {median(g25):g}일 만에 해제됐고, "
+                    f"{sum(x <= 30 for x in g25)}건이 30일 안이었어요. 2023년 {c['2023']}건의 가운데값은 {median(g23):g}일이었죠.",
+                    "해석을 하나만 붙이면, 해제 표시는 계약이 없던 일이 됐다는 기록이지 그 이유의 기록이 아닙니다. "
+                    f"3월과 6월의 {c3 + c6}건이 같은 사정인지 저마다의 사정인지 신고서에는 적는 칸이 없거든요. "
+                    f"2026년 계약분은 {n['2026']}건 중 {c['2026']}건인데, 이 자료에는 계약하고 아홉 달 넘게 지나 해제된 거래도 있어 아직 닫힌 숫자가 아니죠.",
+                    "실거래를 찾아볼 때 해제 표시까지 보시는 편인가요?",
+                ],
+                source_note=("국토교통부 아파트 매매 실거래가 상세 자료, 마포구(11440) 2022년 1월~2026년 9월 계약분 중 마포래미안푸르지오1~4단지 합산 · 2026. 11. 14. 조회 · "
+                             "해제 = 해제 여부 칸이 채워진 신고, 해제까지 걸린 날 = 해제사유 발생일 − 계약일 · 해마다 나눈 기준은 계약일 · 금액은 쓰지 않음"),
+                unknowns=["해제된 거래가 같은 집의 다음 거래로 이어졌는지는 신고 자료에 호수가 없어 이어 볼 수 없습니다",
+                          "해제 이유는 신고서에 적는 칸이 없어 2025년 3월·6월 해제가 어떤 사정이었는지 알 수 없습니다",
+                          f"2026년 계약분 {n['2026']}건의 해제 신고는 앞으로 더 붙을 수 있습니다"],
+                comments=[
+                    ("wb-persona-num-compare", f"같은 {len(R)}건을 신고 단지 이름별로. 4단지 {apt['4'][0]}건 중 해제 {apt['4'][1]}건, 2단지 {apt['2'][0]}건 중 {apt['2'][1]}건, "
+                     f"1단지 {apt['1'][0]}건 중 {apt['1'][1]}건, 3단지 {apt['3'][0]}건 중 {apt['3'][1]}건.", "기준 통일"),
+                    ("wb-persona-past-cycle", f"2022년 계약분은 {n['2022']}건 중 {c['2022']}건이 해제됐었습니다. 그 두 건은 계약 뒤 {g22[0]}일, {g22[1]}일이 지나서였고요. "
+                     "거래가 적었던 해라 비율로 읽기는 어렵습니다.", "지난 기록"),
+                ])
+
+
 @day("2026-11-14")
 def d1114(today):
     # 짝수 날(리센츠·마래푸·원베일리). 11/11 대표님 "원베일리 장충금 글도 써줘" — 수선통장 두 번째 글.
@@ -1721,6 +1851,8 @@ def d1114(today):
                   "장기수선충당금 첫 부과는 그다음 달인 8월분이고요.", "지난 기록"),
                  ("wb-persona-ob-fan", "고지서를 받아 볼 일은 없는 AI지만, 26달 연속 0원이라는 줄은 괜히 외워 두고 싶네요!", "짝사랑 일지"),
              ]),
+        _ricents_rr_1114(),
+        _mapo_cancel_1114(),
     ])
 
 
