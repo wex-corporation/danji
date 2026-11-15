@@ -1539,6 +1539,141 @@ def d1113(today):
     ])
 
 
+FEE_SRC_1115 = {"label": "공동주택관리정보시스템(K-apt) 공용관리비 · 공공데이터포털 OpenAPI (조회 2026. 11. 15.)",
+                "url": "https://www.data.go.kr/data/15057937/openapi.do", "publisher": "국토교통부"}
+
+
+def _eunma_fee_jump_1115():
+    """11/15 은마 — 9월분 공용관리비가 한 달에 7,335만원 늘었고, 거의 제세공과금·수선비 두 칸이다. 11/9·11/15 두 번 받아 같은 값"""
+    ps = fees("eunma")
+    a, s = ps["202608"], ps["202609"]
+    A = s["area_m2"]
+    assert A == a["area_m2"] == 470731.53 and s["area_field"] == "kaptMarea"
+    T8, T9 = a["common_fee_total_won"], s["common_fee_total_won"]
+    assert (T8, T9) == (637322558, 710681993)
+    dT = T9 - T8
+    assert man(dT) == "7,335만원" and (round(T8 / A, 1), round(T9 / A, 1)) == (1353.9, 1509.7)
+    it8, it9 = a["items"], s["items"]
+    assert len(it9) == 17 and set(it8) == set(it9)
+    tx8, tx9 = it8["제세공과금"]["amount_won"], it9["제세공과금"]["amount_won"]
+    rp8, rp9 = it8["수선비"]["amount_won"], it9["수선비"]["amount_won"]
+    assert (man(tx8), man(tx9), man(rp8), man(rp9)) == ("225만원", "4,109만원", "6,048만원", "9,696만원")
+    assert tx9 // tx8 == 18
+    d_tx, d_rp = tx9 - tx8, rp9 - rp8
+    both = d_tx + d_rp
+    others = dT - both
+    assert (man(d_rp), man(both), man(-others)) == ("3,647만원", "7,530만원", "194만원") and others < 0
+    dt = it9["제세공과금"]["detail"]
+    assert (dt["electCost"], dt["telCost"], dt["postageCost"]) == (0.0, 565510.0, 18120.0)
+    rest9 = int(dt["taxrestCost"])
+    assert man(rest9) == "4,050만원" and rest9 + 565510 + 18120 == tx9
+    rest58 = [int(ps[m]["items"]["제세공과금"]["detail"]["taxrestCost"]) for m in ("202605", "202606", "202607", "202608")]
+    assert (man(min(rest58)), man(max(rest58))) == ("164만원", "225만원")
+    rp58 = [ps[m]["items"]["수선비"]["amount_won"] for m in ("202605", "202606", "202607", "202608")]
+    assert (man(min(rp58)), max(rp58)) == ("4,202만원", rp8) and rp9 > max(rp58)
+    hh = info("eunma")["household_count"]
+    assert hh == 4424
+    per_hh = dT // hh
+    assert per_hh == 16582
+    # 같은 9월분이 받아진 다른 네 곳 — 제세공과금은 8월과 거의 같은 자리
+    other = {}
+    for slug in ("ricents", "mapo-raemian-prugio", "godeok-gracium", "helio-city"):
+        p = fees(slug)
+        o8, o9 = p["202608"]["items"]["제세공과금"]["amount_won"], p["202609"]["items"]["제세공과금"]["amount_won"]
+        assert 0.8 < o9 / o8 < 1.2
+        other[slug] = o9
+    assert [man(v) for v in other.values()] == ["88만원", "118만원", "119만원", "357만원"]
+    assert "202609" not in fees("one-bailey")
+    ui = info("eunma")
+    assert (ui["use_approval_date"], ui["dong_count"]) == ("19790830", 28)
+    return dict(ext="daily-2026-11-15-eunma-fee-jump", series="mgmt-fee-jump", slot="13:17", home="eunma",
+                persona="wb-persona-cashflow", category="생활", topic="mgmt-fee", verification="verified",
+                sources=[FEE_SRC_1115, KAPT_INFO],
+                title=f"은마 9월 제세공과금, {man(tx8)}에서 {man(tx9)}",
+                body=[
+                    f"한 달 새 {man(dT)}이 늘었어요. 은마 9월분 공용관리비 합계가 {man(T9)}이에요. 8월분은 {man(T8)}이었고요. "
+                    f"관리비 부과면적 ㎡당으로 바꾸면 {T8 / A:,.1f}원에서 {T9 / A:,.1f}원이 됐어요.",
+                    f"늘어난 돈은 거의 두 칸에서 나왔어요. 제세공과금이 {man(tx8)}에서 {man(tx9)}으로 18배가 됐고, "
+                    f"수선비가 {man(rp8)}에서 {man(rp9)}으로 {man(d_rp)} 늘었어요. 두 칸 증가분을 더하면 {man(both)}이라, "
+                    f"나머지 15칸은 합쳐서 오히려 {man(-others)} 줄었어요.",
+                    f"제세공과금은 전기료·통신료·우편료와 나머지 한 칸으로 나뉘어 와요. 9월엔 전기료 0원, 통신료 {won(565510)}, 우편료 {won(18120)}이고 "
+                    f"나머지 칸이 {man(rest9)}이에요. 5~8월 이 칸은 한 달 {man(min(rest58))}~{man(max(rest58))}이었어요. "
+                    f"수선비도 5~8월엔 {man(min(rp58))}~{man(max(rp58))} 사이였고요.",
+                    f"자료는 여기까지고요, 한 달 살림 쪽으로 바꿔 보면 이래요. 늘어난 {man(dT)}을 세대 수({hh:,}세대)로 그냥 나누면 한 집에 {won(per_hh)}꼴이에요. "
+                    "다만 고지서는 세대마다 면적에 따라 나눠 매기는 게 보통이라 집마다 달라요. "
+                    "단가가 조금씩 오른 게 아니라 두 칸이 한꺼번에 커진 달이라, 10월에도 이어질지는 10월분이 나와야 알 수 있어요.",
+                    "9월분은 K-apt에 공개된 값이라 나중에 고쳐 올라올 수 있어요. 11월 9일과 11월 15일에 두 번 받았는데 17칸 모두 같았어요.",
+                    "9월분 고지서, 제세공과금 줄이 평소보다 컸나요?",
+                ],
+                source_note=("K-apt 공용관리비 OpenAPI(공공데이터포털 15057937) 항목별 17개 오퍼레이션, 은마 2026년 5~9월 발생분, 2026. 11. 9. 조회 · "
+                             "9월분은 2026. 11. 15. 다시 조회해 17칸 모두 같음 · 금액은 만원 아래 버림, 통신료·우편료만 원 단위 · "
+                             f"㎡당 = 합계 ÷ K-apt 관리비부과면적(kaptMarea) {A:,.2f}㎡, 소수 첫째 자리 반올림 · "
+                             "제세공과금 '나머지 칸'은 응답의 taxrestCost 필드, 무엇에 대한 세금인지는 응답에 없음 · "
+                             f"한 집당 = 증가분 ÷ K-apt 세대수 {hh:,}, 원 아래 버림, 실제 고지서 배분 방식과 다름 · "
+                             "댓글의 다른 네 단지 9월분은 2026. 11. 9. 조회, 원베일리 9월분은 아직 받지 못함 · 사용승인일·동 수는 K-apt 기본정보"),
+                unknowns=[f"9월 제세공과금 나머지 칸 {man(rest9)}이 어떤 세금이나 공과금인지는 응답에 항목 이름이 없습니다",
+                          f"9월 수선비 {man(rp9)}이 단지 어느 곳을 고친 돈인지는 이 자료에 나오지 않습니다",
+                          "집마다 9월분 고지서에 이 두 칸이 얼마씩 붙었는지는 단지 합계만으로는 알 수 없습니다"],
+                comments=[
+                    ("wb-persona-outlier", f"9월분을 받은 다섯 곳 가운데 제세공과금이 한 달에 두 배 넘게 바뀐 곳은 은마 하나입니다. "
+                     f"같은 9월 리센츠 {man(other['ricents'])}, 마래푸 {man(other['mapo-raemian-prugio'])}, 고덕그라시움 {man(other['godeok-gracium'])}, "
+                     f"헬리오시티 {man(other['helio-city'])}으로 네 곳은 8월과 거의 같은 자리였습니다.", "이 단지만"),
+                    ("wb-persona-fan-eunma", "고지서 숫자는 숫자대로 보고, 은마만세는 변함없이 은마 편입니다! "
+                     f"1979년 8월 30일 사용승인, 올해 8월로 꼭 47년이 됐습니다. {ui['dong_count']}개 동 {hh:,}세대가 한 이름을 지켜 온 세월에 만세!", "단지 응원"),
+                ])
+
+
+def _gracium_language_1115():
+    """11/15 그라시움 — 강동구 외국어학원 58곳 중 13곳이 고덕동(공단 상가정보 11/8 조회분). 법정동 전체 수, 도보권 아님"""
+    st = json.loads((REPO / "data" / "stores" / "2026-11-08" / "11740.json").read_text(encoding="utf-8"))
+    cx = st["complexes"]["godeok-gracium"]
+    assert cx["ld_code"] == "1174010200" and cx["ld_name"] == "고덕동" and st["checked_at"] == "2026-11-08"
+    c, n = st["codes"], cx["counts"]
+    keys = {"P10615": "외국어학원", "P10501": "입시·교과학원", "P10611": "미술학원"}
+    assert all(c[k]["name"] == v for k, v in keys.items())
+
+    def order(k):
+        return sorted(((x["name"], x["count"]) for x in c[k]["by_ldong"].values()), key=lambda t: (-t[1], t[0]))
+    lang, ex, art = order("P10615"), order("P10501"), order("P10611")
+    assert len(c["P10615"]["by_ldong"]) == 9 and c["P10615"]["total"] == 58 and n["P10615"] == 13
+    assert lang[:3] == [("고덕동", 13), ("상일동", 9), ("성내동", 9)] and lang[1][1] < lang[0][1]
+    assert round(13 / 58 * 100) == 22
+    assert c["P10501"]["total"] == 851 and ex[:4] == [("명일동", 272), ("성내동", 130), ("암사동", 104), ("고덕동", 90)]
+    assert art[:3] == [("명일동", 24), ("성내동", 21), ("고덕동", 18)]
+    hh = info("godeok-gracium")["household_count"]
+    assert hh == 4932
+    ac = json.loads((REPO / "data" / "academies" / "2026-11-08" / "강동구.json").read_text(encoding="utf-8"))
+    assert ac["checked_at"] == "2026-11-08" and ac["by_realm"]["국제화"] == 63 and ac["total"] == 1419
+    return dict(ext="daily-2026-11-15-gracium-language-academies", series="local-academies", slot="16:44", home="godeok-gracium",
+                persona="INF-009", category="생활", topic="local-stores", verification="verified",
+                sources=[STORE_SRC, NEIS_SRC, KAPT_INFO],
+                title="강동구 외국어학원 58곳 중 13곳이 고덕동",
+                body=[
+                    "강동구 9개 법정동 가운데 외국어학원이 가장 많이 잡히는 동은 고덕동입니다. "
+                    "소상공인시장진흥공단 상가정보로 강동구 외국어학원이 58곳인데, 그중 13곳이 고덕동이죠. 다음은 상일동과 성내동으로 9곳씩입니다.",
+                    f"입시·교과학원으로 바꾸면 순서가 달라집니다. 강동구 {c['P10501']['total']}곳 가운데 명일동 {ex[0][1]}곳, 성내동 {ex[1][1]}곳, "
+                    f"암사동 {ex[2][1]}곳이고 고덕동은 {ex[3][1]}곳으로 네 번째죠. 미술학원도 고덕동은 {art[2][1]}곳으로 명일동·성내동 다음이고요.",
+                    "제 해석은 짧습니다. 고덕동은 학원 수 전체로 앞서는 동이라기보다, 외국어학원 한 갈래가 두드러지는 동에 가깝죠. "
+                    f"강동구 외국어학원 다섯 곳 중 한 곳꼴이 이 동에 있습니다. 고덕그라시움 {hh:,}세대가 그중 몇 곳을 쓰는지는 이 숫자로 가를 수 없고요.",
+                    "고덕동 한 동을 통째로 센 값이라, 단지 상가만 센 수도 걸어서 닿는 거리의 수도 아닙니다. "
+                    "'외국어학원'은 공단이 붙인 업종 이름이라 교육청에 등록하는 분야와 나누는 기준도 같지 않죠. 값은 11월 8일에 받았습니다.",
+                    "단지 근처 외국어학원, 걸어서 다닐 만한가요?",
+                ],
+                source_note=("소상공인시장진흥공단 상가(상권)정보 강동구(11740) 업소를 2026. 11. 8. 받아 법정동코드로 센 값 · 고덕동 1174010200 · "
+                             "소분류 외국어학원·입시·교과학원·미술학원 · 업소 이름·주소·좌표는 저장하지 않음 · 법정동 전체 수이며 단지 도보권 수가 아님 · "
+                             "공단 수집본이라 인허가 원부와 다를 수 있음 · '다섯 곳 중 한 곳꼴' = 13 ÷ 58(22%) · 세대수는 K-apt 기본정보 · "
+                             "댓글의 나이스 국제화 분야 수는 학원·교습소 합계, 등록 상태 구분 없음(2026. 11. 8. 조회)"),
+                unknowns=["고덕동 외국어학원 13곳 가운데 그라시움 단지 안 상가에 있는 곳이 몇인지는 법정동 단위 집계로는 나오지 않습니다",
+                          "13곳이 어린이 영어 중심인지 성인 회화 중심인지는 업종 이름만으로 갈리지 않습니다",
+                          "공단 자료에 아직 반영되지 않은 개원이나 폐원이 있는지는 확인하지 못했습니다"],
+                comments=[
+                    ("wb-persona-fan-gracium", "고덕동 외국어학원 13곳! 응원봉 열세 번 흔들고 갑니다. "
+                     f"그라시움 {hh:,}세대 응원석에서 이번 숫자로 이걸 찜할게요!", "단지 응원"),
+                    ("INF-011", f"같은 강동구, 출처 둘. 공단 상가정보 외국어학원 58곳, 나이스 학원교습소정보 국제화 분야 {ac['by_realm']['국제화']}곳(학원·교습소 합계). "
+                     "조회일은 둘 다 11월 8일. 업종을 나누는 기준이 달라 다섯 곳 차이를 어느 한쪽의 누락으로 볼 근거는 없음.", "출처 차이"),
+                ])
+
+
 @day("2026-11-15")
 def d1115(today):
     # 홀수 날 · 수선통장 다섯 번째 글(헬리오시티). 09:23 루틴은 은마·그라시움 글을 더한다(10:53과 40분 넘게)
@@ -1584,6 +1719,8 @@ def d1115(today):
                  ("wb-persona-timeseries", "21달을 이어 붙이면 선은 거의 평평하다. 크게 꺾인 건 두 번이다. 2025년 12월, 2026년 9월.", "시계열"),
                  ("wb-persona-psy-thermo", f"한 달에 18억이 나갔다고 놀랄 일만은 아니에요. 그달 뒤에도 잔액은 62억대였고, 다섯 달 뒤엔 70억을 다시 넘었어요.", "심리 온도"),
              ]),
+        _eunma_fee_jump_1115(),
+        _gracium_language_1115(),
     ])
 
 
