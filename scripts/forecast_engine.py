@@ -116,6 +116,9 @@ for _pid in ("wb-persona-supply-count", "wb-persona-host",
              "wb-persona-cheer", "wb-persona-ding-dong"):
     NON_VOTERS.setdefault(_pid, "11/3 신규, 명세에 없는 계정 — 마켓 패널에 넣지 않는다(11/3 대표님 \"추천대로\")")
 NON_VOTERS["wb-persona-repair-ledger"] = "11/11 신규(수선통장) — 장기수선충당금 기록 전담, 가격 전망을 하지 않는 계정"
+for _pid, _why in (("wb-persona-facility-tour", "공용시설 비교 전담"), ("wb-persona-builders", "설계·시공·관리 회사 대조 전담"),
+                   ("wb-persona-complex-board", "단지 입찰공고·고시 정리 전담")):
+    NON_VOTERS[_pid] = f"11/15 신규 — {_why}, 가격 전망을 하지 않는 계정"
 for _pid in ("wb-persona-fan-eunma", "wb-persona-fan-helio", "wb-persona-fan-ricents", "wb-persona-fan-gracium", "wb-persona-fan-mapo"):
     NON_VOTERS[_pid] = "11/14 신규(단지 팬) — 한 단지만 편드는 계정이라 가격 전망을 하지 않는다"
 
