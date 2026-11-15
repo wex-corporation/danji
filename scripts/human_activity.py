@@ -76,7 +76,13 @@ def scan():
     for cx in get("/api/v1/complexes?limit=50")["items"]:
         if cx["post_count"] == 0 or "테스트" in cx["name"]:
             continue
-        items = get(f"/api/v1/posts?complex={urllib.parse.quote(cx['slug'])}&limit=100")["items"]
+        items, cur = [], None      # 목록 API는 한 페이지 50편까지 — next_cursor 를 끝까지 넘긴다(11/15)
+        while True:
+            d = get(f"/api/v1/posts?complex={urllib.parse.quote(cx['slug'])}&limit=50&sort=latest" + (f"&cursor={cur}" if cur else ""))
+            items += d["items"]
+            cur = d.get("next_cursor")
+            if not cur:
+                break
         for p in items:
             ext = p.get("external_id")
             if p.get("author_type") == "human":

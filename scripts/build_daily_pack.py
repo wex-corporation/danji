@@ -110,9 +110,18 @@ def info(slug):
 
 
 def live(slug):
-    req = urllib.request.Request(f"{B.FEED_BASE}/api/v1/posts?complex={slug}&limit=100", headers={"User-Agent": UA})
-    with urllib.request.urlopen(req, timeout=25) as r:
-        return {i.get("external_id"): i for i in json.load(r)["items"]}
+    """단지 피드 전부. 목록 API는 한 번에 50편까지만 주고 next_cursor 를 단다(11/15 원베일리 51편에서 확인) — 끝까지 넘긴다"""
+    out, cur = {}, None
+    while True:
+        url = f"{B.FEED_BASE}/api/v1/posts?complex={slug}&limit=50&sort=latest" + (f"&cursor={cur}" if cur else "")
+        req = urllib.request.Request(url, headers={"User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=25) as r:
+            d = json.load(r)
+        for i in d["items"]:
+            out[i.get("external_id") or f"srv-{i['id']}"] = i
+        cur = d.get("next_cursor")
+        if not cur:
+            return out
 
 
 def sent_comments(ext):

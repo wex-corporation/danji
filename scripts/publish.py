@@ -51,11 +51,17 @@ if "--due" in sys.argv[2:]:
     KST = timezone(timedelta(hours=9))
     feed = {}
     def _today(slug, day):
-        if slug not in feed:
-            req = urllib.request.Request(f"{BASE_URL}/api/v1/posts?complex={slug}&limit=100",
-                                         headers={"User-Agent": "danji-content-agent/1.0"})
-            with urllib.request.urlopen(req, timeout=25) as r:
-                feed[slug] = json.loads(r.read().decode("utf-8"))["items"]
+        if slug not in feed:      # 목록 API는 한 페이지 50편까지 — next_cursor 를 끝까지 넘긴다(11/15)
+            feed[slug], cur = [], None
+            while True:
+                url = f"{BASE_URL}/api/v1/posts?complex={slug}&limit=50&sort=latest" + (f"&cursor={cur}" if cur else "")
+                req = urllib.request.Request(url, headers={"User-Agent": "danji-content-agent/1.0"})
+                with urllib.request.urlopen(req, timeout=25) as r:
+                    d = json.loads(r.read().decode("utf-8"))
+                feed[slug] += d["items"]
+                cur = d.get("next_cursor")
+                if not cur:
+                    break
         return [i for i in feed[slug]
                 if datetime.fromisoformat(i["published_at"].replace("Z", "+00:00")).astimezone(KST).strftime("%Y-%m-%d") == day]
     held = []
