@@ -12,6 +12,9 @@
 
 매주 순서: reb_weekly.py → forecast_ledger.py → market_vote.py --send → 이 생성기 → publish.py
 
+11/19 회차부터 WEEKLY 함수가 unknowns=[...](1~3줄)를 함께 돌려준다 — 그 주 장부·발표로는 확인하지 못했고
+그 동네에 사는 사람은 아는 것, 부탁이 아니라 한계를 밝히는 사실로, 줄 끝 부호 없이, 숫자는 본문에 있는 값만
+
 실행: python3 scripts/build_forecast_weekly_pack.py --pub 2026-10-29
 """
 
@@ -35,6 +38,10 @@ F, R, md, p, ins, ytd = B.F, B.R, B.md, B.p, B.ins, B.ytd
 
 WEEKLY = {}
 SIDE = {"up": "오른다", "down": "내린다"}
+# '데이터로는 모르는 것'(55번) — 11/19 회차부터 장부 글에도 1~3줄(대표님 11/15 "장부 글에도 붙여").
+# WEEKLY 함수가 unknowns=[...] 를 돌려준다. 검사는 하루치 생성기와 같은 함수(build_daily_pack.unknowns_issues)를 쓰고,
+# 장부 글은 퍼센트가 주인공이라 줄에 쓴 % 숫자도 본문에 있는 값만 허용한다
+UNKNOWNS_FROM = "2026-11-19"
 # '한 단지의 값이 아니다'는 지키되 고정 문장으로 붙이지 않는다. 그 주의 말로 한 번 쓴다
 CAVEAT = re.compile(r"한 단지|단지(의)? 값이 아니|단지 숫자가 아니|구 전체|구 단위")
 
@@ -308,6 +315,7 @@ def build(pub, ignore_cap):
                 "sources": [{"label": f"한국부동산원 주간 아파트가격 동향 {md(pub)} 발표 (확인 {now.strftime('%Y. %-m. %-d.')})",
                              "url": w["source_url"], "publisher": "한국부동산원"}],
                 "published_at": published_at, "status": "published",
+                **({"unknowns": x["unknowns"]} if x.get("unknowns") else {}),
             },
             "comments": [{"external_id": f"{ext}-c{i}", "persona_external_id": pid, "body": b, "stance": st, "position": i}
                          for i, (pid, b, st) in enumerate(x["comments"])],
@@ -355,6 +363,18 @@ def validate(pack):
         errs.append("질문 하나로 닫지 않음")
     if len(x["title"]) > B.MAX_TITLE:
         errs.append(f"제목 {len(x['title'])}자")
+    un = x.get("unknowns", [])
+    if day >= UNKNOWNS_FROM and not un:
+        errs.append(f"unknowns 비어 있음({UNKNOWNS_FROM} 회차부터 1~3줄)")
+    if un:
+        from build_daily_pack import unknowns_issues
+        errs += unknowns_issues("장부", un, x["body"], x["persona_external_id"])
+        for ln in un:
+            for m in re.finditer(r"[+-]?\d+(?:\.\d+)?%", ln):
+                if m.group() not in x["body"]:
+                    errs.append(f"unknowns 퍼센트 '{m.group()}'이 본문에 없음")
+    if len(x.get("source_note") or "") > 400:
+        errs.append(f"source_note {len(x['source_note'])}자(서버 상한 400자)")
     registered = {v["external_id"] for v in json.loads((REPO / "data" / "personas.json").read_text(encoding="utf-8"))["personas"]}
     for c in b["payload"]["comments"]:
         if c["persona_external_id"] not in registered or c["persona_external_id"] == x["persona_external_id"]:

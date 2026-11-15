@@ -90,8 +90,77 @@ VOICE_V2 = {
 }
 SIDE_KO = {"up": "오른다", "down": "내린다"}
 
+# 근거 문장 v3 — 11/23 주 판부터(11/19 목요일 회차에 내는 표). 대표님 11/15 "근거 문장 말로 바꿔".
+# 서버 경고(AGENT_INTEGRATION.md §10-3): "근거가 계산 결과처럼 읽힙니다(확률 숫자, 오른 주·내린 주 집계, 숫자 5개).
+# 무엇을 보고 왜 그렇게 보는지 한두 문장으로, 숫자는 출처와 함께 하나만". 그래서 숫자는 최근 한 주 변동률 하나만 출처와 함께 쓰고,
+# 4주 흐름은 말(flow)로, 확률은 쓰지 않는다. 동률 판(오른 주 = 내린 주)은 낙관 점수가 표를 가르므로 그 이유를 따로 말한다.
+# 이미 낸 표(market-votes.jsonl)와 소급 표 파일은 옛 문장 그대로 둔다
+VOICE_V3_FROM = "2026-11-23"
+SRC = "부동산원 주간 동향 최신판"
+
+
+def _flow(u, d):
+    if u == 4:
+        return "네 주 내리 오름"
+    if d == 4:
+        return "네 주 내리 내림"
+    if u > d:
+        return "오른 주가 더 많은 흐름"
+    if d > u:
+        return "내린 주가 더 많은 흐름"
+    return "오르내림이 갈린 흐름"
+
+
+def _pct(v):
+    return "0.00%(보합)" if v == 0 else f"{v:+.2f}%"
+
+
+VOICE_V3 = {
+    "wb-persona-demand-check": lambda c: (
+        f"{SRC}에서 {c['gu']}구 매매지수의 최근 한 주 변동률은 {c['lastp']}입니다. "
+        + (f"{c['flow']}이라 오르는 쪽 신호를 조금 더 무겁게 보는 제 기준으로는 오른다에 섭니다." if c["tie"] else
+           f"{c['flow']}이라 그 밀도가 한 주 더 간다고 보고 {c['side']} 쪽에 섭니다.")),
+    "wb-persona-num-compare": lambda c: (
+        f"같은 잣대로 본 {c['gu']}구: 최근 한 주 {c['lastp']}({SRC}). {c['flow']}, 그래서 {c['side']}."),
+    "INF-012": lambda c: (
+        f"하방 위험부터 보는 편인데도 {c['gu']}구는 {c['flow']}입니다({SRC}, 최근 한 주 {c['lastp']}). 이번 판은 오른다 쪽에 섭니다."
+        if c["side_en"] == "up" else
+        f"{SRC}에서 {c['gu']}구 최근 한 주 변동률은 {c['lastp']}입니다. "
+        + ("방향이 갈린 판에선 아래부터 보는 쪽이라 내린다에 둡니다." if c["tie"] else f"{c['flow']}에 하방 위험까지 얹어 내린다에 둡니다.")),
+    "wb-persona-policy-lab": lambda c: (
+        f"한국부동산원 주간 아파트가격 동향 최신판에서 {c['gu']}구 매매가격지수 변동률은 {c['lastp']}입니다. "
+        + ("방향이 갈린 판이라 정책 변수의 하방을 조금 더 봐서 내린다에 겁니다." if c["tie"] else
+           f"{c['flow']}을 보고, 정책 변수보다 지수의 관성이 먼저 이어진다고 봐서 {c['side']}에 겁니다.")),
+    "wb-persona-field-scout": lambda c: (
+        f"현장 소식 없이 표만 봤어요. {SRC}에서 {c['gu']}구가 최근 한 주 {c['lastp']}, {c['flow']}이라 {c['side']} 쪽이에요."),
+    "INF-007": lambda c: (
+        f"{c['gu']}구는 {c['flow']}입니다({SRC}, 최근 한 주 {c['lastp']}). "
+        + ("갈린 판에선 아래를 조금 더 봐서 내린다." if c["tie"] else
+           f"반대편에 서려면 다른 입력이 필요한데 이번 판 입력은 구 지수 하나라 {c['side']}에 둡니다.")),
+    "INF-003": lambda c: (
+        f"{SRC}에서 {c['gu']}구 최근 한 주 변동률은 {c['lastp']}, 보합선을 기준으로 보면 {c['flow']}인 거죠. "
+        + ("갈린 판에선 위쪽을 조금 더 봐서 오른다로 판정합니다." if c["tie"] else f"그래서 {c['side']} 쪽으로 판정합니다.")),
+    "wb-persona-real-talk": lambda c: (
+        f"표만 보면 {c['gu']}구는 {c['flow']}이에요({SRC}, 최근 한 주 {c['lastp']}). "
+        + ("이렇게 갈릴 땐 조심하는 쪽으로 기울어서 내린다에 둬요." if c["tie"] else
+           f"체감은 사람마다 다르겠지만 표가 가리키는 쪽은 {c['side']}죠.")),
+    "wb-persona-cashflow": lambda c: (
+        f"한 달 치를 묶어 보면 {c['gu']}구는 {c['flow']}이에요({SRC}, 최근 한 주 {c['lastp']}). 그 방향이 한 주 더 간다고 보고 {c['side']}에 둬요."),
+    "INF-001": lambda c: (
+        f"한 달에 한 번 내는 표다. {SRC}에서 {c['gu']}구는 최근 한 주 {c['lastp']}, {c['flow']}이어서 {c['side']} 쪽에 둔다."),
+    "INF-005": lambda c: (
+        f"왜 {c['side']} 쪽이냐고 물으면 답은 하나거든요. {SRC}에서 {c['gu']}구가 최근 한 주 {c['lastp']}, "
+        + (f"{c['flow']}이라 조금 밝게 보는 제 쪽으로 오른다에 한 표 둡니다." if c["tie"] else f"{c['flow']}이라 {c['side']}에 한 표 둡니다.")),
+    "INF-020": lambda c: (
+        f"{SRC}에서 {c['gu']}구 최근 한 주 변동률은 {c['lastp']}다. "
+        f"{c['flow']}은 한 주짜리 소음이 아니라 방향이 이어진다는 신호로 읽어 {c['side']} 쪽에 둔다."),
+}
+V3_NUM = __import__("re").compile(r"\d+(?:[.,]\d+)*")
+
 
 def rationale(pid, week, c):
+    if week >= VOICE_V3_FROM:
+        return VOICE_V3[pid](c)
     if week >= E.MARKET_V2_FROM and pid in VOICE_V2:
         return VOICE_V2[pid](c)
     return VOICE[pid].format(**c)
@@ -148,10 +217,14 @@ def build_votes(rel, rounds):
         for v in f["votes"]:
             if v["side"] is None:
                 continue
+            last = f["inputs"][-1][1]
             c = dict(gu=gu, u=f["u"], d=f["d"], p=f["p"], q=v["q"], diff=f["u"] - f["d"],
-                     pub=md(rel["published"]), side=SIDE_KO[v["side"]], side_en=v["side"])
+                     pub=md(rel["published"]), side=SIDE_KO[v["side"]], side_en=v["side"],
+                     lastp=_pct(last), flow=_flow(f["u"], f["d"]), tie=f["u"] == f["d"])
             text = rationale(v["persona"], rd["week_start"], c)
             assert not AI_COMMENT_ASK.search(text), text
+            if rd["week_start"] >= VOICE_V3_FROM:      # 숫자 하나(출처와 함께), 확률·집계 없음
+                assert len(V3_NUM.findall(text)) == 1 and "확률" not in text and "주 중" not in text, text
             votes.append({"external_id": f"vote-{rd['week_start']}-{rd['complex_slug']}-{v['persona']}",
                           "complex_external_id": rd["complex_external_id"],
                           "persona_external_id": v["persona"], "side": v["side"], "rationale": text,
@@ -169,8 +242,26 @@ def _voice_check():
             if side is None:
                 continue
             c = dict(gu="송파", pub="12/3", q=q, diff=f["u"] - f["d"], side=SIDE_KO[side], side_en=side, **f)
+            t = rationale(pid, "2026-11-16", c)          # v2 기간(11/9~11/16 판) 문장
+            assert "{" not in t and not AI_COMMENT_ASK.search(t), t
+            texts.append(t)
+        assert len(set(texts)) == len(texts)
+    # v3: 판마다 12명 전부가 나오는 12/7 판으로, 흐름 다섯 가지 × 마지막 주 부호를 다 돌려 본다
+    cases = [((0.12, 0.08, 0.05, 0.03), 4, 0), ((-0.1, -0.2, -0.3, -0.35), 0, 4), ((0.09, 0.04, 0.03, -0.01), 3, 1),
+             ((-0.05, -0.02, 0.01, -0.03), 1, 3), ((0.02, -0.01, 0.03, -0.02), 2, 2), ((0.0, 0.01, 0.0, -0.01), 1, 1)]
+    for vals, u, d in cases:
+        p = round(0.5 + 0.1 * (u - d), 1)
+        texts = []
+        for pid, _, opt, _ in E.market_panel("2026-12-07"):
+            side, q = E.vote(p, opt)
+            if side is None:
+                continue
+            c = dict(gu="송파", pub="12/3", q=q, u=u, d=d, p=p, diff=u - d, side=SIDE_KO[side], side_en=side,
+                     lastp=_pct(vals[-1]), flow=_flow(u, d), tie=u == d)
             t = rationale(pid, "2026-12-07", c)
             assert "{" not in t and not AI_COMMENT_ASK.search(t), t
+            assert len(V3_NUM.findall(t)) == 1 and "확률" not in t and t.count(". ") + t.count("다.") <= 3, t
+            assert SIDE_KO[side] in t, t
             texts.append(t)
         assert len(set(texts)) == len(texts)
 

@@ -2158,6 +2158,36 @@ def build(d):
             "personas": [], "bundles": bundles, "comments": comments}
 
 
+def unknowns_issues(tag, un, body, persona):
+    """'데이터로는 모르는 것' 줄 검사(55번). 하루치 글과 장부 글(build_forecast_weekly_pack)이 같이 쓴다"""
+    errs = []
+    if len(un) > 3 or len(set(un)) != len(un):
+        errs.append(f"{tag}: unknowns {len(un)}줄·중복 확인")
+    closing = body.split("\n\n")[-1].strip()
+    for ln in un:
+        if not 2 <= len(ln) <= 140:
+            errs.append(f"{tag}: unknowns 길이 {len(ln)} '{ln[:20]}'")
+        if ln.rstrip().endswith((".", "?", "!")) or "?" in ln:
+            errs.append(f"{tag}: unknowns 끝 부호·질문형 '{ln[:20]}'")
+        if AI_COMMENT_ASK.search(ln) or UNK_ASK.search(ln):
+            errs.append(f"{tag}: unknowns 부탁하는 말 '{ln[:20]}'")
+        if JARGON.search(ln):
+            errs.append(f"{tag}: unknowns 내부 용어 '{JARGON.search(ln).group()}'")
+        g = PERSONA_GUARDS.get(persona)
+        if g and g.search(ln):
+            errs.append(f"{tag}: unknowns 가드 '{g.search(ln).group()}'")
+        if persona.startswith("adv-") and BAN_PRICE.search(ln):
+            errs.append(f"{tag}: unknowns 홍보 가격 어휘 '{BAN_PRICE.search(ln).group()}'")
+        if [w for ws in BANNED.values() for w in ws if w in ln]:
+            errs.append(f"{tag}: unknowns 금지 표현")
+        for m in re.finditer(r"\d[\d,]*억(?: [\d,]+만원)?|\d[\d,]*만원", ln):     # 금액은 본문에 있는 숫자만
+            if m.group() not in body:
+                errs.append(f"{tag}: unknowns 금액 '{m.group()}'이 본문에 없음")
+        if closing and (ln.rstrip("다니습") in closing or closing.rstrip("?") in ln):
+            errs.append(f"{tag}: unknowns 가 끝 질문을 되풀이 '{ln[:20]}'")
+    return errs
+
+
 def validate(pack, d):
     errs = []
     posts = [b["payload"]["post"] for b in pack["bundles"]]
@@ -2193,30 +2223,7 @@ def validate(pack, d):
         un = x.get("unknowns", [])
         if d >= UNKNOWNS_FROM and not un:
             errs.append(f"{tag}: unknowns 비어 있음({UNKNOWNS_FROM}부터 글마다 1~3줄)")
-        if len(un) > 3 or len(set(un)) != len(un):
-            errs.append(f"{tag}: unknowns {len(un)}줄·중복 확인")
-        closing = body.split("\n\n")[-1].strip()
-        for ln in un:
-            if not 2 <= len(ln) <= 140:
-                errs.append(f"{tag}: unknowns 길이 {len(ln)} '{ln[:20]}'")
-            if ln.rstrip().endswith((".", "?", "!")) or "?" in ln:
-                errs.append(f"{tag}: unknowns 끝 부호·질문형 '{ln[:20]}'")
-            if AI_COMMENT_ASK.search(ln) or UNK_ASK.search(ln):
-                errs.append(f"{tag}: unknowns 부탁하는 말 '{ln[:20]}'")
-            if JARGON.search(ln):
-                errs.append(f"{tag}: unknowns 내부 용어 '{JARGON.search(ln).group()}'")
-            g = PERSONA_GUARDS.get(x["persona_external_id"])
-            if g and g.search(ln):
-                errs.append(f"{tag}: unknowns 가드 '{g.search(ln).group()}'")
-            if x["persona_external_id"].startswith("adv-") and BAN_PRICE.search(ln):
-                errs.append(f"{tag}: unknowns 홍보 가격 어휘 '{BAN_PRICE.search(ln).group()}'")
-            if [w for ws in BANNED.values() for w in ws if w in ln]:
-                errs.append(f"{tag}: unknowns 금지 표현")
-            for m in re.finditer(r"\d[\d,]*억(?: [\d,]+만원)?|\d[\d,]*만원", ln):     # 금액은 본문에 있는 숫자만
-                if m.group() not in body:
-                    errs.append(f"{tag}: unknowns 금액 '{m.group()}'이 본문에 없음")
-            if closing and (ln.rstrip("다니습") in closing or closing.rstrip("?") in ln):
-                errs.append(f"{tag}: unknowns 가 끝 질문을 되풀이 '{ln[:20]}'")
+        errs += unknowns_issues(tag, un, body, x["persona_external_id"])
         if RELATIVE_TIME.search(text):
             errs.append(f"{tag}: 시점 의존 표현 '{RELATIVE_TIME.search(text).group()}'")
         je = josa_errors(text) + [m.group() for m in B.BAD_PCT_JOSA.finditer(text)]
