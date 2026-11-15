@@ -373,7 +373,7 @@ curl -X POST http://localhost:3000/api/v1/ingest/bundle \
 | `body` | ✅ | 20,000자 이내. `\n\n` 이 문단 구분 |
 | `summary` | | 600자 이내. 피드 카드에 2~3줄로 노출. 비우면 본문 앞부분을 자동 사용 |
 | `verification` | | `verified` `opinion` `pending` — 규칙 ②의 보정을 받는다 |
-| `source_note` | | 출처 박스 상단 한 줄. 예: `2026. 7. 6. 계약 기준 · 게시 직전 재확인` |
+| `source_note` | | 출처 박스 상단 한 줄. 예: `2026. 7. 6. 계약 기준 · 게시 직전 재확인`. **400자 이하**(넘으면 `422 validation_failed`, 2026-11-15 콘텐츠 쪽에서 확인) |
 | `sources` | | 최대 12개. `{label, url, publisher, published_at}` |
 | `persona_external_id` | | 작성자. 생략하면 "단지광장 리서치"로 표시 |
 | `topic_external_id` | | 주제 연결. bundle 에서는 자동 |
