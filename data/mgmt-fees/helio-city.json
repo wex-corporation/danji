@@ -391,8 +391,30 @@
       "area_field": "kaptMarea",
       "area_source": "official_api",
       "area_note": null,
-      "breakdown": null,
-      "crosscheck": null,
+      "breakdown": {
+        "공용관리비": {
+          "total_won": 974471641,
+          "per_m2_won": 1005
+        },
+        "개별사용료": {
+          "total_won": 1813196967,
+          "per_m2_won": 1870
+        },
+        "장기수선충당금": {
+          "total_won": 87987600,
+          "per_m2_won": 91
+        },
+        "합계": {
+          "total_won": 2875656208,
+          "per_m2_won": 2965
+        }
+      },
+      "crosscheck": {
+        "mirror_common_fee_won": 974471641,
+        "official_common_fee_won": 974471641,
+        "diff_won": 0,
+        "match": true
+      },
       "common_fee_total_won": 974471641,
       "per_m2_won": 1004.74,
       "per_m2_available": true,
@@ -537,7 +559,7 @@
       },
       "failures": {},
       "complete": true,
-      "fetched_at": "2026-11-09T00:32:03+0000",
+      "fetched_at": "2026-11-17T04:09:06+0000",
       "source": {
         "label": "공동주택관리정보시스템(K-apt) 공용관리비 · 공공데이터포털 OpenAPI",
         "url": "https://www.data.go.kr/data/15057937/openapi.do",
@@ -869,7 +891,7 @@
       },
       "failures": {},
       "complete": true,
-      "fetched_at": "2026-11-09T00:32:47+0000",
+      "fetched_at": "2026-11-17T04:09:25+0000",
       "source": {
         "label": "공동주택관리정보시스템(K-apt) 공용관리비 · 공공데이터포털 OpenAPI",
         "url": "https://www.data.go.kr/data/15057937/openapi.do",

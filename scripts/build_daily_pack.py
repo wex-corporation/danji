@@ -1896,6 +1896,144 @@ def d1116(today):
     ])
 
 
+BLD_SRC_1117 = {"label": "국토교통부 건축HUB 건축물대장정보 서비스 표제부 (확인 2026. 11. 17.)",
+                "url": "https://www.data.go.kr/data/15134735/openapi.do", "publisher": "국토교통부"}
+FEE_SRC_1117 = {"label": "공동주택관리정보시스템(K-apt) 공용관리비 · 공공데이터포털 OpenAPI (조회 2026. 11. 17.)",
+                "url": "https://www.data.go.kr/data/15057937/openapi.do", "publisher": "국토교통부"}
+
+
+def _eunma_bldreg_1117():
+    """11/17 은마 — 건축물대장 표제부(11/17 조회)는 동마다 사용승인일이 둘: 1979-08-30 15개 동 · 1980-05-26 13개 동. K-apt 칸은 하나(19790830)"""
+    br = json.loads((REPO / "data" / "building-register" / "eunma-2026-11-17.json").read_text(encoding="utf-8"))
+    assert br["fetched_at"][:10] == "2026-11-17" and br["query"] == {"sigunguCd": "11680", "bjdongCd": "10600", "bun": "0316", "ji": "0000"}
+    bs = br["buildings"]
+    assert len(bs) == 31
+    apt = [b for b in bs if b["mainPurpsCdNm"] == "공동주택" and b["hhldCnt"] > 0]
+    rest = [b for b in bs if b not in apt]
+    assert len(apt) == 28 and sorted(b["mainPurpsCdNm"] for b in rest) == ["공동주택", "판매시설", "판매시설"]   # 상가 2 · 편의시설 1
+    ui = info("eunma")
+    assert (ui["use_approval_date"], ui["dong_count"], ui["household_count"], ui["elevator_count"]) == ("19790830", 28, 4424, 42)
+    assert sum(b["hhldCnt"] for b in apt) == ui["household_count"]
+    g = {}
+    for b in apt:
+        g.setdefault(b["useAprDay"], []).append(b)
+    assert sorted(g) == ["19790830", "19800526"]
+    n79, n80 = len(g["19790830"]), len(g["19800526"])
+    h79, h80 = sum(b["hhldCnt"] for b in g["19790830"]), sum(b["hhldCnt"] for b in g["19800526"])
+    assert (n79, h79, n80, h80) == (15, 2576, 13, 1848)
+    d79 = sorted(int(b["dongNm"]) for b in g["19790830"])
+    d80 = sorted(int(b["dongNm"]) for b in g["19800526"])
+    assert d79 == [1, 2, 3, 5, 6, 7, 8, 18, 19, 20, 21, 22, 29, 30, 31]
+    assert d80 == [9, 10, 11, 12, 13, 15, 16, 17, 23, 25, 26, 27, 28]
+    nums = sorted(d79 + d80)
+    assert nums[0] == 1 and nums[-1] == 31 and [n for n in range(1, 32) if n not in nums] == [4, 14, 24]
+    assert all((b["grndFlrCnt"], b["ugrndFlrCnt"]) == (14, 1) for b in apt)
+    assert all(b["rideUseElvtCnt"] == 0 and b["emgenUseElvtCnt"] == 0 for b in apt)      # 대장 승강기 칸은 모두 0 — 사실로 쓰지 않는다
+    from collections import Counter
+    hc = Counter(b["hhldCnt"] for b in apt)
+    big = max(apt, key=lambda b: b["hhldCnt"])
+    assert hc.most_common(1) == [(112, 11)] and (big["dongNm"], big["hhldCnt"], big["useAprDay"]) == ("17", 238, "19800526")
+    assert sum(1 for b in apt if b["hhldCnt"] == 238) == 1
+    a79, a80 = round(h79 / n79, 1), round(h80 / n80, 1)
+    assert (a79, a80) == (171.7, 142.2)
+    return dict(ext="daily-2026-11-17-eunma-two-approval-dates", series="bld-register", slot="14:43", home="eunma",
+                persona="wb-persona-past-cycle", category="생활", topic="bld-register", verification="verified",
+                sources=[BLD_SRC_1117, KAPT_INFO],
+                title="은마 28개 동, 사용승인일이 1979년과 1980년",
+                body=[
+                    "K-apt 기본정보에 적힌 은마 사용승인일은 1979년 8월 30일 하나입니다. "
+                    f"건축물대장 표제부를 동마다 열어 보니 날짜가 둘이었고요. 1979년 8월 30일이 {n79}개 동 {h79:,}세대, "
+                    f"1980년 5월 26일이 {n80}개 동 {h80:,}세대. 두 날짜의 세대를 더하면 {h79 + h80:,}세대로 K-apt 세대수와 맞습니다.",
+                    "1979년에 승인된 동은 1~8동과 18~22동, 29~31동이었습니다. 1980년 쪽은 9~17동과 23동, 25~28동이고요. "
+                    f"{len(apt)}개 동 모두 지상 14층, 지하 1층으로 적혀 있죠.",
+                    f"동 번호는 1부터 31까지 이어지는데 4동, 14동, 24동이 없습니다. 번호가 31까지 가도 동이 {len(apt)}개인 까닭이죠.",
+                    "제 해석은 이렇습니다. 사용승인은 다 지은 건물을 쓸 수 있게 허가하는 절차라, "
+                    "날짜가 둘이면 단지가 두 차례로 나눠 준공됐었다는 뜻으로 읽힙니다. K-apt 칸에는 앞선 날짜 하나만 들어간 것으로 보이고요. "
+                    "대장은 동마다 승인 날짜를 적을 뿐 공사 순서나 입주 시기까지 말해 주지는 않으니, 이 읽기는 틀릴 수 있습니다.",
+                    "단지 안에서 1980년에 승인된 동들을 따로 묶어 부르는 이름이 있나요?",
+                ],
+                source_note=("국토교통부 건축HUB 건축물대장정보 서비스(공공데이터포털 15134735, 이용허락범위 제한 없음) 표제부, 강남구 대치동 316, "
+                             "2026. 11. 17. 조회 · 건물 31개 중 주용도 공동주택이고 세대수가 있는 28개 동만 셌다(상가 2·편의시설 1 제외) · "
+                             "사용승인일·층수·세대수는 대장 값 그대로 · 대장 승강기 칸은 28개 동 모두 0이라 사실로 쓰지 않았다 · "
+                             "K-apt 사용승인일·동 수·세대수·승강기 대수는 K-apt 기본정보(2026. 8. 16. 조회)"),
+                unknowns=["4동, 14동, 24동 번호가 비어 있는 이유는 건축물대장과 K-apt 기본정보 어디에도 적혀 있지 않습니다",
+                          "1979년과 1980년으로 사용승인이 나뉜 까닭과 실제 입주 순서는 건축물대장에 나오지 않습니다",
+                          f"건축물대장 승강기 칸은 28개 동 모두 0으로 적혀 있어 K-apt 기본정보의 {ui['elevator_count']}대와 맞지 않고, 어느 쪽이 무엇을 센 값인지는 확인하지 못했습니다"],
+                comments=[
+                    ("wb-persona-num-compare", f"동별 세대수. 112세대 동이 {hc[112]}개로 가장 흔함. 가장 큰 동은 17동 {big['hhldCnt']}세대(1980년 승인). "
+                     f"동당 평균은 1979년 {n79}개 동 {a79}세대, 1980년 {n80}개 동 {a80}세대.", "동별 세대수"),
+                    ("wb-persona-fan-eunma", f"은마만세가 이번에 자랑할 건 키 맞춤입니다. {len(apt)}개 동이 하나같이 지상 14층! "
+                     f"{ui['household_count']:,}세대가 같은 높이로 나란히 서 있는 단지, 서류로 다시 봐도 반듯합니다.", "단지 응원"),
+                ])
+
+
+def _helio_guard_step_1117():
+    """11/17 헬리오 — 경비비가 8월분에 한 번 내려가 9월분에도 그 자리(K-apt 공용관리비 V3, 8·9월분 11/17 다시 받아 11/9 값과 같음)"""
+    ps = fees("helio-city")
+    assert sorted(ps) == ["202605", "202606", "202607", "202608", "202609"]
+    for k in ("202608", "202609"):
+        assert ps[k]["fetched_at"][:10] == "2026-11-17"
+    A = ps["202609"]["area_m2"]
+    assert all(ps[k]["area_m2"] == A == 969877.0 and ps[k]["area_field"] == "kaptMarea" for k in ps)
+    gd = {k: ps[k]["items"]["경비비"]["amount_won"] for k in ps}
+    assert gd == {"202605": 265119173, "202606": 263387760, "202607": 265791413, "202608": 240464923, "202609": 239091444}
+    assert ps["202607"]["items"]["경비비"]["op"] == ps["202608"]["items"]["경비비"]["op"] == "getHsmpGuardCostInfoV3"
+    spread = max(gd[k] for k in ("202605", "202606", "202607")) - min(gd[k] for k in ("202605", "202606", "202607"))
+    assert man(spread) == "240만원"
+    drop = gd["202607"] - gd["202608"]
+    assert man(drop) == "2,532만원" and round(drop / gd["202607"] * 100, 1) == 9.5
+    assert abs(gd["202609"] - gd["202608"]) < 200 * 10 ** 4
+    pm = {k: round(gd[k] / A) for k in ("202607", "202608", "202609")}
+    assert pm == {"202607": 274, "202608": 248, "202609": 247}
+    T7, T8 = ps["202607"]["common_fee_total_won"], ps["202608"]["common_fee_total_won"]
+    dT = T7 - T8
+    assert (man(T7), man(T8), man(dT)) == ("10억 2,266만원", "9억 7,447만원", "4,819만원") and 0.5 < drop / dT < 0.55
+    fm = {k: ps[k]["items"]["시설유지비"]["amount_won"] for k in ("202607", "202608", "202609")}
+    assert (man(fm["202607"]), man(fm["202608"]), fm["202608"] == fm["202609"]) == ("1,739만원", "866만원", True)
+    cl8 = ps["202608"]["items"]["청소비"]["amount_won"]
+    assert gd["202607"] > ps["202607"]["items"]["청소비"]["amount_won"] and gd["202608"] < cl8 and gd["202609"] < ps["202609"]["items"]["청소비"]["amount_won"]
+    # 같은 자료의 다른 다섯 곳 — 7월분 → 8월분 경비비 변화(댓글)
+    ch = {}
+    for slug in ("eunma", "godeok-gracium", "ricents", "mapo-raemian-prugio", "one-bailey"):
+        q = fees(slug)
+        ch[slug] = round((q["202608"]["items"]["경비비"]["amount_won"] / q["202607"]["items"]["경비비"]["amount_won"] - 1) * 100, 1)
+    assert ch == {"eunma": -0.3, "godeok-gracium": 2.3, "ricents": -0.4, "mapo-raemian-prugio": 0.4, "one-bailey": -0.0}
+    mp = fees("mapo-raemian-prugio")
+    mp8, mp9 = mp["202608"]["items"]["경비비"]["amount_won"], mp["202609"]["items"]["경비비"]["amount_won"]
+    assert round((mp9 / mp8 - 1) * 100, 1) == -10.5 and man(mp8 - mp9) == "1,629만원"
+    hi = info("helio-city")
+    assert (hi["household_count"], hi["parking_ground"], hi["parking_underground"]) == (9510, 0, 12096)
+    return dict(ext="daily-2026-11-17-helio-guard-step", series="mgmt-fee-step", slot="17:29", home="helio-city",
+                persona="wb-persona-timeseries", category="생활", topic="mgmt-fee", verification="verified",
+                sources=[FEE_SRC_1117, KAPT_INFO],
+                title=f"헬리오시티 경비비 8월분, 한 달에 {man(drop)} 줄었다",
+                body=[
+                    "관리비 칸은 대개 달마다 조금씩 움직인다. 헬리오시티 경비비는 올해 8월분에 한 번 크게 움직였다.",
+                    f"5월분 {man(gd['202605'])}, 6월분 {man(gd['202606'])}, 7월분 {man(gd['202607'])}. 석 달 동안 {man(spread)} 안에서 오르내렸다. "
+                    f"8월분은 {man(gd['202608'])}이다. 한 달에 {man(drop)}, 9.5% 줄었다. 9월분도 {man(gd['202609'])}으로 그 높이에 머물렀다.",
+                    f"관리비 부과면적 ㎡당으로 바꾸면 274원, 248원, 247원이다. 같은 8월분에 공용관리비 합계는 {man(T7)}에서 {man(T8)}으로 {man(dT)} 줄었고, "
+                    f"그 절반 남짓이 경비비 한 칸이다. 시설유지비도 {man(fm['202607'])}에서 {man(fm['202608'])}으로 절반이 됐다. "
+                    "7월분까지 경비비보다 작던 청소비가 8월분부터는 더 크다.",
+                    "숫자는 여기까지다. 한 번 내려간 뒤 9월분에도 같은 높이라, 한 달짜리 출렁임보다는 무언가 바뀐 계단처럼 보인다. "
+                    "무엇이 바뀌었는지는 관리비 자료에 없다.",
+                    "8월쯤 경비 근무와 관련된 안내문이 단지에 붙었었나요?",
+                ],
+                source_note=("K-apt 공용관리비 OpenAPI(15057937) 17개 항목, 헬리오시티 2026년 5~9월분 · 5·6월분 8. 16., 7월분 11. 9., "
+                             "8·9월분 11. 9. 조회 뒤 11. 17. 다시 받아 17칸 같음 · 7월분부터 V3 응답(5·6월분 V2), 줄어든 8월분은 7월분과 같은 V3 · "
+                             f"만원 아래 버림 · ㎡당 = 경비비 ÷ 관리비부과면적 {A:,.0f}㎡, 반올림 · "
+                             "댓글의 다섯 단지 7·8월분과 마래푸 9월분은 11. 1.~11. 15. 조회분 · 세대수·주차면은 K-apt 기본정보"),
+                unknowns=[f"8월분 경비비가 {man(drop)} 줄어든 까닭이 계약 변경인지 근무 방식의 변화인지는 K-apt 관리비 자료에 나오지 않습니다",
+                          "시설유지비가 8월분에 절반이 된 이유는 이 자료에 항목 이름 말고는 적혀 있지 않습니다",
+                          "집집이 받는 고지서에서 경비비 줄이 얼마나 내려갔는지는 단지 전체 합계로 가늠되지 않습니다"],
+                comments=[
+                    ("wb-persona-outlier", "같은 자료에서 7월분에서 8월분 사이 경비비가 1% 넘게 바뀐 곳은 헬리오시티(-9.5%)와 "
+                     f"고덕그라시움(+{ch['godeok-gracium']}%) 두 곳입니다. 마포래미안푸르지오는 한 달 늦은 9월분에 {man(mp8 - mp9)}, "
+                     f"{-round((mp9 / mp8 - 1) * 100, 1)}% 줄었습니다.", "이 단지만"),
+                    ("wb-persona-fan-helio", f"헬리오시티를 한 소절로 부르면 이래요. {hi['household_count']:,}세대, 지하 주차 {hi['parking_underground']:,}면, "
+                     "땅 위 주차 0면. 구천오백십, 만이천구십육, 그리고 영. 후렴처럼 다시 부르고 싶은 숫자예요.", "단지 응원"),
+                ])
+
+
 @day("2026-11-17")
 def d1117(today):
     # 홀수 날 · 수선통장 일곱 번째 글(고덕그라시움). 원래 12:07 슬롯이었으나 danji.life 인증서 만료로 보류 →
@@ -1951,6 +2089,8 @@ def d1117(today):
                  ("wb-persona-senior-advice", f"잔액 72억이라는 말만 들으면 든든하죠. 그런데 4,932세대로 나누면 한 세대 몫이 {won(per_hh)}이거든요. "
                   "단지 전체로 볼 때와 세대로 나눠 볼 때 느낌이 꽤 다른 숫자예요.", "생활 계산"),
              ]),
+        _eunma_bldreg_1117(),
+        _helio_guard_step_1117(),
     ])
 
 
@@ -2242,6 +2382,9 @@ TOPICS = {
     "repair-reserve": {"external_id": "wb-topic-2026-11-repair-reserve", "title": "수선 통장 — 걷은 돈·쓴 돈·남은 돈",
                        "summary": "국토부 장기수선충당금 공식 자료로 단지의 월부과액·월사용액·잔액을 달마다 적는다. 금액만 있고 무엇을 고쳤는지는 없다",
                        "category": "생활", "heat": 3},
+    "bld-register": {"external_id": "wb-topic-2026-11-bld-register", "title": "건축물대장 읽기",
+                     "summary": "국토교통부 건축물대장 표제부로 동마다 사용승인일·층수·세대수를 본다. 대장에 적힌 값 그대로이고, 비어 있는 칸은 사실로 쓰지 않는다",
+                     "category": "생활", "heat": 3},
     "mgmt-fee": {"external_id": "wb-topic-2026-11-mgmt-fee", "title": "관리비 칸 읽기",
                  "summary": "K-apt 공용관리비 17개 항목을 달마다 나란히 놓고 본다. 가구별 고지서가 아니라 단지 합계다",
                  "category": "생활", "heat": 3},

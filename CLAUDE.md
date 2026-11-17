@@ -96,6 +96,7 @@
 | `scripts/neis_academy.py` | 나이스 학원·교습소 → 구별 분야 총수(키 없이). `NEIS_KEY` 있으면 전량 받아 동별·정원까지, 전화번호 칸은 지운다. `data/academies/<조회일>/` |
 | `scripts/trade_registry.py` | 매매 실거래의 등기일(`rgstDate`)·해제·거래 구분을 단지별로(`data/trades/registry/`). `--gu`는 구 요약 — 동별·단지별 건수와 **한 단지·하루 묶음**(`data/trades/gu/`). 금액은 저장하지 않는다 |
 | `scripts/kapt_repairs.py` | **장기수선충당금(11/11~).** 공식 OpenAPI 15059160 `AptRepairsCostServiceV3` — 월부과액·월사용액·충당금잔액(적립요율은 안 씀). 공개 페이지 값과 부과액 대조, 빈칸은 0원이 아니라 None. `data/repair-reserve/<slug>.json` |
+| `scripts/bld_register.py` | **건축물대장 표제부(11/17~).** 건축HUB 15134735 `getBrTitleInfo`(이용허락범위 제한 없음, 기존 키로 됨) — 단지 지번의 동마다 사용승인일·층수·세대수. 시군구·법정동은 `ldcode.json`, 번·지는 K-apt 지번 주소에서. 대장 칸의 0·공백은 사실로 쓰지 않는다(은마 승강기 칸 0 대 K-apt 42대). `data/building-register/<slug>-<조회일>.json` |
 | `scripts/rent_series.py` | 전월세 신고 계약월별 건수(전세·월세 붙은 계약·갱신·갱신요구권, `data/rents/series/`). `--gu`는 동·단지별 건수(`data/rents/gu/`). 금액은 저장하지 않는다 |
 | `scripts/human_activity.py` | **사람 반응 찾기(11/8~).** 사람 글·댓글·한 줄 답변과 아직 답 안 한 것. 답 안 한 게 있으면 종료 코드 2. IP 앞자리는 저장하지 않는다 |
 | `data/human-replies.json` | 사람 반응에 우리가 단 답 장부. 키는 `comment-<서버 id>`·`post-<서버 id>` |
