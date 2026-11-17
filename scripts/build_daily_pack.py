@@ -1898,7 +1898,8 @@ def d1116(today):
 
 @day("2026-11-17")
 def d1117(today):
-    # 홀수 날 · 수선통장 일곱 번째 글(고덕그라시움). 09:23 루틴은 은마·헬리오 글을 더한다(12:07과 40분 넘게)
+    # 홀수 날 · 수선통장 일곱 번째 글(고덕그라시움). 원래 12:07 슬롯이었으나 danji.life 인증서 만료로 보류 →
+    # 11/17 11:45 KST 새 인증서(만료 2027-02-15)가 확인된 뒤 실제 보내는 시각 13:17로 옮겼다(11/3 선례, 본문 그대로). 은마·헬리오 글을 더한다
     m, lv = win21("godeok-gracium")
     assert lv == 98530310 and round(lv / repairs("godeok-gracium")["billed_area_m2"]) == 195
     b0, b9 = m["202501"]["balance"], m["202609"]["balance"]
@@ -1923,7 +1924,7 @@ def d1117(today):
     per_hh = b9 // 4932
     assert won(per_hh) == "147만 8,888원"
     return dict(posts=[
-        dict(ext="daily-2026-11-17-gracium-repair-balance", series="repair-reserve", slot="12:07", home="godeok-gracium",
+        dict(ext="daily-2026-11-17-gracium-repair-balance", series="repair-reserve", slot="13:17", home="godeok-gracium",
              persona="wb-persona-repair-ledger", category="생활", topic="repair-reserve", verification="verified",
              sources=[REPAIR_SRC_1111, KAPT_INFO],
              title="그라시움 장충금 잔액 72억, 한 해 걷는 돈의 6배",
