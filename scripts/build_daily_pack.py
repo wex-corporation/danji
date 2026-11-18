@@ -2094,6 +2094,39 @@ def d1117(today):
     ])
 
 
+@day("2026-11-18")
+def d1118(today):
+    # 짝수 날(리센츠·마래푸·원베일리). 11/16에 danji.life 인증서 만료로 못 나간 두 편을 옮긴다 — 과거 날짜로 올리지 않고
+    # 같은 배정의 다음 짝수 날로(11/11 선례). 본문·댓글·unknowns 는 11/16 초안 그대로, id와 슬롯만 바꾼다.
+    # 11/17 15:41 작업 범위 규칙 뒤라 에이전트는 이 팩을 --offline 으로만 검증한다. 게시는 운영 담당자(docs/ops-handoff-2026-11-17.md 1-2).
+    # 리센츠 새 글은 쓰지 않았다 — 새 자료 조회에 공공데이터 키가 필요하고, 키 사용은 규칙상 멈춰 있다
+    import copy
+    src = {p["ext"]: p for p in d1116(date(2026, 11, 16))["posts"]}
+    moved = {"daily-2026-11-16-mapo-repair-april-cell": "11:43", "daily-2026-11-16-onebailey-fitness-stores": "14:17"}
+    posts = []
+    for old, slot in moved.items():
+        p = copy.deepcopy(src[old])
+        p["ext"] = old.replace("2026-11-16", "2026-11-18")
+        p["slot"] = slot
+        posts.append(p)
+    assert [p["home"] for p in posts] == ["mapo-raemian-prugio", "one-bailey"]
+    return dict(posts=posts)
+
+
+@day("2026-11-19")
+def d1119(today):
+    # 홀수 날·목요일. 11/17 17:29 헬리오 경비비 글은 작업 범위 규칙으로 에이전트가 게시하지 않았고, 11/17 안에 나갔는지는 운영 조회를 못 해 모른다.
+    # 11/18에 11/17 날짜로 올리면 과거 날짜 게시가 되니 같은 배정의 다음 홀수 날로 옮긴다(본문 그대로, id·슬롯만).
+    # 운영 담당자가 11/17 안에 이미 보냈다면 이 글은 보내지 않는다(docs/ops-handoff-2026-11-17.md 1-1). 15:41 장부 글은 헬리오가 아닌 단지로
+    import copy
+    src = {p["ext"]: p for p in d1117(date(2026, 11, 17))["posts"]}
+    p = copy.deepcopy(src["daily-2026-11-17-helio-guard-step"])
+    p["ext"] = "daily-2026-11-19-helio-guard-step"
+    p["slot"] = "11:47"
+    assert p["home"] == "helio-city"
+    return dict(posts=[p])
+
+
 RENT_SRC_1114 = {"label": "국토교통부 아파트 전월세 실거래가 자료 (확인 2026. 11. 14.)",
                  "url": "https://www.data.go.kr/data/15058017/openapi.do", "publisher": "국토교통부"}
 TRADE_SRC_1114 = {"label": "국토교통부 아파트 매매 실거래가 상세 자료 (확인 2026. 11. 14.)",
@@ -2451,7 +2484,9 @@ def unknowns_issues(tag, un, body, persona):
     return errs
 
 
-def validate(pack, d):
+def validate(pack, d, offline=False):
+    """offline=True 이면 운영 피드를 읽는 두 검사(그날 이미 나간 글과의 시차 · 단지당 하루 2편)를 건너뛴다.
+    11/17 작업 범위 규칙(에이전트는 운영 조회를 하지 않는다) 뒤에 생겼다 — 그 두 검사는 게시 직전에 운영 담당자가 온라인으로 다시 돌린다"""
     errs = []
     posts = [b["payload"]["post"] for b in pack["bundles"]]
     registered = {v["external_id"] for v in json.loads((REPO / "data" / "personas.json").read_text(encoding="utf-8"))["personas"]}
@@ -2613,7 +2648,7 @@ def validate(pack, d):
             if m % 5 == 0:
                 errs.append(f"{e}: 게시 분이 5의 배수({m // 60:02d}:{m % 60:02d}) — 10:34처럼 비껴 잡는다")
         others = {}
-        for cxs in slug.values():      # 피드에 이미 나간 그날 우리 글(서버 스레드는 external_id 가 없다)
+        for cxs in ([] if offline else slug.values()):      # 피드에 이미 나간 그날 우리 글(서버 스레드는 external_id 가 없다)
             try:
                 for e, i in live(cxs).items():
                     if e and e not in mine and B.kst_day(i.get("published_at")) == d:
@@ -2624,7 +2659,7 @@ def validate(pack, d):
         for (e1, m1), (e2, m2) in zip(allm, allm[1:]):
             if m2 - m1 <= MIN_GAP and (e1 in times or e2 in times):
                 errs.append(f"{e1} · {e2}: 시차 {m2 - m1}분 — {MIN_GAP}분 넘게 띄운다")
-    for cx, n in per_cx.items():
+    for cx, n in ([] if offline else per_cx.items()):
         try:
             items = live(slug[cx])
         except Exception as exc:  # noqa: BLE001
@@ -2639,9 +2674,13 @@ def validate(pack, d):
 def main():
     ap = argparse.ArgumentParser(description="하루치 글")
     ap.add_argument("--day", required=True, help="YYYY-MM-DD")
+    ap.add_argument("--offline", action="store_true",
+                    help="운영 피드를 읽지 않는다 — 시차(그날 나간 글 포함)·단지당 하루 2편 검사를 건너뛰고 팩 meta 에 offline 표시. 게시 전에 이 옵션 없이 다시 돌린다")
     args = ap.parse_args()
     pack = build(args.day)
-    errs = validate(pack, args.day)
+    errs = validate(pack, args.day, offline=args.offline)
+    if args.offline:
+        pack.setdefault("meta", {})["offline_validated"] = "피드 조회 검사 2개(그날 시차·단지당 2편) 건너뜀 — 게시 전 --offline 없이 다시 검증"
     for b in pack["bundles"]:
         x = b["payload"]["post"]
         print(f"  {x['published_at'][11:16]}  {x['complex_external_id']:24}{x['persona_external_id']:24}{len(x['title']):>2}자  {x['title']}")
@@ -2659,6 +2698,8 @@ def main():
     out = REPO / "content" / f"daily-{args.day}.json"
     out.write_text(json.dumps(pack, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"자체 검증 통과 → {out.relative_to(REPO)}")
+    if args.offline:
+        print("  ※ --offline: 운영 피드 검사 2개를 건너뛰었다. 게시 전에 --offline 없이 다시 돌려야 한다", file=sys.stderr)
     return 0
 
 
