@@ -275,7 +275,7 @@ def w1112(w, prev, weeks):
                    "같은 잣대")])
 
 
-def build(pub, ignore_cap):
+def build(pub, ignore_cap, at=None, offline=False):
     led = json.loads(B.LEDGER.read_text(encoding="utf-8"))
     weeks = {w["published"]: w for w in led["weeks"] if w["published"] <= pub}
     pubs = list(weeks)
@@ -286,13 +286,22 @@ def build(pub, ignore_cap):
     settled, hit, n = settle_prose(prev, rh, rn)
     body = "\n\n".join([x["lead"], settled, forecast_prose(w), x["story"], x["reading"], x["question"]])
     now = datetime.now(KST)
-    ts = now.replace(second=0, microsecond=0) - timedelta(minutes=1)
-    while ts.minute % 5 == 0:          # 시차 규칙(11/3): 분이 5의 배수가 아니게. 지난 시각으로만 당긴다
-        ts -= timedelta(minutes=1)
+    if now.strftime("%Y-%m-%d") != pub:
+        raise SystemExit(f"발표일({pub})과 오늘({now:%Y-%m-%d})이 다르다. 실시간 회차는 발표 당일에만 낸다")
+    if at:
+        # 11/19: 작업 범위 규칙 뒤로는 에이전트가 팩을 쓰고 운영 담당자가 나중에 보낸다. 그래서 게시 시각을 슬롯으로 박고
+        # publish.py --due 가 그 시각 뒤에만 보내게 한다. 분은 5의 배수가 아니어야 하고, 보도 시각 전이면 validate()가 반려한다
+        hh, mm = (int(v) for v in at.split(":"))
+        if mm % 5 == 0:
+            raise SystemExit(f"--at {at}: 분이 5의 배수다(시차 규칙)")
+        ts = now.replace(hour=hh, minute=mm, second=0, microsecond=0)
+    else:
+        ts = now.replace(second=0, microsecond=0) - timedelta(minutes=1)
+        while ts.minute % 5 == 0:          # 시차 규칙(11/3): 분이 5의 배수가 아니게. 지난 시각으로만 당긴다
+            ts -= timedelta(minutes=1)
     published_at = ts.strftime("%Y-%m-%dT%H:%M:%S+09:00")
-    if published_at[:10] != pub:
-        raise SystemExit(f"발표일({pub})과 오늘({published_at[:10]})이 다르다. 실시간 회차는 발표 당일에만 낸다")
-    live = B.published_today(x["home"], pub)
+    assert published_at[:10] == pub
+    live = 0 if offline else B.published_today(x["home"], pub)   # --offline: 운영 피드를 읽지 않는다(게시 전 운영 담당자가 옵션 없이 다시 돌린다)
     if live is None or live + 1 > 2:
         msg = f"{x['home']} {pub}: 게시분 {live}편 + 1 — 콜드스타트 초과 또는 확인 불가"
         if not ignore_cap:
@@ -388,8 +397,10 @@ def main():
     ap = argparse.ArgumentParser(description="AI 예측 장부 실시간 회차")
     ap.add_argument("--pub", required=True, help="발표일 YYYY-MM-DD")
     ap.add_argument("--ignore-cap", action="store_true")
+    ap.add_argument("--at", metavar="HH:MM", help="게시 시각을 이 슬롯으로 박는다(발표 당일, 분은 5의 배수가 아니게). 없으면 지금 1분 전")
+    ap.add_argument("--offline", action="store_true", help="운영 피드를 읽지 않는다 — 그 단지 그날 편수 검사를 건너뛴다. 게시 전 옵션 없이 다시 돌린다")
     args = ap.parse_args()
-    pack = build(args.pub, args.ignore_cap)
+    pack = build(args.pub, args.ignore_cap, at=args.at, offline=args.offline)
     errs = validate(pack)
     if errs:
         print("자체 검증 실패:", file=sys.stderr)
@@ -397,11 +408,15 @@ def main():
             print(f"  - {e}", file=sys.stderr)
         return 1
     pack.pop("_embargo")
+    if args.offline:
+        pack["meta"]["offline_validated"] = "피드 조회 검사(그 단지 그날 편수) 건너뜀 — 게시 전 --offline 없이 다시 검증"
     out = REPO / "content" / f"forecast-weekly-{args.pub}.json"
     out.write_text(json.dumps(pack, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     x = pack["bundles"][0]["payload"]["post"]
     print(f"  {x['published_at']}  {pack['bundles'][0]['payload']['complex_external_id']}  {len(x['title'])}자  {x['title']}")
     print(f"자체 검증 통과 → {out.relative_to(REPO)}")
+    if args.offline:
+        print("  ※ --offline: 운영 피드 검사를 건너뛰었다. 게시 전에 --offline 없이(같은 --at 으로) 다시 돌려야 한다", file=sys.stderr)
     return 0
 
 
