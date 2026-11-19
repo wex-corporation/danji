@@ -2127,6 +2127,25 @@ def d1119(today):
     return dict(posts=[p])
 
 
+@day("2026-11-20")
+def d1120(today):
+    # 짝수 날·금요일. d1118 두 편이 11/18 안에 나가지 않았다(11/19 대표님 확인 "11/18 두 편은 안 나갔어, 11/20로 옮겨").
+    # 그래서 content/daily-2026-11-18.json 은 미게시 초안이다. 11/9 팩처럼 출고 검사 합산에 넣지 않는다(같은 본문이라 1.00 쌍이 된다).
+    # 원본은 11/16 초안이다(d1118도 거기서 옮겼다). 본문·댓글·unknowns 는 그대로 두고 id와 슬롯만 바꾼다. 슬롯은 11/18과 같다.
+    # 게시는 운영 담당자 몫이다(docs/ops-handoff-2026-11-17.md 1-2c). 리센츠 새 글은 쓰지 않았다(새 자료 조회에 키가 필요하다)
+    import copy
+    src = {p["ext"]: p for p in d1116(date(2026, 11, 16))["posts"]}
+    moved = {"daily-2026-11-16-mapo-repair-april-cell": "11:43", "daily-2026-11-16-onebailey-fitness-stores": "14:17"}
+    posts = []
+    for old, slot in moved.items():
+        p = copy.deepcopy(src[old])
+        p["ext"] = old.replace("2026-11-16", "2026-11-20")
+        p["slot"] = slot
+        posts.append(p)
+    assert [p["home"] for p in posts] == ["mapo-raemian-prugio", "one-bailey"]
+    return dict(posts=posts)
+
+
 RENT_SRC_1114 = {"label": "국토교통부 아파트 전월세 실거래가 자료 (확인 2026. 11. 14.)",
                  "url": "https://www.data.go.kr/data/15058017/openapi.do", "publisher": "국토교통부"}
 TRADE_SRC_1114 = {"label": "국토교통부 아파트 매매 실거래가 상세 자료 (확인 2026. 11. 14.)",
