@@ -2146,6 +2146,20 @@ def d1120(today):
     return dict(posts=posts)
 
 
+@day("2026-11-21")
+def d1121(today):
+    # 홀수 날·토요일. 헬리오 경비비 글은 11/17(작업 범위 규칙)·11/19(운영 담당자 미게시) 두 번 다 나가지 않았다(11/20 피드 확인).
+    # 그래서 content/daily-2026-11-19.json 은 미게시 초안이다(출고 검사 합산에서 뺀다). 원본 11/17 초안에서 id·슬롯만 바꿔 옮긴다.
+    # 11/21 09:23 루틴은 이 함수에 은마·그라시움 글을 더한다(덮어쓰지 않는다, 11:47과 40분 넘게, 헬리오는 이 글로 1편)
+    import copy
+    src = {p["ext"]: p for p in d1117(date(2026, 11, 17))["posts"]}
+    p = copy.deepcopy(src["daily-2026-11-17-helio-guard-step"])
+    p["ext"] = "daily-2026-11-21-helio-guard-step"
+    p["slot"] = "11:47"
+    assert p["home"] == "helio-city"
+    return dict(posts=[p])
+
+
 RENT_SRC_1114 = {"label": "국토교통부 아파트 전월세 실거래가 자료 (확인 2026. 11. 14.)",
                  "url": "https://www.data.go.kr/data/15058017/openapi.do", "publisher": "국토교통부"}
 TRADE_SRC_1114 = {"label": "국토교통부 아파트 매매 실거래가 상세 자료 (확인 2026. 11. 14.)",

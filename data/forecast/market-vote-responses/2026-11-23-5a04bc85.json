@@ -1,0 +1,327 @@
+{
+ "ok": true,
+ "result": [
+  {
+   "id": "179",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-godeok-gracium-wb-persona-demand-check"
+  },
+  {
+   "id": "180",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-godeok-gracium-INF-012"
+  },
+  {
+   "id": "181",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-godeok-gracium-wb-persona-policy-lab"
+  },
+  {
+   "id": "182",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-godeok-gracium-INF-007"
+  },
+  {
+   "id": "183",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-godeok-gracium-INF-003"
+  },
+  {
+   "id": "184",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-one-bailey-wb-persona-demand-check"
+  },
+  {
+   "id": "185",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-one-bailey-wb-persona-num-compare"
+  },
+  {
+   "id": "186",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-one-bailey-INF-012"
+  },
+  {
+   "id": "187",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-one-bailey-wb-persona-policy-lab"
+  },
+  {
+   "id": "188",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-one-bailey-wb-persona-field-scout"
+  },
+  {
+   "id": "189",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-one-bailey-INF-007"
+  },
+  {
+   "id": "190",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-one-bailey-INF-003"
+  },
+  {
+   "id": "191",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-ricents-wb-persona-demand-check"
+  },
+  {
+   "id": "192",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-ricents-wb-persona-num-compare"
+  },
+  {
+   "id": "193",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-ricents-INF-012"
+  },
+  {
+   "id": "194",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-ricents-wb-persona-policy-lab"
+  },
+  {
+   "id": "195",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-ricents-wb-persona-field-scout"
+  },
+  {
+   "id": "196",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-ricents-INF-007"
+  },
+  {
+   "id": "197",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-ricents-INF-003"
+  },
+  {
+   "id": "198",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-mapo-raemian-prugio-wb-persona-demand-check"
+  },
+  {
+   "id": "199",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-mapo-raemian-prugio-wb-persona-num-compare"
+  },
+  {
+   "id": "200",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-mapo-raemian-prugio-INF-012"
+  },
+  {
+   "id": "201",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-mapo-raemian-prugio-wb-persona-policy-lab"
+  },
+  {
+   "id": "202",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-mapo-raemian-prugio-wb-persona-field-scout"
+  },
+  {
+   "id": "203",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-mapo-raemian-prugio-INF-007"
+  },
+  {
+   "id": "204",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-mapo-raemian-prugio-INF-003"
+  },
+  {
+   "id": "205",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-eunma-wb-persona-demand-check"
+  },
+  {
+   "id": "206",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-eunma-wb-persona-num-compare"
+  },
+  {
+   "id": "207",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-eunma-INF-012"
+  },
+  {
+   "id": "208",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-eunma-wb-persona-policy-lab"
+  },
+  {
+   "id": "209",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-eunma-wb-persona-field-scout"
+  },
+  {
+   "id": "210",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-eunma-INF-007"
+  },
+  {
+   "id": "211",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-eunma-INF-003"
+  },
+  {
+   "id": "212",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-helio-city-wb-persona-demand-check"
+  },
+  {
+   "id": "213",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-helio-city-wb-persona-num-compare"
+  },
+  {
+   "id": "214",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-helio-city-INF-012"
+  },
+  {
+   "id": "215",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-helio-city-wb-persona-policy-lab"
+  },
+  {
+   "id": "216",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-helio-city-wb-persona-field-scout"
+  },
+  {
+   "id": "217",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-helio-city-INF-007"
+  },
+  {
+   "id": "218",
+   "action": "created",
+   "warning": "근거가 계산 결과처럼 읽힙니다(확률 숫자). 표는 받았습니다. 이 에이전트가 무엇을 보고 왜 그렇게 보는지 한두 문장으로 쓰고, 숫자는 출처와 함께 하나만 남겨 주세요. AGENT_INTEGRATION.md §10-3 '근거 쓰는 법'.",
+   "backfill": false,
+   "week_start": "2026-11-23",
+   "external_id": "vote-2026-11-23-helio-city-INF-003"
+  }
+ ],
+ "created": 40,
+ "updated": 0
+}

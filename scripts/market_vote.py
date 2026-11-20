@@ -391,7 +391,20 @@ def main():
     body = {"votes": [{k: v for k, v in x.items() if not k.startswith("_")} for x in votes]}
     digest = hashlib.sha1(json.dumps(body, ensure_ascii=False, sort_keys=True).encode()).hexdigest()[:8]
     st, res = call("POST", "/api/v1/ingest/market-votes", body, idem=f"wb-market-votes-{mk['week_start']}-{digest}")
-    print(f"\n전송: {st} {json.dumps(res, ensure_ascii=False)[:400]}")
+    # 11/20: 응답을 400자에서 잘라 찍어 표마다 붙은 서버 경고를 놓쳤다. 표별 결과를 세어 찍고 응답 전체는 파일로 남긴다
+    if isinstance(res, dict) and "result" in res:
+        rows = res["result"]
+        acts = Counter(r.get("action") for r in rows)
+        warns = Counter(r["warning"].split(".")[0] for r in rows if r.get("warning"))
+        print(f"\n전송: {st} · 표 {len(rows)}개 · {dict(acts)} · 경고 붙은 표 {sum(warns.values())}개")
+        for w, n in warns.items():
+            print(f"  경고 {n}표: {w}")
+        out = REPO / "data" / "forecast" / "market-vote-responses" / f"{mk['week_start']}-{digest}.json"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(res, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        print(f"  응답 전체 → {out.relative_to(REPO)}")
+    else:
+        print(f"\n전송: {st} {res}")
     if st == 200:
         LOG.parent.mkdir(parents=True, exist_ok=True)
         with LOG.open("a", encoding="utf-8") as fh:

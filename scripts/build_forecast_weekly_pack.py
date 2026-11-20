@@ -275,7 +275,86 @@ def w1112(w, prev, weeks):
                    "같은 잣대")])
 
 
-def build(pub, ignore_cap, at=None, offline=False):
+@week("2026-11-19")
+def w1119(w, prev, weeks):
+    # 11/20 작성, 11/19 자로 소급 기록(대표님 11/20). 본문은 11/19 발표와 그 발표로 계산한 장부까지만 쓴다 —
+    # 11/23 주 판 마켓 표는 11/20에 보냈으니 이 글에 넣지 않는다
+    # 11/12 예측은 넷 맞고 하나(강동) 빗나갔다. 강동구 11/16 기준도 -0.01% — 두 주 연속
+    rs = {g: R(prev, g) for g in E.DISTRICTS}
+    assert [g for g in E.DISTRICTS if not rs[g]["consensus_hit"]] == ["강동"] and rs["강동"]["value"] == -0.01
+    rh, rn = B.running(weeks, w["published"])
+    assert (rh, rn) == (67, 75)
+    from build_newagent_pack import releases, series
+    rels = releases(w["published"])
+    ser, W = series(rels)
+    assert len(rels) == 18 and len(W) == 23 and (W[0], W[-1]) == ("6.15", "11.16")
+    S = lambda g, k, x: ser[(g, k, x)]  # noqa: E731
+    # 강남구 매매: 8/10 기준 주부터 15주 연속 0 아래. 23주 중 가장 크게 내린 주는 9/28 기준
+    gn = [S("강남", "sale", x) for x in W]
+    i0 = W.index("8.10")
+    assert gn[i0 - 1] > 0 and all(v < 0 for v in gn[i0:]) and len(gn[i0:]) == 15
+    assert (S("강남", "sale", "11.9"), gn[-1]) == (-0.25, -0.30) and min(gn) == -0.56 and W[gn.index(-0.56)] == "9.28"
+    gus = list(rels[-1]["gu"])
+    neg = lambda x: sorted((g for g in gus if S(g, "sale", x) < 0), key=lambda g: S(g, "sale", x))  # noqa: E731
+    assert neg("11.9") == ["송파", "서초", "강남", "성동", "강동"]
+    assert neg("11.16") == ["송파", "서초", "강남", "성동", "용산", "동작", "강동"]
+    assert (S("용산", "sale", "11.16"), S("동작", "sale", "11.16")) == (-0.02, -0.01)
+    # 처음 0 아래로 간 구: 11/9 기준 강동·성동, 11/16 기준 동작(용산은 9/28·10/5에도 내렸다)
+    first = lambda g: [x for x in W if S(g, "sale", x) < 0][0]  # noqa: E731
+    assert (first("강동"), first("성동"), first("동작"), first("용산")) == ("11.9", "11.9", "11.16", "9.28")
+    ss = [S("송파", "sale", x) for x in W]
+    assert ss[-1] == -0.42 == min(ss) and ss.count(-0.42) == 1
+    assert (S("강동", "sale", "11.9"), S("강동", "sale", "11.16")) == (-0.01, -0.01)
+    sl = [S("서울", "sale", x) for x in W]
+    assert sl[-1] == 0.03 == min(sl) and sl.count(0.03) == 1 and (sl[-3], sl[-2]) == (0.07, 0.07)
+    # 전세: 11/16 기준 내린 구는 성동 하나. 강남구 전세는 8/10~10/12 사이 여덟 주 내렸다가 10/19 기준부터 다섯 주 연속 오름
+    assert [g for g in gus if S(g, "jeonse", "11.16") < 0] == ["성동"] and S("성동", "jeonse", "11.16") == -0.02
+    jn = [x for x in W if S("강남", "jeonse", x) < 0]
+    assert len(jn) == 8 and (jn[0], jn[-1]) == ("8.10", "10.12")
+    run = W[W.index("10.19"):]
+    gj = [S("강남", "jeonse", x) for x in run]
+    assert len(run) == 5 and all(v > 0 for v in gj) and max(gj) == 0.27 == S("강남", "jeonse", "11.9") and gj[-1] == 0.22
+    # 오른다 확률 0.7: 네 번 나와 네 번 다 빗나갔다
+    p07 = [(d, g) for d, wk in weeks.items() if d < w["published"] for g in E.DISTRICTS
+           if F(wk, g)["p"] == 0.7 and F(wk, g)["consensus"] == "up"]
+    assert p07 == [("2026-08-13", "서초"), ("2026-08-13", "강남"), ("2026-09-10", "송파"), ("2026-11-12", "강동")]
+    assert all(R(weeks[d], g)["consensus_hit"] is False for d, g in p07)
+    # 이번 강동구: 4주 중 오른 칸 둘·내린 칸 둘이라 확률 0.5, 낙관 점수 2인 두 명만 내린다
+    gd = F(w, "강동")
+    assert [v for _, v in gd["inputs"]] == [0.04, 0.03, -0.01, -0.01] and gd["p"] == 0.5
+    assert gd["tally"] == {"up": 0, "down": 2, "hold": 4} and gd["consensus"] == "down"
+    assert sorted(v["name"] for v in gd["votes"] if v["side"]) == ["정책데이터랩", "현실부동산톡"]
+    return dict(
+        home="eunma",
+        title="강남구 15주째 내림, 매매가 내린 구는 일곱 곳으로",
+        lead=(f"11월 16일 기준 주 강남구 매매는 {p(gn[-1])}였어요. 8월 10일 기준 주부터 {len(gn[i0:])}주째 0 아래에 머물러 있습니다."),
+        story=(f"직전 주 {p(S('강남', 'sale', '11.9'))}보다 내림폭은 커졌지만, 7월 23일 발표부터 이어 붙인 {len(W)}주(6월 15일~11월 16일 기준 주)에서 "
+               f"가장 크게 내린 주는 9월 28일 기준 {p(min(gn))}였죠. 이번 예측에 들어간 강남구 4주 숫자는 {ins(w, '강남')}입니다.\n\n"
+               f"매매가 내린 구는 11월 9일 기준 다섯 곳에서 11월 16일 기준 일곱 곳으로 늘었어요. 새로 더해진 곳은 용산구({p(S('용산', 'sale', '11.16'))})와 "
+               f"동작구({p(S('동작', 'sale', '11.16'))})이고, 동작구는 이어 본 {len(W)}주 중 처음 내렸습니다. "
+               f"송파구는 {p(ss[-1])}로 {len(W)}주 중 가장 크게 내렸고, 강동구는 두 주 연속 {p(S('강동', 'sale', '11.16'))}예요. "
+               f"서울 전체는 {p(sl[-1])}로 아직 0 위지만 {len(W)}주 중 가장 작은 오름이었습니다.\n\n"
+               f"전세 칸은 사정이 달라요. 11월 16일 기준 주에 전세가 내린 구는 성동구({p(S('성동', 'jeonse', '11.16'))}) 하나였고, "
+               f"강남구 전세는 {p(gj[-1])}였어요."),
+        reading=("발표 표는 여기까지예요. 장부 쪽에 남길 기록이 하나 있습니다. "
+                 "11월 12일 예측에서 강동구에 나온 오른다 확률 0.7이 또 빗나가, 이 장부에서 0.7은 네 번 나와 네 번 모두 틀렸어요"
+                 "(8월 13일 서초·강남, 9월 10일 송파, 11월 12일 강동). 네 번이라도 표본이라 부르기는 어렵습니다. "
+                 "11월 19일 발표로 낸 예측에서 강동구는 4주 중 오른 칸과 내린 칸이 둘씩이라 확률이 0.5로 갈렸고, 낙관 점수가 낮은 두 명만 내린다에 섰죠. "
+                 "강남구 숫자는 구 전체의 지수라 은마 한 단지의 값으로 옮길 수 없고요."),
+        question="15주째 내림이라는 구 숫자, 대치동에서 느끼는 분위기와 맞나요?",
+        unknowns=["강남구 안에서 어느 동·어느 단지가 내림폭을 키웠는지는 보도자료 표에 나오지 않는다",
+                  "11월 16일 기준 주에 은마에서 실제 계약이 몇 건 있었는지는 이 발표로 알 수 없다"],
+        comments=[("wb-persona-timeseries",
+                   f"강남구 전세는 8월 10일~10월 12일 기준 주 사이에 여덟 주 내렸다가 10월 19일 기준 주부터 다섯 주 연속 올랐다. "
+                   f"그 다섯 주 가운데 가장 큰 오름은 11월 9일 기준 {p(max(gj))}였다. 매매 칸과 전세 칸이 반대로 움직인 지 다섯 주째다.",
+                   "시계열"),
+                  ("INF-012",
+                   "나쁜 쪽 그림부터 보는 입장에서 한 줄 보탭니다. 11월 9일 기준 주에는 강동·성동이, 11월 16일 기준 주에는 동작이 "
+                   f"이어 본 {len(W)}주 중 처음으로 매매 0 아래에 들어왔어요. 하방이 강남 3구 밖으로 번지는지는 한 주 더 봐야 합니다.",
+                   "하방 시나리오")])
+
+
+def build(pub, ignore_cap, at=None, offline=False, backfill=False):
     led = json.loads(B.LEDGER.read_text(encoding="utf-8"))
     weeks = {w["published"]: w for w in led["weeks"] if w["published"] <= pub}
     pubs = list(weeks)
@@ -286,15 +365,22 @@ def build(pub, ignore_cap, at=None, offline=False):
     settled, hit, n = settle_prose(prev, rh, rn)
     body = "\n\n".join([x["lead"], settled, forecast_prose(w), x["story"], x["reading"], x["question"]])
     now = datetime.now(KST)
-    if now.strftime("%Y-%m-%d") != pub:
-        raise SystemExit(f"발표일({pub})과 오늘({now:%Y-%m-%d})이 다르다. 실시간 회차는 발표 당일에만 낸다")
+    if backfill:
+        # 11/20 대표님 "11/19 날짜 소급 기록" — 발표 당일을 놓친 회차를 그 발표일 날짜로 남긴다(41번 조건).
+        # 슬롯은 --at 으로 박고, 확인 기준 칸에 작성일과 '소급 기록'을 적는다. 본문은 그날까지 공개된 것만 쓴다(validate 의 날짜 검사)
+        if not at:
+            raise SystemExit("--backfill 은 --at 이 필요하다")
+        if now.strftime("%Y-%m-%d") <= pub:
+            raise SystemExit("--backfill 은 발표 당일이 지난 뒤에만 쓴다. 당일이면 옵션 없이 실시간 회차로 낸다")
+    elif now.strftime("%Y-%m-%d") != pub:
+        raise SystemExit(f"발표일({pub})과 오늘({now:%Y-%m-%d})이 다르다. 실시간 회차는 발표 당일에만 낸다(놓친 회차는 --backfill)")
     if at:
         # 11/19: 작업 범위 규칙 뒤로는 에이전트가 팩을 쓰고 운영 담당자가 나중에 보낸다. 그래서 게시 시각을 슬롯으로 박고
         # publish.py --due 가 그 시각 뒤에만 보내게 한다. 분은 5의 배수가 아니어야 하고, 보도 시각 전이면 validate()가 반려한다
         hh, mm = (int(v) for v in at.split(":"))
         if mm % 5 == 0:
             raise SystemExit(f"--at {at}: 분이 5의 배수다(시차 규칙)")
-        ts = now.replace(hour=hh, minute=mm, second=0, microsecond=0)
+        ts = datetime.strptime(pub, "%Y-%m-%d").replace(hour=hh, minute=mm, tzinfo=KST)
     else:
         ts = now.replace(second=0, microsecond=0) - timedelta(minutes=1)
         while ts.minute % 5 == 0:          # 시차 규칙(11/3): 분이 5의 배수가 아니게. 지난 시각으로만 당긴다
@@ -320,7 +406,8 @@ def build(pub, ignore_cap, at=None, offline=False):
                 "verification": "verified",
                 "source_note": (f"입력: 한국부동산원 주간 아파트가격 동향 {md(pub)} 발표({md(w['reference_date'])} 기준) 표 하나 · "
                                 f"판정: {md(prev['published'])} 예측을 {md(pub)} 발표로 · {E.ENGINE}(마지막 4주 부호, 구별 매매 변동률) · "
-                                "규칙은 8~10월 결과가 나온 뒤 정했다 · 구 단위 지수이며 단지 값이 아닙니다"),
+                                "규칙은 8~10월 결과가 나온 뒤 정했다 · 구 단위 지수이며 단지 값이 아닙니다"
+                                + (f" · {now.year}. {now.month}. {now.day}. 작성, {md(pub)} 자로 소급 기록" if backfill else "")),
                 "sources": [{"label": f"한국부동산원 주간 아파트가격 동향 {md(pub)} 발표 (확인 {now.strftime('%Y. %-m. %-d.')})",
                              "url": w["source_url"], "publisher": "한국부동산원"}],
                 "published_at": published_at, "status": "published",
@@ -399,8 +486,9 @@ def main():
     ap.add_argument("--ignore-cap", action="store_true")
     ap.add_argument("--at", metavar="HH:MM", help="게시 시각을 이 슬롯으로 박는다(발표 당일, 분은 5의 배수가 아니게). 없으면 지금 1분 전")
     ap.add_argument("--offline", action="store_true", help="운영 피드를 읽지 않는다 — 그 단지 그날 편수 검사를 건너뛴다. 게시 전 옵션 없이 다시 돌린다")
+    ap.add_argument("--backfill", action="store_true", help="발표 당일을 놓친 회차를 발표일 날짜로 소급 기록한다(--at 필수, 확인 기준 칸에 소급 기록 표기)")
     args = ap.parse_args()
-    pack = build(args.pub, args.ignore_cap, at=args.at, offline=args.offline)
+    pack = build(args.pub, args.ignore_cap, at=args.at, offline=args.offline, backfill=args.backfill)
     errs = validate(pack)
     if errs:
         print("자체 검증 실패:", file=sys.stderr)
