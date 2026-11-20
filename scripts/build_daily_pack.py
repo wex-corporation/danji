@@ -2681,10 +2681,10 @@ def validate(pack, d, offline=False):
             if m % 5 == 0:
                 errs.append(f"{e}: 게시 분이 5의 배수({m // 60:02d}:{m % 60:02d}) — 10:34처럼 비껴 잡는다")
         others = {}
-        for cxs in ([] if offline else slug.values()):      # 피드에 이미 나간 그날 우리 글(서버 스레드는 external_id 가 없다)
+        for cxs in ([] if offline else slug.values()):      # 피드에 이미 나간 그날 우리 글(서버 스레드는 external_id 가 없어 live()가 srv-<id>로 단다 — 시차에는 세지 않는다, 서모스탯에는 센다)
             try:
                 for e, i in live(cxs).items():
-                    if e and e not in mine and B.kst_day(i.get("published_at")) == d:
+                    if e and not e.startswith("srv-") and e not in mine and B.kst_day(i.get("published_at")) == d:
                         others[e] = minute(i["published_at"])
             except Exception as exc:  # noqa: BLE001
                 errs.append(f"{cxs}: 시차 확인용 피드 조회 실패 {exc}")
