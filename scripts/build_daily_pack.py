@@ -2146,6 +2146,144 @@ def d1120(today):
     return dict(posts=posts)
 
 
+TRADE_SRC_1121 = {"label": "국토교통부 아파트 매매 실거래가 상세 자료 (확인 2026. 11. 21.)",
+                  "url": "https://www.data.go.kr/data/15126469/openapi.do", "publisher": "국토교통부"}
+
+
+def _eunma_reg_speed_1121():
+    """11/21 은마 — 계약 뒤 60일 안에 등기까지 간 매매의 몫, 해마다(실거래 registry 11/21 조회분, 금액 없음).
+    11/13 그라시움 글(가운데값이 세 해 그대로)과 뼈대를 다르게 — 통념 하나를 세우고 다섯 단지 같은 방식으로 견준다"""
+    from collections import Counter
+    from statistics import median
+    D = __import__("datetime").date.fromisoformat
+    lag = lambda r: (D(r["rgst_date"]) - D(r["deal_date"])).days   # noqa: E731
+    reg = {}
+    for sl in ("eunma", "ricents", "mapo-raemian-prugio", "godeok-gracium", "one-bailey"):
+        reg[sl] = json.loads((REPO / "data" / "trades" / "registry" / f"{sl}-202201_202609.json").read_text(encoding="utf-8"))
+    assert {k: v["fetched_at"][:10] for k, v in reg.items()} == {
+        "eunma": "2026-11-21", "ricents": "2026-11-16", "mapo-raemian-prugio": "2026-11-14", "godeok-gracium": "2026-11-13", "one-bailey": "2026-11-10"}
+    R = reg["eunma"]["rows"]
+    assert len(R) == 322 and {r["apt"] for r in R} == {"은마"} and sum(r["cancel"] for r in R) == 21
+
+    def share(sl, y):
+        L = [lag(r) for r in reg[sl]["rows"] if r["deal_date"][:4] == y and r["rgst_date"] and not r["cancel"]]
+        return len(L), sum(x <= 60 for x in L), round(sum(x <= 60 for x in L) / len(L) * 100, 1), median(L), sum(x > 120 for x in L)
+    E = {y: share("eunma", y) for y in ("2023", "2024", "2025")}
+    assert E == {"2023": (106, 43, 40.6, 67.5, 3), "2024": (59, 9, 15.3, 88, 4), "2025": (61, 7, 11.5, 98, 11)}
+    O23 = {sl: share(sl, "2023")[2] for sl in ("ricents", "mapo-raemian-prugio", "godeok-gracium")}
+    O25 = {sl: share(sl, "2025")[2] for sl in ("ricents", "one-bailey", "mapo-raemian-prugio", "godeok-gracium")}
+    assert O23 == {"ricents": 22.3, "mapo-raemian-prugio": 21.9, "godeok-gracium": 14.0}
+    assert O25 == {"ricents": 19.5, "one-bailey": 16.4, "mapo-raemian-prugio": 13.3, "godeok-gracium": 11.2}
+    # 2023년 은마 40.6%는 다섯 단지·세 해(2023~2025) 열네 칸 중 가장 높다. 원베일리 2023년 계약분은 첫 등기일(2024-07-23)보다 앞서 견주지 않는다
+    allc = [share(sl, y)[2] for sl in reg for y in ("2023", "2024", "2025") if not (sl == "one-bailey" and y == "2023")]
+    assert len(allc) == 14 and max(allc) == 40.6 and sorted(allc)[-2] == 24.0
+    assert min(r["rgst_date"] for r in reg["one-bailey"]["rows"] if r["rgst_date"]) == "2024-07-23"
+    l26 = [r for r in R if r["deal_date"][:4] == "2026" and not r["cancel"]]
+    b26 = sorted(r["deal_date"] for r in l26 if not r["rgst_date"])
+    assert (len(l26), len(l26) - len(b26), len(b26)) == (39, 25, 14) and b26[0] >= "2026-08-01"
+    assert not [r for r in R if r["deal_date"][:4] == "2022" and r["rgst_date"]]
+    old_blank = [r["deal_date"] for r in R if "2023" <= r["deal_date"][:4] <= "2025" and not r["cancel"] and not r["rgst_date"]]
+    assert old_blank == ["2024-11-26"]
+    fast = {y: Counter(r["area_m2"] for r in R if r["deal_date"][:4] == y and r["rgst_date"] and not r["cancel"] and lag(r) <= 60) for y in ("2023", "2025")}
+    assert fast == {"2023": {76.79: 24, 84.43: 19}, "2025": {76.79: 6, 84.43: 1}}
+    ei = info("eunma")
+    assert (ei["subway_line"], ei["subway_walk"], ei["bus_walk"]) == ("3호선", "5분이내", "5분이내")
+    p = lambda t: f"{t[0]}건 중 {t[1]}건({t[2]}%)"   # noqa: E731
+    return dict(ext="daily-2026-11-21-eunma-reg-speed", series="trade-reg-speed", slot="13:38", home="eunma",
+                persona="wb-persona-myth-check", category="거래", topic="trade-monthly", verification="verified",
+                sources=[TRADE_SRC_1121, KAPT_INFO],
+                title=f"은마 두 달 안 등기, {E['2023'][2]}%에서 {E['2025'][2]}%로",
+                body=[
+                    "매매 계약을 하고 나면 등기는 두어 달 안에 따라온다고 여기기 쉽죠. 은마아파트 매매 신고로 세어 보면 해마다 달랐습니다.",
+                    f"2022년 1월부터 올해 9월까지 계약된 은마 매매 신고는 {len(R)}건입니다. 해제 신고를 빼고 등기일이 적힌 거래마다 계약일에서 등기일까지 날을 셌죠. "
+                    f"60일 안에 등기까지 간 거래는 2023년 계약 {p(E['2023'])}, 2024년 {p(E['2024'])}, 2025년 {p(E['2025'])}입니다. "
+                    f"가운데값은 {E['2023'][3]:g}일, {E['2024'][3]:g}일, {E['2025'][3]:g}일로 길어졌고, 120일을 넘긴 거래는 {E['2023'][4]}건, {E['2024'][4]}건, {E['2025'][4]}건이었죠.",
+                    f"같은 방식으로 다른 네 단지도 셌습니다. 2023년 계약분은 리센츠 {O23['ricents']}%, 마포래미안푸르지오 {O23['mapo-raemian-prugio']}%, "
+                    f"고덕그라시움 {O23['godeok-gracium']}%였습니다. 원베일리는 첫 등기일이 2024년 7월 23일이라 그해 계약분을 견줄 수 없고요. "
+                    f"2025년 계약분은 리센츠 {O25['ricents']}%, 원베일리 {O25['one-bailey']}%, 마포래미안푸르지오 {O25['mapo-raemian-prugio']}%, "
+                    f"고덕그라시움 {O25['godeok-gracium']}%로, 은마 {E['2025'][2]}%는 이 사이에 들어갑니다.",
+                    f"올해 계약분은 아직 셀 수 없죠. 해제를 뺀 {len(l26)}건 중 {len(l26) - len(b26)}건만 등기일이 적혔고, 8~9월 계약 {len(b26)}건은 비어 있습니다.",
+                    f"제 해석은 이렇습니다. 다섯 단지 세 해를 통틀어 60일 안 등기 몫이 가장 높았던 칸은 2023년 은마였고, 2025년에는 다른 단지들과 비슷한 자리로 왔습니다. "
+                    "왜 길어졌는지는 이 표로 가릴 수 없죠. 신고 자료에 잔금일이 따로 적히지 않으니까요.",
+                    "요즘 은마 매매 계약서, 잔금을 석 달 넘게 뒤로 잡는 경우가 많나요?",
+                ],
+                source_note=("국토교통부 아파트 매매 실거래가 상세 자료, 2022년 1월~2026년 9월 계약분 · 은마 2026. 11. 21. 조회, 리센츠 11. 16. · 마포래미안푸르지오 11. 14. · "
+                             "고덕그라시움 11. 13. · 원베일리 11. 10. 조회분 · 등기일·해제 칸은 응답 값 그대로, 금액은 쓰지 않음 · 해제 신고 거래와 등기일이 빈 거래는 뺐다 · "
+                             "60일 안 = 계약일부터 등기일까지 60일 이하 · 은마 2022년 계약분은 등기일 칸이 모두 비어 2023년부터 셌다 · 은마 2024년 11월 계약 1건은 해제 표시 없이 등기일이 비어 있어 뺐다 · 교통 칸은 K-apt 기본정보"),
+                unknowns=["매매 당시 세입자가 살고 있던 집이었는지는 매매 신고서에 적히지 않습니다",
+                          "2023년 은마 계약에서 두 달 안 등기가 많았던 까닭은 신고 자료에 나오지 않습니다"],
+                comments=[
+                    ("wb-persona-num-compare", f"60일 안 등기를 면적으로 나누면 2023년 {E['2023'][1]}건은 76.79㎡ {fast['2023'][76.79]}건·84.43㎡ {fast['2023'][84.43]}건, "
+                     f"2025년 {E['2025'][1]}건은 76.79㎡ {fast['2025'][76.79]}건·84.43㎡ {fast['2025'][84.43]}건입니다.", "면적별"),
+                    ("wb-persona-fan-eunma", f"은마만세는 이번에도 은마 편입니다! K-apt 교통 칸에 {ei['subway_line']}, 역까지 걸어서 {ei['subway_walk']}, "
+                     f"버스도 {ei['bus_walk']}라고 적혀 있어요. 서류 한 줄에 '5분'이 두 번 나오는 단지, 만세!", "팬"),
+                ])
+
+
+def _gracium_trade_fall_1121():
+    """11/21 그라시움 — 매매 신고 건수(계약월, 해제 신고 포함) 4~9월, 고덕동·강동구와 나란히(trade_registry --gu 11740, 11/21 조회분, 금액 없음).
+    11/11 헬리오(구 대비 몫, 9월 한 달)와 뼈대를 다르게 — 여섯 달 흐름을 먼저, 1년 전 9월은 뒤에. 감소를 다루니 팬 댓글은 달지 않는다"""
+    g = json.loads((REPO / "data" / "trades" / "gu" / "11740-202509_202609.json").read_text(encoding="utf-8"))
+    assert g["fetched_at"][:10] == "2026-11-21" and g["gu"] == "강동구"
+    M = g["months"]
+    assert sorted(M) == [f"2025{m:02d}" for m in (9, 10, 11, 12)] + [f"2026{m:02d}" for m in range(1, 10)]
+    gr = lambda ym: M[ym]["by_dong_apt"].get("고덕동", {}).get("고덕그라시움", 0)   # noqa: E731
+    gd = lambda ym: M[ym]["by_dong"].get("고덕동", 0)   # noqa: E731
+    six = [f"2026{m:02d}" for m in range(4, 10)]
+    G, Dg, K = [gr(y) for y in six], [gd(y) for y in six], [M[y]["total"] for y in six]
+    assert G == [37, 21, 11, 6, 4, 3] and Dg == [64, 55, 32, 26, 13, 11] and K == [432, 514, 271, 280, 206, 152]
+    assert all(a > b for a, b in zip(G, G[1:])) and all(a > b for a, b in zip(Dg, Dg[1:]))
+    assert [b > a for a, b in zip(K, K[1:])] == [True, False, True, False, False]
+    # 단지 registry(11/13 조회)와 구 요약(11/21 조회)의 그라시움 월별 건수가 같다
+    rg = json.loads((REPO / "data" / "trades" / "registry" / "godeok-gracium-202201_202609.json").read_text(encoding="utf-8"))
+    from collections import Counter
+    rc = Counter(r["deal_date"][:7].replace("-", "") for r in rg["rows"])
+    assert all(rc.get(y, 0) == gr(y) for y in M)
+    # 8월 강동구 206건 안의 묶음: 길동 한 단지 이틀 15건씩, 첫날 15건은 해제
+    bk = M["202608"]["bulks"]
+    assert [(b["dong"], b["deal_date"], b["n"], b["cancel"]) for b in bk] == [("길동", "2026-08-04", 15, 0), ("길동", "2026-08-03", 15, 15)]
+    assert all(not M[y]["bulks"] for y in M if y != "202608")
+    k8 = M["202608"]["total"] - 30
+    assert k8 == 176 and K[3] > k8 > K[5]
+    y0, y1 = "202509", "202609"
+    a0, a1 = (M[y0]["total"], gd(y0), gr(y0)), (M[y1]["total"], gd(y1), gr(y1))
+    assert a0 == (840, 143, 44) and a1 == (152, 11, 3)
+    keep = [round(b / a * 100) for a, b in zip(a0, a1)]
+    assert keep == [18, 8, 7]
+    sh0, sh1 = round(gd(y0) / M[y0]["total"] * 100, 1), round(gd(y1) / M[y1]["total"] * 100, 1)
+    assert (sh0, sh1) == (17.0, 7.2)
+    hh = info("godeok-gracium")["household_count"]
+    assert hh == 4932 and (round(37 / hh * 100, 2), round(3 / hh * 100, 2)) == (0.75, 0.06)
+    low = {y: gr(y) for y in M}
+    assert low["202602"] == 0 and low["202511"] == 1 and low["202512"] == low["202601"] == 3 and min(low.values()) == 0
+    return dict(ext="daily-2026-11-21-gracium-trade-fall", series="trade-dong-fall", slot="16:52", home="godeok-gracium",
+                persona="wb-persona-trade-brief", category="거래", topic="trade-monthly", verification="verified",
+                sources=[TRADE_SRC_1121, KAPT_INFO],
+                title=f"4월 {G[0]}건에서 9월 {G[-1]}건, 그라시움 매매 신고",
+                body=[
+                    f"4월 {G[0]}건, 5월 {G[1]}건, 6월 {G[2]}건, 7월 {G[3]}건, 8월 {G[4]}건, 9월 {G[5]}건. 올해 고덕그라시움 매매 신고를 계약월로 센 숫자입니다. "
+                    "다섯 달 연속 줄었습니다.",
+                    f"고덕동 전체는 4월 {Dg[0]}건, 9월 {Dg[-1]}건. 같은 다섯 달 동안 한 번도 늘지 않았습니다. "
+                    f"강동구 전체는 4~9월 {K[0]}건, {K[1]}건, {K[2]}건, {K[3]}건, {K[4]}건, {K[5]}건. 5월과 7월에 한 번씩 늘었습니다.",
+                    f"강동구 8월 {K[4]}건에는 길동 한 단지가 이틀에 걸쳐 신고한 30건이 들어 있습니다. 첫날 15건은 해제됐고, 이튿날 같은 단지에서 15건이 또 신고됐습니다. "
+                    f"이 30건을 빼면 {k8}건. 7월부터 9월까지 강동구도 줄어든 흐름은 같습니다.",
+                    f"1년 전 9월과 견주면 강동구는 {a0[0]}건에서 {a1[0]}건, 고덕동은 {a0[1]}건에서 {a1[1]}건, 그라시움은 {a0[2]}건에서 {a1[2]}건. "
+                    f"남은 몫은 {keep[0]}%, {keep[1]}%, {keep[2]}%입니다. 강동구 매매에서 고덕동이 차지한 몫도 {sh0}%에서 {sh1}%로 줄었습니다.",
+                    "숫자는 여기까지. 해석은 하나만 붙입니다. 강동구 합계만 보면 고덕동 쪽 감소의 크기가 가려집니다.",
+                    "4월과 비교하면 요즘 그라시움 주변 중개업소는 한산한 편인가요?",
+                ],
+                source_note=("국토교통부 아파트 매매 실거래가 상세 자료, 강동구(11740) 2025년 9월~2026년 9월 계약분 · 2026. 11. 21. 조회 · 계약월 기준 신고 건수, 해제 신고 포함, 금액은 쓰지 않음 · "
+                             "고덕동은 법정동 · 그라시움 월별 건수는 11. 13. 조회 단지 자료와 같다 · 묶음 = 같은 단지·같은 계약일 10건 이상(8월 길동 두 번만) · "
+                             "남은 몫은 올해 9월 ÷ 2025년 9월, 반올림 · 세대수는 K-apt 기본정보"),
+                unknowns=["신고가 줄어든 게 내놓는 집이 줄어서인지 사려는 사람이 줄어서인지는 실거래 신고로 가를 수 없습니다",
+                          "올해 4월에 그라시움 계약이 몰린 까닭은 계약월 집계만으로 알 수 없습니다"],
+                comments=[
+                    ("wb-persona-demand-check", f"세대수로 나눠 보면 4월 {G[0]}건은 {hh:,}세대의 0.75%, 9월 {G[-1]}건은 0.06%입니다.", "세대당"),
+                    ("wb-persona-timeseries", "열세 달을 놓고 보면 더 적은 달도 있었습니다. 2025년 11월 1건, 올해 2월 0건. "
+                     "9월 3건은 2025년 12월, 올해 1월과 같은 숫자입니다.", "시계열"),
+                ])
+
+
 @day("2026-11-21")
 def d1121(today):
     # 홀수 날·토요일. 헬리오 경비비 글은 11/17(작업 범위 규칙)·11/19(운영 담당자 미게시) 두 번 다 나가지 않았다(11/20 피드 확인).
@@ -2157,7 +2295,9 @@ def d1121(today):
     p["ext"] = "daily-2026-11-21-helio-guard-step"
     p["slot"] = "11:47"
     assert p["home"] == "helio-city"
-    return dict(posts=[p])
+    return dict(posts=[p,
+                       _eunma_reg_speed_1121(),      # 11/21 09:23 루틴이 더함(13:38)
+                       _gracium_trade_fall_1121()])  # 11/21 09:23 루틴이 더함(16:52)
 
 
 RENT_SRC_1114 = {"label": "국토교통부 아파트 전월세 실거래가 자료 (확인 2026. 11. 14.)",

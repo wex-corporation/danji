@@ -4,7 +4,7 @@
  "apt_names": [
   "은마"
  ],
- "fetched_at": "2026-11-17T13:03:01+09:00",
+ "fetched_at": "2026-11-21T09:31:18+09:00",
  "source": "국토교통부 아파트 매매 실거래가 상세 자료(공공데이터포털 15126469, getRTMSDataSvcAptTradeDev)",
  "note": "계약월별 조회. 금액은 저장하지 않는다. rgst_date 빈칸 = 응답에 등기일자가 없음(해제·잔금 전 등). 계약일과 등기일은 신고서 값 그대로",
  "gu_totals": {
@@ -3696,7 +3696,7 @@
    "apt": "은마",
    "area_m2": 76.79,
    "floor": "9",
-   "rgst_date": null,
+   "rgst_date": "2026-11-12",
    "cancel": false,
    "cancel_date": null,
    "dealing": "중개거래",
