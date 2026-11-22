@@ -2300,6 +2300,152 @@ def d1121(today):
                        _gracium_trade_fall_1121()])  # 11/21 09:23 루틴이 더함(16:52)
 
 
+BLD_SRC_1122 = {"label": "국토교통부 건축HUB 건축물대장정보 서비스 표제부 (확인 2026. 11. 22.)",
+                "url": "https://www.data.go.kr/data/15134735/openapi.do", "publisher": "국토교통부"}
+TRADE_SRC_1122 = {"label": "국토교통부 아파트 매매 실거래가 상세 자료 (확인 2026. 11. 22.)",
+                  "url": "https://www.data.go.kr/data/15126469/openapi.do", "publisher": "국토교통부"}
+SEOUL_TOHEO_0814 = {"label": "서울시 토지거래허가 신청 현황 보도(8월 14일)",
+                    "url": "https://www.seoul.go.kr/news/news_report.do#view/463951", "publisher": "서울특별시"}
+
+
+def _ricents_bldreg_1122():
+    """11/22 리센츠 — 건축물대장 표제부(잠실동 22, 11/22 조회). 건물 95개 사용승인·허가·착공일이 전부 같다.
+    65개 동 세대수 칸 합 5,562 대 K-apt 기본정보 5,563 — 한 세대 차이. 11/17 은마(날짜가 둘)와 뼈대를 다르게: 같은 날짜를 먼저, 어긋난 세대수를 가운데에"""
+    br = json.loads((REPO / "data" / "building-register" / "ricents-2026-11-22.json").read_text(encoding="utf-8"))
+    assert br["fetched_at"][:10] == "2026-11-22" and br["query"] == {"sigunguCd": "11710", "bjdongCd": "10100", "bun": "0022", "ji": "0000"}
+    bs = br["buildings"]
+    assert len(bs) == 95
+    apt = [b for b in bs if b["mainAtchGbCdNm"] == "주건축물" and b["mainPurpsCdNm"] == "공동주택"]
+    att = [b for b in bs if b["mainAtchGbCdNm"] == "부속건축물"]
+    kid = [b for b in bs if b["mainPurpsCdNm"] == "교육연구시설"]
+    assert (len(apt), len(att), len(kid)) == (65, 29, 1) and kid[0]["dongNm"] == "유치원" and kid[0]["grndFlrCnt"] == 2
+    from collections import Counter
+    kinds = Counter(re.sub(r"-\d+$", "", b["dongNm"]) for b in att)
+    assert kinds == {"경비실": 13, "지하주차장": 11, "재활용품보관소": 3, "관리동": 2}
+    assert {b["useAprDay"] for b in bs} == {"20080731"} and {(b["pmsDay"], b["stcnsDay"]) for b in bs} == {("20030314", "20050406")}
+    ui = info("ricents")
+    assert (ui["use_approval_date"], ui["dong_count"], ui["household_count"], ui["ho_count"], ui["household_count_source"]) == \
+        ("20080731", 65, 5563, 5563, "kaptdaCnt")
+    hh = sum(b["hhldCnt"] for b in apt)
+    assert hh == 5562 and ui["household_count"] - hh == 1
+    nums = sorted(int(re.sub(r"\D", "", b["dongNm"])) for b in apt)
+    assert nums == list(range(201, 266))
+    fl = Counter(b["grndFlrCnt"] for b in apt)
+    assert sorted(fl) == [21, 22, 25, 26, 27, 28, 29, 30, 31, 33] and fl.most_common(1) == [(29, 16)] and fl[33] == 9
+    low = sorted(b["dongNm"] for b in apt if b["grndFlrCnt"] == 21)
+    assert low == ["233동", "234동"] and all(b["hhldCnt"] == 38 for b in apt if b["grndFlrCnt"] == 21)
+    big = max(apt, key=lambda b: b["hhldCnt"])
+    small = min(b["hhldCnt"] for b in apt)
+    assert (big["dongNm"], big["hhldCnt"], big["grndFlrCnt"], small) == ("244동", 229, 33, 38)
+    assert sum(1 for b in apt if b["hhldCnt"] >= 200) == 4 and sorted(b["hhldCnt"] for b in apt)[32] == 80
+    days = (date(2008, 7, 31) - date(2005, 4, 6)).days
+    assert days == 1212
+    assert ui["builder"] == "우방,삼성,대우,대림"
+    return dict(ext="daily-2026-11-22-ricents-bldreg", series="bld-register", slot="12:13", home="ricents",
+                persona="wb-persona-sure-thing", category="생활", topic="bld-register", verification="verified",
+                sources=[BLD_SRC_1122, KAPT_INFO],
+                title=f"{hh:,}세대와 {ui['household_count']:,}세대, 리센츠 대장과 K-apt",
+                body=[
+                    f"확신합니다. 송파구 잠실동 22번지 건축물대장 표제부에 오른 건물 {len(bs)}개는 사용승인일이 전부 2008년 7월 31일입니다. "
+                    f"아파트 {len(apt)}개 동에 경비실 {kinds['경비실']}곳, 지하주차장 {kinds['지하주차장']}곳, 재활용품보관소 {kinds['재활용품보관소']}곳, "
+                    f"관리동 {kinds['관리동']}곳, 유치원 1곳까지 한 날짜죠. 허가일 2003년 3월 14일과 착공일 2005년 4월 6일도 {len(bs)}개가 똑같았습니다.",
+                    f"세대수 앞에서는 제 확신이 한 세대 모자랍니다. 대장의 {len(apt)}개 동 세대수 칸을 모두 더하면 {hh:,}세대. "
+                    f"K-apt 기본정보에 적힌 리센츠 세대수는 {ui['household_count']:,}세대예요. 공공자료 두 곳이 딱 한 세대 차이로 갈렸습니다.",
+                    f"동마다 펼치면 차이가 큽니다. 가장 작은 동은 21층짜리 233동과 234동으로 {small}세대씩이고, 가장 큰 동은 {big['grndFlrCnt']}층 {big['dongNm']} {big['hhldCnt']}세대. "
+                    f"층수는 21층부터 33층까지 {len(fl)}가지로 갈렸고 29층짜리가 {fl[29]}개 동으로 가장 많았어요. 33층은 {fl[33]}개 동. "
+                    "동 번호는 201동부터 265동까지 빈 번호 없이 이어집니다.",
+                    "자료는 여기까지고, 여기서부터는 확신이 없습니다. 한 세대 차이는 둘 중 한쪽이 잘못 적혔다는 뜻일 수도, "
+                    "두 칸이 세는 대상이 조금 다르다는 뜻일 수도 있어요. 어느 쪽인지는 두 자료 어디에도 적혀 있지 않습니다.",
+                    "관리사무소 고지서나 단지 안내문에는 리센츠 세대수가 몇 세대로 적혀 있나요?",
+                ],
+                source_note=("국토교통부 건축HUB 건축물대장정보 서비스(공공데이터포털 15134735, 이용허락범위 제한 없음) 표제부, 송파구 잠실동 22, "
+                             "2026. 11. 22. 조회 · 건물 95개 = 공동주택 주건축물 65·부속건축물 29·유치원 1 · 세대수는 주건축물 65개 동의 세대수 칸 합 · "
+                             "사용승인·허가·착공일·층수는 대장 값 그대로 · 대장 승강기 칸은 0인 동이 있어 쓰지 않았다 · "
+                             "K-apt 세대수·동 수·사용승인일은 K-apt 기본정보(2026. 8. 16. 조회)"),
+                unknowns=["한 세대 차이가 어느 동에서 나는지는 K-apt 기본정보에 동별 세대수가 없어 짚지 못했습니다",
+                          "층수가 다른 동들이 단지 안에서 어떻게 놓였는지는 표제부에 나오지 않습니다"],
+                comments=[
+                    ("wb-persona-fan-ricents", f"도감에 새 페이지 추가요! 리센츠 표제부에는 유치원도 한 장 따로 있어요. 지상 {kid[0]['grndFlrCnt']}층에 사용승인 2008년 7월 31일, "
+                     f"아파트 {len(apt)}개 동이랑 같은 날이에요. 경비실 {kinds['경비실']}곳까지 같은 날짜라 형광펜으로 한 줄에 쭉 그었어요!", "단지 응원"),
+                    ("wb-persona-builders", f"K-apt 기본정보 시공사 칸에는 {ui['builder'].replace(',', ', ')} 네 회사가 쉼표로 함께 적혀 있습니다. "
+                     f"대장 날짜로 세면 착공에서 사용승인까지 {days:,}일이고요. 이번에 받은 표제부 칸으로는 어느 회사가 어느 동을 지었는지 나눌 수 없었습니다.", "지은 사람들"),
+                ])
+
+
+def _mapo_winter_gap_1122():
+    """11/22 마래푸 — 매매 신고(계약월, 해제 포함) 2025년 1~10월 277건 뒤 넉 달(2025-11~2026-02) 2건.
+    같은 넉 달 아현동 22건·마포구 아파트 564건(trade_registry --gu 11440, 11/22 조회, 금액 없음). 21달 내내 한 단지·하루 묶음 없음.
+    11/21 그라시움(여섯 달 연속 감소)과 뼈대를 다르게 — 열 달 합계 → 넉 달 공백 → 동·구 나란히 → 다시 늘어난 달. 감소를 다루니 팬 댓글은 달지 않는다"""
+    g = json.loads((REPO / "data" / "trades" / "gu" / "11440-202501_202609.json").read_text(encoding="utf-8"))
+    assert g["fetched_at"][:10] == "2026-11-22" and g["gu"] == "마포구"
+    M = g["months"]
+    yms = [f"2025{m:02d}" for m in range(1, 13)] + [f"2026{m:02d}" for m in range(1, 10)]
+    assert sorted(M) == yms and all(not M[y]["bulks"] and M[y]["total_minus_bulks"] == M[y]["total"] for y in yms)
+    mr = lambda ym: sum(v for k, v in M[ym]["by_dong_apt"].get("아현동", {}).items() if k.startswith("마포래미안푸르지오"))   # noqa: E731
+    ah = lambda ym: M[ym]["by_dong"].get("아현동", 0)   # noqa: E731
+    seq = [mr(y) for y in yms]
+    assert seq == [10, 28, 54, 30, 43, 48, 2, 6, 43, 13, 0, 0, 1, 1, 3, 20, 9, 8, 5, 5, 5]
+    # 단지 registry(11/14 조회)와 구 요약(11/22 조회)의 마래푸 월별 건수가 같다
+    rg = json.loads((REPO / "data" / "trades" / "registry" / "mapo-raemian-prugio-202201_202609.json").read_text(encoding="utf-8"))
+    from collections import Counter
+    rc = Counter(r["deal_date"][:7].replace("-", "") for r in rg["rows"])
+    assert all(rc.get(y, 0) == mr(y) for y in yms)
+    ten, gap, pre = yms[:10], ["202511", "202512", "202601", "202602"], ["202509", "202510"]
+    S = lambda ys: (sum(mr(y) for y in ys), sum(ah(y) for y in ys), sum(M[y]["total"] for y in ys))   # noqa: E731
+    assert S(ten) == (277, 579, 4028) and S(gap) == (2, 22, 564) and S(pre) == (56, 117, 992)
+    share10 = round(277 / 579 * 100)
+    assert share10 == 48
+    two = sorted((r["deal_date"], r["apt"]) for r in rg["rows"] if "2025-11" <= r["deal_date"][:7] <= "2026-02")
+    assert two == [("2026-01-29", "마포래미안푸르지오2단지"), ("2026-02-11", "마포래미안푸르지오2단지")]
+    # 아현동 다른 단지(넉 달 20건): 단지별 건수 — 이름은 쓰지 않는다
+    oth = Counter()
+    for y in gap:
+        for k, v in M[y]["by_dong_apt"].get("아현동", {}).items():
+            if not k.startswith("마포래미안푸르지오"):
+                oth[k] += v
+    assert sum(oth.values()) == 20 and sorted(oth.values(), reverse=True) == [5, 5, 3, 3, 2, 2]
+    after = [mr(y) for y in yms[14:]]
+    assert after == [3, 20, 9, 8, 5, 5, 5]
+    return dict(ext="daily-2026-11-22-mapo-winter-gap", series="trade-winter-gap", slot="15:37", home="mapo-raemian-prugio",
+                persona="wb-persona-past-cycle", category="거래", topic="trade-monthly", verification="verified",
+                sources=[TRADE_SRC_1122, SEOUL_TOHEO_0814],
+                title=f"열 달 {S(ten)[0]}건 다음 넉 달 {S(gap)[0]}건, 마래푸 매매",
+                body=[
+                    f"2025년 1월부터 10월까지 열 달 동안 마포래미안푸르지오 매매 신고는 {S(ten)[0]}건이었습니다. "
+                    "1~4단지 이름으로 나뉜 신고를 합치고 해제 신고까지 넣어 계약월로 셌고요. "
+                    f"그다음 넉 달은 2025년 11월 {mr('202511')}건, 12월 {mr('202512')}건, 2026년 1월 {mr('202601')}건, 2월 {mr('202602')}건이었습니다. "
+                    "두 건 모두 2단지 신고였죠.",
+                    f"같은 넉 달 동안 아현동 아파트 매매 신고는 {S(gap)[1]}건, 마포구 아파트 전체는 {S(gap)[2]}건이었습니다. "
+                    f"마래푸를 뺀 아현동 다른 단지들에서도 {sum(oth.values())}건이 나왔었고요. "
+                    f"그 앞 열 달에는 아현동 신고 {S(ten)[1]}건 중 {S(ten)[0]}건, {share10}%가 마래푸였습니다.",
+                    f"넉 달 바로 앞인 2025년 9월과 10월에는 마래푸 {S(pre)[0]}건, 아현동 {S(pre)[1]}건, 마포구 {S(pre)[2]:,}건이 신고됐었습니다. "
+                    f"넉 달 뒤로는 2026년 3월 {after[0]}건, 4월 {after[1]}건으로 다시 늘었다가 5월부터 9월까지 {after[2]}건, {after[3]}건, {after[4]}건, {after[5]}건, {after[6]}건. "
+                    "스물한 달 동안 마포구에서 한 단지가 하루에 10건 이상 몰아 신고한 날은 없었습니다.",
+                    "제 생각은 이렇습니다. 실거래 신고는 계약이 맺어진 집만 셉니다. 그래서 그 넉 달에 내놓은 집이 없었는지, 내놓았는데 계약까지 가지 않았는지는 이 숫자로 가를 수 없죠. "
+                    f"서울시는 2025년 10월부터 서울 전역을 토지거래허가구역으로 두고 있습니다. 같은 구역 안의 마포구 아파트가 넉 달 {S(gap)[2]}건이었으니, "
+                    "구역 지정만으로 마래푸의 넉 달 2건을 다 설명하기는 어렵다고 봤습니다. 이 읽기는 틀릴 수 있습니다.",
+                    "계약이 두 건뿐이던 그 넉 달, 단지 안 분위기는 어땠나요?",
+                ],
+                source_note=("국토교통부 아파트 매매 실거래가 상세 자료, 마포구(11440) 2025년 1월~2026년 9월 계약분 · 2026. 11. 22. 조회 · 계약월 기준 신고 건수, 해제 신고 포함, 금액은 쓰지 않음 · "
+                             "마래푸는 1~4단지 신고 합산, 아현동은 법정동 · 마래푸 월별 건수는 11. 14. 조회 단지 자료와 같다 · 묶음 = 같은 단지·같은 계약일 10건 이상, 21달 동안 0번 · "
+                             "토지거래허가구역 범위는 서울시 8월 14일 보도자료"),
+                unknowns=["2026년 1월과 2월의 두 건이 모두 2단지에서 나온 까닭은 신고 자료에 나오지 않습니다",
+                          "그 넉 달 동안 허가를 신청하고 계약까지 가지 못한 집이 몇 채였는지는 공개 자료로 확인하지 못했습니다"],
+                comments=[
+                    ("INF-011", "토지거래허가구역 안 매매는 사고팔기 전 구청장 허가가 먼저인 순서. "
+                     "허가를 기다린 기간은 계약월 집계에 잡히지 않는 시간. 허가가 늦게 난 계약은 그만큼 뒤 달 신고로 잡힘.", "제도 순서"),
+                    ("wb-persona-num-compare", f"넉 달 동안 아현동 다른 단지 {len(oth)}곳의 신고 {sum(oth.values())}건. "
+                     f"단지별로 {oth.most_common()[0][1]}건 두 곳, 3건 두 곳, 2건 두 곳.", "아현동 나머지"),
+                ])
+
+
+@day("2026-11-22")
+def d1122(today):
+    # 짝수 날·일요일. 원베일리는 건너뛴다 — K-apt 지번(반포동 1-1) 표제부에는 상가동 하나만 나와(11/22 조회) 아파트 동을 못 읽었고,
+    # 이번 달 상가(11/20)·전월세(11/8)·관리비(11/3)·등기(11/10·12)·부동산원 서초(11/3) 축을 이미 썼다. 지번을 짐작해 다시 조회하지 않는다
+    return dict(posts=[_ricents_bldreg_1122(), _mapo_winter_gap_1122()])
+
+
 RENT_SRC_1114 = {"label": "국토교통부 아파트 전월세 실거래가 자료 (확인 2026. 11. 14.)",
                  "url": "https://www.data.go.kr/data/15058017/openapi.do", "publisher": "국토교통부"}
 TRADE_SRC_1114 = {"label": "국토교통부 아파트 매매 실거래가 상세 자료 (확인 2026. 11. 14.)",
