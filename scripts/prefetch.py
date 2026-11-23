@@ -10,7 +10,8 @@
   매매 실거래  2022-01 ~ 직전 달   (등기일·해제·거래 구분 — registry·구 요약이 쓰는 창)
   전월세 신고  직전 달 포함 26달  (rent_series 열두 달 두 번 창)
 최근 13달은 매번 다시 받고(신고·등기·해제가 늦게 채워진다), 그보다 오래된 달은 스냅숏이 7일 넘었을 때만 받는다.
-최근 달부터 받는다. 연속 4번 끊기면 호스트가 내려간 것으로 보고 멈춘다.
+최근 달부터 받는다. 끊긴 달은 줄 끝으로 돌려 다시 받는다 — 11/23 밤처럼 끊겼다 붙었다 할 때 넉 번 만에 멈추면 249달 중 2달만 남았다.
+연속 4번 끊기면 1분 쉬고 이어 가고, 정해 둔 시간(--budget-min, 기본 40분)이 지나면 멈춘다. 10분 동안 한 달도 못 받으면 내려간 것으로 보고 멈춘다.
 오늘 이미 받은 달은 건너뛴다 — 중간에 끊겨도 다시 돌리면 이어서 받는다.
 
 실행:  python3 scripts/prefetch.py [--group odd|even|tomorrow] [--verify]
@@ -39,7 +40,9 @@ TRADE_FROM = "202201"
 RENT_MONTHS = 26
 FRESH_MONTHS = 13
 STALE_DAYS = 7
-GIVE_UP_AFTER = 4          # 연속으로 이만큼 끊기면 호스트가 내려간 것으로 보고 멈춘다
+GIVE_UP_AFTER = 4          # 연속으로 이만큼 끊기면 PAUSE 초 쉬고 이어 간다
+PAUSE = 60
+DEAD_AFTER_MIN = 10        # 이 시간 동안 한 달도 못 받으면 내려간 것으로 보고 멈춘다
 
 
 def ym_add(ym, n):
@@ -93,6 +96,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--group", choices=["odd", "even", "tomorrow"], default="tomorrow")
     ap.add_argument("--verify", action="store_true")
+    ap.add_argument("--budget-min", type=int, default=40, help="끊겼다 붙었다 할 때 다시 시도하며 버틸 시간(분)")
     a = ap.parse_args()
     preflight.load_env()
     now = datetime.now(preflight.KST)
@@ -109,8 +113,19 @@ def main():
     todo.sort(key=lambda j: j[2], reverse=True)       # 최근 달부터 — 중간에 끊겨도 글에 쓸 달이 먼저 남는다
     print(f"{now:%Y-%m-%d %H:%M} 배정 {group}({', '.join(preflight.GROUPS[group])}) · 구 {lawds} · 받을 것 {len(todo)}/{len(jobs)}")
 
-    failed, streak, done = [], 0, 0
-    for kind, lawd, ym in todo:
+    from collections import deque
+    pending, last_err = deque(todo), {}
+    start, streak, done = time.time(), 0, 0
+    while pending:
+        el = time.time() - start
+        if el > a.budget_min * 60:
+            print(f"{a.budget_min}분이 지나 멈춘다 — {len(pending)}개 못 받음", flush=True)
+            break
+        if done == 0 and el > DEAD_AFTER_MIN * 60:
+            print(f"{DEAD_AFTER_MIN}분 동안 한 달도 못 받아 멈춘다 — data.go.kr 이 내려가 있다", flush=True)
+            break
+        job = pending.popleft()
+        kind, lawd, ym = job
         try:
             if kind == "trade":
                 trade_registry.fetch_month(key, lawd, ym)
@@ -118,15 +133,16 @@ def main():
                 rent_series.fetch_month(key, lawd, ym)
             done += 1
             streak = 0
-        except Exception as e:                        # noqa: BLE001 — 끊김·응답 오류 모두 기록하고 넘어간다
-            failed.append({"kind": kind, "lawd": lawd, "ym": ym, "error": f"{type(e).__name__}: {str(e)[:120]}"})
+        except Exception as e:                        # noqa: BLE001 — 끊김·응답 오류 모두 기록하고 줄 끝으로 돌린다
+            last_err[job] = f"{type(e).__name__}: {str(e)[:120]}"
+            pending.append(job)
             streak += 1
             if streak >= GIVE_UP_AFTER:
-                left = todo[todo.index((kind, lawd, ym)) + 1:]
-                failed += [{"kind": k, "lawd": lw, "ym": y, "error": "건너뜀(호스트 끊김)"} for k, lw, y in left]
-                print(f"연속 {streak}번 끊겨 멈춘다 — data.go.kr 이 내려가 있다")
-                break
+                print(f"연속 {streak}번 끊김 — {PAUSE}초 쉬고 이어 간다(받음 {done}, 남음 {len(pending)})", flush=True)
+                time.sleep(PAUSE)
+                streak = 0
         time.sleep(0.25)
+    failed = [{"kind": k, "lawd": lw, "ym": y, "error": last_err.get((k, lw, y), "시간 안에 차례가 오지 않음")} for k, lw, y in pending]
 
     status = {"run_at": now.isoformat(timespec="seconds"), "group": group, "lawds": lawds, "prev_month": prev,
               "fetched": done, "todo": len(todo), "failed": failed}
