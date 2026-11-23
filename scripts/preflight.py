@@ -33,6 +33,7 @@ KST = timezone(timedelta(hours=9))
 UA = "danji-content-agent/1.0"
 KEYS = ("CIVIC_PULSE_API_KEY", "KAPT_SERVICE_KEY")
 TRADE_API = "https://apis.data.go.kr/1613000/RTMSDataSvcAptTradeDev/getRTMSDataSvcAptTradeDev"
+PROBES = 5                 # data.go.kr 은 다섯 번 따로 찔러 다섯 번 다 붙어야 된다고 본다(11/23)
 
 # 배정표(docs/daily-routine-2026-11.md 2장) — 단지 → 구 코드
 GROUPS = {
@@ -117,8 +118,20 @@ def main():
         prev = (now.replace(day=1) - timedelta(days=1)).strftime("%Y%m")
         q = {"serviceKey": os.environ["KAPT_SERVICE_KEY"], "LAWD_CD": "11710", "DEAL_YMD": prev,
              "numOfRows": 1, "pageNo": 1}
-        ok, why = probe(f"{TRADE_API}?{urllib.parse.urlencode(q)}", tries=3,
-                        check=lambda b: "<resultCode>00" in b or "<resultCode>000" in b)
+        # 11/23 16:23 — 한 번 붙은 것만 보고 '된다'로 판정했는데, 바로 뒤 30분 동안 24달 중 2달만 받혔다(끊겼다 붙었다).
+        # 그래서 따로 다섯 번 찔러 보고 다섯 번 다 붙어야 '된다'로 본다. 한 번이라도 끊기면 '들쭉날쭉'으로 3을 낸다
+        url = f"{TRADE_API}?{urllib.parse.urlencode(q)}"
+        hits, last = 0, ""
+        for i in range(PROBES):
+            one, why1 = probe(url, tries=1, timeout=15,
+                              check=lambda b: "<resultCode>00" in b or "<resultCode>000" in b)
+            hits += one
+            last = why1 if not one else last
+            if i + 1 < PROBES:
+                time.sleep(2)
+        ok = hits == PROBES
+        why = f"apis.data.go.kr {PROBES}번 중 {hits}번 붙음" + (f" — {last}" if last else "")
+        res["data_go_kr_flaky"] = 0 < hits < PROBES
     else:
         ok, why = False, "키 없음"
     res["data_go_kr"] = {"ok": ok, "detail": why}
@@ -146,9 +159,11 @@ def main():
     res["plan"] = {
         0: "평소대로 — 자료는 라이브로 받는다",
         2: "danji.life 안 됨 — 글을 쓰지 않는다. 1시간 뒤 재시도(17시까지), 처음 막힌 때 대표님께 한 번 알린다",
-        3: ("data.go.kr 안 됨 — 스냅숏(--from-cache)으로 쓴다. 확인일은 스냅숏 조회일"
+        3: (("data.go.kr 들쭉날쭉(붙었다 끊겼다) — 라이브로 몇십 달을 받기 어렵다. " if res.get("data_go_kr_flaky") else "data.go.kr 안 됨 — ")
+            + "스냅숏(--from-cache)으로 쓴다. 확인일은 스냅숏 조회일"
             if res["snapshot"]["usable"] else
-            "data.go.kr 안 됨, 쓸 만한 스냅숏도 없음 — 커밋된 캐시(관리비·장충금·대장·상가·학원)로 쓸 소재가 있는지 보고, 없으면 재시도"),
+            ("data.go.kr 들쭉날쭉" if res.get("data_go_kr_flaky") else "data.go.kr 안 됨")
+            + ", 쓸 만한 스냅숏도 없음 — 커밋된 캐시(관리비·장충금·대장·상가·학원)로 쓸 소재가 있는지 보고, 없으면 재시도"),
         4: "키 없음 — 대표님께 알리고 멈춘다",
     }[code]
 
