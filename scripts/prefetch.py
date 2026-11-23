@@ -13,8 +13,10 @@
 최근 달부터 받는다. 연속 4번 끊기면 호스트가 내려간 것으로 보고 멈춘다.
 오늘 이미 받은 달은 건너뛴다 — 중간에 끊겨도 다시 돌리면 이어서 받는다.
 
-실행:  python3 scripts/prefetch.py [--group odd|even|tomorrow]
-종료 코드: 0 전부 받음 · 1 일부 못 받음(끊김) — 못 받은 달은 출력과 status.json 에 남는다
+실행:  python3 scripts/prefetch.py [--group odd|even|tomorrow] [--verify]
+  --verify  받은 뒤 묶음 첫 단지로 최근 6달을 라이브·스냅숏 두 길로 계산해 같은지 본다(실제 응답 모양으로 확인).
+            결과는 임시 폴더에만 쓴다 — 커밋된 data/ 파일을 건드리지 않는다
+종료 코드: 0 전부 받음 · 1 일부 못 받음(끊김) — 못 받은 달은 출력과 status.json 에 남는다 · 5 검증에서 두 길이 어긋남
 """
 
 import argparse
@@ -61,9 +63,36 @@ def need(kind, lawd, ym, prev, now):
     return now - t > timedelta(days=STALE_DAYS)
 
 
+def verify(group, prev):
+    """라이브로 받은 달과 스냅숏에서 읽은 달이 registry·구 요약·전월세 열두 달·동별에서 같은 값을 내는지."""
+    import tempfile
+    slug, lawd = next(iter(preflight.GROUPS[group].items()))
+    a = ym_add(prev, -5)
+    keep = (trade_registry.REPO, rent_series.REPO)
+    with tempfile.TemporaryDirectory() as td:
+        trade_registry.REPO = rent_series.REPO = Path(td)
+        try:
+            out = {}
+            for mode in (False, True):
+                apicache.USED.clear()
+                _, rows = trade_registry.run(slug, a, prev, from_cache=mode)
+                g = json.loads(trade_registry.gu_summary(lawd, a, prev, from_cache=mode).read_text(encoding="utf-8"))
+                apicache.USED.clear()
+                _, months = rent_series.run(slug, a, prev, from_cache=mode)
+                d = json.loads(rent_series.gu_dongs(lawd, a, prev, from_cache=mode).read_text(encoding="utf-8"))
+                out[mode] = (rows, g["months"], months, d["months"])
+        finally:
+            trade_registry.REPO, rent_series.REPO = keep
+    same = [x == y for x, y in zip(out[False], out[True])]
+    print(f"검증 {slug} {a}~{prev}: registry {same[0]} · 구 요약 {same[1]} · 전월세 {same[2]} · 동별 {same[3]}"
+          f" (매매 행 {len(out[False][0])}, 전월세 {sum(m['n'] for m in out[False][2].values())}건)")
+    return all(same)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--group", choices=["odd", "even", "tomorrow"], default="tomorrow")
+    ap.add_argument("--verify", action="store_true")
     a = ap.parse_args()
     preflight.load_env()
     now = datetime.now(preflight.KST)
@@ -106,7 +135,14 @@ def main():
     print(f"받음 {done} · 못 받음 {len(failed)}")
     for f in failed[:10]:
         print("  ", f)
-    return 1 if failed else 0
+    if failed:
+        return 1
+    if a.verify:
+        ok = verify(group, prev)
+        status["verified"] = ok
+        (apicache.DIR / "status.json").write_text(json.dumps(status, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        return 0 if ok else 5
+    return 0
 
 
 if __name__ == "__main__":

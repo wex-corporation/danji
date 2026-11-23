@@ -128,8 +128,11 @@ def main():
         res[name] = {"ok": ok, "detail": why}
 
     snap = snapshot_age(group, now)
-    res["snapshot"] = {"oldest_prev_month": snap,
-                       "usable": bool(snap) and (now - datetime.fromisoformat(snap)) <= timedelta(days=3)}
+    st = apicache.DIR / "status.json"
+    verified = json.loads(st.read_text(encoding="utf-8")).get("verified") if st.exists() else None
+    res["snapshot"] = {"oldest_prev_month": snap, "verified": verified,
+                       "usable": bool(snap) and verified is not False
+                       and (now - datetime.fromisoformat(snap)) <= timedelta(days=3)}
 
     if not all(res["keys"].values()):
         code = 4
@@ -156,7 +159,8 @@ def main():
         print("  키   " + " · ".join(f"{k} {'있음' if v else '없음'}" for k, v in res["keys"].items()))
         for n in ("danji", "data_go_kr", "reb", "neis"):
             print(f"  {n:<10} {'된다' if res[n]['ok'] else '안 된다'} — {res[n]['detail']}")
-        print(f"  스냅숏  {snap or '없음'}{' (쓸 수 있음)' if res['snapshot']['usable'] else ''}")
+        print(f"  스냅숏  {snap or '없음'}{' (쓸 수 있음)' if res['snapshot']['usable'] else ''}"
+              f"{' — 밤 검증에서 어긋나 쓰지 않는다' if verified is False else ''}")
         print(f"→ {res['plan']}")
     return code
 
