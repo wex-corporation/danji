@@ -22,21 +22,31 @@ REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO / "scripts"))
 import rent_volume as rv  # noqa: E402
 from trade_registry import month_range  # noqa: E402
+import apicache  # noqa: E402
 
 KST = timezone(timedelta(hours=9))
 
 
-def run(slug, a, b):
+def fetch_month(key, lawd, ym, from_cache=False):
+    """구·계약월 하나(끝 페이지까지). 라이브면 스냅숏에도 남기고, from_cache 면 스냅숏만 읽는다."""
+    if from_cache:
+        return apicache.load("rent", lawd, ym)[1]
+    rows = rv.fetch(key, lawd, ym)
+    apicache.save_rent(lawd, ym, rows)
+    return rows
+
+
+def run(slug, a, b, from_cache=False):
     lawd, names = TARGET[slug]
-    key = rv.service_key()
+    key = None if from_cache else rv.service_key()
     months = {}
     for ym in month_range(a, b):
-        rows = [r for r in rv.fetch(key, lawd, ym) if r["apt"] in names]
+        rows = [r for r in fetch_month(key, lawd, ym, from_cache) if r["apt"] in names]
         months[ym] = {
             "n": len(rows),
-            "jeonse": sum(1 for r in rows if r["monthly_manwon"] == 0),
-            "with_monthly": sum(1 for r in rows if r["monthly_manwon"] > 0),
-            "pre_deposit": sum(1 for r in rows if r["pre_deposit"]),
+            "jeonse": sum(1 for r in rows if not apicache.has_monthly(r)),
+            "with_monthly": sum(1 for r in rows if apicache.has_monthly(r)),
+            "pre_deposit": sum(1 for r in rows if apicache.pre_deposit_filled(r)),
             "type_renew": sum(1 for r in rows if r["contract_type"] == "갱신"),
             "type_new": sum(1 for r in rows if r["contract_type"] == "신규"),
             "type_blank": sum(1 for r in rows if not r["contract_type"]),
@@ -45,12 +55,13 @@ def run(slug, a, b):
             "area_le60": sum(1 for r in rows if r["area_m2"] <= 60),
         }
         assert months[ym]["jeonse"] + months[ym]["with_monthly"] == months[ym]["n"]
-        time.sleep(0.2)
+        if not from_cache:
+            time.sleep(0.2)
     out = REPO / "data" / "rents" / "series" / f"{slug}-{a}_{b}.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps({
         "slug": slug, "lawd_cd": lawd, "apt_names": sorted(names),
-        "fetched_at": datetime.now(KST).isoformat(timespec="seconds"),
+        "fetched_at": apicache.fetched_at(from_cache), "from_cache": from_cache,
         "source": "국토교통부 아파트 전월세 실거래가 자료(공공데이터포털 15058017, getRTMSDataSvcAptRent)",
         "note": "계약월별 건수. 보증금·월세 금액은 저장하지 않는다. with_monthly = 월세가 0보다 큰 계약(반전세 포함). "
                 "pre_deposit = 종전 보증금 칸이 채워진 계약, type_renew = 계약 구분 '갱신'(채움률이 서로 달라 섞지 않는다)",
@@ -65,25 +76,28 @@ TARGET = {
     "ricents": ("11710", {"리센츠"}),
     "one-bailey": ("11650", {"래미안원베일리"}),
     "eunma": ("11680", {"은마"}),          # 11/23 추가 — 전월세 신고서 단지 이름도 매매와 같은 '은마'
+    "helio-city": ("11710", {"헬리오시티"}),        # 11/23 추가 — 이름은 rent_volume.COMPLEXES 와 같다
+    "godeok-gracium": ("11740", {"고덕그라시움", "고덕 그라시움"}),
 }
 
 
-def gu_dongs(lawd, a, b):
+def gu_dongs(lawd, a, b, from_cache=False):
     """구 전체 전월세 신고를 달마다 동별·단지별 건수로. 금액은 저장하지 않는다."""
     from collections import Counter
-    key = rv.service_key()
+    key = None if from_cache else rv.service_key()
     months = {}
     for ym in month_range(a, b):
-        rows = rv.fetch(key, lawd, ym)
+        rows = fetch_month(key, lawd, ym, from_cache)
         months[ym] = {"total": len(rows),
                       "by_dong": dict(Counter(r["dong"] for r in rows).most_common()),
                       "by_dong_apt": {dg: dict(Counter(r["apt"] for r in rows if r["dong"] == dg).most_common())
                                       for dg in sorted({r["dong"] for r in rows})}}
-        time.sleep(0.2)
+        if not from_cache:
+            time.sleep(0.2)
     out = REPO / "data" / "rents" / "gu" / f"{lawd}-{a}_{b}.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps({
-        "lawd_cd": lawd, "fetched_at": datetime.now(KST).isoformat(timespec="seconds"),
+        "lawd_cd": lawd, "fetched_at": apicache.fetched_at(from_cache), "from_cache": from_cache,
         "source": "국토교통부 아파트 전월세 실거래가 자료(공공데이터포털 15058017, getRTMSDataSvcAptRent)",
         "note": "계약월별 동·단지 건수. 금액은 저장하지 않는다", "months": months,
     }, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
@@ -96,12 +110,16 @@ def main():
     ap.add_argument("--gu", help="구 코드. 주면 동·단지별 건수만 센다")
     ap.add_argument("--from", dest="a", required=True)
     ap.add_argument("--to", dest="b", required=True)
+    ap.add_argument("--from-cache", action="store_true",
+                    help="data.go.kr 이 끊긴 날 — 밤에 받아 둔 스냅숏(data/.apicache)만 읽는다. 확인일은 스냅숏 조회일")
     a = ap.parse_args()
     if a.gu:
-        print(gu_dongs(a.gu, a.a, a.b).relative_to(REPO))
+        print(gu_dongs(a.gu, a.a, a.b, a.from_cache).relative_to(REPO))
+        apicache.note_cache(a.from_cache)
         return 0
-    out, months = run(a.complex, a.a, a.b)
+    out, months = run(a.complex, a.a, a.b, a.from_cache)
     print(out.relative_to(REPO))
+    apicache.note_cache(a.from_cache)
     for ym, m in months.items():
         print(" ", ym, m)
 

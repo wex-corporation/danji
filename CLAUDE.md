@@ -101,6 +101,8 @@
 | `scripts/kapt_repairs.py` | **장기수선충당금(11/11~).** 공식 OpenAPI 15059160 `AptRepairsCostServiceV3` — 월부과액·월사용액·충당금잔액(적립요율은 안 씀). 공개 페이지 값과 부과액 대조, 빈칸은 0원이 아니라 None. `data/repair-reserve/<slug>.json` |
 | `scripts/bld_register.py` | **건축물대장 표제부(11/17~).** 건축HUB 15134735 `getBrTitleInfo`(이용허락범위 제한 없음, 기존 키로 됨) — 단지 지번의 동마다 사용승인일·층수·세대수. 시군구·법정동은 `ldcode.json`, 번·지는 K-apt 지번 주소에서. 대장 칸의 0·공백은 사실로 쓰지 않는다(은마 승강기 칸 0 대 K-apt 42대). `data/building-register/<slug>-<조회일>.json` |
 | `scripts/rent_series.py` | 전월세 신고 계약월별 건수(전세·월세 붙은 계약·갱신·갱신요구권, `data/rents/series/`). `--gu`는 동·단지별 건수(`data/rents/gu/`). 금액은 저장하지 않는다 |
+| `scripts/preflight.py` | **루틴 맨 앞 점검(11/23~).** 키·danji.life·data.go.kr·부동산원·나이스와 스냅숏 나이를 보고 종료 코드로 갈 길을 정한다 — 0 평소 · 2 danji.life 안 됨 · 3 data.go.kr 안 됨(스냅숏으로) · 4 키 없음. 키 값은 찍지 않는다 |
+| `scripts/prefetch.py` · `scripts/apicache.py` | **밤 21:47 미리 받기(11/23~).** 다음 날 배정 단지 구의 매매(2022-01~)·전월세(26달)를 구·계약월 단위로 `data/.apicache/`(git 밖)에 둔다. 금액 칸은 빼고 저장. `trade_registry.py`·`rent_series.py` 는 라이브 조회 때 자동으로 남기고, `--from-cache` 일 때만 읽는다(결과 `fetched_at` = 스냅숏 조회 시각, 글 확인일도 그 날짜) |
 | `scripts/human_activity.py` | **사람 반응 찾기(11/8~).** 사람 글·댓글·한 줄 답변과 아직 답 안 한 것. 답 안 한 게 있으면 종료 코드 2. IP 앞자리는 저장하지 않는다 |
 | `data/human-replies.json` | 사람 반응에 우리가 단 답 장부. 키는 `comment-<서버 id>`·`post-<서버 id>` |
 | `scripts/build_daily_pack.py` | **하루치 글(10/31~).** 여러 계열을 날짜별 `DAYS`에 손으로 쓴다. 슬롯 시각·서모스탯·문체 검사. `publish.py --due`로 슬롯마다 낸다 |
@@ -1193,3 +1195,10 @@ curl -X POST "$BASE_URL/api/v1/ingest/personas" \
    - **11/20 서버 등록 완료**(대표님 "지금 다 해" → 규칙 해제) — `sync_personas.py --send`, created 3, 반영 확인 전부 일치. 서버 id 342 공용시설탐방 · 343 지은사람들 · 344 단지게시판. 서버 페르소나 109 → 112. 단지게시판 자료(입찰공고·입찰결과 활용신청)는 아직이다
    - 자료: K-apt 기본정보에 시공사(`builder`)·시행사(`developer`)·관리업체(`manage_company`)·경비업체·관리방식과 부대복리시설 칸(`welfare_facility`, 자기기입)이 있다. **설계사·감리사는 공식 칸을 못 찾았다** — 건축HUB 건축인허가 기본개요(`ArchPmsHubService/getApBasisOulnInfo`, 기존 키로 됨)에 그 칸이 없다.
      입주자모집공고·구청 고시로 단지마다 찾는다. **공동주택 입찰공고(15058166)·입찰결과(15059177) OpenAPI는 기존 키가 '등록되지 않은 서비스키'** — data.go.kr에서 활용신청 두 건이 필요하다(자동승인)
+60. **한 곳이 막혀도 글이 나가게 — 점검·밤 미리 받기·스냅숏.** (2026-11-23 대표님 "문제 있는 거 고치고 앞으로 문제 안생기게 / 자동으로 계속 해 줘")
+   - 계기: 11/23 apis.data.go.kr·www.data.go.kr 이 09:40~12:39 내리 TLS 접속 단계에서 끊겼다(프록시 기록 `ws_closed_mid_exchange`, 다른 호스트는 정상). 그날 쓸 자료가 전부 그 호스트라 0편이었다. 11/16 인증서 만료 때도 슬롯 작업이 보내는 순간에야 알았다. 서버·포털 장애는 우리가 고칠 수 없다 — 대신 막힌 걸 먼저 알고 다른 길로 간다
+   - `preflight.py`(루틴 0단계, 슬롯 작업도) · `prefetch.py`(밤 21:47 예약 작업, 다음 날 배정 구) · `apicache.py`(구·계약월 스냅숏, 금액 칸 없음, git 밖). 처리표는 `docs/daily-routine-2026-11.md` 7장
+   - **조용히 대신 읽지 않는다.** 스냅숏은 `--from-cache` 를 줄 때만 쓰고, 결과 파일에 `from_cache: true` 와 스냅숏 조회 시각이 남는다. 글의 확인일은 그 날짜다. 없는 달은 `CacheMiss` 로 멈춘다
+   - 합성 자료로 라이브 경로와 스냅숏 경로가 registry·구 요약·전월세 열두 달·동별 건수에서 같은 값을 내는 것을 확인했다(11/23). 실제 응답으로 맞춰 보는 건 data.go.kr 이 돌아온 첫 실행에서 한다
+   - `rent_series.py` TARGET에 헬리오·그라시움도 넣었다(이름은 `rent_volume.COMPLEXES`와 같다, 아직 실제로 돌려 보지 않음)
+   - 못 나갈 초안은 여전히 쌓지 않는다(11/9) — 미리 쌓는 건 자료지 글이 아니다

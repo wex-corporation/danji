@@ -24,6 +24,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO / "scripts"))
 import trade_volume as tv  # noqa: E402
+import apicache  # noqa: E402
 
 KST = timezone(timedelta(hours=9))
 
@@ -57,7 +58,10 @@ def month_range(a, b):
             y, m = y + 1, 1
 
 
-def fetch_month(key, lawd, ym):
+def fetch_month(key, lawd, ym, from_cache=False):
+    """구·계약월 하나. 라이브로 받으면 스냅숏(apicache)에도 남긴다. from_cache 면 스냅숏만 읽는다."""
+    if from_cache:
+        return apicache.load("trade", lawd, ym)
     q = {"serviceKey": key, "LAWD_CD": lawd, "DEAL_YMD": ym, "numOfRows": 1000, "pageNo": 1}
     url = f"{tv.API}?{urllib.parse.urlencode(q)}"
     for attempt in range(4):
@@ -75,15 +79,17 @@ def fetch_month(key, lawd, ym):
     total = int(root.findtext(".//totalCount") or 0)
     items = root.findall(".//item")
     assert total == len(items) <= 1000, (ym, total, len(items))  # 한 쪽에 다 들어와야 한다
-    return total, [{c.tag: (c.text or "").strip() for c in it} for it in items]
+    rows = [{c.tag: (c.text or "").strip() for c in it} for it in items]
+    apicache.save_trade(lawd, ym, total, rows)
+    return total, rows
 
 
-def run(slug, a, b):
+def run(slug, a, b, from_cache=False):
     lawd, names = COMPLEX[slug]
-    key = tv.service_key()
+    key = None if from_cache else tv.service_key()
     rows, gu_totals = [], {}
     for ym in month_range(a, b):
-        total, items = fetch_month(key, lawd, ym)
+        total, items = fetch_month(key, lawd, ym, from_cache)
         gu_totals[ym] = total
         for d in items:
             if d.get("aptNm", "").strip() not in names:
@@ -100,13 +106,14 @@ def run(slug, a, b):
                 "buyer": d.get("buyerGbn", ""),
                 "seller": d.get("slerGbn", ""),
             })
-        time.sleep(0.2)
+        if not from_cache:
+            time.sleep(0.2)
     rows.sort(key=lambda r: (r["deal_date"], r["area_m2"], r["floor"]))
     out = REPO / "data" / "trades" / "registry" / f"{slug}-{a}_{b}.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps({
         "slug": slug, "lawd_cd": lawd, "apt_names": names,
-        "fetched_at": datetime.now(KST).isoformat(timespec="seconds"),
+        "fetched_at": apicache.fetched_at(from_cache), "from_cache": from_cache,
         "source": "국토교통부 아파트 매매 실거래가 상세 자료(공공데이터포털 15126469, getRTMSDataSvcAptTradeDev)",
         "note": "계약월별 조회. 금액은 저장하지 않는다. rgst_date 빈칸 = 응답에 등기일자가 없음(해제·잔금 전 등). 계약일과 등기일은 신고서 값 그대로",
         "gu_totals": gu_totals, "rows": rows,
@@ -117,17 +124,17 @@ def run(slug, a, b):
 BULK_MIN = 10   # 같은 단지·같은 계약일이 이만큼 넘으면 묶음으로 따로 적는다
 
 
-def gu_summary(lawd, a, b):
+def gu_summary(lawd, a, b, from_cache=False):
     """구 전체 매매를 달마다 — 총수, 동별, 중개/직거래, 한 단지 하루 묶음(BULK_MIN 이상).
 
     11/10에 알았다: 송파구 2026년 9월 322건 중 170건이 한 단지(장지동)의 9월 18일 하루 계약이었다
     (직거래 · 매도 법인 · 매수 공공기관 · 전용 18㎡대). 구 전체 건수를 비교군으로 쓰는 글은 이 묶음을 먼저 본다.
     """
     from collections import Counter
-    key = tv.service_key()
+    key = None if from_cache else tv.service_key()
     months = {}
     for ym in month_range(a, b):
-        total, items = fetch_month(key, lawd, ym)
+        total, items = fetch_month(key, lawd, ym, from_cache)
         cl = Counter((d["aptNm"].strip(), d["dealDay"]) for d in items)
         bulks = []
         for (apt, day), n in cl.most_common():
@@ -153,12 +160,13 @@ def gu_summary(lawd, a, b):
             "bulks": bulks,
             "total_minus_bulks": total - sum(x["n"] for x in bulks),
         }
-        time.sleep(0.2)
+        if not from_cache:
+            time.sleep(0.2)
     out = REPO / "data" / "trades" / "gu" / f"{lawd}-{a}_{b}.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps({
         "lawd_cd": lawd, "gu": tv.SEOUL_GU.get(lawd, lawd),
-        "fetched_at": datetime.now(KST).isoformat(timespec="seconds"),
+        "fetched_at": apicache.fetched_at(from_cache), "from_cache": from_cache,
         "source": "국토교통부 아파트 매매 실거래가 상세 자료(공공데이터포털 15126469, getRTMSDataSvcAptTradeDev)",
         "note": f"계약월별. 금액은 저장하지 않는다. bulks = 같은 단지·같은 계약일 {BULK_MIN}건 이상. total 은 해제 신고 포함",
         "months": months,
@@ -172,12 +180,16 @@ def main():
     ap.add_argument("--gu", help="구 코드. 주면 단지 대신 구 요약(동별 건수·한 단지 하루 묶음)을 만든다")
     ap.add_argument("--from", dest="a", required=True)
     ap.add_argument("--to", dest="b", required=True)
+    ap.add_argument("--from-cache", action="store_true",
+                    help="data.go.kr 이 끊긴 날 — 밤에 받아 둔 스냅숏(data/.apicache)만 읽는다. 확인일은 스냅숏 조회일")
     a = ap.parse_args()
     if a.gu:
-        out = gu_summary(a.gu, a.a, a.b)
+        out = gu_summary(a.gu, a.a, a.b, a.from_cache)
         print(out.relative_to(REPO))
+        apicache.note_cache(a.from_cache)
         return 0
-    out, rows = run(a.complex, a.a, a.b)
+    out, rows = run(a.complex, a.a, a.b, a.from_cache)
+    apicache.note_cache(a.from_cache)
     reg = sum(1 for r in rows if r["rgst_date"])
     print(f"{out.relative_to(REPO)} · 거래 {len(rows)} · 등기일 있음 {reg} · 해제 {sum(r['cancel'] for r in rows)}")
 
