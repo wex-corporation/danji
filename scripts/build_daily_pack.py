@@ -2446,6 +2446,76 @@ def d1122(today):
     return dict(posts=[_ricents_bldreg_1122(), _mapo_winter_gap_1122()])
 
 
+
+def _ricents_repair_two_1124():
+    """11/24 리센츠 — K-apt 공용관리비 '수선비' 칸과 장기수선충당금 '월사용액', 2026년 5~9월 다섯 달 나란히(커밋된 캐시만 — 11/24 data.go.kr 접속 장애).
+    11/12 수선통장 글(충당금 21달)과 뼈대를 다르게: 관리비 쪽 칸을 먼저, 충당금은 나란히 놓는 비교군으로만. 큰 사용액의 용처는 짐작하지 않는다"""
+    fe, rp = fees("ricents"), repairs("ricents")
+    yms = ["202605", "202606", "202607", "202608", "202609"]
+    assert sorted(fe) == yms and all(fe[k]["area_field"] == "kaptMarea" for k in yms)
+    assert [fe[k]["fetched_at"][:10] for k in yms] == ["2026-08-16", "2026-08-16", "2026-11-08", "2026-11-08", "2026-11-08"]
+    assert rp["fetched_at"][:10] == "2026-11-11" and not rp["failures"]
+    rm = rp["months"]
+    area = fe["202609"]["area_m2"]
+    assert area == rp["billed_area_m2"] == info("ricents")["billed_area_m2"] == 581999.06
+    sv = {k: fe[k]["items"]["수선비"]["amount_won"] for k in yms}
+    assert sv == {"202605": 115642810, "202606": 109969465, "202607": 100748250, "202608": 104092860, "202609": 113921360}
+    use = {k: rm[k]["use"] for k in yms}
+    assert use == {"202605": 332416200, "202606": 370414200, "202607": 480140400, "202608": 1015270266, "202609": 497546700}
+    assert all(rm[k]["complete"] and rm[k]["levy"] == 209516940 for k in yms)
+    assert all(10 ** 8 <= v < 2 * 10 ** 8 for v in sv.values())                    # 다섯 달 모두 1억원대
+    lo, hi = min(sv, key=sv.get), max(sv, key=sv.get)
+    assert (lo, hi) == ("202607", "202605") and man(sv[hi] - sv[lo]) == "1,489만원"
+    assert sorted(sv, key=sv.get)[1] == "202608"                                    # 8월은 다섯 달 중 두 번째로 작다
+    ulo, uhi = min(use, key=use.get), max(use, key=use.get)
+    assert (ulo, uhi) == ("202605", "202608") and 3 < use[uhi] / use[ulo] < 3.1
+    S, U = sum(sv.values()), sum(use.values())
+    assert (man(S), man(U)) == ("5억 4,437만원", "26억 9,578만원")
+    L = 209516940 * 5
+    assert man(L) == "10억 4,758만원" and all(use[k] > 209516940 for k in yms)
+    per_sv, per_lv = round(sv["202609"] / area), round(209516940 / area)
+    assert (per_sv, per_lv) == (196, 360)
+    tot9 = fe["202609"]["common_fee_total_won"]
+    share = round(sv["202609"] / tot9 * 100, 1)
+    assert tot9 == 721727480 and share == 15.8
+    M = {"202605": "5월", "202606": "6월", "202607": "7월", "202608": "8월", "202609": "9월"}
+    return dict(ext="daily-2026-11-24-ricents-repair-two", series="repair-two-columns", slot="11:47", home="ricents",
+                persona="wb-persona-cashflow", category="생활", topic="mgmt-fee", verification="verified",
+                sources=[FEE_SRC_1108, REPAIR_SRC_1111, KAPT_INFO],
+                title="매달 1억원대와 3억~10억원, 리센츠 수리비 두 칸",
+                body=[
+                    "K-apt 자료에서 리센츠가 고치는 데 쓴 돈은 한 칸에 모여 있지 않아요. 그중 두 칸을 나란히 놓았습니다. 공용관리비 17개 항목 가운데 '수선비', "
+                    "그리고 장기수선충당금의 '월사용액'이에요. 앞의 것은 그달 관리비로 부과된 금액이고, 뒤의 것은 모아 둔 충당금에서 그달 나간 금액이고요.",
+                    "올해 5월부터 9월까지 공용관리비 수선비는 " + ", ".join(man(sv[k]) for k in yms) + "이었어요. "
+                    f"다섯 달 모두 1억원대예요. 가장 큰 {M[hi]}과 가장 작은 {M[lo]}의 차이가 {man(sv[hi] - sv[lo])}이고요. "
+                    f"9월분으로 보면 공용관리비 합계 {man(tot9)} 가운데 {share}%가 이 칸이에요.",
+                    "같은 다섯 달 장기수선충당금 사용액은 " + ", ".join(man(use[k]) for k in yms) + "입니다. "
+                    f"8월 한 달이 5월의 3배가 넘어요. 그 8월에 관리비 수선비는 {man(sv['202608'])}으로 다섯 달 중 두 번째로 작았고요.",
+                    "숫자는 여기까지고요, 두 줄을 겹쳐 보면 이렇게 읽혀요. 충당금에서 10억원 넘게 나간 달에도 관리비 수선비 칸은 거의 그대로였어요. "
+                    "적어도 이 다섯 달은 큰 금액이 충당금 쪽에서 나갔고, 관리비 쪽은 매달 비슷한 크기로 돌아간 셈이에요. "
+                    f"다섯 달을 더하면 관리비 수선비 {man(S)}, 충당금 사용 {man(U)}이에요. 어떤 공사가 어느 칸으로 갔는지는 금액만으로 알 수 없어요.",
+                    "고지서에서 수선비와 장기수선충당금을 나눠 보신 적 있나요?",
+                ],
+                source_note=("K-apt 공용관리비 17개 항목 중 수선비, 공공데이터포털 OpenAPI(V3), 리센츠 2026년 5·6월분 2026. 8. 16.·7~9월분 2026. 11. 8. 조회 · "
+                             "장기수선충당금 월사용액·월부과액은 국토교통부 공동주택관리비(장기수선충당금) 정보서비스(15059160), 2026. 11. 11. 조회 · "
+                             f"만원 아래 버림 · ㎡당 = 금액 ÷ K-apt 관리비부과면적 {area:,.0f}㎡ · 공사 내역(용처)은 두 자료 모두에 없다"),
+                unknowns=["어떤 수리를 관리비 수선비로 하고 어떤 수리를 장기수선충당금으로 하는지 이 단지가 정한 기준은 자료에 없습니다",
+                          "8월에 충당금에서 나간 금액이 한 공사인지 여러 공사를 합친 것인지는 월 합계만 있는 자료라 알 수 없습니다"],
+                comments=[
+                    ("wb-persona-repair-ledger", f"같은 다섯 달 충당금으로 걷은 돈은 달마다 {man(209516940)}, 합쳐 {man(L)}입니다. "
+                     "다섯 달 모두 나간 돈이 걷은 돈보다 컸네요.", "적립금 추적"),
+                    ("wb-persona-num-compare", f"고지서 단위로 맞추면 9월 공용관리비 수선비는 관리비 부과면적 ㎡당 {per_sv}원, "
+                     f"장기수선충당금 부과액은 ㎡당 {per_lv}원입니다.", "기준 통일"),
+                ])
+
+
+@day("2026-11-24")
+def d1124(today):
+    # 짝수 날·화요일. 09:24 preflight 3 — apis.data.go.kr 5번 중 0번 붙음, 밤 미리 받기 247달 중 14달이라 스냅숏도 못 씀.
+    # 커밋된 캐시(관리비·장충금)로 이번 달 리센츠 쪽에 안 쓴 사실 하나만 쓴다(11/8 관리비 글은 마래푸 글에서 리센츠 ㎡당을 나란히 둔 것).
+    # 마래푸·원베일리는 이번 달 관리비·장충금·상가·등기·전월세 축을 이미 썼다 — 재시도에서 data.go.kr 이 돌아오면 마래푸 건축물대장을 본다
+    return dict(posts=[_ricents_repair_two_1124()])
+
 RENT_SRC_1114 = {"label": "국토교통부 아파트 전월세 실거래가 자료 (확인 2026. 11. 14.)",
                  "url": "https://www.data.go.kr/data/15058017/openapi.do", "publisher": "국토교통부"}
 TRADE_SRC_1114 = {"label": "국토교통부 아파트 매매 실거래가 상세 자료 (확인 2026. 11. 14.)",
