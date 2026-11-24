@@ -195,7 +195,7 @@ def main():
     ap.add_argument("--codes", nargs="*", default=list(CODES), help="소분류 코드")
     ap.add_argument("--date", default=dt.date.today().isoformat(), help="조회일(폴더 이름)")
     a = ap.parse_args()
-    key = os.environ.get("KAPT_SERVICE_KEY")
+    key = os.environ.get("KAPT_SERVICE_KEY") or os.environ.get("DATA_GO_KR_SERVICE_KEY") or os.environ.get("DATA_GO_KR_KEY")
     if not key:
         sys.exit("KAPT_SERVICE_KEY 가 없다. .env 를 확인한다")
     bad = [g for g in a.gu if g not in GU] + [c for c in a.codes if c not in CODES]

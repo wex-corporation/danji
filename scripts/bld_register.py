@@ -36,7 +36,7 @@ KEEP = ["dongNm", "bldNm", "mainPurpsCdNm", "mainAtchGbCdNm", "regstrGbCdNm", "g
 
 
 def key():
-    k = os.environ.get("KAPT_SERVICE_KEY")
+    k = os.environ.get("KAPT_SERVICE_KEY") or os.environ.get("DATA_GO_KR_SERVICE_KEY") or os.environ.get("DATA_GO_KR_KEY")
     if not k:
         sys.exit("KAPT_SERVICE_KEY 없음 — .env 를 읽고 실행한다")
     return k

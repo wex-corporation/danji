@@ -67,7 +67,7 @@ class LdError(RuntimeError):
 
 
 def service_key():
-    k = os.environ.get("KAPT_SERVICE_KEY") or os.environ.get("DATA_GO_KR_SERVICE_KEY")
+    k = os.environ.get("KAPT_SERVICE_KEY") or os.environ.get("DATA_GO_KR_SERVICE_KEY") or os.environ.get("DATA_GO_KR_KEY")
     if not k:
         raise LdError("KAPT_SERVICE_KEY가 없습니다. `set -a && . ./.env && set +a`")
     return k

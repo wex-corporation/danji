@@ -142,7 +142,7 @@ def _http_get(url, timeout=20, retries=3):
 
 
 def service_key():
-    key = os.environ.get("KAPT_SERVICE_KEY") or os.environ.get("DATA_GO_KR_SERVICE_KEY")
+    key = os.environ.get("KAPT_SERVICE_KEY") or os.environ.get("DATA_GO_KR_SERVICE_KEY") or os.environ.get("DATA_GO_KR_KEY")
     if not key:
         raise KaptError(
             "KAPT_SERVICE_KEY가 없습니다. 공공데이터포털에서 "

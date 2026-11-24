@@ -56,6 +56,16 @@ def load_env():
         os.environ.setdefault(k, v.strip().strip('"').strip("'"))
 
 
+def alias_keys():
+    """공공데이터 키를 다른 이름으로 넣어도 KAPT_SERVICE_KEY 로 본다(11/24 — 라엘이 DATA_GO_KR_KEY 로 안내).
+    값은 옮기기만 하고 찍지 않는다."""
+    if not os.environ.get("KAPT_SERVICE_KEY"):
+        for alt in ("DATA_GO_KR_SERVICE_KEY", "DATA_GO_KR_KEY"):
+            if os.environ.get(alt):
+                os.environ["KAPT_SERVICE_KEY"] = os.environ[alt]
+                break
+
+
 def probe(url, tries=2, timeout=20, check=None):
     """(ok, 설명). 키가 들어간 URL 이어도 설명에는 호스트만 남긴다."""
     host = urllib.parse.urlsplit(url).netloc
@@ -104,6 +114,7 @@ def main():
                     help="스냅숏을 볼 배정 묶음. auto = 오늘 날짜의 홀짝")
     a = ap.parse_args()
     load_env()
+    alias_keys()
     now = datetime.now(KST)
     group = group_for(now) if a.group == "auto" else a.group
 

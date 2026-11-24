@@ -99,6 +99,7 @@ def main():
     ap.add_argument("--budget-min", type=int, default=40, help="끊겼다 붙었다 할 때 다시 시도하며 버틸 시간(분)")
     a = ap.parse_args()
     preflight.load_env()
+    preflight.alias_keys()
     now = datetime.now(preflight.KST)
     group = preflight.group_for(now + timedelta(days=1)) if a.group == "tomorrow" else a.group
     lawds = sorted(set(preflight.GROUPS[group].values()))
